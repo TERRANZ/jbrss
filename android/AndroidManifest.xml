@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="ru.terra.jbrss"
+          android:versionCode="1"
+          android:versionName="1.0">
+
+    <uses-sdk
+            android:minSdkVersion="11"
+            android:targetSdkVersion="16"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+            android:name="JBRSSApplication"
+            android:allowBackup="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/app_name"
+            android:theme="@style/AppBaseTheme">
+        <activity
+                android:name="ru.terra.jbrss.MainActivity"
+                android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <provider
+                android:name="ru.terra.jbrss.core.db.ProjectContentProvider"
+                android:authorities="ru.terra.jbrss.entity">
+        </provider>
+
+        <service android:name=".service.UpdateService">
+        </service>
+
+        <activity android:name=".activity.FeedPostsListActivity">
+        </activity>
+        <activity android:name=".activity.FeedPostsViewAcitivity">
+        </activity>
+        <activity android:name=".activity.SettingsActivity">
+        </activity>
+
+        <service android:name=".service.MarkReadService">
+        </service>
+
+        <activity android:name=".activity.LoginActivity">
+        </activity>
+        <activity android:name=".activity.RegActivity">
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/mi_posts_show_read"
+        android:checkable="true"
+        android:checked="false"
+        android:showAsAction="ifRoom"
+        android:title="@string/unread">
+    </item>
+    <item
+        android:id="@+id/mi_posts_all_read"
+        android:title="Все в прочитанные">
+    </item>
+
+</menu>

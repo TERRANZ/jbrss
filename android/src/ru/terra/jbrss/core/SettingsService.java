@@ -1,0 +1,32 @@
+package ru.terra.jbrss.core;
+
+import roboguice.inject.ContextSingleton;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
+
+import com.google.inject.Inject;
+
+@ContextSingleton
+public class SettingsService {
+
+	private Context context;
+
+	@Inject
+	public SettingsService(Context context) {
+		this.context = context;
+	}
+
+	public void saveSetting(String key, String value) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		Editor editor = prefs.edit();
+		editor.putString(key, value);
+		editor.commit();
+	}
+
+	public String getSetting(String key, String defVal) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		return prefs.getString(key, defVal);
+	}
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditTextPreference
+        android:key="@string/estimate_days"
+        android:numeric="integer"
+        android:defaultValue="0"
+        android:title="За сколько дней хранить сообщения" />
+
+</PreferenceScreen>
