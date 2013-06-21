@@ -175,7 +175,7 @@ public class FeedpostsJpaController implements Serializable {
 		try {
 			if (!em.isOpen())
 				em = getEntityManager();
-			Query q = em.createNamedQuery("Feedposts.findByFeedId").setParameter("feedId", id);
+			Query q = em.createNamedQuery("Feedposts.getPostsByFeedAndByDateSorted").setParameter("feedId", id);
 			q.setMaxResults(perpage);
 			q.setFirstResult(page * perpage);
 			return q.getResultList();
