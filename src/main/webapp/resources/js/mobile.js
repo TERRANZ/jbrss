@@ -38,18 +38,24 @@ function load_feed(feedId) {
 		}
 	});
 }
-function create_last_post(root, title, date, link) {
-	/*
-	 * <h3>MultiFlex-1</h3> <p>Released: 01.05.2006<br />OK for operational
-	 * use, but very heavy code.<br /><a
-	 * href="http://www.1-2-3-4.info/webtemplates/">Download latest update</a></p>
-	 */
 
-}
 function create_main_post(title, text, date, link) {
+	var ts = new Date(date);
+	// hours part from the timestamp
+	var year = ts.getFullYear();
+	var month = ts.getMonth();
+	var day = ts.getDay();
+	var hours = ts.getHours();
+	// minutes part from the timestamp
+	var minutes = ts.getMinutes();
+	// seconds part from the timestamp
+	var seconds = ts.getSeconds();	
+
+	// will display time in 10:30:23 format
+	var formattedTime = year+'.'+month+'.'+day+' '+ hours + ':' + minutes + ':' + seconds;
 	var ret = "";
 	ret += '<div class="column1-unit"> <h1>' + title + '</h1>';
-	ret += '<h3>' + date + '</h3>';
+	ret += '<h3>' + formattedTime + '</h3>';
 	ret += '<p>' + text + '</p>';
 	ret += '<a href=' + link + '>Ссылка</a>';
 	ret += '</div> <hr class="clear-contentunit" />';
