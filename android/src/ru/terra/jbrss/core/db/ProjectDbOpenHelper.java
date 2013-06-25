@@ -1,15 +1,14 @@
 package ru.terra.jbrss.core.db;
 
-import roboguice.inject.ContextSingleton;
-import ru.terra.jbrss.R;
-import ru.terra.jbrss.constants.Constants;
-import ru.terra.jbrss.core.helper.IOHelper;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import com.google.inject.Inject;
+import roboguice.inject.ContextSingleton;
+import ru.terra.jbrss.R;
+import ru.terra.jbrss.constants.Constants;
+import ru.terra.jbrss.core.helper.IOHelper;
 
 @ContextSingleton
 public class ProjectDbOpenHelper extends SQLiteOpenHelper {

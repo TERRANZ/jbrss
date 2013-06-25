@@ -1,8 +1,8 @@
 package ru.terra.jbrss.activity;
 
-import ru.terra.jbrss.R;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+import ru.terra.jbrss.R;
 
 public class SettingsFragment extends PreferenceFragment {
 	@Override

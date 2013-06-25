@@ -1,7 +1,6 @@
 package ru.terra.jbrss.activity.components;
 
 import android.database.Cursor;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 

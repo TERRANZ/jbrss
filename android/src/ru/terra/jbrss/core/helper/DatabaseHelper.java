@@ -1,13 +1,12 @@
 package ru.terra.jbrss.core.helper;
 
-import ru.terra.jbrss.core.db.ProjectDbOpenHelper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import ru.terra.jbrss.core.db.ProjectDbOpenHelper;
 
 @Singleton
 public class DatabaseHelper {

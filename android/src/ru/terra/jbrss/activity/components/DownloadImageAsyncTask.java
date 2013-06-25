@@ -1,12 +1,12 @@
 package ru.terra.jbrss.activity.components;
 
-import java.io.InputStream;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
+
+import java.io.InputStream;
 
 public class DownloadImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
 	ImageView imageView;

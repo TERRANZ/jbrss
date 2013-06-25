@@ -1,12 +1,11 @@
 package ru.terra.jbrss.core;
 
-import roboguice.inject.ContextSingleton;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
-
 import com.google.inject.Inject;
+import roboguice.inject.ContextSingleton;
 
 @ContextSingleton
 public class SettingsService {

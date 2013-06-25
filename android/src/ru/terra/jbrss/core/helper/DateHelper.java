@@ -1,9 +1,9 @@
 package ru.terra.jbrss.core.helper;
 
+import android.text.format.DateUtils;
+
 import java.util.Calendar;
 import java.util.Date;
-
-import android.text.format.DateUtils;
 
 public class DateHelper {
 

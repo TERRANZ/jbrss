@@ -1,16 +1,5 @@
 package ru.terra.jbrss.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import roboguice.activity.RoboActivity;
-import roboguice.inject.InjectView;
-import ru.terra.jbrss.R;
-import ru.terra.jbrss.activity.components.CursorsCache;
-import ru.terra.jbrss.constants.Constants;
-import ru.terra.jbrss.entity.FeedPostEntity;
-import ru.terra.jbrss.service.MarkReadService;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -25,8 +14,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.google.inject.Inject;
+import roboguice.activity.RoboActivity;
+import roboguice.inject.InjectView;
+import ru.terra.jbrss.R;
+import ru.terra.jbrss.activity.components.CursorsCache;
+import ru.terra.jbrss.constants.Constants;
+import ru.terra.jbrss.entity.FeedPostEntity;
+import ru.terra.jbrss.service.MarkReadService;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FeedPostsViewAcitivity extends RoboActivity {
 
@@ -113,9 +111,6 @@ public class FeedPostsViewAcitivity extends RoboActivity {
 	}
 
 	private void markRead(Integer postId) {
-		ContentValues cv = new ContentValues();
-		cv.put(FeedPostEntity.POST_ISREAD, "true");
-		getContentResolver().update(FeedPostEntity.CONTENT_URI, cv, FeedPostEntity.POST_EXTERNAL_ID + " = ?", new String[] { postId.toString() });
 		startService(new Intent(FeedPostsViewAcitivity.this, MarkReadService.class).putExtra("id", postId).putExtra("operation",
 				Constants.OP_MARK_READ_POST));
 	}

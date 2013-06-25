@@ -1,7 +1,5 @@
 package ru.terra.jbrss.activity.components;
 
-import ru.terra.jbrss.R;
-import ru.terra.jbrss.entity.FeedPostEntity;
 import android.app.Service;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+import ru.terra.jbrss.R;
+import ru.terra.jbrss.entity.FeedPostEntity;
 
 public class FeedPostsCursorAdapter extends CursorAdapter {
 

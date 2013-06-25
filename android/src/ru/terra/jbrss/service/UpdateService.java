@@ -1,22 +1,16 @@
 package ru.terra.jbrss.service;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v4.app.NotificationCompat;
-import android.widget.Toast;
 import com.google.inject.Inject;
 import org.acra.ACRA;
 import roboguice.service.RoboIntentService;
 import ru.terra.jbrss.R;
-import ru.terra.jbrss.activity.FeedPostsListActivity;
 import ru.terra.jbrss.constants.Constants;
 import ru.terra.jbrss.core.SettingsService;
 import ru.terra.jbrss.core.helper.Logger;
+import ru.terra.jbrss.core.helper.NotificationHelper;
 import ru.terra.jbrss.dto.CommonDTO;
 import ru.terra.jbrss.dto.rss.*;
 import ru.terra.jbrss.entity.FeedEntity;
@@ -28,8 +22,6 @@ import java.util.List;
 
 public class UpdateService extends RoboIntentService {
 
-    private NotificationManager notifier;
-    private NotificationCompat.Builder builder;
 
     @Inject
     public UpdateService() {
@@ -40,10 +32,12 @@ public class UpdateService extends RoboIntentService {
     private JBRssRest jbRssRest;
     @Inject
     private SettingsService settingsService;
+    @Inject
+    private NotificationHelper notificationHelper;
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        notifyStartUpdate();
+        notificationHelper.notifyStartUpdate();
         try {
             SimpleIntDataDTO updateDTO = jbRssRest.update();
             if (updateDTO != null) {
@@ -91,23 +85,28 @@ public class UpdateService extends RoboIntentService {
                                     updateUnreads();
                                 }
                             }
-                            notify("Новых сообщений: " + updated, true);
+                            notificationHelper.notify("Новых сообщений: " + updated, true);
 
                         } else {
-                            notify("Новый сообщений нет", false);
+                            notificationHelper.notify("Новый сообщений нет", false);
                         }
+                    } else {
+                        notificationHelper.notify("Ошибка при получении новых сообщений", false);
                     }
                 }
+            } else {
+                notificationHelper.notify("Ошибка при получении новых сообщений : пустой ответ", false);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            notificationHelper.notify(e.getLocalizedMessage(), false);
             ACRA.getErrorReporter().handleException(e);
         }
     }
 
     private boolean checkError(CommonDTO dto) {
         if (dto.errorCode > 0) {
-            Toast.makeText(this, dto.errorMessage, Toast.LENGTH_SHORT).show();
+            notificationHelper.notify(dto.errorMessage, false);
             return true;
         }
         return false;
@@ -197,34 +196,6 @@ public class UpdateService extends RoboIntentService {
         return false;
     }
 
-    private void notify(String text, boolean showList) {
-        notifier = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        builder = new NotificationCompat.Builder(this).setSmallIcon(R.drawable.info_selected);
-        builder.setContentText(text);
-        builder.setContentTitle(text);
-        builder.setDefaults(Notification.DEFAULT_ALL);
-        builder.setTicker(text);
-        if (showList) {
-            Intent intent = new Intent(this, FeedPostsListActivity.class);
-            intent.putExtra("from_date", settingsService.getSetting("last_sync_time", "0"));
-            settingsService.saveSetting("last_sync_time", String.valueOf(new Date().getTime()));
-            intent.putExtra("from_notify", true);
-            PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
-            builder.setContentIntent(pIntent);
-        }
-        notifier.notify(0, builder.build());
-    }
-
-    private void notifyStartUpdate() {
-        notifier = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        builder = new NotificationCompat.Builder(this).setSmallIcon(R.drawable.info_selected);
-        builder.setContentText("Обновление...");
-        builder.setContentTitle("Обновление...");
-        builder.setDefaults(Notification.DEFAULT_ALL);
-        builder.setTicker("Обновление...");
-        builder.setProgress(100, 100, true);
-        notifier.notify(0, builder.build());
-    }
 
     private void checkForOld() {
         Integer days = Integer.valueOf(settingsService.getSetting(getString(R.string.estimate_days), "0"));

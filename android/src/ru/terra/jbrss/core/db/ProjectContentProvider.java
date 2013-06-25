@@ -1,9 +1,5 @@
 package ru.terra.jbrss.core.db;
 
-import roboguice.content.RoboContentProvider;
-import ru.terra.jbrss.constants.Constants;
-import ru.terra.jbrss.entity.FeedEntity;
-import ru.terra.jbrss.entity.FeedPostEntity;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -11,8 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-
 import com.google.inject.Inject;
+import roboguice.content.RoboContentProvider;
 
 public class ProjectContentProvider extends RoboContentProvider {
 

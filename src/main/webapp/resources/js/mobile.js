@@ -8,11 +8,13 @@ function load_feeds() {
 		data : {},
 		success : function(data) {
 			var htmlRet = "";
-			$.each(data.data, function(i, feed) {
-				htmlRet += '<li data-theme="c"><a href="#" onClick=load_feed(' + feed.id + '); data-transition="slide">' + feed.feedname
-						+ '</a></li>';
-			});
-			$("#feeds").html(htmlRet);
+			if (data.errorCode == 0) {
+				$.each(data.data, function(i, feed) {
+					htmlRet += '<li data-theme="c"><a href="#" onClick=load_feed(' + feed.id + '); data-transition="slide">' + feed.feedname
+							+ '</a></li>';
+				});
+				$("#feeds").html(htmlRet);
+			}
 		}
 	});
 }
@@ -31,10 +33,12 @@ function load_feed(feedId) {
 		},
 		success : function(data) {
 			var htmlRet = "";
-			$.each(data.data, function(i, post) {
-				htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink);
-			});
-			$("#messages").html(htmlRet);
+			if (data.errorCode == 0) {
+				$.each(data.data, function(i, post) {
+					htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink);
+				});
+				$("#messages").html(htmlRet);
+			}
 		}
 	});
 }
@@ -49,10 +53,10 @@ function create_main_post(title, text, date, link) {
 	// minutes part from the timestamp
 	var minutes = ts.getMinutes();
 	// seconds part from the timestamp
-	var seconds = ts.getSeconds();	
+	var seconds = ts.getSeconds();
 
 	// will display time in 10:30:23 format
-	var formattedTime = year+'.'+month+'.'+day+' '+ hours + ':' + minutes + ':' + seconds;
+	var formattedTime = year + '.' + month + '.' + day + ' ' + hours + ':' + minutes + ':' + seconds;
 	var ret = "";
 	ret += '<div class="column1-unit"> <h1>' + title + '</h1>';
 	ret += '<h3>' + formattedTime + '</h3>';
@@ -71,7 +75,8 @@ function userLogin() {
 		alert('Не введен пароль');
 	} else {
 
-		$.ajax({
+		$
+				.ajax({
 					url : '/jbrss/login/do.login.json',
 					async : false,
 					type : 'post',
@@ -82,7 +87,7 @@ function userLogin() {
 					},
 					success : function(data) {
 						if (data.logged == true) {
-							window.location.replace("/jbrss/mobile");
+							window.location.assign("/jbrss/mobile");
 						} else {
 							if (parseInt(data.errorCode) == 1000) {
 								alert('Вы сделали слишком много попыток зайти на ресурс. Аккаунт временно заблокирован. Попробуйте еще раз через некоторое время.');

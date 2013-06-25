@@ -1,5 +1,15 @@
 package ru.terra.jbrss.activity;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import com.google.inject.Inject;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import ru.terra.jbrss.R;
@@ -10,19 +20,6 @@ import ru.terra.jbrss.constants.Constants;
 import ru.terra.jbrss.entity.FeedPostEntity;
 import ru.terra.jbrss.network.JBRssRest;
 import ru.terra.jbrss.service.MarkReadService;
-import android.content.ContentValues;
-import android.content.Intent;
-import android.database.Cursor;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-
-import com.google.inject.Inject;
 
 public class FeedPostsListActivity extends RoboActivity {
 
@@ -123,9 +120,6 @@ public class FeedPostsListActivity extends RoboActivity {
 			return true;
 		}
 		case R.id.mi_posts_all_read: {
-			ContentValues cv = new ContentValues();
-			cv.put(FeedPostEntity.POST_ISREAD, "true");
-			getContentResolver().update(FeedPostEntity.CONTENT_URI, cv, FeedPostEntity.POST_FEED_ID + " = ?", new String[] { feed.toString() });
 			startService(new Intent(this, MarkReadService.class).putExtra("id", feed).putExtra("operation", Constants.OP_MARK_READ_FEED));
 		}
 			return true;

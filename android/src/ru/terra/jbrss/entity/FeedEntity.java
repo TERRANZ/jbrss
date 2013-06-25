@@ -1,8 +1,8 @@
 package ru.terra.jbrss.entity;
 
-import ru.terra.jbrss.constants.Constants;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import ru.terra.jbrss.constants.Constants;
 
 public interface FeedEntity extends BaseColumns {
 	String CONTENT_DIRECTORY = "feed";
