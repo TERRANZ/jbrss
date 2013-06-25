@@ -91,9 +91,9 @@ public class JsonController {
 			if (feeds != null && feeds.size() > 0) {
 				List<Feedposts> posts = new ArrayList<>();
 				List<FeedPostDTO> dtos = new ArrayList<>();
-				for (Feeds f : feeds) {
+				for (Feeds feed : feeds) {
 					try {
-						posts.addAll(model.getNewUserPosts(user.getId(), f.getId(), new Date(timestamp)));
+						posts.addAll(model.getNewUserPosts(user.getId(), feed, new Date(timestamp)));
 					} catch (IllegalAccessException e) {
 						return ResponceUtils.makeErrorResponce(ErrorConstants.ERR_NOT_AUTHORIZED_MSG, ErrorConstants.ERR_NOT_AUTHORIZED_ID);
 					}

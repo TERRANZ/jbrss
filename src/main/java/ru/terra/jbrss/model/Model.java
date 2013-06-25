@@ -21,6 +21,11 @@ import ru.terra.jbrss.db.entity.Feeds;
 import ru.terra.jbrss.db.entity.User;
 import ru.terra.jbrss.rss.Downloader;
 import ru.terra.jbrss.web.security.SessionHelper;
+import ru.terra.twochsaver.twoch.SingleThreadDownloader;
+import ru.terra.twochsaver.twoch.db.TMessage;
+import ru.terra.twochsaver.twoch.db.TThread;
+import ru.terra.twochsaver.twoch.db.controller.TMessageJpaController;
+import ru.terra.twochsaver.twoch.db.controller.TThreadJpaController;
 
 @Singleton
 @Component
@@ -48,12 +53,26 @@ public class Model {
 
 	public Boolean addFeed(final User user, final String url) throws IllegalAccessException {
 		if (feedsJpaController.findFeedByUserAndByURL(user.getId(), url) == null) {
-			new Thread(new Runnable() {
-				public void run() {
-					Feeds f = new Feeds(0, user.getId(), downloader.getFeedTitle(url), url, new Date());
-					feedsJpaController.create(f);
-				}
-			}).start();
+			if (url.contains("2ch")) {
+				new Thread(new Runnable() {
+					public void run() {
+						try {
+							Feeds f = new Feeds(0, user.getId(), new SingleThreadDownloader().loadName(url), url, new Date());
+							feedsJpaController.create(f);
+						} catch (Exception e) {
+							log.info("unable to load 2ch thread", e);
+							e.printStackTrace();
+						}
+					}
+				}).start();
+			} else {
+				new Thread(new Runnable() {
+					public void run() {
+						Feeds f = new Feeds(0, user.getId(), downloader.getFeedTitle(url), url, new Date());
+						feedsJpaController.create(f);
+					}
+				}).start();
+			}
 			return true;
 		}
 		return false;
@@ -69,43 +88,57 @@ public class Model {
 
 	public Integer updateFeed(Feeds feed) throws IllegalAccessException {
 		if (SessionHelper.getCurrentIUserId() == feed.getUserid()) {
-			List<Feedposts> posts = downloader.loadFeeds(feed.getFeedurl());
-			Date d = feedpostsJpaController.getLastPostDate(feed.getId());
-			List<Feedposts> newPosts;
-			if (d != null) {
-				newPosts = new ArrayList<Feedposts>();
-				for (Feedposts fp : posts) {
-					if (fp.getPostdate().getTime() > d.getTime())
-						newPosts.add(fp);
+			if (feed.getFeedurl().contains("2ch")) {
+				try {
+					Integer downloaded = new SingleThreadDownloader().download(feed.getFeedurl());
+					return downloaded;
+				} catch (Exception e) {
+					log.info("error while load thread ", e);
+					return 0;
 				}
 			} else {
-				newPosts = new ArrayList<Feedposts>(posts);
+				List<Feedposts> posts = downloader.loadFeeds(feed.getFeedurl());
+				Date d = feedpostsJpaController.getLastPostDate(feed.getId());
+				List<Feedposts> newPosts;
+				if (d != null) {
+					newPosts = new ArrayList<Feedposts>();
+					for (Feedposts fp : posts) {
+						if (fp.getPostdate().getTime() > d.getTime())
+							newPosts.add(fp);
+					}
+				} else {
+					newPosts = new ArrayList<Feedposts>(posts);
+				}
+				for (Feedposts fp : newPosts) {
+					fp.setFeedId(feed.getId());
+					feedpostsJpaController.create(fp);
+				}
+				return newPosts.size();
 			}
-			for (Feedposts fp : newPosts) {
-				fp.setFeedId(feed.getId());
-				feedpostsJpaController.create(fp);
-			}
-			return newPosts.size();
 		} else {
 			throw new IllegalAccessException();
 		}
 	}
 
-	public List<Feedposts> getUnreadUserPosts(Integer uid) throws IllegalAccessException {
+	public List<Feedposts> getNewUserPosts(Integer uid, Feeds feed, Date d) throws IllegalAccessException {
 		if (SessionHelper.getCurrentIUserId() == uid) {
-			List<Feedposts> posts = new ArrayList<Feedposts>();
-			for (Feeds f : getFeeds(uid)) {
-				posts.addAll(feedpostsJpaController.findFeedpostsByFeedSortedUnread(f.getId()));
-			}
-			return posts;
-		} else {
-			throw new IllegalAccessException();
-		}
-	}
-
-	public List<Feedposts> getNewUserPosts(Integer uid, Integer feedId, Date d) throws IllegalAccessException {
-		if (SessionHelper.getCurrentIUserId() == uid) {
-			return feedpostsJpaController.findFeedpostsByFeedFromDate(feedsJpaController.findFeedByUserAndById(uid, feedId).getId(), d);
+			if (feed.getFeedurl().contains("2ch")) {
+				List<Feedposts> ret = new ArrayList<>();
+				EntityManagerFactory emf = Persistence.createEntityManagerFactory("2chPU");
+				TMessageJpaController mjc = new TMessageJpaController(emf);
+				TThreadJpaController tjc = new TThreadJpaController(emf);
+				TThread tt = tjc.findByBoard(feed.getFeedurl());
+				List<TMessage> msgs = new ArrayList<>();
+				if (tt != null) {
+					msgs.add(mjc.findTMessage(tt.getStartMessage()));
+					msgs.addAll(mjc.findByParent(tt.getStartMessage()));
+				}
+				if (msgs.size() > 0)
+					for (TMessage msg : msgs)
+						ret.add(process(feed, msg));
+				return ret;
+			} else
+				return feedpostsJpaController.findFeedpostsByFeedFromDate(feedsJpaController.findFeedByUserAndById(uid, feed.getId()).getId(), d);
 		} else {
 			throw new IllegalAccessException();
 		}
@@ -158,4 +191,16 @@ public class Model {
 	public void setAllRead(Integer uid) throws IllegalAccessException {
 	}
 
+	private Feedposts process(Feeds feed, TMessage msg) {
+		Feedposts fp = new Feedposts();
+		fp.setFeedId(feed.getId());
+		fp.setId(msg.getNum().intValue());
+		fp.setPostdate(new Date(msg.getMsgtimestamp()));
+		fp.setPostlink(feed.getFeedurl());
+		fp.setPosttext(msg.getComment());
+		fp.setPosttitle(msg.getName());
+		fp.setRead(false);
+		fp.setUpdated(new Date());
+		return fp;
+	}
 }
