@@ -6,6 +6,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
+import ru.terra.jbrss.constants.URLConstants;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,7 +26,7 @@ public class ProjectModule extends AbstractModule {
 	@Provides
 	@Named("jbrssServer")
 	public String provideJsonServerName() {
-		return "http://terranout.ath.cx/jbrss/";
+		return URLConstants.SERVER_URL;
 	}
 
 	@Provides

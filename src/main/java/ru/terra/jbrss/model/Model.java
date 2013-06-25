@@ -121,13 +121,15 @@ public class Model {
 	}
 
 	public List<Feedposts> getNewUserPosts(Integer uid, Feeds feed, Date d) throws IllegalAccessException {
+		log.info("updating feed : " + feed.toString());
 		if (SessionHelper.getCurrentIUserId() == uid) {
 			if (feed.getFeedurl().contains("2ch")) {
 				List<Feedposts> ret = new ArrayList<>();
 				EntityManagerFactory emf = Persistence.createEntityManagerFactory("2chPU");
 				TMessageJpaController mjc = new TMessageJpaController(emf);
 				TThreadJpaController tjc = new TThreadJpaController(emf);
-				TThread tt = tjc.findByBoard(feed.getFeedurl());
+				TThread tt = tjc.findByBoard(feed.getFeedurl().substring(0, feed.getFeedurl().lastIndexOf(".")));
+				log.info("loaded thread : " + tt.toString());
 				List<TMessage> msgs = new ArrayList<>();
 				if (tt != null) {
 					msgs.add(mjc.findTMessage(tt.getStartMessage()));
@@ -198,7 +200,7 @@ public class Model {
 		fp.setPostdate(new Date(msg.getMsgtimestamp()));
 		fp.setPostlink(feed.getFeedurl());
 		fp.setPosttext(msg.getComment());
-		fp.setPosttitle(msg.getName());
+		fp.setPosttitle(msg.getSubject());
 		fp.setRead(false);
 		fp.setUpdated(new Date());
 		return fp;

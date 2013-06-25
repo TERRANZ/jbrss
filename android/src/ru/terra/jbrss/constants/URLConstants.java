@@ -1,7 +1,7 @@
 package ru.terra.jbrss.constants;
 
 public class URLConstants {
-	public static final String SERVER_URL = "http://terranout.ath.cx/jbrss/";
+	public static final String SERVER_URL = "http://172.29.135.111:8080/jbrss/";
 
 	public class Pages {
 		public static final String SPRING_LOGIN = "/jbrss/do.login";

@@ -78,6 +78,6 @@ public class SingleThreadDownloader {
 		URLConnection conn = new URL(url + JSON).openConnection();
 		String json = RequestUtil.readStreamToString(conn.getInputStream(), "UTF-8");
 		SingleThreadDTO tdto = new JSONDeserializer<SingleThreadDTO>().deserialize(json, SingleThreadDTO.class);
-		return tdto.thread.get(0).get(0).name;
+		return tdto.thread.get(0).get(0).subject;
 	}
 }

@@ -6,13 +6,13 @@
         <option name="logLevel" value="verbose" />
         <option name="logMessagePattern" value="" />
         <option name="logTagPattern" value="" />
-        <option name="name" value="20637" />
-        <option name="pid" value="20637" />
+        <option name="name" value="813" />
+        <option name="pid" value="813" />
       </filter>
     </filters>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="20637" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="813" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" name="Default" comment="" />
@@ -35,7 +35,7 @@
     <file path="$PROJECT_DIR$/../../altarix/mgsn/src/ru/altarix/framework/documents/service/SendDocAsyncTask.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370521296694" ignored="false" />
     <file path="/FeedPostsViewAcitivity.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370521490369" ignored="false" />
     <file path="/JsonResponce.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370603273857" ignored="false" />
-    <file path="/Dummy.txt" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372152252869" ignored="false" />
+    <file path="/Dummy.txt" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372168320499" ignored="false" />
     <file path="$PROJECT_DIR$/../../altarix/mgsn/src/ru/altarix/framework/documents/component/SendMailAsyncTask.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370606956785" ignored="false" />
     <file path="/SendMailAsyncTask.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370606956252" ignored="false" />
     <file path="/MarkReadService.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372151646263" ignored="false" />
@@ -45,6 +45,7 @@
     <file path="$PROJECT_DIR$/src/ru/terra/jbrss/core/db/ProjectDbOpenHelper.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372152001188" ignored="false" />
     <file path="$PROJECT_DIR$/src/ru/terra/jbrss/core/db/ProjectContentProvider.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372152001188" ignored="false" />
     <file path="/FeedPostsListActivity.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372152879896" ignored="false" />
+    <file path="/ProjectModule.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372167767192" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,8 +162,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/components/LoginAsyncTask.java" />
-        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/LoginActivity.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/components/RegAsyncTask.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/components/AddFeedAsyncTask.java" />
@@ -177,6 +176,8 @@
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/components/LoginHelper.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/service/UpdateService.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsListActivity.java" />
+        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/constants/URLConstants.java" />
+        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/ProjectModule.java" />
       </list>
     </option>
   </component>
@@ -228,6 +229,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbrss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbrss" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -424,20 +443,20 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3278867" sideWeight="0.49893278" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3369803" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="-7" y="-12" width="1934" height="1072" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897604" sideWeight="0.49786553" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3369803" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="-7" y="-12" width="1934" height="1072" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17716116" sideWeight="0.6721133" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3278867" sideWeight="0.50053364" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17716116" sideWeight="0.6721133" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3278867" sideWeight="0.50053364" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.03842049" sideWeight="0.6717724" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24279615" sideWeight="0.6717724" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897604" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897604" sideWeight="0.49786553" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -507,21 +526,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/core/helper/DatabaseHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="362" selection-end="362" vertical-scroll-proportion="0.08408072" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/core/helper/NotificationHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="10" selection-start="976" selection-end="976" vertical-scroll-proportion="0.4618834" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/android-sdk-linux/sources/android-16/android/app/NotificationManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="13" selection-start="2695" selection-end="2695" vertical-scroll-proportion="0.33295965" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/service/MarkReadService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="60" column="71" selection-start="2565" selection-end="2565" vertical-scroll-proportion="0.5795964">
@@ -559,27 +563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/service/UpdateService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="82" selection-start="4201" selection-end="4201" vertical-scroll-proportion="0.3316413">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/JBRssRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="30" selection-start="1586" selection-end="1592" vertical-scroll-proportion="0.71024734">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/HttpRequestHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="17" selection-start="4044" selection-end="4044" vertical-scroll-proportion="1.1285956">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="78" column="130" selection-start="3529" selection-end="3529" vertical-scroll-proportion="0.92385787">
@@ -611,6 +594,48 @@
     <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/activity/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="46" column="50" selection-start="1593" selection-end="1593" vertical-scroll-proportion="0.44506726">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/constants/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="43" selection-start="476" selection-end="476" vertical-scroll-proportion="0.18497758">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/ProjectModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="39" selection-start="663" selection-end="663" vertical-scroll-proportion="-0.6497462">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/HttpRequestHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="13" selection-start="965" selection-end="965" vertical-scroll-proportion="0.15228426">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/JBRssRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="25" selection-start="877" selection-end="877" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/service/UpdateService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="17" selection-start="856" selection-end="856" vertical-scroll-proportion="0.28087986">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/constants/URLConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="41" selection-start="91" selection-end="101" vertical-scroll-proportion="0.07614213">
           <folding />
         </state>
       </provider>
