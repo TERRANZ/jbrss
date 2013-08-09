@@ -28,11 +28,12 @@ public class LoginAsyncTask extends AsyncTaskEx<Void, Void, Boolean> {
         LoginDTO ret = null;
         try {
             ret = jbRssRest.login();
+            message = ret.message;
+            return ret.logged;
         } catch (Exception e) {
             exception = e;
         }
-        message = ret.message;
-        return ret.logged;
+        return false;
     }
 
     @Override

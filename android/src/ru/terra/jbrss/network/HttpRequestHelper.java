@@ -107,6 +107,8 @@ public class HttpRequestHelper {
 
     public <T> T getForObject(String url, Class<T> targetClass, NameValuePair... params) throws IOException, UnableToLoginException {
         JsonResponce ret = runJsonRequest(url, params);
+        if (ret == null)
+            return null;
         if (ret.code == HttpStatus.SC_FORBIDDEN) {
             throw new UnableToLoginException();
         }

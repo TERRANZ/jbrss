@@ -105,6 +105,8 @@ public class UpdateService extends RoboIntentService {
     }
 
     private boolean checkError(CommonDTO dto) {
+        if (dto == null)
+            return true;
         if (dto.errorCode > 0) {
             notificationHelper.notify(dto.errorMessage, false);
             return true;
