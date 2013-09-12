@@ -1,7 +1,5 @@
 package ru.terra.jbrss.dto.rss;
 
-import ru.terra.jbrss.dto.CommonDTO;
-
 public class FeedDTO extends CommonDTO {
 	public Integer id = 0;
 	public String feedname = "";

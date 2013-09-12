@@ -1,30 +1,27 @@
 package ru.terra.jbrss.controller;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
+import com.sun.jersey.api.core.HttpContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import ru.terra.jbrss.constants.URLConstants;
+import ru.terra.jbrss.dto.captcha.CaptchDTO;
 import ru.terra.jbrss.engine.CaptchaEngine;
-import ru.terra.jbrss.util.ResponceUtils;
+import ru.terra.jbrss.engine.YandexCaptcha;
+import ru.terra.server.controller.AbstractResource;
 
-@Controller
-public class CaptchaController
-{
-	private static final Logger logger = LoggerFactory.getLogger(CaptchaController.class);
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
 
-	@Inject
-	private CaptchaEngine captchaEngine;
+@Path(URLConstants.DoJson.Captcha.CAPTCHA)
+public class CaptchaController extends AbstractResource {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private CaptchaEngine captchaEngine = new YandexCaptcha();
 
-	@RequestMapping(value = URLConstants.DoJson.Captcha.CAP_GET, method = { RequestMethod.GET, RequestMethod.POST })
-	public ResponseEntity<String> get(HttpServletRequest request)
-	{
-		return ResponceUtils.makeResponce(captchaEngine.getCaptcha());
-	}
+    @GET
+    @Path(URLConstants.DoJson.Captcha.CAP_GET)
+    public CaptchDTO get(@Context HttpContext hc) {
+        return captchaEngine.getCaptcha();
+    }
 }

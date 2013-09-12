@@ -6,7 +6,6 @@ import android.widget.Toast;
 import ru.terra.jbrss.constants.Constants;
 import ru.terra.jbrss.core.AsyncTaskEx;
 import ru.terra.jbrss.core.WorkIsDoneListener;
-import ru.terra.jbrss.dto.LoginDTO;
 import ru.terra.jbrss.network.JBRssRest;
 
 public class RegAsyncTask extends AsyncTaskEx<String, Void, Boolean> {

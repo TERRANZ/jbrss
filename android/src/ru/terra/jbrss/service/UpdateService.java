@@ -11,7 +11,6 @@ import ru.terra.jbrss.constants.Constants;
 import ru.terra.jbrss.core.SettingsService;
 import ru.terra.jbrss.core.helper.Logger;
 import ru.terra.jbrss.core.helper.NotificationHelper;
-import ru.terra.jbrss.dto.CommonDTO;
 import ru.terra.jbrss.dto.rss.*;
 import ru.terra.jbrss.entity.FeedEntity;
 import ru.terra.jbrss.entity.FeedPostEntity;

@@ -1,7 +1,7 @@
 package ru.terra.jbrss.dto.rss;
 
 import ru.terra.jbrss.db.entity.Feedposts;
-import ru.terra.jbrss.dto.CommonDTO;
+import ru.terra.server.dto.CommonDTO;
 
 public class FeedPostDTO extends CommonDTO
 {
