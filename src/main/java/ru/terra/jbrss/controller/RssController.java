@@ -106,9 +106,15 @@ public class RssController extends AbstractResource {
     @GET
     @Path(URLConstants.DoJson.Rss.RSS_DO_MARK_READ)
     public SimpleDataDTO<Boolean> markRead(@Context HttpContext hc, @QueryParam("read") Boolean read) {
-        Integer feed = Integer.parseInt(getParameter(hc, "feed"));
-        Integer post = Integer.parseInt(getParameter(hc, "post"));
-        Boolean all = Boolean.getBoolean(getParameter(hc, "all"));
+        Integer feed = null;
+        if (getParameter(hc, "feed") != null)
+            feed = Integer.parseInt(getParameter(hc, "feed"));
+        Integer post = null;
+        if (getParameter(hc, "post") != null)
+            post = Integer.parseInt(getParameter(hc, "post"));
+        Boolean all = null;
+        if (getParameter(hc, "all") != null)
+            all = Boolean.getBoolean(getParameter(hc, "all"));
         logger.info("Marking read");
         User user = getCurrentUser(hc);
         SimpleDataDTO<Boolean> ret = new SimpleDataDTO<>(true);
@@ -145,7 +151,11 @@ public class RssController extends AbstractResource {
             Integer updated = 0;
             if (feeds != null && feeds.size() > 0) {
                 for (Feeds f : feeds)
-                    updated += model.updateFeed(f);
+                    try {
+                        updated += model.updateFeed(f);
+                    } catch (Exception e) {
+                        logger.error("Error while updating feed " + f.getFeedurl(), e);
+                    }
             }
             ret.data = updated;
             return ret;

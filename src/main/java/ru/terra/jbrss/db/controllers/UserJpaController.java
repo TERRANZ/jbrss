@@ -19,6 +19,10 @@ import java.io.Serializable;
  */
 public class UserJpaController extends AbstractJpaController<User> implements Serializable {
 
+    public UserJpaController() {
+        super(User.class);
+    }
+
     public void create(User user) {
         EntityManager em = null;
         try {

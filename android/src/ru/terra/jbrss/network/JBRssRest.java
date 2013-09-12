@@ -9,6 +9,7 @@ import ru.terra.jbrss.R;
 import ru.terra.jbrss.constants.Constants;
 import ru.terra.jbrss.constants.URLConstants;
 import ru.terra.jbrss.core.SettingsService;
+import ru.terra.jbrss.dto.LoginDTO;
 import ru.terra.jbrss.dto.captcha.CaptchDTO;
 import ru.terra.jbrss.dto.rss.ListFeedDTO;
 import ru.terra.jbrss.dto.rss.ListFeedPostDTO;

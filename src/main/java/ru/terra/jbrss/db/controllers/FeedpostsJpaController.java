@@ -23,8 +23,11 @@ import java.util.List;
  */
 public class FeedpostsJpaController extends AbstractJpaController<Feedposts> implements Serializable {
     Logger log = LoggerFactory.getLogger(FeedpostsJpaController.class);
-    private EntityManager em;
+    private EntityManager em = getEntityManager();
 
+    public FeedpostsJpaController() {
+        super(Feedposts.class);
+    }
 
     public void create(Feedposts feedposts) {
         try {

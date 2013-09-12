@@ -20,7 +20,7 @@ public class Model {
     private UserJpaController usersJpaController;
     private FeedpostsJpaController feedpostsJpaController;
     private Downloader downloader = new Downloader();
-    Logger log = LoggerFactory.getLogger(Model.class);
+    private Logger log = LoggerFactory.getLogger(Model.class);
 
     public Model() {
         feedsJpaController = new FeedsJpaController();
@@ -59,17 +59,21 @@ public class Model {
     }
 
     public Integer updateFeed(Feeds feed) {
+        //log.info("updating feed " + feed.getFeedurl());
         List<Feedposts> posts = downloader.loadFeeds(feed.getFeedurl());
         Date d = feedpostsJpaController.getLastPostDate(feed.getId());
         List<Feedposts> newPosts;
-        if (d != null) {
-            newPosts = new ArrayList<Feedposts>();
+        if (d != null && posts != null) {
+            newPosts = new ArrayList<>();
             for (Feedposts fp : posts) {
-                if (fp.getPostdate().getTime() > d.getTime())
-                    newPosts.add(fp);
+                if (fp != null)
+                    if (fp.getPostdate() == null)
+                        log.info("post date of post " + fp.getPosttitle()+" is null");
+                    else if (fp.getPostdate().getTime() > d.getTime())
+                        newPosts.add(fp);
             }
         } else {
-            newPosts = new ArrayList<Feedposts>(posts);
+            newPosts = new ArrayList<>(posts);
         }
         for (Feedposts fp : newPosts) {
             fp.setFeedId(feed.getId());
@@ -79,7 +83,7 @@ public class Model {
     }
 
     public List<Feedposts> getNewUserPosts(Integer uid, Feeds feed, Date d) {
-        log.info("updating feed : " + feed.toString());
+        //log.info("updating feed : " + feed.toString());
         return feedpostsJpaController.findFeedpostsByFeedFromDate(feedsJpaController.findFeedByUserAndById(uid, feed.getId()).getId(), d);
 
     }

@@ -20,6 +20,9 @@ import java.util.List;
  */
 public class FeedsJpaController extends AbstractJpaController<Feeds> implements Serializable {
 
+    public FeedsJpaController() {
+        super(Feeds.class);
+    }
 
     public void create(Feeds feeds) {
         EntityManager em = null;

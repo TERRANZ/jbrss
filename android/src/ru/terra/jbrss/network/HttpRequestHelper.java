@@ -5,9 +5,7 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
 import roboguice.inject.ContextSingleton;
@@ -18,7 +16,6 @@ import ru.terra.jbrss.core.helper.Logger;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,25 +81,31 @@ public class HttpRequestHelper {
     }
 
     public JsonResponce runJsonRequest(String uri, NameValuePair... params) throws IOException, UnableToLoginException {
-        HttpPost request = new HttpPost(baseAddress + uri);
 
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        uri += "?";
         for (int i = 0; i < params.length; ++i) {
-            nameValuePairs.add(params[i]);
+            uri += params[i].getName() + "=" + params[i].getValue() + "&";
         }
+        uri = uri.substring(0, uri.length() - 1);
+        HttpGet request = new HttpGet(baseAddress + uri);
 
-        request.addHeader("Content-Type", "application/x-www-form-urlencoded");
-        UrlEncodedFormEntity entity;
+        request.addHeader("Content-Type", "application/json");
         try {
-            entity = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
-            entity.setContentType("appplication/x-www-form-urlencoded");
-            request.setEntity(entity);
-
             return runRequest(request);
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             Logger.w("HttpRequestHelper", "Failed to form request content" + e.getMessage());
             return new JsonResponce("");
         }
+
+//        request.addHeader("Content-Type", "application/x-www-form-urlencoded");
+//        UrlEncodedFormEntity entity;
+
+//            entity = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
+//            entity.setContentType("appplication/x-www-form-urlencoded");
+//            request.setEntity(entity);
+//
+//            return runRequest(request);
     }
 
     public <T> T getForObject(String url, Class<T> targetClass, NameValuePair... params) throws IOException, UnableToLoginException {

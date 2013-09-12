@@ -6,8 +6,13 @@ import ru.terra.jbrss.db.entity.User;
 import ru.terra.server.security.SecurityLevel;
 import ru.terra.server.security.SessionsHolder;
 
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@Produces(MediaType.APPLICATION_JSON)
 public abstract class AbstractResource {
     protected SessionsHolder sessionsHolder = SessionsHolder.getInstance();
+
     protected static String getParameter(HttpContext context, String key) {
         return context.getRequest().getQueryParameters().getFirst(key);
     }
@@ -29,7 +34,11 @@ public abstract class AbstractResource {
     }
 
     protected User getCurrentUser(HttpContext context) {
-        return sessionsHolder.getSession(extractSessionId(context)).getUser();
+        try {
+            return sessionsHolder.getSession(extractSessionId(context)).getUser();
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 
     protected boolean checkUserCanAccess(HttpContext context, SecurityLevel level) {
