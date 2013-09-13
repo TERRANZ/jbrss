@@ -13,7 +13,6 @@ import ru.terra.jbrss.constants.Constants;
 import ru.terra.jbrss.core.SettingsService;
 import ru.terra.jbrss.core.helper.Logger;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ConnectException;
@@ -43,8 +42,6 @@ public class HttpRequestHelper {
     }
 
     private JsonResponce runRequest(HttpUriRequest httpRequest) throws UnableToLoginException, IOException {
-        StringBuilder builder = new StringBuilder();
-
         httpRequest.setHeader("Cookie", "JSESSIONID=" + settingsService.getSetting(Constants.CONFIG_SESSION, ""));
         for (Header h : httpRequest.getAllHeaders()) {
             Logger.i("runRequest", "header: " + h.getName() + " = " + h.getValue());
@@ -67,16 +64,8 @@ public class HttpRequestHelper {
         JsonResponce ret = new JsonResponce();
         ret.code = statusCode;
         if (HttpStatus.SC_OK == statusCode) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                builder.append(line);
-            }
-        } else {
-
+            ret.json = response.getEntity().getContent();
         }
-
-        ret.json = builder.toString();
         return ret;
     }
 
@@ -95,7 +84,7 @@ public class HttpRequestHelper {
             return runRequest(request);
         } catch (Exception e) {
             Logger.w("HttpRequestHelper", "Failed to form request content" + e.getMessage());
-            return new JsonResponce("");
+            return new JsonResponce(null);
         }
 
 //        request.addHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -115,8 +104,6 @@ public class HttpRequestHelper {
         if (ret.code == HttpStatus.SC_FORBIDDEN) {
             throw new UnableToLoginException();
         }
-        String json = ret.json;
-        Logger.i("getForObject", url + " => " + json);
-        return new Gson().fromJson(json, targetClass);
+        return new Gson().fromJson(new InputStreamReader(ret.json), targetClass);
     }
 }

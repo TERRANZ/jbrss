@@ -4,7 +4,7 @@
     <EditTextPreference
         android:key="@string/estimate_days"
         android:numeric="integer"
-        android:defaultValue="0"
+        android:defaultValue="7"
         android:title="За сколько дней хранить сообщения" />
 
 </PreferenceScreen>

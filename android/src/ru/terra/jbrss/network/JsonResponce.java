@@ -1,5 +1,7 @@
 package ru.terra.jbrss.network;
 
+import java.io.InputStream;
+
 /**
  * Created with IntelliJ IDEA.
  * User: terranz
@@ -8,10 +10,10 @@ package ru.terra.jbrss.network;
  * To change this template use File | Settings | File Templates.
  */
 public class JsonResponce {
-    public String json;
+    public InputStream json;
     public int code;
 
-    public JsonResponce(String json) {
+    public JsonResponce(InputStream json) {
         this.json = json;
     }
 

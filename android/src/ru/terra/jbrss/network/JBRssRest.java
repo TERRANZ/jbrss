@@ -17,6 +17,7 @@ import ru.terra.jbrss.dto.rss.SimpleBooleanDataDTO;
 import ru.terra.jbrss.dto.rss.SimpleIntDataDTO;
 
 import java.io.IOException;
+import java.util.Date;
 
 @ContextSingleton
 public class JBRssRest {
@@ -35,8 +36,15 @@ public class JBRssRest {
     private SettingsService settingsService;
 
     public ListFeedPostDTO getUnreadPosts() throws IOException, UnableToLoginException {
-        ListFeedPostDTO ret = null;
+        ListFeedPostDTO ret;
         String lastUpdateTime = settingsService.getSetting(Constants.CONFIG_LAST_UPDATE_TIME, "0");
+        if (lastUpdateTime.equals("0")) {
+            //do not load full history - very expensive!
+            //load only last 7 days posts
+            int dayInMs = 1000 * 60 * 60 * (24 * 7);
+            Date previousDay = new Date(new Date().getTime() - dayInMs);
+            lastUpdateTime = String.valueOf(previousDay.getTime());
+        }
         ret = httpRequestHelper.getForObject(URLConstants.DoJson.Rss.RSS_DO_GET_UNREAD, ListFeedPostDTO.class, new BasicNameValuePair(
                 URLConstants.DoJson.Rss.RSS_PARAM_TIMESTAMP, lastUpdateTime));
         if (ret != null)
