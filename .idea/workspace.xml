@@ -2,36 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3aeaffa9-1677-4bee-9858-340b9b102cfd" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.classpath" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.project" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/out/production/jbrss/jbrss.apk" afterPath="$PROJECT_DIR$/android/out/production/jbrss/jbrss.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/out/production/jbrss/jbrss.unaligned.apk" afterPath="$PROJECT_DIR$/android/out/production/jbrss/jbrss.unaligned.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/server/controller/AbstractResource.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/server/controller/AbstractResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/captcha/CaptchaCommonDTO.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/captcha/CaptchaCommonDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/FeedDTO.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/FeedDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/FeedPostDTO.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/FeedPostDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/FeedpostsJpaController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/FeedpostsJpaController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/FeedsJpaController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/FeedsJpaController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/server/constants/ConfigConstants.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/server/constants/ConfigConstants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/network/HttpRequestHelper.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/network/HttpRequestHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/network/JBRssRest.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/network/JBRssRest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/ListFeedDTO.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/ListFeedDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/ListFeedPostDTO.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/ListFeedPostDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/activity/components/LoginAsyncTask.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/activity/components/LoginAsyncTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/activity/components/RegAsyncTask.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/activity/components/RegAsyncTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/SimpleBooleanDataDTO.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/SimpleBooleanDataDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/SimpleIntDataDTO.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/dto/rss/SimpleIntDataDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/constants/URLConstants.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/constants/URLConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/service/UpdateService.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/service/UpdateService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/entity/User.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/entity/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/UserJpaController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/UserJpaController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/JBRSSApplication.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/JBRSSApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/server/timers/TimersManager.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/server/timers/TimersManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.idea/misc.xml" afterPath="$PROJECT_DIR$/android/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/project.properties" afterPath="$PROJECT_DIR$/android/project.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/android/.idea/workspace.xml" />
     </list>
     <ignored path="jbrss.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1379003033235" ignored="false" />
+    <file path="/Dummy.txt" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1379355190589" ignored="false" />
     <file path="/Main.java" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1378997314082" ignored="false" />
     <file path="/FeedpostsJpaController.java" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1379006007007" ignored="false" />
     <file path="/SessionsHolder.java" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1378997622357" ignored="false" />
@@ -60,6 +44,7 @@
     <file path="/persistence.xml" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1379000963535" ignored="false" />
     <file path="/HttpRequestHelper.java" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1379002937915" ignored="false" />
     <file path="/fragment.java" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1379003971192" ignored="false" />
+    <file path="/TimersManager.java" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1379356107286" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +59,24 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java" line="151" class="ru.terra.jbrss.controller.RssController" package="ru.terra.jbrss.controller">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -110,24 +113,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java" line="151" class="ru.terra.jbrss.controller.RssController" package="ru.terra.jbrss.controller">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -137,13 +122,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Model.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java">
+      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="10" selection-start="2073" selection-end="2073" vertical-scroll-proportion="0.7744565">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="26" column="37" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TimersManager.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/server/timers/TimersManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="47" column="143" selection-start="1658" selection-end="1658" vertical-scroll-proportion="0.7787392">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -166,7 +158,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/CaptchaController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/FeedController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/server/constants/ErrorConstants.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/springcontroller/JsonController.java" />
@@ -174,7 +165,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/engine/UsersEngine.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/terra/server/constants/ConfigConstants.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/server/controller/AbstractResource.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java" />
@@ -182,6 +172,8 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/FeedsJpaController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/UserJpaController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/server/timers/TimersManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/server/constants/ConfigConstants.java" />
       </list>
     </option>
   </component>
@@ -193,10 +185,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="y" value="-6" />
-    <option name="width" value="1374" />
-    <option name="height" value="754" />
+    <option name="x" value="-3" />
+    <option name="y" value="-3" />
+    <option name="width" value="1287" />
+    <option name="height" value="1004" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -224,6 +216,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -296,10 +289,65 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbrss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbrss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="terra" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbrss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbrss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="terra" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbrss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -309,6 +357,7 @@
     <property name="OverrideImplement.combined" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -330,6 +379,19 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -357,19 +419,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -444,27 +493,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-6" width="1374" height="754" extended-state="6" />
-    <editor active="true" />
+    <frame x="-3" y="-3" width="1287" height="1004" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3294893" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39868203" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25075758" sideWeight="0.6705107" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21555915" sideWeight="0.6709906" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3294893" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -534,38 +583,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/CaptchaController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="48" selection-start="769" selection-end="792" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/server/constants/ErrorConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="54" selection-start="350" selection-end="350" vertical-scroll-proportion="0.18072289">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="37" selection-start="1273" selection-end="1273" vertical-scroll-proportion="0.535284">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/engine/UsersEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="26" selection-start="405" selection-end="405" vertical-scroll-proportion="-0.6523236">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="13" column="26" selection-start="405" selection-end="405" vertical-scroll-proportion="-0.6523236" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -577,23 +597,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/rss/Downloader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="552" selection-end="552" vertical-scroll-proportion="0.07745267">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/server/constants/ConfigConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="68" selection-start="522" selection-end="522" vertical-scroll-proportion="0.511811">
-          <folding />
-        </state>
+        <state line="18" column="13" selection-start="552" selection-end="552" vertical-scroll-proportion="0.07745267" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/entity/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="137" selection-start="1258" selection-end="1258" vertical-scroll-proportion="0.34330985">
-          <folding />
-        </state>
+        <state line="31" column="137" selection-start="1258" selection-end="1258" vertical-scroll-proportion="0.34330985" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
@@ -605,27 +614,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/server/controller/AbstractResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="36" selection-start="317" selection-end="317" vertical-scroll-proportion="0.20654045">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="11" column="36" selection-start="317" selection-end="317" vertical-scroll-proportion="0.20654045" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/FeedpostsJpaController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="31" selection-start="943" selection-end="943" vertical-scroll-proportion="0.45380434">
-          <folding>
-            <element signature="e#0#5107#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="28" column="31" selection-start="943" selection-end="943" vertical-scroll-proportion="0.45380434" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/server/db/controllers/AbstractJpaController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="22" selection-start="489" selection-end="489" vertical-scroll-proportion="0.33152175">
-          <folding />
-        </state>
+        <state line="18" column="22" selection-start="489" selection-end="489" vertical-scroll-proportion="0.33152175" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java">
@@ -639,24 +638,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/FeedsJpaController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="25" selection-start="718" selection-end="718" vertical-scroll-proportion="0.4076087">
-          <folding />
-        </state>
+        <state line="23" column="25" selection-start="718" selection-end="718" vertical-scroll-proportion="0.4076087" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/UserJpaController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="26" selection-start="692" selection-end="692" vertical-scroll-proportion="0.08152174">
-          <folding />
-        </state>
+        <state line="22" column="26" selection-start="692" selection-end="692" vertical-scroll-proportion="0.08152174" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="10" selection-start="2073" selection-end="2073" vertical-scroll-proportion="0.7744565">
+        <state line="61" column="10" selection-start="2073" selection-end="2073" vertical-scroll-proportion="0.018541409">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="37" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.0/quartz-2.2.0.jar!/org/quartz/SimpleScheduleBuilder.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="44" selection-start="2074" selection-end="2074" vertical-scroll-proportion="0.523212">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/server/constants/ConfigConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="56" selection-start="254" selection-end="254" vertical-scroll-proportion="0.16423358">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/server/timers/TimersManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="143" selection-start="1658" selection-end="1658" vertical-scroll-proportion="0.7787392">
+          <folding />
         </state>
       </provider>
     </entry>

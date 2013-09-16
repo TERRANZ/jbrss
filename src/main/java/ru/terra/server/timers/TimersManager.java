@@ -34,7 +34,6 @@ public class TimersManager {
             scheduler = schFactory.getScheduler();
             startSessionsExpirationJob();
             scheduler.start();
-            startSessionsExpirationJob();
         } catch (SchedulerException se) {
             se.printStackTrace();
             logger.error("Error while initializing quartz", se);
@@ -46,10 +45,10 @@ public class TimersManager {
         Trigger trigger = TriggerBuilder.newTrigger()
                 .withSchedule(
                         SimpleScheduleBuilder.simpleSchedule()
-                                .withIntervalInSeconds(Integer.parseInt(config.getValue(ConfigConstants.SESSION_TTL, ConfigConstants.SESSION_TTL_DEFAULT)))
+                                .withIntervalInMinutes(Integer.parseInt(config.getValue(ConfigConstants.SESSION_TTL, ConfigConstants.SESSION_TTL_DEFAULT)))
                                 .repeatForever())
                 .build();
-        //scheduler.scheduleJob(job, trigger);
+        scheduler.scheduleJob(job, trigger);
     }
 
 }

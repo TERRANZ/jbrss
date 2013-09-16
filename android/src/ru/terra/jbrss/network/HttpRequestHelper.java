@@ -3,6 +3,7 @@ package ru.terra.jbrss.network;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import org.acra.ACRA;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -104,6 +105,11 @@ public class HttpRequestHelper {
         if (ret.code == HttpStatus.SC_FORBIDDEN) {
             throw new UnableToLoginException();
         }
-        return new Gson().fromJson(new InputStreamReader(ret.json), targetClass);
+        try {
+            return new Gson().fromJson(new InputStreamReader(ret.json), targetClass);
+        } catch (NullPointerException e) {
+            ACRA.getErrorReporter().handleSilentException(e);
+            return null;
+        }
     }
 }

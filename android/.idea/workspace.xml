@@ -6,23 +6,23 @@
         <option name="logLevel" value="verbose" />
         <option name="logMessagePattern" value="" />
         <option name="logTagPattern" value="" />
-        <option name="name" value="10445" />
-        <option name="pid" value="10445" />
+        <option name="name" value="11684" />
+        <option name="pid" value="11684" />
       </filter>
     </filters>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="10445" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="11684" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" name="Default" comment="" />
     <ignored path="jbrss.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379003971193" ignored="false" />
+    <file path="/fragment.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379352669723" ignored="false" />
     <file path="/UpdateService.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372169287599" ignored="false" />
     <file path="/styles.xml" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1369997778950" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1369997801485" ignored="false" />
-    <file path="/HttpRequestHelper.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379061930195" ignored="false" />
+    <file path="/HttpRequestHelper.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379354859080" ignored="false" />
     <file path="/JBRssRest.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379062901365" ignored="false" />
     <file path="/AsynTaskEx.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1369998170157" ignored="false" />
     <file path="/AsyncTaskEx.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1369998673614" ignored="false" />
@@ -35,7 +35,7 @@
     <file path="$PROJECT_DIR$/../../altarix/mgsn/src/ru/altarix/framework/documents/service/SendDocAsyncTask.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370521296694" ignored="false" />
     <file path="/FeedPostsViewAcitivity.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370521490369" ignored="false" />
     <file path="/JsonResponce.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379061793336" ignored="false" />
-    <file path="/Dummy.txt" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379063213020" ignored="false" />
+    <file path="/Dummy.txt" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379354948310" ignored="false" />
     <file path="$PROJECT_DIR$/../../altarix/mgsn/src/ru/altarix/framework/documents/component/SendMailAsyncTask.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370606956785" ignored="false" />
     <file path="/SendMailAsyncTask.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370606956252" ignored="false" />
     <file path="/MarkReadService.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372151646263" ignored="false" />
@@ -59,7 +59,7 @@
     <file path="$PROJECT_DIR$/../../altarix/ta/ta.iml" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372340410222" ignored="false" />
     <file path="$PROJECT_DIR$/../../altarix/ta/testsuite/testsuite.iml" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372340410222" ignored="false" />
     <file path="$PROJECT_DIR$/../../altarix/ta/config/src/main/java/ru/altarix/ta/config/Config.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372340534724" ignored="false" />
-    <file path="$PROJECT_DIR$/../../altarix/ta/config/src/main/java/ru/altarix/ta/config/ConfigManager.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372340461244" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/config/src/main/java/ru/altarix/ta/config/ConfigManager.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321018147" ignored="false" />
     <file path="$PROJECT_DIR$/../../altarix/ta/config/src/main/java/ru/altarix/ta/config/ApacheCommonsConfigImpl.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372340544728" ignored="false" />
     <file path="/Config.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372340533414" ignored="false" />
     <file path="/ApacheCommonsConfigImpl.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1372340541763" ignored="false" />
@@ -84,6 +84,37 @@
     <file path="$PROJECT_DIR$/gen/ru/terra/jbrss/Manifest.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379061187127" ignored="false" />
     <file path="$PROJECT_DIR$/gen/ru/terra/jbrss/BuildConfig.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379061187127" ignored="false" />
     <file path="$PROJECT_DIR$/gen/ru/terra/jbrss/R.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379061187127" ignored="false" />
+    <file path="/AutoTestRoboRemoteRunner.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379316101870" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/gibdd_new_test/autotest_gibdd/src/ru/altarix/gibdd_new/activity/AutoTestRoboRemoteRunner.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379316101870" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/gui/desktop/target/classes/META-INF/maven/ru.altarix.ta.gui/desktop/pom.xml" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379316623201" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/testsuite/src/main/java/ru/altarix/ta/testsuite/ValueTransformer.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321307045" ignored="false" />
+    <file path="/ValueTransformer.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321307045" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/testsuite/src/main/java/ru/altarix/ta/testsuite/AbstractTestSuiteReader.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321249792" ignored="false" />
+    <file path="/AbstractTestSuiteReader.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321249201" ignored="false" />
+    <file path="/CSVTestSuiteReader.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379320924282" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/testsuite/src/main/java/ru/altarix/ta/testsuite/impl/CSVTestSuiteReader.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379320924619" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/testsuite/src/main/java/ru/altarix/ta/testsuite/impl/XLSTestSuiteReader.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379320933130" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/testsuite/src/main/java/ru/altarix/ta/testsuite/TestSuiteManager.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379320929416" ignored="false" />
+    <file path="/TestSuiteManager.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379320929416" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/backend/src/main/java/ru/altarix/ta/action/ActionsManager.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379320960581" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/backend/src/main/java/ru/altarix/ta/action/impl/ClickButtonAction.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379320966398" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/backend/src/main/java/ru/altarix/ta/action/impl/SetTextAction.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379320973349" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/backend/src/main/java/ru/altarix/ta/action/impl/SetRadioButtonValue.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379320975405" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/backend/src/main/java/ru/altarix/ta/action/impl/SetCheckBoxValueAction.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379320977075" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/backend/src/main/java/ru/altarix/ta/backend/BackEndManager.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379320997022" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/backend/src/main/java/ru/altarix/ta/backend/impl/WebBackEndImpl.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321002239" ignored="false" />
+    <file path="/WebBackEndImpl.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321001879" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/backend/src/main/java/ru/altarix/ta/elements/ElementsManager.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321009520" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/config/src/main/java/ru/altarix/ta/config/impl/ApacheCommonsConfigimpl.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321037721" ignored="false" />
+    <file path="/ApacheCommonsConfigimpl.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321029060" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/report/src/main/java/ru/altarix/ta/report/ReportManager.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321143163" ignored="false" />
+    <file path="/ReportManager.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321140912" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/report/src/main/java/ru/altarix/ta/report/impl/EmailNotifier.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321162193" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/report/src/main/java/ru/altarix/ta/report/impl/TextReportImpl.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321170276" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/runner/src/main/java/ru/altarix/ta/runner/Runner.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321181264" ignored="false" />
+    <file path="$PROJECT_DIR$/../../altarix/ta/runner/src/main/java/ru/altarix/ta/runner/RunnerWorker.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379321187079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../tsaver/.idea/workspace.xml" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379351379438" ignored="false" />
+    <file path="/JBRSSApplication.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379354083702" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +129,8 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -134,8 +167,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -145,10 +176,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JBRssRest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/JBRssRest.java">
+      <file leaf-file-name="HttpRequestHelper.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/HttpRequestHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="27" selection-start="1099" selection-end="1099" vertical-scroll-proportion="0.353139">
+            <state line="110" column="59" selection-start="4317" selection-end="4317" vertical-scroll-proportion="0.8030019">
               <folding />
             </state>
           </provider>
@@ -164,7 +195,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/ProjectModule.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/components/LoginAsyncTask.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/dto/rss/SimpleBooleanDataDTO.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/dto/rss/ListFeedPostDTO.java" />
@@ -176,18 +206,19 @@
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/components/RegAsyncTask.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/constants/URLConstants.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/network/JsonResponce.java" />
-        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/network/HttpRequestHelper.java" />
         <option value="$PROJECT_DIR$/res/xml/preferences.xml" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/service/UpdateService.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/network/JBRssRest.java" />
+        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/JBRSSApplication.java" />
+        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/network/HttpRequestHelper.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="y" value="-12" />
-    <option name="width" value="1934" />
-    <option name="height" value="1072" />
+    <option name="x" value="-3" />
+    <option name="y" value="-3" />
+    <option name="width" value="1287" />
+    <option name="height" value="1004" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -215,8 +246,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -253,30 +282,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jbrss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jbrss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -287,7 +296,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/acra-5.0.0-SNAPSHOT.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="DEBUGGABLE_DEVICE" value="1234567890ABCDEF" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -474,8 +483,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-12" width="1934" height="1072" extended-state="6" />
-    <editor active="true" />
+    <frame x="-3" y="-3" width="1287" height="1004" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -485,14 +494,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3278867" sideWeight="0.49893278" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897604" sideWeight="0.49786553" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3369803" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="-7" y="-12" width="1934" height="1072" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3278302" sideWeight="0.49786553" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3369803" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="-3" y="-3" width="1287" height="1004" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24813233" sideWeight="0.67429197" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32570806" sideWeight="0.50053364" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22933549" sideWeight="0.6745283" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3254717" sideWeight="0.50053364" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.03842049" sideWeight="0.6717724" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24279615" sideWeight="0.6717724" order="2" side_tool="false" content_ui="tabs" />
@@ -568,32 +577,26 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/JsonResponce.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/JBRssRest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="35" selection-start="330" selection-end="330" vertical-scroll-proportion="0.25951558">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/HttpRequestHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/JsonResponce.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="67" selection-start="2618" selection-end="2618" vertical-scroll-proportion="0.36593592">
-          <folding />
-        </state>
+        <state line="15" column="35" selection-start="330" selection-end="330" vertical-scroll-proportion="0.25951558" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/xml/preferences.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="31" selection-start="252" selection-end="252" vertical-scroll-proportion="0.15177065">
-          <folding />
-        </state>
+        <state line="6" column="31" selection-start="252" selection-end="252" vertical-scroll-proportion="0.15177065" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="18" selection-start="524" selection-end="524" vertical-scroll-proportion="0.20179372">
-          <folding />
-        </state>
+        <state line="12" column="18" selection-start="524" selection-end="524" vertical-scroll-proportion="0.20179372" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/service/UpdateService.java">
@@ -605,7 +608,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/JBRssRest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="27" selection-start="1099" selection-end="1099" vertical-scroll-proportion="0.353139">
+        <state line="38" column="27" selection-start="1099" selection-end="1099" vertical-scroll-proportion="0.016778523">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/ProjectModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/JBRSSApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="16" selection-start="437" selection-end="437" vertical-scroll-proportion="0.33771107">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/network/HttpRequestHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="59" selection-start="4317" selection-end="4317" vertical-scroll-proportion="0.8030019">
           <folding />
         </state>
       </provider>
@@ -674,7 +698,7 @@
       </state>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>Android 4.1.2 Platform</last-edited>
+          <last-edited>Android 4.3 Platform</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
