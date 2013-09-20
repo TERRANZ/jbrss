@@ -4,9 +4,9 @@ import com.sun.jersey.api.container.grizzly2.GrizzlyServerFactory;
 import org.apache.log4j.BasicConfigurator;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.servlet.WebappContext;
+import ru.terra.jbrss.db.controllers.FeedsJpaController;
 import ru.terra.server.config.Config;
 import ru.terra.server.constants.ConfigConstants;
-import ru.terra.server.timers.TimersManager;
 
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
@@ -24,7 +24,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BasicConfigurator.configure();
-        TimersManager.getInstance().start();
         HttpServer httpServer = startServer();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Feed in DB: " + new FeedsJpaController().count());
+            }
+        }).start();
+        System.in.read();
     }
 }

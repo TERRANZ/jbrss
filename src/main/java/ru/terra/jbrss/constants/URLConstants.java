@@ -15,7 +15,6 @@ public class URLConstants {
             public static final String LOGIN = "/login/";
             public static final String LOGIN_DO_LOGIN_JSON = "do.login.json";
             public static final String LOGIN_DO_REGISTER_JSON = "do.register.json";
-            public static final String LOGIN_DO_GET_MY_ID = "do.getmyid.json";
             public static final String LOGIN_PARAM_USER = "user";
             public static final String LOGIN_PARAM_PASS = "pass";
             public static final String LOGIN_PARAM_CAPTCHA = "captcha";
@@ -31,19 +30,18 @@ public class URLConstants {
             public static final String RSS_DO_GET_UNREAD = "do.get.unread.json";
             public static final String RSS_DO_GET_FEED = "do.get.feed.json";
             public static final String RSS_PARAM_TIMESTAMP = "timestamp";
-            public static final String PARAM_FEED_ID = "id";
-            public static final String PARAM_COUNT = "count";
         }
 
         public class Captcha {
             public static final String CAPTCHA = "/captcha/";
             public static final String CAP_GET = "do.get.json";
-            public static final String CAP_CHECK = "do.check.json";
-            public static final String CAP_PARAM_ID = "id";
-            public static final String CAP_PARAM_VAL = "val";
+        }
+
+        public class ErrorReports {
+            public static final String REPORT = "/errors/";
+            public static final String DO_REPORT = "do.error.report";
         }
     }
-
 
     public class Yandex {
         public static final String PARAM_KEY = "$key";

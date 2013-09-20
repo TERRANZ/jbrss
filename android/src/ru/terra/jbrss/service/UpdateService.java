@@ -85,7 +85,7 @@ public class UpdateService extends RoboIntentService {
                                     updateUnreads();
                                 }
                             }
-                            notificationHelper.notify("Новых сообщений: " + updated, true);
+                            notificationHelper.notify("Обновление завершено", true);
 
                         } else {
                             notificationHelper.notify("Новый сообщений нет", false);

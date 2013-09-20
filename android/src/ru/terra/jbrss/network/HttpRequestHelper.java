@@ -71,7 +71,6 @@ public class HttpRequestHelper {
     }
 
     public JsonResponce runJsonRequest(String uri, NameValuePair... params) throws IOException, UnableToLoginException {
-
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         uri += "?";
         for (int i = 0; i < params.length; ++i) {
@@ -87,15 +86,6 @@ public class HttpRequestHelper {
             Logger.w("HttpRequestHelper", "Failed to form request content" + e.getMessage());
             return new JsonResponce(null);
         }
-
-//        request.addHeader("Content-Type", "application/x-www-form-urlencoded");
-//        UrlEncodedFormEntity entity;
-
-//            entity = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
-//            entity.setContentType("appplication/x-www-form-urlencoded");
-//            request.setEntity(entity);
-//
-//            return runRequest(request);
     }
 
     public <T> T getForObject(String url, Class<T> targetClass, NameValuePair... params) throws IOException, UnableToLoginException {
@@ -108,7 +98,6 @@ public class HttpRequestHelper {
         try {
             return new Gson().fromJson(new InputStreamReader(ret.json), targetClass);
         } catch (NullPointerException e) {
-            ACRA.getErrorReporter().handleSilentException(e);
             return null;
         }
     }

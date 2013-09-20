@@ -74,6 +74,11 @@ public class SessionsHolder {
             sessionId = UUID.randomUUID().toString();
             addUser(sessionId, u);
         } else {
+            if (isSessionExipred(sessionId)) {
+                logger.info("Session " + sessionId + " for user " + u.getLogin() + " is expired");
+                removeUser(sessionId);
+                return registerUserSession(u);
+            }
             logger.info("Reusing session " + sessionId + " for user " + u.getLogin());
         }
         return sessionId;
