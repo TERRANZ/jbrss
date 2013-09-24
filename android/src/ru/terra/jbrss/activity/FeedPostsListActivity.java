@@ -41,6 +41,7 @@ public class FeedPostsListActivity extends RoboActivity {
     private ProjectDbOpenHelper dbOpenHelper;
     private SQLiteDatabase database;
     private Cursor postsCursor;
+    private boolean filterEnabled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +68,15 @@ public class FeedPostsListActivity extends RoboActivity {
             selectionArgs = new String[]{fromDate != null ? fromDate : "0"};
         }
 
-        AsyncTask<Void, Void, Cursor> loadPosts = new AsyncTask<Void, Void, Cursor>() {
+        new AsyncTask<Void, Void, Cursor>() {
             @Override
             protected Cursor doInBackground(Void... params) {
-                return database.rawQuery("select p.* from post p inner join post_fts pf on p.ext_id=pf.ext_id "
-                        + " where "
-                        + selections
-                        + " ORDER BY "
-                        + "p." + FeedPostEntity.POST_DATE + " DESC ",
+                return database.rawQuery("select p.* from post p "
+//                                + " inner join post_fts pf on p.ext_id=pf.ext_id "
+                                + " where "
+                                + selections
+                                + " ORDER BY "
+                                + "p." + FeedPostEntity.POST_DATE + " DESC ",
                         selectionArgs);
             }
 
@@ -115,7 +117,7 @@ public class FeedPostsListActivity extends RoboActivity {
                 public boolean onQueryTextChange(String newText) {
                     textFilter = newText;
                     if (!TextUtils.isEmpty(textFilter)) {
-
+                        filterEnabled = true;
                         if (selections == null)
                             selections = "pf.post_text match ? ";
                         else {
@@ -136,6 +138,7 @@ public class FeedPostsListActivity extends RoboActivity {
                         }
 
                     } else {
+                        filterEnabled = false;
                         if (selections.contains("match")) {
                             if (selections.equals("pf.post_text match ? "))
                                 selections = null;
@@ -219,13 +222,16 @@ public class FeedPostsListActivity extends RoboActivity {
 
     private void restartDb() {
         if (mAdapter != null) {
-            if (postsCursor != null && !postsCursor.isClosed())
-                postsCursor = database.rawQuery("select p.* from post p inner join post_fts pf on p.ext_id=pf.ext_id "
-                        + " where "
+            if (postsCursor != null && !postsCursor.isClosed()) {
+                String sql = "select p.* from post p ";
+                if (filterEnabled)
+                    sql += "inner join post_fts pf on p.ext_id=pf.ext_id ";
+                sql += " where "
                         + selections
                         + " ORDER BY "
-                        + "p." + FeedPostEntity.POST_DATE + " DESC ",
-                        selectionArgs);
+                        + "p." + FeedPostEntity.POST_DATE + " DESC ";
+                postsCursor = database.rawQuery(sql, selectionArgs);
+            }
             mAdapter.swapCursor(postsCursor);
         }
     }

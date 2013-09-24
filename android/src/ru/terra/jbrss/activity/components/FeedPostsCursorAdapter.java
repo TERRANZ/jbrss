@@ -16,8 +16,6 @@ public class FeedPostsCursorAdapter extends CursorAdapter {
 
 	public class FeedsPostViewHolder {
 		public TextView tvName;
-		public Integer id;
-		public Integer feedId;
 	}
 
 	private LayoutInflater layoutInflater;
@@ -39,8 +37,6 @@ public class FeedPostsCursorAdapter extends CursorAdapter {
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
 		FeedsPostViewHolder vh = (FeedsPostViewHolder) view.getTag();
-		vh.id = cursor.getInt(cursor.getColumnIndex(FeedPostEntity.POST_EXTERNAL_ID));
-		vh.feedId = cursor.getInt(cursor.getColumnIndex(FeedPostEntity.POST_FEED_ID));
 		vh.tvName.setText(cursor.getString(cursor.getColumnIndex(FeedPostEntity.POST_TITLE)));
 		String read = getCursor().getString(getCursor().getColumnIndex(FeedPostEntity.POST_ISREAD));
 		if ("false".equals(read))
