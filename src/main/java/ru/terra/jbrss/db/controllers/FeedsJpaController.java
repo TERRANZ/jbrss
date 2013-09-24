@@ -38,7 +38,7 @@ public class FeedsJpaController extends AbstractJpaController<Feeds> implements 
 
     @Override
     public void delete(Integer id) throws Exception {
-        EntityManager em = null;
+        EntityManager em;
         try {
             em = getEntityManager();
             em.getTransaction().begin();

@@ -29,6 +29,18 @@ public class FeedpostsJpaController extends AbstractJpaController<Feedposts> imp
         super(Feedposts.class);
     }
 
+    public void create(List<Feedposts> feedpostses) {
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+            for (Feedposts feedposts : feedpostses)
+                em.persist(feedposts);
+            em.getTransaction().commit();
+        } finally {
+
+        }
+    }
+
     public void create(Feedposts feedposts) {
         try {
             em = getEntityManager();
@@ -66,7 +78,6 @@ public class FeedpostsJpaController extends AbstractJpaController<Feedposts> imp
     @Override
     public void update(Feedposts feedposts) throws Exception {
         try {
-
             em.getTransaction().begin();
             feedposts.setUpdated(new Date());
             feedposts = em.merge(feedposts);
@@ -146,14 +157,27 @@ public class FeedpostsJpaController extends AbstractJpaController<Feedposts> imp
         try {
             if (!em.isOpen())
                 em = getEntityManager();
-            Query q = em.createNativeQuery("UPDATE feedposts SET isread = " + read + " WHERE feed_id = " + feedId.toString());
+            Query q = em.createNativeQuery("UPDATE feedposts SET isread = " + read + ",update_time = '" + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "'  WHERE feed_id = " + feedId.toString() + " AND isread = false");
             em.getTransaction().begin();
-            int updated = q.executeUpdate();
-            log.info(updated + "posts set read");
+            q.executeUpdate();
             em.getTransaction().commit();
         } catch (NoResultException e) {
         } finally {
+        }
+    }
 
+    public Integer removePosts(Integer feedId) {
+        try {
+            if (!em.isOpen())
+                em = getEntityManager();
+            Query q = em.createNativeQuery("DELETE FROM feedposts WHERE feed_id = " + feedId.toString());
+            em.getTransaction().begin();
+            int deleted = q.executeUpdate();
+            em.getTransaction().commit();
+            return deleted;
+        } catch (NoResultException e) {
+            return 0;
+        } finally {
         }
     }
 }

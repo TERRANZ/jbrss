@@ -1,129 +1,241 @@
 package ru.terra.jbrss.activity;
 
+import android.app.ActionBar;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
-import com.google.inject.Inject;
+import android.widget.SearchView;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import ru.terra.jbrss.R;
-import ru.terra.jbrss.activity.components.CursorsCache;
 import ru.terra.jbrss.activity.components.FeedPostsCursorAdapter;
-import ru.terra.jbrss.activity.components.FeedPostsCursorAdapter.FeedsPostViewHolder;
 import ru.terra.jbrss.constants.Constants;
+import ru.terra.jbrss.core.db.ProjectDbOpenHelper;
 import ru.terra.jbrss.entity.FeedPostEntity;
-import ru.terra.jbrss.network.JBRssRest;
 import ru.terra.jbrss.service.MarkReadService;
 
 public class FeedPostsListActivity extends RoboActivity {
 
-	@InjectView(R.id.lv_posts)
-	private ListView lvPosts;
-	private Cursor cursorFull;
-	private Cursor cursorOnlyUnread;
-	private Integer feed;
-	private boolean isFromDate;
+    @InjectView(R.id.lv_posts)
+    private ListView lvPosts;
+    private Integer feed;
+    private boolean isFromDate;
+    private CursorAdapter mAdapter;
+    private String selections = null;
+    private String[] selectionArgs = null;
+    private String textFilter = "";
+    private static final String SELECTION_ADD_UNREAD = " AND " + "p." + FeedPostEntity.POST_ISREAD + " = ?";
+    private static final String SELECTION_SEARCH = " AND " + "pf.post_text match ? ";
+    private ProjectDbOpenHelper dbOpenHelper;
+    private SQLiteDatabase database;
+    private Cursor postsCursor;
 
-	@Inject
-	private CursorsCache cursorsCache;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.a_feed_list);
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        dbOpenHelper = new ProjectDbOpenHelper(this);
+        database = dbOpenHelper.getWritableDatabase();
+        final Boolean isFromNotification = getIntent().getBooleanExtra("from_notify", false);
+        if (!isFromNotification) {
+            feed = getIntent().getIntExtra("id", -1);
+            if (feed.equals(Constants.ALL_FEED_POSTS_ITEM_ID)) {
+                selections = null;
+                selectionArgs = null;
+            } else {
+                selections = "p." + FeedPostEntity.POST_FEED_ID + " = ?";
+                selectionArgs = new String[]{feed.toString()};
+            }
+        } else {
+            String fromDate = getIntent().getStringExtra("from_date");
+            isFromDate = true;
+            selections = "p." + FeedPostEntity.POST_DATE + " >= ?";
+            selectionArgs = new String[]{fromDate != null ? fromDate : "0"};
+        }
 
-	@Inject
-	JBRssRest jbRssRest;
+        AsyncTask<Void, Void, Cursor> loadPosts = new AsyncTask<Void, Void, Cursor>() {
+            @Override
+            protected Cursor doInBackground(Void... params) {
+                return database.rawQuery("select p.* from post p inner join post_fts pf on p.ext_id=pf.ext_id "
+                        + " where "
+                        + selections
+                        + " ORDER BY "
+                        + "p." + FeedPostEntity.POST_DATE + " DESC ",
+                        selectionArgs);
+            }
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.a_feed_list);
-		final Boolean isFromNotification = getIntent().getBooleanExtra("from_notify", false);
-		if (!isFromNotification) {
-			feed = getIntent().getIntExtra("id", -1);
-			if (feed.equals(Constants.ALL_FEED_POSTS_ITEM_ID)) {
-				cursorFull = getContentResolver().query(FeedPostEntity.CONTENT_URI, null, null, null, FeedPostEntity.POST_DATE + " DESC ");
-				cursorOnlyUnread = getContentResolver().query(FeedPostEntity.CONTENT_URI, null, FeedPostEntity.POST_ISREAD + " = ?",
-						new String[] { "false" }, FeedPostEntity.POST_DATE + " DESC ");
-				lvPosts.setAdapter(new FeedPostsCursorAdapter(this, cursorFull));
-                cursorsCache.setPostCursor(cursorFull);
-				lvPosts.setOnItemClickListener(new OnItemClickListener() {
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-						startActivity(new Intent(FeedPostsListActivity.this, FeedPostsViewAcitivity.class).putExtra("pos", position).putExtra(
-								"feed_id", ((FeedsPostViewHolder) view.getTag()).feedId));
-					}
-				});
-			} else {
-				cursorFull = getContentResolver().query(FeedPostEntity.CONTENT_URI, null, FeedPostEntity.POST_FEED_ID + " = ?",
-						new String[] { feed.toString() }, FeedPostEntity.POST_DATE + " DESC ");
-				cursorOnlyUnread = getContentResolver().query(FeedPostEntity.CONTENT_URI, null,
-						FeedPostEntity.POST_FEED_ID + " = ? AND " + FeedPostEntity.POST_ISREAD + " = ?", new String[] { feed.toString(), "false" },
-						FeedPostEntity.POST_DATE + " DESC ");
-				lvPosts.setAdapter(new FeedPostsCursorAdapter(this, cursorFull));
-				lvPosts.setOnItemClickListener(new OnItemClickListener() {
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-						Integer postId = ((FeedsPostViewHolder) view.getTag()).id;
-						startActivity(new Intent(FeedPostsListActivity.this, FeedPostsViewAcitivity.class).putExtra("pos", position).putExtra(
-								"feed_id", feed));
-					}
-				});
-				cursorsCache.setPostCursor(cursorFull);
-			}
-		} else {
-			String fromDate = getIntent().getStringExtra("from_date");
-			isFromDate = true;
-			Cursor cursorFromDate = getContentResolver().query(FeedPostEntity.CONTENT_URI, null, FeedPostEntity.POST_DATE + " >= ?",
-					new String[] { fromDate != null ? fromDate : "0" }, FeedPostEntity.POST_DATE + " DESC ");
-			lvPosts.setAdapter(new FeedPostsCursorAdapter(this, cursorFromDate));
-			lvPosts.setOnItemClickListener(new OnItemClickListener() {
-				@Override
-				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-					Integer postId = ((FeedsPostViewHolder) view.getTag()).id;
-					Integer feedId = ((FeedsPostViewHolder) view.getTag()).feedId;
-					startActivity(new Intent(FeedPostsListActivity.this, FeedPostsViewAcitivity.class).putExtra("pos", position));
-				}
-			});
-			cursorsCache.setPostCursor(cursorFromDate);
-		}
-	}
+            @Override
+            protected void onPostExecute(Cursor cursor) {
+                postsCursor = cursor;
+                mAdapter = new FeedPostsCursorAdapter(FeedPostsListActivity.this, postsCursor);
+                lvPosts.setAdapter(mAdapter);
+                lvPosts.setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        startActivity(new Intent(FeedPostsListActivity.this, FeedPostsViewAcitivity.class).putExtra("pos", position).putExtra(FeedPostsViewAcitivity.SELECTION, selections)
+                                .putExtra(FeedPostsViewAcitivity.SELECTION_ARGS, selectionArgs));
+                    }
+                });
+            }
+        }.execute();
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		if (!isFromDate) {
-			getMenuInflater().inflate(R.menu.m_posts, menu);
-			menu.findItem(R.id.mi_posts_show_read).setChecked(true);
-		}
-		return true;
-	}
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.mi_posts_show_read: {
-			if (item.isChecked()) {
-				lvPosts.setAdapter(null);
-				lvPosts.setAdapter(new FeedPostsCursorAdapter(this, cursorOnlyUnread));
-				item.setChecked(false);
-				item.setTitle("Все");
-				cursorsCache.setPostCursor(cursorOnlyUnread);
-			} else {
-				lvPosts.setAdapter(null);
-				lvPosts.setAdapter(new FeedPostsCursorAdapter(this, cursorFull));
-				item.setChecked(true);
-				item.setTitle(R.string.unread);
-				cursorsCache.setPostCursor(cursorFull);
-			}
-			return true;
-		}
-		case R.id.mi_posts_all_read: {
-			startService(new Intent(this, MarkReadService.class).putExtra("id", feed).putExtra("operation", Constants.OP_MARK_READ_FEED));
-		}
-			return true;
-		}
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (!isFromDate) {
+            getMenuInflater().inflate(R.menu.m_posts, menu);
+            menu.findItem(R.id.mi_posts_show_read).setChecked(true);
+            // Get the SearchView and set the searchable configuration
+            SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+            SearchView searchView = (SearchView) menu.findItem(R.id.mi_posts_search).getActionView();
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            searchView.setIconifiedByDefault(false);
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    textFilter = newText;
+                    if (!TextUtils.isEmpty(textFilter)) {
+
+                        if (selections == null)
+                            selections = "pf.post_text match ? ";
+                        else {
+                            if (selections.contains("match"))
+                                selectionArgs[selectionArgs.length - 1] = textFilter;
+                            else {
+                                selections += SELECTION_SEARCH;
+                                if (selectionArgs == null)
+                                    selectionArgs = new String[]{textFilter};
+                                else {
+                                    String[] newSelections = new String[selectionArgs.length + 1];
+                                    for (int i = 0; i < selectionArgs.length; i++)
+                                        newSelections[i] = selectionArgs[i];
+                                    newSelections[newSelections.length - 1] = textFilter;
+                                    selectionArgs = newSelections;
+                                }
+                            }
+                        }
+
+                    } else {
+                        if (selections.contains("match")) {
+                            if (selections.equals("pf.post_text match ? "))
+                                selections = null;
+                            else {
+                                selections = selections.substring(0, selections.length() - SELECTION_SEARCH.length());
+                            }
+
+                            if (selectionArgs.length == 1)
+                                selectionArgs = null;
+                            else {
+                                String[] newSelections = new String[selectionArgs.length - 1];
+                                for (int i = 0; i < selectionArgs.length - 1; i++)
+                                    newSelections[i] = selectionArgs[i];
+                                selectionArgs = newSelections;
+                            }
+                        }
+                    }
+
+                    restartDb();
+                    return true;
+                }
+            }
+
+            );
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mi_posts_show_read: {
+                if (item.isChecked()) {
+                    item.setChecked(false);
+                    item.setTitle(R.string.all_posts);
+
+                    if (selections == null)
+                        selections = "p." + FeedPostEntity.POST_ISREAD + " = ?";
+                    else
+                        selections += SELECTION_ADD_UNREAD;
+                    if (selectionArgs == null)
+                        selectionArgs = new String[]{"false"};
+                    else {
+                        String[] newSelections = new String[selectionArgs.length + 1];
+                        for (int i = 0; i < selectionArgs.length; i++)
+                            newSelections[i] = selectionArgs[i];
+                        newSelections[newSelections.length - 1] = "false";
+                        selectionArgs = newSelections;
+                    }
+
+                } else {
+                    item.setChecked(true);
+                    item.setTitle(R.string.unread);
+
+                    if (selections.equals("p." + FeedPostEntity.POST_ISREAD + " = ?"))
+                        selections = null;
+                    else {
+                        selections = selections.substring(0, selections.length() - SELECTION_ADD_UNREAD.length());
+                    }
+
+                    if (selectionArgs.length == 1)
+                        selectionArgs = null;
+                    else {
+                        String[] newSelections = new String[selectionArgs.length - 1];
+                        for (int i = 0; i < selectionArgs.length - 1; i++)
+                            newSelections[i] = selectionArgs[i];
+                        selectionArgs = newSelections;
+                    }
+
+                }
+                restartDb();
+                return true;
+            }
+            case R.id.mi_posts_all_read: {
+                startService(new Intent(this, MarkReadService.class).putExtra("id", feed).putExtra("operation", Constants.OP_MARK_READ_FEED));
+            }
+            return true;
+        }
+        return true;
+    }
+
+    private void restartDb() {
+        if (mAdapter != null) {
+            if (postsCursor != null && !postsCursor.isClosed())
+                postsCursor = database.rawQuery("select p.* from post p inner join post_fts pf on p.ext_id=pf.ext_id "
+                        + " where "
+                        + selections
+                        + " ORDER BY "
+                        + "p." + FeedPostEntity.POST_DATE + " DESC ",
+                        selectionArgs);
+            mAdapter.swapCursor(postsCursor);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (postsCursor != null && !postsCursor.isClosed())
+            postsCursor.close();
+        if (database != null && database.isOpen())
+            database.close();
+    }
 }

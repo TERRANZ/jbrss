@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mi_posts_show_read"
-        android:checkable="true"
-        android:checked="false"
-        android:showAsAction="ifRoom"
-        android:title="@string/unread">
+            android:id="@+id/mi_posts_show_read"
+            android:checkable="true"
+            android:checked="false"
+            android:showAsAction="ifRoom"
+            android:title="@string/unread">
     </item>
     <item
-        android:id="@+id/mi_posts_all_read"
-        android:title="Все в прочитанные">
+            android:id="@+id/mi_posts_all_read"
+            android:title="Все в прочитанные">
     </item>
+    <item android:id="@+id/mi_posts_search"
+          android:title="Поиск"
+          android:icon="@drawable/ic_menu_search_holo_light"
+          android:showAsAction="ifRoom|collapseActionView"
+          android:actionViewClass="android.widget.SearchView"/>
 
 </menu>

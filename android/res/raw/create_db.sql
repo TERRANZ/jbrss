@@ -19,4 +19,9 @@ CREATE TABLE post (
   foreign key (post_feed_id) references feed(ext_id)
 );
 
+
+create virtual table post_fts using fts3 (
+    ext_id,post_text
+);
+
 insert into feed(feed_name,feed_unread,ext_id)  values("Все записи",0,-1);

@@ -9,7 +9,7 @@
     <string name="password">password</string>
     <string name="share">Поделиться</string>
     <string name="unread">Не прочитанные</string>
-    <string name="all_posts">Все записи</string>
+    <string name="all_posts">Все</string>
     <string name="estimate_days">estimate_days</string>
 
 </resources>

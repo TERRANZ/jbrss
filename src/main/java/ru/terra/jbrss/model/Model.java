@@ -4,8 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.terra.jbrss.db.controllers.FeedpostsJpaController;
 import ru.terra.jbrss.db.controllers.FeedsJpaController;
-import ru.terra.jbrss.db.controllers.UserJpaController;
-import ru.terra.jbrss.db.controllers.exceptions.NonexistentEntityException;
 import ru.terra.jbrss.db.entity.Feedposts;
 import ru.terra.jbrss.db.entity.Feeds;
 import ru.terra.jbrss.db.entity.User;
@@ -17,29 +15,15 @@ import java.util.List;
 
 public class Model {
     private FeedsJpaController feedsJpaController;
-    private UserJpaController usersJpaController;
     private FeedpostsJpaController feedpostsJpaController;
     private Downloader downloader = new Downloader();
     private Logger log = LoggerFactory.getLogger(Model.class);
 
     public Model() {
         feedsJpaController = new FeedsJpaController();
-        usersJpaController = new UserJpaController();
         feedpostsJpaController = new FeedpostsJpaController();
     }
 
-    public User getUser(Integer id) {
-        try {
-            return usersJpaController.get(id);
-        } catch (Exception e) {
-            log.error("Error while loading user", e);
-            return null;
-        }
-    }
-
-    public User getUser(String user) {
-        return usersJpaController.findUser(user);
-    }
 
     public Boolean addFeed(final User user, final String url) throws IllegalAccessException {
         if (feedsJpaController.findFeedByUserAndByURL(user.getId(), url) == null) {
@@ -68,17 +52,17 @@ public class Model {
             for (Feedposts fp : posts) {
                 if (fp != null)
                     if (fp.getPostdate() == null)
-                        log.info("post date of post " + fp.getPosttitle()+" is null");
-                    else if (fp.getPostdate().getTime() > d.getTime())
+                        log.info("post date of post " + fp.getPosttitle() + " is null");
+                    else if (fp.getPostdate().getTime() > d.getTime()) {
+                        fp.setFeedId(feed.getId());
+                        fp.setUpdated(new Date());
                         newPosts.add(fp);
+                    }
             }
         } else {
             newPosts = new ArrayList<>(posts);
         }
-        for (Feedposts fp : newPosts) {
-            fp.setFeedId(feed.getId());
-            feedpostsJpaController.create(fp);
-        }
+        feedpostsJpaController.create(newPosts);
         return newPosts.size();
     }
 
@@ -92,32 +76,12 @@ public class Model {
         return feedpostsJpaController.findFeedpostsByFeed(feedId, page, perpage);
     }
 
-    public Boolean isUsersExists(String user) {
-        return usersJpaController.findUser(user) != null;
-    }
-
-    public Feeds getUserFeed(Integer uid, Integer fid) {
-        return feedsJpaController.findFeedByUserAndById(uid, fid);
-    }
-
-    public void editFeed(Feeds f) {
-        try {
-            feedsJpaController.update(f);
-        } catch (NonexistentEntityException e) {
-            log.error("editFeed", e);
-            e.printStackTrace();
-        } catch (Exception e) {
-            log.error("editFeed", e);
-            e.printStackTrace();
-        }
-    }
-
     public void setFeedRead(Integer feed, Boolean read) {
         feedpostsJpaController.setPostsForFeedRead(feed, read);
     }
 
     public void setPostRead(Integer fp, Boolean read) {
-        Feedposts feedpost = null;
+        Feedposts feedpost;
         try {
             feedpost = feedpostsJpaController.get(fp);
             if (feedpost != null) {
@@ -125,15 +89,22 @@ public class Model {
                 feedpostsJpaController.update(feedpost);
             }
         } catch (Exception e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
     }
 
     public void setAllRead(Integer uid) {
+        for (Feeds f : feedsJpaController.findFeedsByUser(uid))
+            feedpostsJpaController.setPostsForFeedRead(f.getId(), true);
     }
 
     public void removeFeed(Integer id) {
-        //To change body of created methods use File | Settings | File Templates.
+        log.info("Removed posts in feed " + id + " : " + feedpostsJpaController.removePosts(id));
+        try {
+            feedsJpaController.delete(id);
+        } catch (Exception e) {
+            log.error("Unable to delete feed " + id, e);
+        }
     }
 
 //    private Feedposts process(Feeds feed, TMessage msg) {

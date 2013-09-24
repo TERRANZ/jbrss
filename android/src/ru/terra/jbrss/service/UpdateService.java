@@ -15,6 +15,7 @@ import ru.terra.jbrss.dto.CommonDTO;
 import ru.terra.jbrss.dto.rss.*;
 import ru.terra.jbrss.entity.FeedEntity;
 import ru.terra.jbrss.entity.FeedPostEntity;
+import ru.terra.jbrss.entity.PostFTSEntity;
 import ru.terra.jbrss.network.JBRssRest;
 
 import java.util.Date;
@@ -78,6 +79,12 @@ public class UpdateService extends RoboIntentService {
                                                 cv.put(FeedPostEntity.POST_TITLE, post.posttitle);
                                                 cv.put(FeedPostEntity.POST_ISREAD, String.valueOf(post.isRead));
                                                 getContentResolver().insert(FeedPostEntity.CONTENT_URI, cv);
+
+                                                cv = new ContentValues();
+                                                cv.put(PostFTSEntity.POST_TEXT, post.posttext);
+                                                cv.put(PostFTSEntity.POST_EXTERNAL_ID, post.id);
+                                                getContentResolver().insert(PostFTSEntity.CONTENT_URI, cv);
+
                                             }
                                         }
                                     }
@@ -206,7 +213,19 @@ public class UpdateService extends RoboIntentService {
             int dayInMs = 1000 * 60 * 60 * (24 * days);
             Date previousDay = new Date(new Date().getTime() - dayInMs);
             d = previousDay.getTime();
-            getContentResolver().delete(FeedPostEntity.CONTENT_URI, FeedPostEntity.POST_DATE + " < ? AND " + FeedPostEntity.POST_ISREAD + " = ?", new String[]{d.toString(), "true"});
+            Cursor oldPosts = getContentResolver().query(FeedPostEntity.CONTENT_URI, new String[]{FeedPostEntity.POST_EXTERNAL_ID},
+                    FeedPostEntity.POST_DATE + " < ? AND " + FeedPostEntity.POST_ISREAD + " = ?",
+                    new String[]{d.toString(), "true"}, null);
+            if (oldPosts != null && oldPosts.moveToFirst())
+                getContentResolver().delete(PostFTSEntity.CONTENT_URI,PostFTSEntity.POST_EXTERNAL_ID+" = ?",
+                        new String[]{String.valueOf(oldPosts.getInt(oldPosts.getColumnIndex(FeedPostEntity.POST_EXTERNAL_ID)))});
+            while (oldPosts.moveToNext())
+                getContentResolver().delete(PostFTSEntity.CONTENT_URI,PostFTSEntity.POST_EXTERNAL_ID+" = ?",
+                        new String[]{String.valueOf(oldPosts.getInt(oldPosts.getColumnIndex(FeedPostEntity.POST_EXTERNAL_ID)))});
+            oldPosts.close();
+            getContentResolver().delete(FeedPostEntity.CONTENT_URI,
+                    FeedPostEntity.POST_DATE + " < ? AND " + FeedPostEntity.POST_ISREAD + " = ?",
+                    new String[]{d.toString(), "true"});
         }
     }
 }
