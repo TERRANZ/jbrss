@@ -18,6 +18,7 @@ public class URLConstants {
             public static final String LOGIN_PARAM_USER = "user";
             public static final String LOGIN_PARAM_PASS = "pass";
             public static final String LOGIN_PARAM_CAPTCHA = "captcha";
+            public static final String LOGIN_PARAM_CAPVAL = "capval";
         }
 
         public class Rss {
