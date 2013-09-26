@@ -30,10 +30,10 @@ public class Settings implements Serializable
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Basic(optional = false)
-	@Column(name = "key", nullable = false, length = 128)
+	@Column(name = "skey", nullable = false, length = 128)
 	private String key;
 	@Basic(optional = false)
-	@Column(name = "value", nullable = false, length = 512)
+	@Column(name = "svalue", nullable = false, length = 512)
 	private String value;
 
 	public Settings()

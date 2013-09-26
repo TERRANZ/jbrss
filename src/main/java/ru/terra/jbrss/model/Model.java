@@ -44,7 +44,7 @@ public class Model {
 
     public Integer updateFeed(Feeds feed) {
         //log.info("updating feed " + feed.getFeedurl());
-        List<Feedposts> posts = downloader.loadFeeds(feed.getFeedurl());
+        List<Feedposts> posts = downloader.loadFeeds(feed);
         Date d = feedpostsJpaController.getLastPostDate(feed.getId());
         List<Feedposts> newPosts;
         if (d != null && posts != null) {
@@ -54,13 +54,17 @@ public class Model {
                     if (fp.getPostdate() == null)
                         log.info("post date of post " + fp.getPosttitle() + " is null");
                     else if (fp.getPostdate().getTime() > d.getTime()) {
+                        log.info("setting feed id " + feed.getId());
                         fp.setFeedId(feed.getId());
                         fp.setUpdated(new Date());
                         newPosts.add(fp);
                     }
             }
         } else {
-            newPosts = new ArrayList<>(posts);
+            if (posts != null)
+                newPosts = new ArrayList<>(posts);
+            else
+                newPosts = new ArrayList<>();
         }
         feedpostsJpaController.create(newPosts);
         return newPosts.size();

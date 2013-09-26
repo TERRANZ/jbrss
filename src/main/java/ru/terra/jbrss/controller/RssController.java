@@ -95,6 +95,7 @@ public class RssController extends AbstractResource {
                     ret.setData(dtos);
                 }
             }
+            logger.info(ret.getSize().toString());
             return ret;
         } else {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;

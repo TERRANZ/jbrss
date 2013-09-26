@@ -33,8 +33,10 @@ public class FeedpostsJpaController extends AbstractJpaController<Feedposts> imp
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            for (Feedposts feedposts : feedpostses)
+            for (Feedposts feedposts : feedpostses) {
+                feedposts.setUpdated(new Date());
                 em.persist(feedposts);
+            }
             em.getTransaction().commit();
         } finally {
 

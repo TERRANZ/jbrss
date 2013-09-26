@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ru.terra.jbrss.db.entity.Feedposts;
@@ -15,6 +16,7 @@ import com.sun.syndication.feed.synd.SyndPerson;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
+import ru.terra.jbrss.db.entity.Feeds;
 
 public class Downloader
 {
@@ -92,11 +94,11 @@ public class Downloader
 		return "unnamed";
 	}
 
-	public List<Feedposts> loadFeeds(String url)
+	public List<Feedposts> loadFeeds(Feeds feeds)
 	{
 		try
 		{
-			SyndFeed feed = parseFeed(url);
+			SyndFeed feed = parseFeed(feeds.getFeedurl());
 			List<Feedposts> ret = new ArrayList<Feedposts>();
 			for (Object object : feed.getEntries())
 			{
@@ -110,6 +112,8 @@ public class Downloader
 					feedpost.setPosttext(content.getValue());
 				}
 				feedpost.setPostdate(entry.getPublishedDate());
+                feedpost.setFeedId(feeds.getId());
+                feedpost.setUpdated(new Date());
 				ret.add(feedpost);
 			}
 			return ret;
