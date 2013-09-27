@@ -78,10 +78,14 @@ public class FeedPostsViewAcitivity extends RoboActivity {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         dbOpenHelper = new ProjectDbOpenHelper(this);
-        database = dbOpenHelper.getWritableDatabase();
-        feedPosts = database.rawQuery("select p.* from post p inner join post_fts pf on p.ext_id=pf.ext_id "
+        database = dbOpenHelper.getReadableDatabase();
+        String selection = getIntent().getStringExtra(SELECTION);
+        String sql = "select p.* from post p ";
+        if (selection.contains("match"))
+            sql += "inner join post_fts pf on p.ext_id=pf.ext_id ";
+        feedPosts = database.rawQuery(sql
                 + " where "
-                + getIntent().getStringExtra(SELECTION)
+                + selection
                 + " ORDER BY "
                 + "p." + FeedPostEntity.POST_DATE + " DESC ",
                 getIntent().getStringArrayExtra(SELECTION_ARGS));

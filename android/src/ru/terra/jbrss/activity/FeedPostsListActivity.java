@@ -50,7 +50,7 @@ public class FeedPostsListActivity extends RoboActivity {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         dbOpenHelper = new ProjectDbOpenHelper(this);
-        database = dbOpenHelper.getWritableDatabase();
+        database = dbOpenHelper.getReadableDatabase();
         final Boolean isFromNotification = getIntent().getBooleanExtra("from_notify", false);
         if (!isFromNotification) {
             feed = getIntent().getIntExtra("id", -1);
