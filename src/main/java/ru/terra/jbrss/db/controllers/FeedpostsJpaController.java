@@ -159,7 +159,8 @@ public class FeedpostsJpaController extends AbstractJpaController<Feedposts> imp
         try {
             if (!em.isOpen())
                 em = getEntityManager();
-            Query q = em.createNativeQuery("UPDATE feedposts SET isread = " + read + ",update_time = '" + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "'  WHERE feed_id = " + feedId.toString() + " AND isread = false");
+            Integer param = read ? 1 : 0;
+            Query q = em.createNativeQuery("UPDATE feedposts SET isread = " + param + ",update_time = '" + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "'  WHERE feed_id = " + feedId.toString() + " AND isread = 0");
             em.getTransaction().begin();
             q.executeUpdate();
             em.getTransaction().commit();
