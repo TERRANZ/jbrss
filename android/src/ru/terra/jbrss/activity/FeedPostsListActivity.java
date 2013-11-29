@@ -71,12 +71,15 @@ public class FeedPostsListActivity extends RoboActivity {
         new AsyncTask<Void, Void, Cursor>() {
             @Override
             protected Cursor doInBackground(Void... params) {
+                String where = null;
+                if (selections != null)
+                    where = " where " + selections;
+                else where = "";
                 return database.rawQuery("select p.* from post p "
 //                                + " inner join post_fts pf on p.ext_id=pf.ext_id "
-                                + " where "
-                                + selections
-                                + " ORDER BY "
-                                + "p." + FeedPostEntity.POST_DATE + " DESC ",
+                        + where
+                        + " ORDER BY "
+                        + "p." + FeedPostEntity.POST_DATE + " DESC ",
                         selectionArgs);
             }
 

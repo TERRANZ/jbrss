@@ -49,7 +49,7 @@ public class ErrorReportController extends AbstractResource {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    logger.info("Starting error reporter stream");
+                    logger.info("Starting error reporter thread");
                     sendError(sb.toString());
                 }
             }).start();
