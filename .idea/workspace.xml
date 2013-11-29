@@ -4,10 +4,7 @@
     <list default="true" id="3aeaffa9-1677-4bee-9858-340b9b102cfd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/out/production/jbrss/jbrss.apk" afterPath="$PROJECT_DIR$/android/out/production/jbrss/jbrss.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/out/production/jbrss/jbrss.unaligned.apk" afterPath="$PROJECT_DIR$/android/out/production/jbrss/jbrss.unaligned.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/ErrorReportController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/ErrorReportController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/activity/FeedPostsListActivity.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/activity/FeedPostsListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jbrss.iml" afterPath="$PROJECT_DIR$/jbrss.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/ru/terra/jbrss/activity/FeedPostsViewAcitivity.java" afterPath="$PROJECT_DIR$/android/src/ru/terra/jbrss/activity/FeedPostsViewAcitivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/android/.idea/workspace.xml" />
     </list>
     <ignored path="jbrss.iws" />
@@ -62,6 +59,7 @@
     <file path="/WayBillsController.java" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1380532926715" ignored="false" />
     <file path="$USER_HOME$/Dropbox/projects/terramarket/jersey/dependency-reduced-pom.xml" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1380533017530" ignored="false" />
     <file path="/FeedPostsListActivity.java" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1385716583080" ignored="false" />
+    <file path="/FeedPostsViewAcitivity.java" changelist="3aeaffa9-1677-4bee-9858-340b9b102cfd" time="1385716883763" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

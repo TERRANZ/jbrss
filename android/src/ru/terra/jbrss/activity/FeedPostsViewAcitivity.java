@@ -10,6 +10,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,12 +81,16 @@ public class FeedPostsViewAcitivity extends RoboActivity {
         dbOpenHelper = new ProjectDbOpenHelper(this);
         database = dbOpenHelper.getReadableDatabase();
         String selection = getIntent().getStringExtra(SELECTION);
+        if (TextUtils.isEmpty(selection))
+            selection = "";
         String sql = "select p.* from post p ";
         if (selection.contains("match"))
             sql += "inner join post_fts pf on p.ext_id=pf.ext_id ";
+        String where = "";
+        if (!selection.isEmpty())
+            where = " where " + selection;
         feedPosts = database.rawQuery(sql
-                + " where "
-                + selection
+                + where
                 + " ORDER BY "
                 + "p." + FeedPostEntity.POST_DATE + " DESC ",
                 getIntent().getStringArrayExtra(SELECTION_ARGS));

@@ -52,7 +52,7 @@
     <file path="/AddFeedAsyncTask.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370000258319" ignored="false" />
     <file path="/RegActivity.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370000357296" ignored="false" />
     <file path="$PROJECT_DIR$/../../altarix/mgsn/src/ru/altarix/framework/documents/service/SendDocAsyncTask.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370521296694" ignored="false" />
-    <file path="/FeedPostsViewAcitivity.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1380280546438" ignored="false" />
+    <file path="/FeedPostsViewAcitivity.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1385716998076" ignored="false" />
     <file path="/JsonResponce.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1379061793336" ignored="false" />
     <file path="/Dummy.txt" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1383046069553" ignored="false" />
     <file path="$PROJECT_DIR$/../../altarix/mgsn/src/ru/altarix/framework/documents/component/SendMailAsyncTask.java" changelist="9f99c7d9-e96f-4b9c-92ae-95346c58ac9c" time="1370606956785" ignored="false" />
@@ -278,14 +278,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FeedPostsListActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="FeedPostsListActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="32" selection-start="3066" selection-end="3066" vertical-scroll-proportion="0.72436976">
+            <state line="124" column="55" selection-start="5469" selection-end="5469" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#3722#4208#0" expanded="true" />
                 <element signature="e#4189#4190#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FeedPostsViewAcitivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsViewAcitivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="90" column="42" selection-start="3042" selection-end="3042" vertical-scroll-proportion="0.5362563">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -323,8 +332,8 @@
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/service/UpdateService.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/components/FeedPostsCursorAdapter.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/constants/URLConstants.java" />
-        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsViewAcitivity.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsListActivity.java" />
+        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsViewAcitivity.java" />
       </list>
     </option>
   </component>
@@ -635,14 +644,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3278867" sideWeight="0.49893278" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32570806" sideWeight="0.49786553" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32570806" sideWeight="0.49786553" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3369803" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="-7" y="-12" width="1934" height="1072" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20864461" sideWeight="0.6764706" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32352942" sideWeight="0.50053364" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20864461" sideWeight="0.67429197" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32352942" sideWeight="0.50053364" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.10458911" sideWeight="0.6717724" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24279615" sideWeight="0.6717724" order="2" side_tool="false" content_ui="tabs" />
@@ -740,11 +749,6 @@
         <state line="2" column="17" selection-start="52" selection-end="52" vertical-scroll-proportion="0.033632286" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsViewAcitivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="139" column="53" selection-start="4998" selection-end="4998" vertical-scroll-proportion="0.25224215" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/core/cache/AbstractCache.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="22" selection-start="136" selection-end="136" vertical-scroll-proportion="0.06726457" />
@@ -807,11 +811,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="32" selection-start="3066" selection-end="3066" vertical-scroll-proportion="0.72436976">
+        <state line="124" column="55" selection-start="5469" selection-end="5469" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#3722#4208#0" expanded="true" />
             <element signature="e#4189#4190#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsViewAcitivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="42" selection-start="3042" selection-end="3042" vertical-scroll-proportion="0.5362563">
+          <folding />
         </state>
       </provider>
     </entry>
