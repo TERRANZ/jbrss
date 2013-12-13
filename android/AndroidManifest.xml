@@ -46,6 +46,9 @@
         <service android:name=".service.MarkReadService">
         </service>
 
+        <service android:name=".service.CheckForOldService">
+        </service>
+
         <activity android:name=".activity.LoginActivity">
         </activity>
         <activity android:name=".activity.RegActivity">

@@ -3,8 +3,10 @@ package ru.terra.jbrss;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +26,7 @@ import ru.terra.jbrss.activity.components.FeedListCursorAdapter;
 import ru.terra.jbrss.core.WorkIsDoneListener;
 import ru.terra.jbrss.entity.FeedEntity;
 import ru.terra.jbrss.network.JBRssRest;
+import ru.terra.jbrss.service.CheckForOldService;
 import ru.terra.jbrss.service.UpdateService;
 
 public class MainActivity extends RoboActivity {
@@ -45,6 +48,13 @@ public class MainActivity extends RoboActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 startActivity(new Intent(MainActivity.this, FeedPostsListActivity.class).putExtra("id", ((Integer) (view).getTag())));
+            }
+        });
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                startService(new Intent(MainActivity.this, CheckForOldService.class));
             }
         });
     }

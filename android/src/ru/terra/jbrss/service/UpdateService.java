@@ -6,7 +6,6 @@ import android.database.Cursor;
 import com.google.inject.Inject;
 import org.acra.ACRA;
 import roboguice.service.RoboIntentService;
-import ru.terra.jbrss.R;
 import ru.terra.jbrss.constants.Constants;
 import ru.terra.jbrss.core.SettingsService;
 import ru.terra.jbrss.core.helper.Logger;
@@ -18,7 +17,6 @@ import ru.terra.jbrss.entity.FeedPostEntity;
 import ru.terra.jbrss.entity.PostFTSEntity;
 import ru.terra.jbrss.network.JBRssRest;
 
-import java.util.Date;
 import java.util.List;
 
 public class UpdateService extends RoboIntentService {
@@ -88,7 +86,7 @@ public class UpdateService extends RoboIntentService {
                                             }
                                         }
                                     }
-                                    checkForOld();
+                                    startService(new Intent(this, CheckForOldService.class));
                                     updateUnreads();
                                 }
                             }
@@ -203,29 +201,5 @@ public class UpdateService extends RoboIntentService {
                 c.close();
         }
         return false;
-    }
-
-
-    private void checkForOld() {
-        Integer days = Integer.valueOf(settingsService.getSetting(getString(R.string.estimate_days), "0"));
-        if (days > 0) {
-            Long d = 0L;
-            int dayInMs = 1000 * 60 * 60 * (24 * days);
-            Date previousDay = new Date(new Date().getTime() - dayInMs);
-            d = previousDay.getTime();
-            Cursor oldPosts = getContentResolver().query(FeedPostEntity.CONTENT_URI, new String[]{FeedPostEntity.POST_EXTERNAL_ID},
-                    FeedPostEntity.POST_DATE + " < ? AND " + FeedPostEntity.POST_ISREAD + " = ?",
-                    new String[]{d.toString(), "true"}, null);
-            if (oldPosts != null && oldPosts.moveToFirst())
-                getContentResolver().delete(PostFTSEntity.CONTENT_URI,PostFTSEntity.POST_EXTERNAL_ID+" = ?",
-                        new String[]{String.valueOf(oldPosts.getInt(oldPosts.getColumnIndex(FeedPostEntity.POST_EXTERNAL_ID)))});
-            while (oldPosts.moveToNext())
-                getContentResolver().delete(PostFTSEntity.CONTENT_URI,PostFTSEntity.POST_EXTERNAL_ID+" = ?",
-                        new String[]{String.valueOf(oldPosts.getInt(oldPosts.getColumnIndex(FeedPostEntity.POST_EXTERNAL_ID)))});
-            oldPosts.close();
-            getContentResolver().delete(FeedPostEntity.CONTENT_URI,
-                    FeedPostEntity.POST_DATE + " < ? AND " + FeedPostEntity.POST_ISREAD + " = ?",
-                    new String[]{d.toString(), "true"});
-        }
     }
 }
