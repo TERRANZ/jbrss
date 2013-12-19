@@ -1,13 +1,12 @@
 package ru.terra.jbrss.constants;
 
-public class URLConstants {
-    public static final String SERVER_URL = "http://terranout.ath.cx/jbrss/";
+import ru.terra.server.constants.CoreUrlConstants;
+
+public class URLConstants extends CoreUrlConstants {
+    public static final String SERVER_URL = "http://terranz.ath.cx/jbrss/";
 
 
     public class DoJson {
-        public static final String DO_LIST = "do.list.json";
-        public static final String DO_GET = "do.get.json";
-        public static final String DO_DEL = "do.delete.json";
         public static final String DO_CREATE = "do.create.json";
         public static final String DO_UPDATE = "do.update.json";
 

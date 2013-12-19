@@ -3,6 +3,7 @@ package ru.terra.jbrss.controller;
 import com.sun.jersey.api.core.HttpContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.terra.jbrss.constants.RssErrorConstants;
 import ru.terra.jbrss.constants.URLConstants;
 import ru.terra.jbrss.db.entity.Feedposts;
 import ru.terra.jbrss.db.entity.Feeds;
@@ -32,7 +33,7 @@ public class RssController extends AbstractResource {
     @Path(URLConstants.DoJson.Rss.RSS_DO_LIST)
     public ListDTO<FeedDTO> getList(@Context HttpContext hc) {
         logger.info("Loading list of feeds");
-        User user = getCurrentUser(hc);
+        User user = (User) getCurrentUser(hc);
         ListDTO<FeedDTO> ret = new ListDTO<>();
         if (user != null) {
             List<Feeds> feeds;
@@ -55,7 +56,7 @@ public class RssController extends AbstractResource {
     @Path(URLConstants.DoJson.Rss.RSS_DO_ADD)
     public SimpleDataDTO<Boolean> add(@Context HttpContext hc, @QueryParam("url") String url) {
         logger.info("Adding new feed");
-        User user = getCurrentUser(hc);
+        User user = (User) getCurrentUser(hc);
         SimpleDataDTO<Boolean> ret = new SimpleDataDTO<>(false);
         if (user != null) {
             try {
@@ -63,7 +64,7 @@ public class RssController extends AbstractResource {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
                 ret.errorMessage = e.getLocalizedMessage();
-                ret.errorCode = ErrorConstants.ERR_UNABLE_TO_ADD_RSS;
+                ret.errorCode = RssErrorConstants.ERR_UNABLE_TO_ADD_RSS;
                 return ret;
             }
             return new SimpleDataDTO<>(true);
@@ -79,7 +80,7 @@ public class RssController extends AbstractResource {
     public ListDTO<FeedPostDTO> getUnread(@Context HttpContext hc, @QueryParam("timestamp") long timestamp) {
         ListDTO<FeedPostDTO> ret = new ListDTO<>();
         logger.info("Getting unread feeds");
-        User user = getCurrentUser(hc);
+        User user = (User) getCurrentUser(hc);
         if (user != null) {
             List<Feeds> feeds;
             feeds = model.getFeeds(user.getId());
@@ -117,7 +118,7 @@ public class RssController extends AbstractResource {
         if (getParameter(hc, "all") != null)
             all = Boolean.getBoolean(getParameter(hc, "all"));
         logger.info("Marking read");
-        User user = getCurrentUser(hc);
+        User user = (User) getCurrentUser(hc);
         SimpleDataDTO<Boolean> ret = new SimpleDataDTO<>(true);
         if (user != null) {
             if (feed != null) {
@@ -144,7 +145,7 @@ public class RssController extends AbstractResource {
     @Path(URLConstants.DoJson.Rss.RSS_DO_UPDATE)
     public SimpleDataDTO<Integer> update(@Context HttpContext hc) {
         logger.info("Updating feeds");
-        User user = getCurrentUser(hc);
+        User user = (User) getCurrentUser(hc);
         SimpleDataDTO<Integer> ret = new SimpleDataDTO<>(0);
         if (user != null) {
             List<Feeds> feeds;
@@ -171,7 +172,7 @@ public class RssController extends AbstractResource {
     @Path(URLConstants.DoJson.Rss.RSS_DO_DEL)
     public SimpleDataDTO<Boolean> delete(@Context HttpContext hc, @QueryParam("id") Integer id) {
         logger.info("Delete feed");
-        User user = getCurrentUser(hc);
+        User user = (User) getCurrentUser(hc);
         SimpleDataDTO<Boolean> ret = new SimpleDataDTO<>(true);
         if (user != null) {
             model.removeFeed(id);
@@ -188,7 +189,7 @@ public class RssController extends AbstractResource {
     public ListDTO<FeedPostDTO> getFeed(@Context HttpContext hc, @QueryParam("id") Integer id, @QueryParam("count") Integer count) {
         ListDTO<FeedPostDTO> ret = new ListDTO<>();
         logger.info("Getting feed");
-        User user = getCurrentUser(hc);
+        User user = (User) getCurrentUser(hc);
         if (user != null) {
             List<Feedposts> posts = new ArrayList<>();
             List<FeedPostDTO> dtos = new ArrayList<>();

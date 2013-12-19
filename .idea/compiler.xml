@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="jbrss" />
+        <module name="server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="jbrss" target="1.7" />
+      <module name="server" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
