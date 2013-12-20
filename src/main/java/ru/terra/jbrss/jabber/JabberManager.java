@@ -46,13 +46,17 @@ public class JabberManager {
                 String msg = message.getBody();
                 String[] params = msg.split(" ");
                 AbstractCommand cmd = commandsFactory.getCommand(params[0]);
-                if (cmd != null) try {
-                    cmd.doCmd(fromName, params, serverInterface);
-                } catch (Exception e) {
-                    serverInterface.sendMessage(fromName, "Exception while doing command, " + e.getMessage());
-                }
+                if (cmd != null)
+                    try {
+                        cmd.setContact(fromName);
+                        cmd.doCmd(fromName, params, serverInterface);
+                    } catch (Exception e) {
+                        logger.error("Error while executing command", e);
+                        serverInterface.sendMessage(fromName, "Exception while doing command, " + e.getMessage());
+                    }
                 if (model.isContactExists(fromName)) {
                     //serverInterface.sendMessage(fromName, "Hello registrant");
+                    model.updateLastLogin(fromName);
                 } else {
                     serverInterface.sendMessage(fromName, "Hello, you are not registered, type reg");
                 }

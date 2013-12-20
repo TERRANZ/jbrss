@@ -2,12 +2,15 @@ package ru.terra.jbrss.jabber;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.terra.jbrss.db.entity.User;
 import ru.terra.jbrss.dto.captcha.CaptchDTO;
 import ru.terra.jbrss.engine.UsersEngine;
 import ru.terra.jbrss.engine.YandexCaptcha;
 import ru.terra.jbrss.jabber.db.controller.ContactJpaController;
 import ru.terra.jbrss.jabber.db.entity.Contact;
 import ru.terra.jbrss.jabber.db.entity.ContactStatus;
+
+import java.util.Date;
 
 /**
  * Date: 19.12.13
@@ -87,7 +90,47 @@ public class JabberModel {
         }
         logger.info("Contact is not exists");
         return false;
-
     }
 
+    public User getUser(String contact) {
+        Contact c = contactJpaController.findByContact(contact);
+        if (c == null)
+            return null;
+        Integer uid = c.getUserId();
+        if (uid == null)
+            return null;
+        try {
+            return usersEngine.getUser(uid);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public boolean attachUserToContact(String contact, Integer uid) {
+        Contact c = new Contact();
+        c.setStatus(ContactStatus.USER_REG);
+        c.setContact(contact);
+        c.setUserId(uid);
+        try {
+            contactJpaController.update(c);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public void updateLastLogin(String contact) {
+        Contact c = contactJpaController.findByContact(contact);
+        if (c != null) {
+            c.setLastlogin(new Date().getTime());
+        }
+    }
+
+    public Integer getUserId(String contact) {
+        Contact c = contactJpaController.findByContact(contact);
+        if (c != null) {
+            return c.getUserId();
+        }
+        return null;
+    }
 }

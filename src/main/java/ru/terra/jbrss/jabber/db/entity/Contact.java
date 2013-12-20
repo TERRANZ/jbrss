@@ -50,8 +50,8 @@ public class Contact implements Serializable {
     private String captchaKey;
     @Column(name = "CAPTCHA_VAL", length = 128)
     private String captchaVal;
-    private Integer lastlogin;
-    private Integer checkinterval;
+    private Long lastlogin;
+    private Long checkinterval;
     private Integer status;
 
     public Contact() {
@@ -101,19 +101,19 @@ public class Contact implements Serializable {
         this.captchaVal = captchaVal;
     }
 
-    public Integer getLastlogin() {
+    public Long getLastlogin() {
         return lastlogin;
     }
 
-    public void setLastlogin(Integer lastlogin) {
+    public void setLastlogin(Long lastlogin) {
         this.lastlogin = lastlogin;
     }
 
-    public Integer getCheckinterval() {
+    public Long getCheckinterval() {
         return checkinterval;
     }
 
-    public void setCheckinterval(Integer checkinterval) {
+    public void setCheckinterval(Long checkinterval) {
         this.checkinterval = checkinterval;
     }
 
