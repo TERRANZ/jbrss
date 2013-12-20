@@ -22,6 +22,7 @@ public class UsersEngine {
             User u = new User();
             u.setLogin(login);
             u.setPassword(password);
+            u.setLevel(0);
             ujpc.create(u);
             return u.getId();
         }

@@ -5,6 +5,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.servlet.WebappContext;
 import ru.terra.jbrss.db.controllers.FeedsJpaController;
+import ru.terra.jbrss.jabber.JabberManager;
 import ru.terra.server.config.Config;
 import ru.terra.server.constants.ConfigConstants;
 
@@ -28,9 +29,21 @@ public class Main {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("Feed in DB: " + new FeedsJpaController().count());
+                System.out.println("Feeds in DB: " + new FeedsJpaController().count());
             }
         }).start();
-        System.in.read();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                new JabberManager().start();
+            }
+        }).start();
+        while (true) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
