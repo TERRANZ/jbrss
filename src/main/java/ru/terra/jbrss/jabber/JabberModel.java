@@ -133,4 +133,11 @@ public class JabberModel {
         }
         return null;
     }
+
+    public Long getLastUpdate(String contact) {
+        Contact c = contactJpaController.findByContact(contact);
+        if (c != null)
+            return c.getCheckinterval();
+        return 0L;
+    }
 }

@@ -123,4 +123,22 @@ public class Model {
 //        fp.setUpdated(new Date());
 //        return fp;
 //    }
+
+    public Feeds getFeed(Integer id) {
+        try {
+            return feedsJpaController.get(id);
+        } catch (Exception e) {
+            log.error("Unable to get feed", e);
+        }
+        return null;
+    }
+
+    public void setFeedUpdateDate(Feeds f, Date date) {
+        f.setUpdateTime(date);
+        try {
+            feedsJpaController.update(f);
+        } catch (Exception e) {
+            log.error("Unable to update time on feed", e);
+        }
+    }
 }

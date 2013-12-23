@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3aeaffa9-1677-4bee-9858-340b9b102cfd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/ReadCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/ReadCommand.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UpdateCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AddCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AddCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberModel.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UnreadsCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UnreadsCommand.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jbrss.iws" />
@@ -99,39 +103,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="InfoCommand.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/InfoCommand.java">
+      <file leaf-file-name="UnreadsCommand.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UnreadsCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="34" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReadCommand.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/ReadCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="135" selection-start="947" selection-end="947" vertical-scroll-proportion="0.94736844" vertical-offset="0" max-vertical-offset="738">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Model.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="23" selection-start="1374" selection-end="1374" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="2142">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AttachCommand.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AttachCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="34" selection-start="1089" selection-end="1089" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="756">
+            <state line="23" column="122" selection-start="916" selection-end="916" vertical-scroll-proportion="0.45048967" vertical-offset="0" max-vertical-offset="919">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -163,7 +138,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/server/constants/ConfigConstants.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/LoginController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/ErrorReportController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/rss/Downloader.java" />
         <option value="$USER_HOME$/Dropbox/projects/terramarket/core/src/main/java/ru/terra/server/db/entity/AbstractUser.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/URLConstants.java" />
@@ -201,10 +175,14 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AttachCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/db/entity/Contact.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/AbstractPrivCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/InfoCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/ReadCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UpdateCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AddCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UnreadsCommand.java" />
       </list>
     </option>
   </component>
@@ -257,8 +235,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -306,36 +282,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jbrss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jbrss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -491,6 +437,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -509,6 +457,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Application.JBRss">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
@@ -691,20 +640,20 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5856237" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32769555" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21086262" sideWeight="0.6721582" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38900635" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21033014" sideWeight="0.6721582" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38900635" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32769555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32769555" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -730,34 +679,22 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/InfoCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="9" selection-start="749" selection-end="749" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="558">
-          <folding />
-        </state>
+        <state line="21" column="9" selection-start="749" selection-end="749" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="558" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/ReadCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="27" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="306">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="8" column="27" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="306" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="86" selection-end="86" vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="342">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
+        <state line="6" column="13" selection-start="86" selection-end="86" vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="342" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="61" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="540">
-          <folding />
-        </state>
+        <state line="13" column="61" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="540" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/db/controller/ContactJpaController.java">
@@ -767,18 +704,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="86" selection-end="86" vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="342">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
+        <state line="6" column="13" selection-start="86" selection-end="86" vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="342" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="61" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="540">
-          <folding />
-        </state>
+        <state line="13" column="61" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="540" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/db/controller/ContactJpaController.java">
@@ -788,11 +719,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/FeedsJpaController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding>
-            <element signature="e#0#3810#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/URLConstants.java">
@@ -812,9 +739,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/FeedpostsJpaController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="13" selection-start="560" selection-end="560" vertical-scroll-proportion="0.14031972" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
+        <state line="19" column="13" selection-start="560" selection-end="560" vertical-scroll-proportion="0.14031972" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/captcha/CaptchDTO.java">
@@ -842,34 +767,14 @@
         <state line="6" column="19" selection-start="142" selection-end="142" vertical-scroll-proportion="0.11751904" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UnreadsCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="30" selection-start="119" selection-end="119" vertical-scroll-proportion="0.15669206" vertical-offset="0" max-vertical-offset="919">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/ServerInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="68" selection-start="168" selection-end="168" vertical-scroll-proportion="0.13710555" vertical-offset="0" max-vertical-offset="919">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/DefaultCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="17" selection-start="241" selection-end="241" vertical-scroll-proportion="0.17627856" vertical-offset="0" max-vertical-offset="919">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="7" column="68" selection-start="168" selection-end="168" vertical-scroll-proportion="0.13710555" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/JabberCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="18" selection-start="208" selection-end="208" vertical-scroll-proportion="0.21545158" vertical-offset="0" max-vertical-offset="919">
-          <folding />
-        </state>
+        <state line="11" column="18" selection-start="208" selection-end="208" vertical-scroll-proportion="0.21545158" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -886,11 +791,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/CommandsFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="36" selection-start="804" selection-end="804" vertical-scroll-proportion="0.5092492" vertical-offset="0" max-vertical-offset="919">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
+        <state line="26" column="36" selection-start="804" selection-end="804" vertical-scroll-proportion="0.5092492" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/rss/Downloader.java">
@@ -900,9 +801,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="26" selection-start="313" selection-end="323" vertical-scroll-proportion="0.0397351" vertical-offset="0" max-vertical-offset="906">
-          <folding />
-        </state>
+        <state line="2" column="26" selection-start="313" selection-end="323" vertical-scroll-proportion="0.0397351" vertical-offset="0" max-vertical-offset="906" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tm.properties">
@@ -917,9 +816,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="62" selection-start="1687" selection-end="1687" vertical-scroll-proportion="0.48966268" vertical-offset="0" max-vertical-offset="919">
-          <folding />
-        </state>
+        <state line="44" column="62" selection-start="1687" selection-end="1687" vertical-scroll-proportion="0.48966268" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Dropbox/projects/terramarket/core/src/main/java/ru/terra/server/db/controllers/AbstractJpaController.java">
@@ -937,31 +834,9 @@
         <state line="28" column="127" selection-start="904" selection-end="904" vertical-scroll-proportion="0.34711644" vertical-offset="59" max-vertical-offset="1278" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/RegCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="25" selection-start="651" selection-end="651" vertical-scroll-proportion="0.41131666" vertical-offset="0" max-vertical-offset="919">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/StartRegCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="40" selection-start="1244" selection-end="1244" vertical-scroll-proportion="0.5288357" vertical-offset="0" max-vertical-offset="919">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/ListCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="8" selection-start="446" selection-end="459" vertical-scroll-proportion="0.2742111" vertical-offset="0" max-vertical-offset="919">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="14" column="8" selection-start="446" selection-end="459" vertical-scroll-proportion="0.2742111" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/db/entity/Contact.java">
@@ -971,85 +846,124 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="38" selection-start="2264" selection-end="2264" vertical-scroll-proportion="0.64897263" vertical-offset="575" max-vertical-offset="1512">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
+        <state line="56" column="38" selection-start="2264" selection-end="2264" vertical-scroll-proportion="0.64897263" vertical-offset="575" max-vertical-offset="1512" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/AbstractCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="18" selection-start="523" selection-end="523" vertical-scroll-proportion="0.37214363" vertical-offset="0" max-vertical-offset="919">
-          <folding />
+        <state line="19" column="18" selection-start="523" selection-end="523" vertical-scroll-proportion="0.37214363" vertical-offset="0" max-vertical-offset="919" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/ReadCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="119" selection-start="818" selection-end="818" vertical-scroll-proportion="0.5092492" vertical-offset="0" max-vertical-offset="919" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/LoginCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="100" selection-end="100" vertical-scroll-proportion="0.11751904" vertical-offset="0" max-vertical-offset="919" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AttachCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="34" selection-start="1089" selection-end="1089" vertical-scroll-proportion="0.5680087" vertical-offset="0" max-vertical-offset="919">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="32" selection-start="4427" selection-end="4427" vertical-scroll-proportion="0.7845484" vertical-offset="1457" max-vertical-offset="2376">
+        <state line="140" column="17" selection-start="4661" selection-end="4661" vertical-scroll-proportion="0.9412405" vertical-offset="1475" max-vertical-offset="2502">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/AbstractPrivCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="31" selection-start="513" selection-end="513" vertical-scroll-proportion="0.37214363" vertical-offset="0" max-vertical-offset="919">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AddCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="100" selection-end="100" vertical-scroll-proportion="0.12" vertical-offset="0" max-vertical-offset="900">
+        <state line="22" column="35" selection-start="536" selection-end="536" vertical-scroll-proportion="0.39173013" vertical-offset="0" max-vertical-offset="919">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AttachCommand.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="34" selection-start="1089" selection-end="1089" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="756">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/DelCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="100" selection-end="100" vertical-scroll-proportion="0.12" vertical-offset="0" max-vertical-offset="900">
+        <state line="96" column="62" selection-start="3103" selection-end="3795" vertical-scroll-proportion="0.45048967" vertical-offset="918" max-vertical-offset="3474">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/HelpCommand.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UpdateCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="285" selection-end="285" vertical-scroll-proportion="0.22" vertical-offset="0" max-vertical-offset="900">
+        <state line="17" column="61" selection-start="633" selection-end="633" vertical-scroll-proportion="0.33297062" vertical-offset="0" max-vertical-offset="919">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/InfoCommand.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/StartRegCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="34" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
+        <state line="27" column="40" selection-start="1244" selection-end="1244" vertical-scroll-proportion="0.45048967" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/RegCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="25" selection-start="651" selection-end="651" vertical-scroll-proportion="0.35255712" vertical-offset="0" max-vertical-offset="919">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="23" selection-start="1374" selection-end="1374" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="2142">
+        <state line="27" column="19" selection-start="855" selection-end="855" vertical-scroll-proportion="0.31338412" vertical-offset="0" max-vertical-offset="2466">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/ReadCommand.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AddCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="135" selection-start="947" selection-end="947" vertical-scroll-proportion="0.94736844" vertical-offset="0" max-vertical-offset="738">
+        <state line="20" column="32" selection-start="786" selection-end="786" vertical-scroll-proportion="0.39173013" vertical-offset="0" max-vertical-offset="919">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/DefaultCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="17" selection-start="241" selection-end="241" vertical-scroll-proportion="0.13710555" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/InfoCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="34" selection-start="442" selection-end="442" vertical-scroll-proportion="0.21545158" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/HelpCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="285" selection-end="285" vertical-scroll-proportion="0.17627856" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/DelCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="10" selection-start="86" selection-end="86" vertical-scroll-proportion="0.09793253" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UnreadsCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="122" selection-start="916" selection-end="916" vertical-scroll-proportion="0.45048967" vertical-offset="0" max-vertical-offset="919">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
