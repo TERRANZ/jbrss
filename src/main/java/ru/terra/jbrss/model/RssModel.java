@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Model {
+public class RssModel {
     private FeedsJpaController feedsJpaController;
     private FeedpostsJpaController feedpostsJpaController;
     private Downloader downloader = new Downloader();
-    private Logger log = LoggerFactory.getLogger(Model.class);
+    private Logger log = LoggerFactory.getLogger(RssModel.class);
 
-    public Model() {
+    public RssModel() {
         feedsJpaController = new FeedsJpaController();
         feedpostsJpaController = new FeedpostsJpaController();
     }

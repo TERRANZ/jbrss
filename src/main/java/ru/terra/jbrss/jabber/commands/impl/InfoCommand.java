@@ -15,10 +15,12 @@ import java.util.List;
 public class InfoCommand extends AbstractPrivCommand {
     @Override
     public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
-        List<Feeds> feeds = rssModel.getFeeds(getUserId());
-        serverInterface.sendMessage(contact, "Your feeds");
-        for (Feeds f : feeds) {
-            serverInterface.sendMessage(contact, f.getId() + " : " + f.getFeedname());
+        if (checkAccess()) {
+            List<Feeds> feeds = rssModel.getFeeds(getUserId());
+            serverInterface.sendMessage(contact, "Your feeds");
+            for (Feeds f : feeds) {
+                serverInterface.sendMessage(contact, f.getId() + " : " + f.getFeedname());
+            }
         }
         return false;
     }

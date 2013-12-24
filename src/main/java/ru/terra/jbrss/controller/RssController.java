@@ -10,7 +10,7 @@ import ru.terra.jbrss.db.entity.Feeds;
 import ru.terra.jbrss.db.entity.User;
 import ru.terra.jbrss.dto.rss.FeedDTO;
 import ru.terra.jbrss.dto.rss.FeedPostDTO;
-import ru.terra.jbrss.model.Model;
+import ru.terra.jbrss.model.RssModel;
 import ru.terra.server.constants.ErrorConstants;
 import ru.terra.server.controller.AbstractResource;
 import ru.terra.server.dto.ListDTO;
@@ -27,7 +27,7 @@ import java.util.List;
 @Path(URLConstants.DoJson.Rss.RSS)
 public class RssController extends AbstractResource {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-    private Model model = new Model();
+    private RssModel rssModel = new RssModel();
 
     @GET
     @Path(URLConstants.DoJson.Rss.RSS_DO_LIST)
@@ -37,7 +37,7 @@ public class RssController extends AbstractResource {
         ListDTO<FeedDTO> ret = new ListDTO<>();
         if (user != null) {
             List<Feeds> feeds;
-            feeds = model.getFeeds(user.getId());
+            feeds = rssModel.getFeeds(user.getId());
             if (feeds != null && feeds.size() > 0) {
                 List<FeedDTO> data = new ArrayList<>();
                 for (Feeds f : feeds)
@@ -60,7 +60,7 @@ public class RssController extends AbstractResource {
         SimpleDataDTO<Boolean> ret = new SimpleDataDTO<>(false);
         if (user != null) {
             try {
-                model.addFeed(user, url);
+                rssModel.addFeed(user, url);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
                 ret.errorMessage = e.getLocalizedMessage();
@@ -83,12 +83,12 @@ public class RssController extends AbstractResource {
         User user = (User) getCurrentUser(hc);
         if (user != null) {
             List<Feeds> feeds;
-            feeds = model.getFeeds(user.getId());
+            feeds = rssModel.getFeeds(user.getId());
             if (feeds != null && feeds.size() > 0) {
                 List<Feedposts> posts = new ArrayList<>();
                 List<FeedPostDTO> dtos = new ArrayList<>();
                 for (Feeds feed : feeds) {
-                    posts.addAll(model.getNewUserPosts(user.getId(), feed, new Date(timestamp)));
+                    posts.addAll(rssModel.getNewUserPosts(user.getId(), feed, new Date(timestamp)));
                 }
                 if (posts != null && posts.size() > 0) {
                     for (Feedposts fp : posts)
@@ -122,13 +122,13 @@ public class RssController extends AbstractResource {
         SimpleDataDTO<Boolean> ret = new SimpleDataDTO<>(true);
         if (user != null) {
             if (feed != null) {
-                model.setFeedRead(feed, read);
+                rssModel.setFeedRead(feed, read);
                 return ret;
             } else if (post != null) {
-                model.setPostRead(post, read);
+                rssModel.setPostRead(post, read);
                 return ret;
             } else if (all) {
-                model.setAllRead(user.getId());
+                rssModel.setAllRead(user.getId());
                 return ret;
             } else {
                 ret.data = false;
@@ -149,12 +149,12 @@ public class RssController extends AbstractResource {
         SimpleDataDTO<Integer> ret = new SimpleDataDTO<>(0);
         if (user != null) {
             List<Feeds> feeds;
-            feeds = model.getFeeds(user.getId());
+            feeds = rssModel.getFeeds(user.getId());
             Integer updated = 0;
             if (feeds != null && feeds.size() > 0) {
                 for (Feeds f : feeds)
                     try {
-                        updated += model.updateFeed(f);
+                        updated += rssModel.updateFeed(f);
                     } catch (Exception e) {
                         logger.error("Error while updating feed " + f.getFeedurl(), e);
                     }
@@ -175,7 +175,7 @@ public class RssController extends AbstractResource {
         User user = (User) getCurrentUser(hc);
         SimpleDataDTO<Boolean> ret = new SimpleDataDTO<>(true);
         if (user != null) {
-            model.removeFeed(id);
+            rssModel.removeFeed(id);
             return ret;
         } else {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
@@ -193,7 +193,7 @@ public class RssController extends AbstractResource {
         if (user != null) {
             List<Feedposts> posts = new ArrayList<>();
             List<FeedPostDTO> dtos = new ArrayList<>();
-            posts.addAll(model.getFeedPosts(id, 0, count));
+            posts.addAll(rssModel.getFeedPosts(id, 0, count));
             if (posts != null && posts.size() > 0) {
                 for (Feedposts fp : posts)
                     dtos.add(new FeedPostDTO(fp));

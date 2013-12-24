@@ -12,13 +12,15 @@ import ru.terra.jbrss.jabber.commands.JabberCommand;
 public class AddCommand extends AbstractPrivCommand {
     @Override
     public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
-        String url = params[1];
-        try {
-            if (rssModel.addFeed(getUser(), url))
-                serverInterface.sendMessage(contact, "Feed added completely");
-        } catch (IllegalAccessException e) {
-            serverInterface.sendMessage(contact, "Feed is not added, error = " + e.getMessage());
-            e.printStackTrace();
+        if (checkAccess()) {
+            String url = params[1];
+            try {
+                if (rssModel.addFeed(getUser(), url))
+                    serverInterface.sendMessage(contact, "Feed added completely");
+            } catch (IllegalAccessException e) {
+                serverInterface.sendMessage(contact, "Feed is not added, error = " + e.getMessage());
+                e.printStackTrace();
+            }
         }
         return true;
     }

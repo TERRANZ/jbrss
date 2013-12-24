@@ -13,9 +13,11 @@ import ru.terra.jbrss.jabber.commands.JabberCommand;
 public class UpdateCommand extends AbstractPrivCommand {
     @Override
     public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
-        for (Feeds f : rssModel.getFeeds(getUserId()))
-            rssModel.updateFeed(f);
-        serverInterface.sendMessage(contact, "Update complete");
+        if (checkAccess()) {
+            for (Feeds f : rssModel.getFeeds(getUserId()))
+                rssModel.updateFeed(f);
+            serverInterface.sendMessage(contact, "Update complete");
+        }
         return true;
     }
 }
