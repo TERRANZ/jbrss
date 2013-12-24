@@ -73,7 +73,7 @@ public class JabberManager {
             ConnectionConfiguration config = new ConnectionConfiguration(c.getValue("jabber.server", ""), Integer.parseInt(c.getValue("jabber.port", "5222")));
             connection = new XMPPConnection(config);
             connection.connect();
-            connection.login(c.getValue("jabber.user", ""), "jabber.pass", "");
+            connection.login(c.getValue("jabber.user", ""), c.getValue("jabber.pass", ""));
             PacketFilter filter = new MessageTypeFilter(Message.Type.chat);
             connection.addPacketListener(new JabberPacketListener(), filter);
         } catch (XMPPException ex) {

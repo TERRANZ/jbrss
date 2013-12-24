@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3aeaffa9-1677-4bee-9858-340b9b102cfd" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tm.properties" afterPath="$PROJECT_DIR$/src/main/java/jbrss.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AttachCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AttachCommand.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberManager.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jbrss.iml" afterPath="$PROJECT_DIR$/jbrss.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jbrss.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,7 +86,7 @@
       <file leaf-file-name="JabberManager.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="59" selection-start="3065" selection-end="3065" vertical-scroll-proportion="0.7257889" vertical-offset="413" max-vertical-offset="1332">
+            <state line="75" column="87" selection-start="3093" selection-end="3093" vertical-scroll-proportion="0.7257889" vertical-offset="413" max-vertical-offset="1332">
               <folding />
             </state>
           </provider>
@@ -780,7 +775,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="8" selection-start="444" selection-end="464" vertical-scroll-proportion="0.2742111" vertical-offset="0" max-vertical-offset="919">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -796,7 +791,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="9" selection-start="539" selection-end="539" vertical-scroll-proportion="0.31338412" vertical-offset="0" max-vertical-offset="919">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -819,7 +814,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="9" selection-start="1430" selection-end="1430" vertical-scroll-proportion="0.68552774" vertical-offset="0" max-vertical-offset="919">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -863,7 +858,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="9" selection-start="687" selection-end="687" vertical-scroll-proportion="0.37214363" vertical-offset="0" max-vertical-offset="919">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -879,14 +874,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="23" selection-start="746" selection-end="750" vertical-scroll-proportion="0.41131666" vertical-offset="0" max-vertical-offset="919">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/JabberManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="59" selection-start="3065" selection-end="3065" vertical-scroll-proportion="0.7257889" vertical-offset="413" max-vertical-offset="1332">
+        <state line="75" column="87" selection-start="3093" selection-end="3093" vertical-scroll-proportion="0.7257889" vertical-offset="413" max-vertical-offset="1332">
           <folding />
         </state>
       </provider>
