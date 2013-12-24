@@ -15,22 +15,20 @@ public class AttachCommand extends AbstractPrivCommand {
 
     @Override
     public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
-        if (checkAccess()) {
-            if (jabberModel.isContactExists(contact)) {
-                serverInterface.sendMessage(contact, "this " + contact + " account is already attached to user");
+        if (jabberModel.isContactExists(contact)) {
+            serverInterface.sendMessage(contact, "this " + contact + " account is already attached to user");
+            return true;
+        } else {
+            String user = params[1];
+            String pass = params[2];
+            UsersEngine ue = new UsersEngine();
+            User u = ue.login(user, pass);
+            if (u == null) {
+                serverInterface.sendMessage(contact, "User name or password is invalid");
                 return true;
             } else {
-                String user = params[1];
-                String pass = params[2];
-                UsersEngine ue = new UsersEngine();
-                User u = ue.login(user, pass);
-                if (u == null) {
-                    serverInterface.sendMessage(contact, "User name or password is invalid");
-                    return true;
-                } else {
-                    jabberModel.attachUserToContact(contact, u.getId());
-                    serverInterface.sendMessage(contact, "OK, user " + u.getName() + " is now yours");
-                }
+                jabberModel.attachUserToContact(contact, u.getId());
+                serverInterface.sendMessage(contact, "OK, user " + u.getName() + " is now yours");
             }
         }
         return true;

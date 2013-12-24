@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.terra.jbrss.jabber.commands.AbstractCommand;
 import ru.terra.jbrss.jabber.commands.CommandsFactory;
+import ru.terra.server.config.Config;
 
 /**
  * Date: 19.12.13
@@ -68,10 +69,11 @@ public class JabberManager {
 
     public void start() {
         try {
-            ConnectionConfiguration config = new ConnectionConfiguration("terranz.ath.cx", 5222);
+            Config c = Config.getConfig();
+            ConnectionConfiguration config = new ConnectionConfiguration(c.getValue("jabber.server", ""), Integer.parseInt(c.getValue("jabber.port", "5222")));
             connection = new XMPPConnection(config);
             connection.connect();
-            connection.login("jabberrssbot", "jbrss");
+            connection.login(c.getValue("jabber.user", ""), "jabber.pass", "");
             PacketFilter filter = new MessageTypeFilter(Message.Type.chat);
             connection.addPacketListener(new JabberPacketListener(), filter);
         } catch (XMPPException ex) {
