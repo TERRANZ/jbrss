@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3aeaffa9-1677-4bee-9858-340b9b102cfd" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/ListCommand.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/LoginCommand.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/Model.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/RssModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/AbstractPrivCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/AbstractPrivCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AddCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AddCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AttachCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/AttachCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/DelCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/DelCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/InfoCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/InfoCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/ReadCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/ReadCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UnreadsCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UnreadsCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UpdateCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/impl/UpdateCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="3aeaffa9-1677-4bee-9858-340b9b102cfd" name="Default" comment="" />
     <ignored path="jbrss.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -216,7 +202,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -419,6 +404,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -474,6 +460,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -499,19 +498,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -625,7 +611,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21033014" sideWeight="0.6721582" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2087327" sideWeight="0.6721582" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38900635" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -808,54 +794,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/quartz.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="25" selection-start="120" selection-end="120" vertical-scroll-proportion="0.039173014" vertical-offset="0" max-vertical-offset="919">
-          <folding />
-        </state>
+        <state line="2" column="25" selection-start="120" selection-end="120" vertical-scroll-proportion="0.039173014" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/CaptchaController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="509" selection-end="509" vertical-scroll-proportion="0.11751904" vertical-offset="0" max-vertical-offset="919">
-          <folding />
-        </state>
+        <state line="17" column="13" selection-start="509" selection-end="509" vertical-scroll-proportion="0.11751904" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Dropbox/projects/terramarket/core/src/main/java/ru/terra/server/controller/AbstractResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="82" selection-start="692" selection-end="692" vertical-scroll-proportion="0.23503809" vertical-offset="0" max-vertical-offset="919">
-          <folding />
-        </state>
+        <state line="19" column="82" selection-start="692" selection-end="692" vertical-scroll-proportion="0.23503809" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/ErrorReportController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="49" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1350">
-          <folding />
-        </state>
+        <state line="26" column="49" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1350" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="4" selection-start="790" selection-end="842" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1350">
-          <folding />
-        </state>
+        <state line="25" column="4" selection-start="790" selection-end="842" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1350" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="48" selection-start="3285" selection-end="3285" vertical-scroll-proportion="-1.5070729" vertical-offset="2555" max-vertical-offset="3474">
-          <folding />
-        </state>
+        <state line="87" column="48" selection-start="3285" selection-end="3285" vertical-scroll-proportion="-1.5070729" vertical-offset="2555" max-vertical-offset="3474" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/RssModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="21" selection-start="461" selection-end="461" vertical-scroll-proportion="0.07834603" vertical-offset="0" max-vertical-offset="2502">
-          <folding>
-            <element signature="e#1046#1285#0" expanded="true" />
-            <element signature="e#1270#1271#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="15" column="21" selection-start="461" selection-end="461" vertical-scroll-proportion="0.07834603" vertical-offset="0" max-vertical-offset="2502" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/AbstractCommand.java">
