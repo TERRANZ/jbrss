@@ -133,7 +133,26 @@
     <favorites_list name="jbrss" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="94" column="89" selection-start="3776" selection-end="3776" vertical-scroll-proportion="0.73572594" vertical-offset="557" max-vertical-offset="1494">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/activity/LoginActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="50" selection-start="1227" selection-end="1236" vertical-scroll-proportion="0.0" vertical-offset="89" max-vertical-offset="1170">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -158,7 +177,6 @@
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/constants/URLConstants.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsListActivity.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/service/UpdateService.java" />
-        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/SettingsFragment.java" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
@@ -166,6 +184,8 @@
         <option value="$PROJECT_DIR$/res/layout/a_post.xml" />
         <option value="$PROJECT_DIR$/res/menu/m_post.xml" />
         <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsViewAcitivity.java" />
+        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/activity/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/src/ru/terra/jbrss/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -476,7 +496,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-12" width="1934" height="1072" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.10458911" sideWeight="0.6717724" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -491,14 +511,14 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32346722" sideWeight="0.49786553" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3369803" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="1913" y="-12" width="1934" height="1099" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3369803" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="1913" y="0" width="1920" height="1053" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20500532" sideWeight="0.6764706" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32346722" sideWeight="0.50053364" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32346722" sideWeight="0.50053364" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -529,11 +549,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/core/cache/AbstractCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="22" selection-start="136" selection-end="136" vertical-scroll-proportion="0.06726457" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/core/db/ProjectDbOpenHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="13" selection-start="405" selection-end="405" vertical-scroll-proportion="0.08408072" vertical-offset="0" max-vertical-offset="0" />
@@ -742,13 +757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="19" selection-start="1229" selection-end="1229" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="1386">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/activity/components/AddFeedAsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="13" selection-start="343" selection-end="343" vertical-scroll-proportion="0.022801302" vertical-offset="51" max-vertical-offset="972">
@@ -857,7 +865,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/activity/FeedPostsViewAcitivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="202" column="82" selection-start="7456" selection-end="7456" vertical-scroll-proportion="0.5008157" vertical-offset="2789" max-vertical-offset="3708">
+        <state line="202" column="82" selection-start="7456" selection-end="7456" vertical-scroll-proportion="0.33405876" vertical-offset="2789" max-vertical-offset="3708">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/activity/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="50" selection-start="1227" selection-end="1236" vertical-scroll-proportion="0.0" vertical-offset="89" max-vertical-offset="1170">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/terra/jbrss/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="89" selection-start="3776" selection-end="3776" vertical-scroll-proportion="0.73572594" vertical-offset="557" max-vertical-offset="1494">
           <folding />
         </state>
       </provider>

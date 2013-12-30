@@ -56,8 +56,6 @@ public class LoginActivity extends RoboActivity {
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Логин/пароль не опознаны", Toast.LENGTH_SHORT).show();
-                    settingsService.saveSetting(getString(R.string.username), "");
-                    settingsService.saveSetting(getString(R.string.password), "");
                 }
             }
         }, this).execute();

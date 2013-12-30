@@ -109,4 +109,10 @@ public class MainActivity extends RoboActivity {
         }).execute(input.getText().toString());
     }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.getBoolean("logged_in", false))
+            finish();
+    }
 }
