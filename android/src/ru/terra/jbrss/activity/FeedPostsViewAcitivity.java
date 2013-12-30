@@ -192,6 +192,16 @@ public class FeedPostsViewAcitivity extends RoboActivity {
 
             }
             return true;
+            case R.id.mi_post_prev: {
+                if (vpPost.getCurrentItem() > 0)
+                    vpPost.setCurrentItem(vpPost.getCurrentItem() - 1, true);
+            }
+            return true;
+            case R.id.mi_post_next: {
+                if (vpPost.getCurrentItem() < vpPost.getAdapter().getCount())
+                    vpPost.setCurrentItem(vpPost.getCurrentItem() + 1, true);
+            }
+            return true;
         }
         return true;
     }

@@ -8,6 +8,7 @@ import ru.terra.jbrss.jabber.commands.AbstractPrivCommand;
 import ru.terra.jbrss.jabber.commands.JabberCommand;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Date: 19.12.13
@@ -21,15 +22,20 @@ public class UnreadsCommand extends AbstractPrivCommand {
             Integer fid = Integer.parseInt(params[1]);
             Feeds f = rssModel.getFeed(fid);
             if (f != null) {
-                for (Feedposts fp : rssModel.getNewUserPosts(getUserId(), f, f.getUpdateTime())) {
-                    serverInterface.sendMessage(contact, fp.getPosttitle() + " : " + fp.getPosttext() + " " + fp.getPostlink());
+                List<Feedposts> feedposts = rssModel.getNewUserPosts(getUserId(), f, f.getUpdateTime());
+                serverInterface.sendMessage(contact, "Since " + f.getUpdateTime().toString() + " you have " + feedposts.size() + " unreaded posts");
+                rssModel.setFeedUpdateDate(f, new Date());
+                Integer curr = 1;
+                for (Feedposts fp : feedposts) {
+                    serverInterface.sendMessage(contact, "[" + curr + " of " + feedposts.size() + "]" + fp.getPosttitle() + " : " + fp.getPosttext() + " " + fp.getPostlink());
+                    curr++;
                     try {
                         Thread.sleep(10000);
                     } catch (InterruptedException e) {
                         LoggerFactory.getLogger(this.getClass()).error("Unable to print feed posts", e);
                     }
                 }
-                rssModel.setFeedUpdateDate(f, new Date());
+
             } else {
                 serverInterface.sendMessage(contact, "This feed number is not exists");
             }
