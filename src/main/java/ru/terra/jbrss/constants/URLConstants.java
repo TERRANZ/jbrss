@@ -43,6 +43,16 @@ public class URLConstants extends CoreUrlConstants {
         }
     }
 
+    public class UI {
+        public static final String UI = "/ui/";
+        public static final String MAIN = "main";
+        public static final String LOGIN = "login";
+    }
+
+    public class Resources {
+        public static final String RESOURCES = "/resources/";
+    }
+
     public class Yandex {
         public static final String PARAM_KEY = "$key";
         public static final String PARAM_CID = "$id";

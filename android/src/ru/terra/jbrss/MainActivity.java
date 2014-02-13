@@ -112,7 +112,7 @@ public class MainActivity extends RoboActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (prefs.getBoolean("logged_in", false))
+        if (prefs.getString("logged_in", "false").equalsIgnoreCase("false"))
             finish();
     }
 }
