@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3aeaffa9-1677-4bee-9858-340b9b102cfd" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/UIController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/UiController.java" />
       <change type="MODIFICATION" beforePath="$USER_HOME$/Dropbox/projects/terramarket/core/src/main/java/ru/terra/server/controller/AbstractResource.java" afterPath="$USER_HOME$/Dropbox/projects/terramarket/core/src/main/java/ru/terra/server/controller/AbstractResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/derby.log" afterPath="$PROJECT_DIR$/release/derby.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/html/main.html" afterPath="$PROJECT_DIR$/release/html/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/resources/js/mobile.js" afterPath="$PROJECT_DIR$/release/resources/js/mobile.js" />
       <change type="MODIFICATION" beforePath="$USER_HOME$/Dropbox/projects/terramarket/server/target/maven-archiver/pom.properties" afterPath="$USER_HOME$/Dropbox/projects/terramarket/server/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jbrss.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -142,8 +137,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
-    <option name="height" value="1053" />
+    <option name="x" value="-7" />
+    <option name="y" value="-12" />
+    <option name="width" value="1934" />
+    <option name="height" value="1072" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -171,7 +168,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -247,6 +243,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -306,6 +303,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -331,19 +341,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -439,7 +436,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1053" extended-state="4" />
+    <frame x="-7" y="-12" width="1934" height="1072" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -457,7 +454,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20225322" sideWeight="0.6721582" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20181043" sideWeight="0.6721582" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38900635" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -671,9 +668,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/UiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="32" selection-start="938" selection-end="938" vertical-scroll-proportion="0.35364527" vertical-offset="17" max-vertical-offset="990">
-          <folding />
-        </state>
+        <state line="33" column="32" selection-start="938" selection-end="938" vertical-scroll-proportion="0.35364527" vertical-offset="17" max-vertical-offset="990" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/release/derby.log">
@@ -708,58 +703,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/release/resources/js/jquery.mobile-1.3.1.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="19727" selection-start="19866" selection-end="19866" vertical-scroll-proportion="0.0397351" vertical-offset="0" max-vertical-offset="906">
-          <folding />
-        </state>
+        <state line="2" column="19727" selection-start="19866" selection-end="19866" vertical-scroll-proportion="0.0397351" vertical-offset="0" max-vertical-offset="906" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Dropbox/projects/terramarket/core/src/main/java/ru/terra/server/dto/CommonDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="30" selection-start="150" selection-end="162" vertical-scroll-proportion="0.09793253" vertical-offset="0" max-vertical-offset="919">
-          <folding />
-        </state>
+        <state line="6" column="30" selection-start="150" selection-end="162" vertical-scroll-proportion="0.09793253" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/release/resources/js/mobile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="97" selection-start="2742" selection-end="2742" vertical-scroll-proportion="0.58868337" vertical-offset="1259" max-vertical-offset="2178">
-          <folding />
-        </state>
+        <state line="100" column="97" selection-start="2742" selection-end="2742" vertical-scroll-proportion="0.58868337" vertical-offset="1259" max-vertical-offset="2178" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/release/html/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="103" selection-start="906" selection-end="915" vertical-scroll-proportion="0.38340807" vertical-offset="0" max-vertical-offset="892">
-          <folding />
-        </state>
+        <state line="19" column="103" selection-start="906" selection-end="915" vertical-scroll-proportion="0.38340807" vertical-offset="0" max-vertical-offset="892" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/URLConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="47" selection-start="1163" selection-end="1176" vertical-scroll-proportion="0.2937976" vertical-offset="198" max-vertical-offset="1296">
-          <folding />
-        </state>
+        <state line="26" column="47" selection-start="1163" selection-end="1176" vertical-scroll-proportion="0.2937976" vertical-offset="198" max-vertical-offset="1296" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/android/src/ru/terra/jbrss/network/JBRssRest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="70" selection-start="2071" selection-end="2071" vertical-scroll-proportion="0.22089228" vertical-offset="481" max-vertical-offset="1710">
-          <folding />
-        </state>
+        <state line="55" column="70" selection-start="2071" selection-end="2071" vertical-scroll-proportion="0.22089228" vertical-offset="481" max-vertical-offset="1710" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="22" selection-start="5498" selection-end="5498" vertical-scroll-proportion="0.24047878" vertical-offset="1993" max-vertical-offset="3474">
-          <folding />
-        </state>
+        <state line="145" column="22" selection-start="5498" selection-end="5498" vertical-scroll-proportion="0.24047878" vertical-offset="1993" max-vertical-offset="3474" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Dropbox/projects/terramarket/core/src/main/java/ru/terra/server/dto/SimpleDataDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="41" selection-start="106" selection-end="106" vertical-scroll-proportion="0.07834603" vertical-offset="0" max-vertical-offset="919">
-          <folding />
-        </state>
+        <state line="4" column="41" selection-start="106" selection-end="106" vertical-scroll-proportion="0.07834603" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
   </component>
