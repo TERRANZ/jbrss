@@ -1,3 +1,4 @@
+var loading = false;
 $("#feeds").ready(load_feeds());
 function load_feeds() {
 	$.ajax({
@@ -42,22 +43,9 @@ function load_feed(feedId) {
 }
 
 function create_main_post(title, text, date, link) {
-	var ts = new Date(date);
-	// hours part from the timestamp
-	var year = ts.getFullYear();
-	var month = ts.getMonth();
-	var day = ts.getDay();
-	var hours = ts.getHours();
-	// minutes part from the timestamp
-	var minutes = ts.getMinutes();
-	// seconds part from the timestamp
-	var seconds = ts.getSeconds();
-
-	// will display time in 10:30:23 format
-	var formattedTime = year + '.' + month + '.' + day + ' ' + hours + ':' + minutes + ':' + seconds;
 	var ret = "";
 	ret += '<div class="column1-unit"> <h1>' + title + '</h1>';
-	ret += '<h3>' + formattedTime + '</h3>';
+	ret += '<h3>' + new Date(date) + '</h3>';
 	ret += '<p>' + text + '</p>';
 	ret += '<a href=' + link + '>Ссылка</a>';
 	ret += '</div> <hr class="clear-contentunit" />';
@@ -106,3 +94,23 @@ function setCookie(key, value) {
                 expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
                 document.cookie = key + '=' + value +';path=/'+ ';expires=' + expires.toUTCString();
             }
+
+function update() {
+    if (!loading){
+        loading = true;
+        $.ajax({
+    					url : '/jbrss/rss/do.update.json',
+    					async : false,
+    					type : 'get',
+    					data : {},
+    					success : function(data) {
+    					loading = false;
+    						if (data.errorCode == 0) {
+                             alert("Обновление завершено, загружено "+data.data+" новых записей");
+    						} else {
+                                alert("Ошибка обновления: "+data.errorMessage);
+    						}
+    					}
+    				});
+    }
+}
