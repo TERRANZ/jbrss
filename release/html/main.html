@@ -17,12 +17,12 @@
 <!-- Home -->
 <div data-role="page" id="page1">
     <div data-role="content">
-        <a data-role="button" data-icon="refresh" data-iconpos="left" onclick="update();" id="updatebtn"> Update </a>
+        <a data-role="button" data-icon="refresh" data-iconpos="left" onclick="update();" id="updatebtn"> Обновить </a>
 
         <div data-role="collapsible-set">
             <div data-role="collapsible" data-collapsed="false" id="feeds_collapsable">
                 <h3>
-                    Feeds
+                    Фиды
                 </h3>
                 <ul data-role="listview" data-divider-theme="b" data-inset="true" id="feeds">
 
@@ -30,12 +30,14 @@
             </div>
             <div data-role="collapsible" id="messages_collapsable">
                 <h3>
-                    Messages
+                    Посты
                 </h3>
 
                 <div id="messages"></div>
+                <a data-role="button" data-icon="arrow-d" data-iconpos="left" onclick="more();" id="morebtn"> Больше </a>
             </div>
         </div>
+
     </div>
 </div>
 <script src="/jbrss/resources/js/mobile.js"></script>

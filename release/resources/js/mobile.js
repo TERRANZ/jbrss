@@ -1,4 +1,5 @@
-var loading = false;
+var loaded = 0;
+var feedId = 0;
 $("#feeds").ready(load_feeds());
 function load_feeds() {
 	$.ajax({
@@ -19,27 +20,12 @@ function load_feeds() {
 	});
 }
 
-function load_feed(feedId) {
+function load_feed(fid) {
 	$("#feeds_collapsable").trigger('collapse');
 	$("#messages_collapsable").trigger('expand');
-	$.ajax({
-		url : '/jbrss/rss/do.get.feed.json',
-		async : false,
-		type : 'get',
-		data : {
-			id : feedId,
-			count : 10
-		},
-		success : function(data) {
-			var htmlRet = "";
-			if (data.errorCode == 0) {
-				$.each(data.data, function(i, post) {
-					htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink);
-				});
-				$("#messages").html(htmlRet);
-			}
-		}
-	});
+	loaded = 10;
+	feedId = fid;
+	load();
 }
 
 function create_main_post(title, text, date, link) {
@@ -96,21 +82,47 @@ function setCookie(key, value) {
             }
 
 function update() {
-    if (!loading){
-        loading = true;
+if (!$("#updatebtn").hasClass('ui-disabled'))
+        $("#updatebtn").addClass('ui-disabled');
         $.ajax({
-    					url : '/jbrss/rss/do.update.json',
-    					async : false,
-    					type : 'get',
-    					data : {},
-    					success : function(data) {
-    					loading = false;
-    						if (data.errorCode == 0) {
-                             alert("Обновление завершено, загружено "+data.data+" новых записей");
-    						} else {
-                                alert("Ошибка обновления: "+data.errorMessage);
-    						}
-    					}
-    				});
-    }
+                url : '/jbrss/rss/do.update.json',
+                async : true,
+                type : 'get',
+                data : {},
+                success : function(data) {
+                loading = false;
+                    if (data.errorCode == 0) {
+                     alert("Обновление завершено, загружено "+data.data+" новых записей");
+                     $("#updatebtn").removeClass('ui-disabled');
+                    } else {
+                        alert("Ошибка обновления: "+data.errorMessage);
+                    }
+                }
+            });
+}
+
+function more(){
+    load();
+}
+
+function load(){
+$.ajax({
+		url : '/jbrss/rss/do.get.feed.json',
+		async : false,
+		type : 'get',
+		data : {
+			id : feedId,
+			count : loaded
+		},
+		success : function(data) {
+			var htmlRet = "";
+			if (data.errorCode == 0) {
+				$.each(data.data, function(i, post) {
+					htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink);
+				});
+				$("#messages").html(htmlRet);
+			}
+		}
+	});
+	loaded += 10;
 }

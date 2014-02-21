@@ -70,12 +70,16 @@ public class JabberManager {
     public void start() {
         try {
             Config c = Config.getConfig();
-            ConnectionConfiguration config = new ConnectionConfiguration(c.getValue("jabber.server", ""), Integer.parseInt(c.getValue("jabber.port", "5222")));
-            connection = new XMPPConnection(config);
-            connection.connect();
-            connection.login(c.getValue("jabber.user", ""), c.getValue("jabber.pass", ""));
-            PacketFilter filter = new MessageTypeFilter(Message.Type.chat);
-            connection.addPacketListener(new JabberPacketListener(), filter);
+            if (!c.getValue("jabber.server", "").isEmpty()) {
+                ConnectionConfiguration config = new ConnectionConfiguration(c.getValue("jabber.server", ""), Integer.parseInt(c.getValue("jabber.port", "5222")));
+                connection = new XMPPConnection(config);
+                connection.connect();
+                connection.login(c.getValue("jabber.user", ""), c.getValue("jabber.pass", ""));
+                PacketFilter filter = new MessageTypeFilter(Message.Type.chat);
+                connection.addPacketListener(new JabberPacketListener(), filter);
+            } else {
+                logger.warn("Unable to start jabber connection - server url is empty");
+            }
         } catch (XMPPException ex) {
             logger.error("Exception in jabber service", ex);
         }
