@@ -1,7 +1,6 @@
 package ru.terra.jbrss.jabber.commands.impl;
 
 import ru.terra.jbrss.jabber.JabberModel;
-import ru.terra.jbrss.jabber.ServerInterface;
 import ru.terra.jbrss.jabber.commands.AbstractCommand;
 import ru.terra.jbrss.jabber.commands.JabberCommand;
 
@@ -15,14 +14,14 @@ public class RegCommand extends AbstractCommand {
 
 
     @Override
-    public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
+    public boolean doCmd(String contact, String[] params) {
         String captcha = params[1];
         String login = params[2];
         String pass = params[3];
         if (model.completeReg(contact, login, pass, captcha))
-            serverInterface.sendMessage(contact, "Registration complete!");
+            sendMessage("Registration complete!");
         else
-            serverInterface.sendMessage(contact, "Registration INCOMPLETE");
+            sendMessage("Registration INCOMPLETE");
         return true;
     }
 }

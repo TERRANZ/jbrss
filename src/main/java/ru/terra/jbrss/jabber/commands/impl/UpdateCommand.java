@@ -1,7 +1,6 @@
 package ru.terra.jbrss.jabber.commands.impl;
 
 import ru.terra.jbrss.db.entity.Feeds;
-import ru.terra.jbrss.jabber.ServerInterface;
 import ru.terra.jbrss.jabber.commands.AbstractPrivCommand;
 import ru.terra.jbrss.jabber.commands.JabberCommand;
 
@@ -12,11 +11,11 @@ import ru.terra.jbrss.jabber.commands.JabberCommand;
 @JabberCommand(name = "update")
 public class UpdateCommand extends AbstractPrivCommand {
     @Override
-    public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
+    public boolean doCmd(String contact, String[] params) {
         if (checkAccess()) {
             for (Feeds f : rssModel.getFeeds(getUserId()))
                 rssModel.updateFeed(f);
-            serverInterface.sendMessage(contact, "Update complete");
+            sendMessage("Update complete");
         }
         return true;
     }

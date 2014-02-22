@@ -1,6 +1,5 @@
 package ru.terra.jbrss.jabber.commands.impl;
 
-import ru.terra.jbrss.jabber.ServerInterface;
 import ru.terra.jbrss.jabber.commands.AbstractCommand;
 import ru.terra.jbrss.jabber.commands.JabberCommand;
 
@@ -12,8 +11,8 @@ import ru.terra.jbrss.jabber.commands.JabberCommand;
 public class DefaultCommand extends AbstractCommand {
 
     @Override
-    public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
-        serverInterface.sendMessage(contact, "Hello, this is default command output, send help for more information");
+    public boolean doCmd(String contact, String[] params) {
+        sendMessage("Hello, this is default command output, send help for more information");
         return true;
     }
 }

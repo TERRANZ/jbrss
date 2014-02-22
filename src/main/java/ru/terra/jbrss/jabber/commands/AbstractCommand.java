@@ -8,8 +8,9 @@ import ru.terra.jbrss.jabber.ServerInterface;
  */
 public abstract class AbstractCommand {
     protected String contact;
+    protected ServerInterface serverInterface;
 
-    public abstract boolean doCmd(String contact, String[] params, ServerInterface serverInterface);
+    public abstract boolean doCmd(String contact, String[] params);
 
     public String name() {
         if (this.getClass().getAnnotation(JabberCommand.class) != null)
@@ -23,5 +24,18 @@ public abstract class AbstractCommand {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public ServerInterface getServerInterface() {
+        return serverInterface;
+    }
+
+    public void setServerInterface(ServerInterface serverInterface) {
+        this.serverInterface = serverInterface;
+    }
+
+    public void sendMessage(String msg) {
+        if (serverInterface != null)
+            serverInterface.sendMessage(contact, msg);
     }
 }

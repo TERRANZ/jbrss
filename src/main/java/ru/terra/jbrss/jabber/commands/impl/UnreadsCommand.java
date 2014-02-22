@@ -3,7 +3,6 @@ package ru.terra.jbrss.jabber.commands.impl;
 import org.slf4j.LoggerFactory;
 import ru.terra.jbrss.db.entity.Feedposts;
 import ru.terra.jbrss.db.entity.Feeds;
-import ru.terra.jbrss.jabber.ServerInterface;
 import ru.terra.jbrss.jabber.commands.AbstractPrivCommand;
 import ru.terra.jbrss.jabber.commands.JabberCommand;
 
@@ -17,17 +16,17 @@ import java.util.List;
 @JabberCommand(name = "unreads")
 public class UnreadsCommand extends AbstractPrivCommand {
     @Override
-    public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
+    public boolean doCmd(String contact, String[] params) {
         if (checkAccess()) {
             Integer fid = Integer.parseInt(params[1]);
             Feeds f = rssModel.getFeed(fid);
             if (f != null) {
                 List<Feedposts> feedposts = rssModel.getNewUserPosts(getUserId(), f, f.getUpdateTime());
-                serverInterface.sendMessage(contact, "Since " + f.getUpdateTime().toString() + " you have " + feedposts.size() + " unreaded posts");
+                sendMessage("Since " + f.getUpdateTime().toString() + " you have " + feedposts.size() + " unreaded posts");
                 rssModel.setFeedUpdateDate(f, new Date());
                 Integer curr = 1;
                 for (Feedposts fp : feedposts) {
-                    serverInterface.sendMessage(contact, "[" + curr + " of " + feedposts.size() + "]" + fp.getPosttitle() + " : " + fp.getPosttext() + " " + fp.getPostlink());
+                    sendMessage("[" + curr + " of " + feedposts.size() + "]" + fp.getPosttitle() + " : " + fp.getPosttext() + " " + fp.getPostlink());
                     curr++;
                     try {
                         Thread.sleep(10000);
@@ -37,7 +36,7 @@ public class UnreadsCommand extends AbstractPrivCommand {
                 }
 
             } else {
-                serverInterface.sendMessage(contact, "This feed number is not exists");
+                sendMessage("This feed number is not exists");
             }
         }
         return true;

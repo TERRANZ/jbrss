@@ -1,6 +1,5 @@
 package ru.terra.jbrss.jabber.commands.impl;
 
-import ru.terra.jbrss.jabber.ServerInterface;
 import ru.terra.jbrss.jabber.commands.AbstractPrivCommand;
 import ru.terra.jbrss.jabber.commands.JabberCommand;
 
@@ -11,14 +10,14 @@ import ru.terra.jbrss.jabber.commands.JabberCommand;
 @JabberCommand(name = "add")
 public class AddCommand extends AbstractPrivCommand {
     @Override
-    public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
+    public boolean doCmd(String contact, String[] params) {
         if (checkAccess()) {
             String url = params[1];
             try {
                 if (rssModel.addFeed(getUser(), url))
-                    serverInterface.sendMessage(contact, "Feed added completely");
+                    sendMessage("Feed added completely");
             } catch (IllegalAccessException e) {
-                serverInterface.sendMessage(contact, "Feed is not added, error = " + e.getMessage());
+                sendMessage("Feed is not added, error = " + e.getMessage());
                 e.printStackTrace();
             }
         }

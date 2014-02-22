@@ -50,7 +50,8 @@ public class JabberManager {
                 if (cmd != null)
                     try {
                         cmd.setContact(fromName);
-                        cmd.doCmd(fromName, params, serverInterface);
+                        cmd.setServerInterface(serverInterface);
+                        cmd.doCmd(fromName, params);
                     } catch (Exception e) {
                         logger.error("Error while executing command", e);
                         serverInterface.sendMessage(fromName, "Exception while doing command, " + e.getMessage());

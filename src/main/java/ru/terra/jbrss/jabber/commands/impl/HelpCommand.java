@@ -1,7 +1,7 @@
 package ru.terra.jbrss.jabber.commands.impl;
 
-import ru.terra.jbrss.jabber.ServerInterface;
 import ru.terra.jbrss.jabber.commands.AbstractCommand;
+import ru.terra.jbrss.jabber.commands.CommandsFactory;
 import ru.terra.jbrss.jabber.commands.JabberCommand;
 
 /**
@@ -11,8 +11,14 @@ import ru.terra.jbrss.jabber.commands.JabberCommand;
 @JabberCommand(name = "help")
 public class HelpCommand extends AbstractCommand {
     @Override
-    public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
-        serverInterface.sendMessage(contact, "This is help message, available commands: help");
+    public boolean doCmd(String contact, String[] params) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : new CommandsFactory().getCommandList()) {
+            stringBuilder.append("'");
+            stringBuilder.append(s);
+            stringBuilder.append("' ");
+        }
+        sendMessage("This is help message, available commands: " + stringBuilder.toString());
         return true;
     }
 }

@@ -1,7 +1,6 @@
 package ru.terra.jbrss.jabber.commands.impl;
 
 import ru.terra.jbrss.db.entity.Feedposts;
-import ru.terra.jbrss.jabber.ServerInterface;
 import ru.terra.jbrss.jabber.commands.AbstractPrivCommand;
 import ru.terra.jbrss.jabber.commands.JabberCommand;
 
@@ -14,7 +13,7 @@ import java.util.List;
 @JabberCommand(name = "read")
 public class ReadCommand extends AbstractPrivCommand {
     @Override
-    public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
+    public boolean doCmd(String contact, String[] params) {
         if (checkAccess()) {
             Integer page = 0;
             Integer perPage = 5;
@@ -29,7 +28,7 @@ public class ReadCommand extends AbstractPrivCommand {
             }
             List<Feedposts> posts = rssModel.getFeedPosts(targetFeed, page, perPage);
             for (Feedposts fp : posts) {
-                serverInterface.sendMessage(contact, fp.getPosttitle() + " : " + fp.getPosttext());
+                sendMessage(fp.getPosttitle() + " : " + fp.getPosttext());
             }
         }
         return true;

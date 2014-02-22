@@ -3,7 +3,9 @@ package ru.terra.jbrss.jabber.commands;
 import ru.terra.jbrss.engine.ClassSearcher;
 import ru.terra.jbrss.jabber.commands.impl.DefaultCommand;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,5 +27,9 @@ public class CommandsFactory {
         if (ret != null)
             return ret;
         return new DefaultCommand();
+    }
+
+    public List<String> getCommandList() {
+        return new ArrayList<>(commands.keySet());
     }
 }

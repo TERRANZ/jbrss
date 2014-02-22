@@ -2,7 +2,6 @@ package ru.terra.jbrss.jabber.commands.impl;
 
 import ru.terra.jbrss.db.entity.User;
 import ru.terra.jbrss.engine.UsersEngine;
-import ru.terra.jbrss.jabber.ServerInterface;
 import ru.terra.jbrss.jabber.commands.AbstractPrivCommand;
 import ru.terra.jbrss.jabber.commands.JabberCommand;
 
@@ -14,9 +13,9 @@ import ru.terra.jbrss.jabber.commands.JabberCommand;
 public class AttachCommand extends AbstractPrivCommand {
 
     @Override
-    public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
+    public boolean doCmd(String contact, String[] params) {
         if (jabberModel.isContactExists(contact)) {
-            serverInterface.sendMessage(contact, "this " + contact + " account is already attached to user");
+            sendMessage("this " + contact + " account is already attached to user");
             return true;
         } else {
             String user = params[1];
@@ -24,11 +23,11 @@ public class AttachCommand extends AbstractPrivCommand {
             UsersEngine ue = new UsersEngine();
             User u = ue.login(user, pass);
             if (u == null) {
-                serverInterface.sendMessage(contact, "User name or password is invalid");
+                sendMessage("User name or password is invalid");
                 return true;
             } else {
                 jabberModel.attachUserToContact(contact, u.getId());
-                serverInterface.sendMessage(contact, "OK, user " + u.getName() + " is now yours");
+                sendMessage("OK, user " + u.getName() + " is now yours");
             }
         }
         return true;

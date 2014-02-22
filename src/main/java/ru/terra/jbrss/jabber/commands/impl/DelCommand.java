@@ -1,6 +1,5 @@
 package ru.terra.jbrss.jabber.commands.impl;
 
-import ru.terra.jbrss.jabber.ServerInterface;
 import ru.terra.jbrss.jabber.commands.AbstractPrivCommand;
 import ru.terra.jbrss.jabber.commands.JabberCommand;
 
@@ -11,9 +10,10 @@ import ru.terra.jbrss.jabber.commands.JabberCommand;
 @JabberCommand(name = "delete")
 public class DelCommand extends AbstractPrivCommand {
     @Override
-    public boolean doCmd(String contact, String[] params, ServerInterface serverInterface) {
+    public boolean doCmd(String contact, String[] params) {
         if (checkAccess()) {
             rssModel.removeFeed(Integer.parseInt(params[1]));
+            sendMessage("Feed " + params[1] + " removed");
         }
         return true;
     }
