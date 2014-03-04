@@ -6,7 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="/jbrss/resources/js/jquery.mobile-1.3.1.min.css">
-    <title>Вход</title>
+    <title>Новый фид</title>
 </head>
 <!-- jQuery and jQuery Mobile -->
 <script src="/jbrss/resources/js/jquery-1.9.1.min.js"></script>
@@ -16,23 +16,15 @@
 <body>
 <!-- Home -->
 
-<div data-role="page" id="page1">
+<div data-role="page" id="pageadd">
     <div data-role="content">
-        <a data-role="button" data-icon="plus" data-iconpos="left" href="/jbrss/ui/reg"> Регистрация </a>
-        <form action="/jbrss/do.login" method="POST" data-ajax="false">
+        <form data-ajax="false">
             <div data-role="fieldcontain">
-                <label for="j_username">
-                    Логин
-                </label>
-                <input name="j_username" id="j_username" placeholder="" value="" type="text">
+                <label for="url"> URL фида </label>
+                <input name="url" id="url" placeholder="" value="" type="text">
             </div>
-            <div data-role="fieldcontain">
-                <label for="j_password">
-                    Пароль
-                </label>
-                <input name="j_password" id="j_password" placeholder="" value="" type="password">
-            </div>
-            <input type="button" data-icon="check" data-iconpos="left" value="Вход" onclick="userLogin();" id="loginbtn">
+            <input type="button" data-icon="check" data-iconpos="left" value="Добавить" onclick="add();"
+                   id="addbtn">
         </form>
     </div>
 </div>

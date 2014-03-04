@@ -41,23 +41,17 @@ public class UiController extends AbstractResource {
         return returnHtmlFile("html/login.html");
     }
 
-    protected Response returnHtmlFile(String fileName) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        try {
-            stream.write(IOUtils.readFully(new FileInputStream(new File(fileName)), -1, true));
-        } catch (IOException e) {
-            logger.error("Unable to read file");
-            Response response = Response
-                    .noContent()
-                    .type("text/html")
-                    .build();
-            return response;
-        }
-        Response response = Response
-                .ok()
-                .type("text/html")
-                .entity(stream.toByteArray())
-                .build();
-        return response;
+    @Path(URLConstants.UI.REG)
+    @GET
+    @Produces({"text/html"})
+    public Response getReg(@Context HttpContext hc) {
+        return returnHtmlFile("html/reg.html");
+    }
+
+    @Path(URLConstants.UI.ADD)
+    @GET
+    @Produces({"text/html"})
+    public Response getAdd(@Context HttpContext hc) {
+        return returnHtmlFile("html/add.html");
     }
 }

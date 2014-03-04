@@ -123,4 +123,16 @@ public class FeedsJpaController extends AbstractJpaController<Feeds> implements 
 
         }
     }
+
+    public Feeds findFeedByUrl(String url) {
+        EntityManager em = getEntityManager();
+        Query q = em.createNamedQuery("Feeds.findByFeedurl").setParameter("feedurl", url);
+        try {
+            return (Feeds) q.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+
+        }
+    }
 }

@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Fri Feb 21 18:48:30 MSK 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.3.0 - (1405108): instance a816c00e-0144-54eb-4ad4-00000b336350 
-on database directory /home/terranz/Dropbox/projects/jbrss/release/jbrss  with class loader sun.misc.Launcher$AppClassLoader@1261218 
+Tue Mar 04 14:15:51 MSK 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.3.0 - (1405108): instance a816c00e-0144-8c97-a274-00000b6dfaa8 
+on database directory /home/terranz/Dropbox/projects/jbrss/release/jbrss  with class loader sun.misc.Launcher$AppClassLoader@154024 
 Loaded from file:/home/terranz/Dropbox/projects/jbrss/target/jbrss-2.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_25-b15

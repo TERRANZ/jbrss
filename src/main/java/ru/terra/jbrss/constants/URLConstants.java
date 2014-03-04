@@ -47,6 +47,9 @@ public class URLConstants extends CoreUrlConstants {
         public static final String UI = "/ui/";
         public static final String MAIN = "main";
         public static final String LOGIN = "login";
+        public static final String REG = "reg";
+        public static final String ADD = "add";
+
     }
 
     public class Resources {
