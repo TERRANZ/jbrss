@@ -218,3 +218,24 @@ function learnRegExp(s) {
  				});
  	}
  }
+
+ function doSearch(){
+    var val = $("#search_input").val();
+    $.ajax({
+    		url : '/jbrss/rss/do.search.json',
+    		async : false,
+    		type : 'post',
+    		data : {val:val},
+    		success : function(data) {
+    			    var htmlRet = "";
+    			    $("#feeds_collapsable").trigger('collapse');
+                    $("#messages_collapsable").trigger('expand');
+                    if (data.errorCode == 0) {
+                	    $.each(data.data, function(i, post) {
+                        htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink);
+                    });
+                    $("#messages").html(htmlRet);
+                }
+    		}
+    	});
+ }

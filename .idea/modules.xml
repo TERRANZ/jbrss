@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/jbrss.iml" filepath="$PROJECT_DIR$/jbrss.iml" />
-      <module fileurl="file://$USER_HOME$/Dropbox/projects/terramarket/core/server.iml" filepath="$USER_HOME$/Dropbox/projects/terramarket/core/server.iml" />
+      <module fileurl="file://$USER_HOME$/Dropbox/projects/tcore/server.iml" filepath="$USER_HOME$/Dropbox/projects/tcore/server.iml" />
     </modules>
   </component>
 </project>

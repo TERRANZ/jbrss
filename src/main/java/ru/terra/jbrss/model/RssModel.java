@@ -141,4 +141,8 @@ public class RssModel {
             log.error("Unable to update time on feed", e);
         }
     }
+
+    public List<Feedposts> search(String posttext) {
+        return feedpostsJpaController.findFeedPostsByPostText(posttext);
+    }
 }

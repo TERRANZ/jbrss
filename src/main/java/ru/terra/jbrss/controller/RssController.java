@@ -16,9 +16,7 @@ import ru.terra.server.controller.AbstractResource;
 import ru.terra.server.dto.ListDTO;
 import ru.terra.server.dto.SimpleDataDTO;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import java.util.ArrayList;
 import java.util.Date;
@@ -194,6 +192,31 @@ public class RssController extends AbstractResource {
             List<Feedposts> posts = new ArrayList<>();
             List<FeedPostDTO> dtos = new ArrayList<>();
             posts.addAll(rssModel.getFeedPosts(id, 0, count));
+            if (posts != null && posts.size() > 0) {
+                for (Feedposts fp : posts)
+                    dtos.add(new FeedPostDTO(fp));
+                ret.setData(dtos);
+            }
+            return ret;
+        } else {
+            ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
+            ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
+            return ret;
+        }
+    }
+
+    @POST
+    @Path(URLConstants.DoJson.Rss.RSS_DO_SEARCH)
+    public ListDTO<FeedPostDTO> doSearch(@Context HttpContext hc, @FormParam("val") String val) {
+        ListDTO<FeedPostDTO> ret = new ListDTO<>();
+        if (val == null)
+            val = getParameter(hc, "val");
+        logger.info("Searching feeds by value " + val);
+        User user = (User) getCurrentUser(hc);
+        if (user != null) {
+            List<Feedposts> posts = new ArrayList<>();
+            List<FeedPostDTO> dtos = new ArrayList<>();
+            posts.addAll(rssModel.search(val));
             if (posts != null && posts.size() > 0) {
                 for (Feedposts fp : posts)
                     dtos.add(new FeedPostDTO(fp));

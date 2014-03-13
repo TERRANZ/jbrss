@@ -29,6 +29,7 @@ public class URLConstants extends CoreUrlConstants {
             public static final String RSS_DO_LIST = "do.list.json";
             public static final String RSS_DO_GET_UNREAD = "do.get.unread.json";
             public static final String RSS_DO_GET_FEED = "do.get.feed.json";
+            public static final String RSS_DO_SEARCH = "do.search.json";
             public static final String RSS_PARAM_TIMESTAMP = "timestamp";
         }
 

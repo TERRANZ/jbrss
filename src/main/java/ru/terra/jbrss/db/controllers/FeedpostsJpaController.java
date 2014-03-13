@@ -179,4 +179,17 @@ public class FeedpostsJpaController extends AbstractJpaController<Feedposts> imp
         } finally {
         }
     }
+
+    public List<Feedposts> findFeedPostsByPostText(String posttext) {
+        try {
+            if (!em.isOpen())
+                em = getEntityManager();
+            Query q = em.createNamedQuery("Feedposts.findByPosttext").setParameter("posttext", "%" + posttext + "%");
+            return q.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+
+        }
+    }
 }

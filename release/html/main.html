@@ -19,6 +19,15 @@
     <div data-role="content">
         <a data-role="button" data-icon="plus" data-iconpos="left" href="/jbrss/ui/add"> Добавить </a>
         <a data-role="button" data-icon="refresh" data-iconpos="left" onclick="update();" id="updatebtn"> Обновить </a>
+
+        <form>
+            <div data-role="fieldcontain">
+                <label for="search_input"> Поиск </label>
+                <input name="search_input" id="search_input" placeholder="" value="" type="text">
+            </div>
+            <input type="button" data-icon="check" data-iconpos="left" value="Найти" onclick="doSearch();"
+                   id="searchbtn">
+        </form>
         <div data-role="collapsible-set">
             <div data-role="collapsible" data-collapsed="false" id="feeds_collapsable">
                 <h3>
@@ -34,7 +43,8 @@
                 </h3>
 
                 <div id="messages"></div>
-                <a data-role="button" data-icon="arrow-d" data-iconpos="left" onclick="more();" id="morebtn"> Больше </a>
+                <a data-role="button" data-icon="arrow-d" data-iconpos="left" onclick="more();" id="morebtn">
+                    Больше </a>
             </div>
         </div>
 

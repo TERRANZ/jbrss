@@ -17,6 +17,7 @@ import java.util.Date;
         @NamedQuery(name = "Feedposts.findByFeedId", query = "SELECT f FROM Feedposts f WHERE f.feedId = :feedId"),
         @NamedQuery(name = "Feedposts.findByPostdate", query = "SELECT f FROM Feedposts f WHERE f.postdate = :postdate"),
         @NamedQuery(name = "Feedposts.findByPosttitle", query = "SELECT f FROM Feedposts f WHERE f.posttitle = :posttitle"),
+        @NamedQuery(name = "Feedposts.findByPosttext", query = "SELECT f FROM Feedposts f WHERE f.posttext LIKE :posttext OR f.posttitle LIKE :posttext"),
         @NamedQuery(name = "Feedposts.getPostsByFeedAndByDateSorted", query = "SELECT f FROM Feedposts f WHERE f.feedId = :feedId ORDER BY f.postdate DESC"),
         @NamedQuery(name = "Feedposts.getPostsByFeedAndByDateSortedUnread", query = "SELECT f FROM Feedposts f WHERE f.feedId = :feedId AND f.isRead = :isread ORDER BY f.postdate DESC"),
         @NamedQuery(name = "Feedposts.getPostsByFeedAndByDate", query = "SELECT f FROM Feedposts f WHERE f.feedId = :feedId AND f.postdate >= :pdate ORDER BY f.postdate DESC"),
