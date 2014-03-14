@@ -4,17 +4,12 @@ import com.sun.jersey.api.core.HttpContext;
 import org.apache.log4j.Logger;
 import ru.terra.jbrss.constants.URLConstants;
 import ru.terra.server.controller.AbstractResource;
-import sun.misc.IOUtils;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 /**
  * Date: 12.02.14
@@ -52,6 +47,9 @@ public class UiController extends AbstractResource {
     @GET
     @Produces({"text/html"})
     public Response getAdd(@Context HttpContext hc) {
-        return returnHtmlFile("html/add.html");
+        if (isAuthorized(hc))
+            return returnHtmlFile("html/add.html");
+        else
+            return getLogin(hc);
     }
 }
