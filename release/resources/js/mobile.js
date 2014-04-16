@@ -30,10 +30,9 @@ function load_feed(fid) {
 
 function create_main_post(title, text, date, link) {
 	var ret = "";
-	ret += '<div class="column1-unit"> <h1>' + title + '</h1>';
+	ret += '<div class="column1-unit">'+'<a href=' + link +'> <h1>' + title + '</h1></a>';
 	ret += '<h3>' + new Date(date) + '</h3>';
 	ret += '<p>' + text + '</p>';
-	ret += '<a href=' + link + '>Ссылка</a>';
 	ret += '</div> <hr class="clear-contentunit" />';
 	return ret;
 }
@@ -164,21 +163,21 @@ function learnRegExp(s) {
      if (!$("#loadcapthca").hasClass('ui-disabled'))
              $("#loadcapthca").addClass('ui-disabled');
        $.ajax({
-       					url : '/jbrss/captcha/do.get.json',
-       					async : true,
-       					type : 'get',
-       					data : {
-       					},
-       					success : function(data) {
-       				    	$("#loadcapthca").removeClass('ui-disabled');
-       						if (data.errorCode == 0) {
-                                 captcha = data.cid;
-                                 $("#captcha_image").attr("src",data.image);
-       						} else {
-                                 alert("Не получилось загрузить капчу: "+data.errorMessage);
-       						}
+       				url : '/jbrss/captcha/do.get.json',
+       				async : true,
+       				type : 'get',
+       				data : {
+       				},
+       				success : function(data) {
+       				   	$("#loadcapthca").removeClass('ui-disabled');
+       					if (data.errorCode == 0) {
+                                captcha = data.cid;
+                                $("#captcha_image").attr("src",data.image);
+       					} else {
+                                alert("Не получилось загрузить капчу: "+data.errorMessage);
        					}
-       				});
+       				}
+       			});
  }
 
  function userReg() {
@@ -221,21 +220,23 @@ function learnRegExp(s) {
 
  function doSearch(){
     var val = $("#search_input").val();
-    $.ajax({
-    		url : '/jbrss/rss/do.search.json',
-    		async : false,
-    		type : 'post',
-    		data : {val:val},
-    		success : function(data) {
-    			    var htmlRet = "";
-    			    $("#feeds_collapsable").trigger('collapse');
-                    $("#messages_collapsable").trigger('expand');
-                    if (data.errorCode == 0) {
-                	    $.each(data.data, function(i, post) {
-                        htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink);
-                    });
-                    $("#messages").html(htmlRet);
-                }
-    		}
-    	});
+    if (val.length > 0){
+        $.ajax({
+        		url : '/jbrss/rss/do.search.json',
+        		async : false,
+    		    type : 'post',
+    		    data : {val:val},
+    		    success : function(data) {
+    			        var htmlRet = "";
+    			        $("#feeds_collapsable").trigger('collapse');
+                        $("#messages_collapsable").trigger('expand');
+                        if (data.errorCode == 0) {
+                	        $.each(data.data, function(i, post) {
+                            htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink);
+                        });
+                        $("#messages").html(htmlRet);
+                    }
+    		    }
+    	    });
+    	}
  }

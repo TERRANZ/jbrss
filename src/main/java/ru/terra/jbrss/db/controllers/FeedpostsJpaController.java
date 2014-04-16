@@ -1,7 +1,5 @@
 package ru.terra.jbrss.db.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import ru.terra.jbrss.db.controllers.exceptions.NonexistentEntityException;
 import ru.terra.jbrss.db.entity.Feedposts;
 import ru.terra.server.db.controllers.AbstractJpaController;
@@ -18,7 +16,6 @@ import java.util.List;
  * @author terranz
  */
 public class FeedpostsJpaController extends AbstractJpaController<Feedposts> implements Serializable {
-    Logger log = LoggerFactory.getLogger(FeedpostsJpaController.class);
     private EntityManager em = getEntityManager();
 
     public FeedpostsJpaController() {
