@@ -240,3 +240,18 @@ function learnRegExp(s) {
     	    });
     	}
  }
+
+function saveSettings(){
+    $.ajax({
+            url : '/jbrss/settings/do.set.json',
+            async : true,
+            type : 'get',
+            data : {
+                key : $("#key").val(),
+                val : $("#val").val(),
+            },
+        success : function(data) {
+            window.location.assign("/jbrss/ui/main");
+        }
+    });
+}

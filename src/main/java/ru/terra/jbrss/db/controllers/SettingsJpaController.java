@@ -12,6 +12,7 @@ import ru.terra.server.db.controllers.AbstractJpaController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 /**
  * @author terranz
@@ -87,6 +88,20 @@ public class SettingsJpaController extends AbstractJpaController<Settings> {
         try {
             em = getEntityManager();
             return em.createNamedQuery("Settings.findByKey", Settings.class).setParameter("key", key).setParameter("uid", uid).getSingleResult();
+        } catch (Exception ex) {
+            return null;
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+
+    public List<Settings> findByUser(Integer uid) {
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            return em.createNamedQuery("Settings.findByUser", Settings.class).setParameter("uid", uid).getResultList();
         } catch (Exception ex) {
             return null;
         } finally {

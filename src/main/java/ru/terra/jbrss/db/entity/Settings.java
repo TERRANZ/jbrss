@@ -12,6 +12,7 @@ import java.io.Serializable;
 @XmlRootElement
 @NamedQueries({@NamedQuery(name = "Settings.findAll", query = "SELECT s FROM Settings s"),
         @NamedQuery(name = "Settings.findByKey", query = "SELECT s FROM Settings s WHERE s.key = :key AND s.userId = :uid"),
+        @NamedQuery(name = "Settings.findByUser", query = "SELECT s FROM Settings s WHERE s.userId = :uid"),
         @NamedQuery(name = "Settings.findByValue", query = "SELECT s FROM Settings s WHERE s.value = :value AND s.userId = :uid")})
 public class Settings implements Serializable {
     private static final long serialVersionUID = 1L;

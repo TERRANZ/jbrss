@@ -42,6 +42,13 @@ public class URLConstants extends CoreUrlConstants {
             public static final String REPORT = "/errors/";
             public static final String DO_REPORT = "do.error.report";
         }
+
+        public class Settings {
+            public static final String SETTINGS = "/settings/";
+            public static final String GET_SETTINGS = "do.list.byuser.json";
+            public static final String GET_SETTING = "do.get.json";
+            public static final String SET_SETTINGS = "do.set.json";
+        }
     }
 
     public class UI {
@@ -50,6 +57,7 @@ public class URLConstants extends CoreUrlConstants {
         public static final String LOGIN = "login";
         public static final String REG = "reg";
         public static final String ADD = "add";
+        public static final String SETTINGS = "setting";
     }
 
     public class Resources {

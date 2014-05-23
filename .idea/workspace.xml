@@ -2,22 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3aeaffa9-1677-4bee-9858-340b9b102cfd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/SettingDTO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/engine/SettingsEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/captcha/CaptchDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/captcha/CaptchDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/captcha/CaptchaCommonDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/captcha/CaptchaCommonDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/captcha/CaptchaResponseDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/captcha/CaptchaResponseDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/rss/FeedDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/rss/FeedDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/rss/FeedPostDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/rss/FeedPostDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/Main.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/Main.java" />
-      <change type="MODIFICATION" beforePath="$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/ServerBoot.java" afterPath="$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/ServerBoot.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/SettingsConstants.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/SettingsController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/release/html/settings.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/SettingDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/SettingDTO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/entity/Settings.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/entity/Settings.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/engine/SettingsEngine.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/engine/SettingsEngine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/SettingsJpaController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/SettingsJpaController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/URLConstants.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/URLConstants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/UiController.java" afterPath="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/UiController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jbrss.iml" afterPath="$PROJECT_DIR$/jbrss.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$USER_HOME$/Dropbox/projects/tcore/pom.xml" afterPath="$USER_HOME$/Dropbox/projects/tcore/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/derby.log" afterPath="$PROJECT_DIR$/release/derby.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/resources/js/mobile.js" afterPath="$PROJECT_DIR$/release/resources/js/mobile.js" />
       <change type="MODIFICATION" beforePath="$USER_HOME$/Dropbox/projects/terramarket/terramarketdesktop/.idea/workspace.xml" afterPath="$USER_HOME$/Dropbox/projects/terramarket/terramarketdesktop/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -88,17 +83,7 @@
     <favorites_list name="jbrss" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="SettingsEngine.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/engine/SettingsEngine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="52" selection-start="429" selection-end="429" vertical-scroll-proportion="0.2546246" vertical-offset="0" max-vertical-offset="919">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -116,9 +101,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$USER_HOME$/Dropbox/projects/terramarket/core/src/main/java/ru/terra/server/config/Config.java" />
-        <option value="$USER_HOME$/Dropbox/projects/terramarket/core/src/main/java/ru/terra/server/constants/ConfigConstants.java" />
-        <option value="$PROJECT_DIR$/release/html/jsinclude.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/UIController.java" />
         <option value="$USER_HOME$/Dropbox/projects/terramarket/core/src/main/java/ru/terra/server/controller/AbstractResource.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/jabber/commands/CommandsFactory.java" />
@@ -144,19 +126,14 @@
         <option value="$PROJECT_DIR$/release/html/main.html" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/model/RssModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/entity/Feedposts.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/ResourceController.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/controller/AbstractResource.java" />
         <option value="$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/engine/AbstractEngine.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/UserJpaController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/FeedpostsJpaController.java" />
-        <option value="$PROJECT_DIR$/release/resources/js/mobile.js" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/URLConstants.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/UiController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/SettingDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/captcha/CaptchaCommonDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/captcha/CaptchaResponseDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/captcha/CaptchDTO.java" />
@@ -164,9 +141,17 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/rss/FeedDTO.java" />
         <option value="$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/db/controllers/AbstractDBController.java" />
         <option value="$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/db/controllers/AbstractJpaController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/engine/SettingsEngine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/SettingDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/entity/Settings.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/SettingsJpaController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/engine/SettingsEngine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/SettingsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/SettingsConstants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/URLConstants.java" />
+        <option value="$PROJECT_DIR$/release/html/settings.html" />
+        <option value="$PROJECT_DIR$/release/resources/js/mobile.js" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/UiController.java" />
       </list>
     </option>
   </component>
@@ -348,7 +333,37 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbrss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbrss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbrss" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="constants" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -572,7 +587,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-12" width="1934" height="1072" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -587,7 +602,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18530351" sideWeight="0.6721582" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18530351" sideWeight="0.6721582" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.397463" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -647,31 +662,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/android/src/ru/terra/jbrss/activity/components/RegAsyncTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="954" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/src/ru/terra/jbrss/activity/RegActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1494" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/src/ru/terra/jbrss/network/JBRssRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="60" selection-start="4452" selection-end="4455" vertical-scroll-proportion="0.0" vertical-offset="791" max-vertical-offset="1710" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="76" selection-start="1360" selection-end="1360" vertical-scroll-proportion="0.41721854" vertical-offset="0" max-vertical-offset="906" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Dropbox/projects/tcore/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="51" selection-start="1525" selection-end="1525" vertical-scroll-proportion="0.48966268" vertical-offset="324" max-vertical-offset="3654" />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Dropbox/projects/tcore/src/main/java/quartz.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="919" />
@@ -707,16 +697,6 @@
         <state line="145" column="61" selection-start="5133" selection-end="5133" vertical-scroll-proportion="2.585419" vertical-offset="0" max-vertical-offset="2538" />
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/constants/FilePathConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="49" selection-end="49" vertical-scroll-proportion="0.039173014" vertical-offset="0" max-vertical-offset="919" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/controller/AbstractResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="13" selection-start="669" selection-end="669" vertical-scroll-proportion="0.11751904" vertical-offset="0" max-vertical-offset="1800" />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/controller/AbstractController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="98" selection-start="1547" selection-end="1547" vertical-scroll-proportion="0.41131666" vertical-offset="72" max-vertical-offset="1152" />
@@ -735,11 +715,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/engine/UsersEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="13" selection-start="392" selection-end="392" vertical-scroll-proportion="-0.27312297" vertical-offset="359" max-vertical-offset="1278" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/URLConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="39" selection-start="443" selection-end="443" vertical-scroll-proportion="0.2546246" vertical-offset="0" max-vertical-offset="1350" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/CaptchaController.java">
@@ -765,16 +740,6 @@
     <entry file="file://$PROJECT_DIR$/release/html/main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="41" selection-start="1184" selection-end="1196" vertical-scroll-proportion="0.5044843" vertical-offset="0" max-vertical-offset="1080" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/release/html/reg.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="59" selection-start="725" selection-end="725" vertical-scroll-proportion="0.2825112" vertical-offset="0" max-vertical-offset="918" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/release/resources/js/mobile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="50" selection-start="2140" selection-end="2140" vertical-scroll-proportion="0.17627856" vertical-offset="1134" max-vertical-offset="4446" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/rss/Downloader.java">
@@ -809,21 +774,6 @@
         <state line="16" column="81" selection-start="355" selection-end="355" vertical-scroll-proportion="0.31338412" vertical-offset="0" max-vertical-offset="919" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/rss/FeedPostDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="26" selection-start="798" selection-end="798" vertical-scroll-proportion="0.47007617" vertical-offset="0" max-vertical-offset="919" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/rss/FeedDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="22" selection-start="366" selection-end="366" vertical-scroll-proportion="0.21545158" vertical-offset="0" max-vertical-offset="919" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/SettingDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="36" selection-start="211" selection-end="211" vertical-scroll-proportion="0.21545158" vertical-offset="0" max-vertical-offset="919" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="20" selection-start="295" selection-end="295" vertical-scroll-proportion="0.11751904" vertical-offset="0" max-vertical-offset="919">
@@ -841,21 +791,6 @@
         <state line="27" column="40" selection-start="906" selection-end="906" vertical-scroll-proportion="0.09793253" vertical-offset="108" max-vertical-offset="1368" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="62" selection-start="3258" selection-end="3258" vertical-scroll-proportion="0.29488575" vertical-offset="899" max-vertical-offset="3924" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/ResourceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="452" selection-end="452" vertical-scroll-proportion="0.17627856" vertical-offset="0" max-vertical-offset="919" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/UiController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="54" selection-start="796" selection-end="796" vertical-scroll-proportion="0.39281827" vertical-offset="17" max-vertical-offset="936" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/FeedsJpaController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="72" selection-start="665" selection-end="665" vertical-scroll-proportion="0.2546246" vertical-offset="0" max-vertical-offset="2430">
@@ -870,18 +805,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/engine/AbstractEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="41" selection-start="395" selection-end="395" vertical-scroll-proportion="0.11751904" vertical-offset="0" max-vertical-offset="1710">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/db/controllers/AbstractJpaController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="87" selection-start="901" selection-end="901" vertical-scroll-proportion="0.5484222" vertical-offset="0" max-vertical-offset="1368">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -900,15 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/entity/Settings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="46" selection-start="370" selection-end="388" vertical-scroll-proportion="0.2546246" vertical-offset="0" max-vertical-offset="1638">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/persistence/javax.persistence/2.0.3/javax.persistence-2.0.3.jar!/javax/persistence/EntityManager.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="59" column="28" selection-start="2134" selection-end="2134" vertical-scroll-proportion="0.3635347" vertical-offset="719" max-vertical-offset="1638">
@@ -916,19 +835,147 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/rss/FeedPostDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="32" selection-start="410" selection-end="410" vertical-scroll-proportion="0.2546246" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/rss/FeedDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="56" selection-start="366" selection-end="366" vertical-scroll-proportion="0.21545158" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/ResourceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="81" selection-start="596" selection-end="651" vertical-scroll-proportion="0.2742111" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/RssController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="11" selection-start="3814" selection-end="3938" vertical-scroll-proportion="0.72470075" vertical-offset="756" max-vertical-offset="3924">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/dto/SettingDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="13" selection-start="230" selection-end="230" vertical-scroll-proportion="0.17627856" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/entity/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="47" selection-start="504" selection-end="514" vertical-scroll-proportion="0.23503809" vertical-offset="0" max-vertical-offset="1620">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/db/controllers/SettingsJpaController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="0" selection-start="2545" selection-end="2545" vertical-scroll-proportion="0.58868337" vertical-offset="953" max-vertical-offset="1872">
+        <state line="104" column="118" selection-start="3311" selection-end="3311" vertical-scroll-proportion="0.843308" vertical-offset="1097" max-vertical-offset="2142">
           <folding>
-            <element signature="e#0#3001#0" expanded="true" />
+            <element signature="e#0#3447#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/constants/ErrorConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="28" selection-start="194" selection-end="194" vertical-scroll-proportion="0.09793253" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/engine/AbstractEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="22" selection-start="238" selection-end="238" vertical-scroll-proportion="-0.2742111" vertical-offset="324" max-vertical-offset="1710">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/engine/SettingsEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="52" selection-start="429" selection-end="429" vertical-scroll-proportion="0.2546246" vertical-offset="0" max-vertical-offset="919">
+        <state line="14" column="45" selection-start="357" selection-end="357" vertical-scroll-proportion="0.15669206" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/release/html/reg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="75" selection-start="0" selection-end="1860" vertical-scroll-proportion="0.40358743" vertical-offset="0" max-vertical-offset="918">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/URLConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="66" selection-start="2301" selection-end="2312" vertical-scroll-proportion="0.48966268" vertical-offset="432" max-vertical-offset="1494">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/SettingsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="87" selection-start="1470" selection-end="1473" vertical-scroll-proportion="0.25571272" vertical-offset="521" max-vertical-offset="1566">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/release/html/settings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="78" selection-start="1240" selection-end="1240" vertical-scroll-proportion="0.5448431" vertical-offset="0" max-vertical-offset="892">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/release/resources/js/mobile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="253" column="53" selection-start="7393" selection-end="7393" vertical-scroll-proportion="0.8237214" vertical-offset="3797" max-vertical-offset="4716">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/RssErrorConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="139" selection-end="139" vertical-scroll-proportion="0.15669206" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/constants/SettingsConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="69" selection-start="159" selection-end="178" vertical-scroll-proportion="0.13710555" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/constants/FilePathConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="49" selection-end="49" vertical-scroll-proportion="0.039173014" vertical-offset="0" max-vertical-offset="919">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/projects/tcore/src/main/java/ru/terra/server/controller/AbstractResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="27" selection-start="3817" selection-end="3817" vertical-scroll-proportion="0.882481" vertical-offset="881" max-vertical-offset="1800">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/terra/jbrss/controller/UiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="55" selection-start="1420" selection-end="1420" vertical-scroll-proportion="0.6474429" vertical-offset="197" max-vertical-offset="1116">
           <folding />
         </state>
       </provider>
