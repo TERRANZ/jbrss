@@ -24,7 +24,7 @@ public class UiController extends AbstractResource {
     @Produces({"text/html"})
     public Response getMain(@Context HttpContext hc) {
         if (isAuthorized(hc))
-            return returnHtmlFile("html/main.html");
+            return returnHtmlFile("main.html");
         else
             return getLogin(hc);
     }
@@ -33,14 +33,14 @@ public class UiController extends AbstractResource {
     @GET
     @Produces({"text/html"})
     public Response getLogin(@Context HttpContext hc) {
-        return returnHtmlFile("html/login.html");
+        return returnHtmlFile("login.html");
     }
 
     @Path(URLConstants.UI.REG)
     @GET
     @Produces({"text/html"})
     public Response getReg(@Context HttpContext hc) {
-        return returnHtmlFile("html/reg.html");
+        return returnHtmlFile("reg.html");
     }
 
     @Path(URLConstants.UI.ADD)
@@ -48,7 +48,7 @@ public class UiController extends AbstractResource {
     @Produces({"text/html"})
     public Response getAdd(@Context HttpContext hc) {
         if (isAuthorized(hc))
-            return returnHtmlFile("html/add.html");
+            return returnHtmlFile("add.html");
         else
             return getLogin(hc);
     }
