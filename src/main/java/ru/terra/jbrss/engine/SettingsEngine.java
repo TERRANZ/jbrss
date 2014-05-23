@@ -4,6 +4,7 @@ import ru.terra.jbrss.constants.SettingsConstants;
 import ru.terra.jbrss.db.controllers.SettingsJpaController;
 import ru.terra.jbrss.db.entity.Settings;
 import ru.terra.jbrss.dto.SettingDTO;
+import ru.terra.jbrss.rss.UpdateRssEngine;
 import ru.terra.server.engine.AbstractEngine;
 
 import java.util.ArrayList;
@@ -60,8 +61,7 @@ public class SettingsEngine extends AbstractEngine<Settings, SettingDTO> {
         updateBean(s);
         switch (key) {
             case SettingsConstants.UPDATE_INTERVAL: {
-                Integer updateInterval = Integer.parseInt(val);
-
+                UpdateRssEngine.getInstance().updateSchedulingForUser(uid);
             }
             break;
         }

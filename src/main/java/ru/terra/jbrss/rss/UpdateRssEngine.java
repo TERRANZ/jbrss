@@ -15,35 +15,47 @@ import ru.terra.jbrss.engine.SettingsEngine;
 public class UpdateRssEngine {
     private final UpdateRunnable updateRunnable;
     private SettingsEngine settingsEngine;
-    private StdSchedulerFactory sf;
+    private StdSchedulerFactory sf = new StdSchedulerFactory();
     private Scheduler sched;
     private Logger logger = LoggerFactory.getLogger(UpdateRssEngine.class);
     private static UpdateRssEngine instance = new UpdateRssEngine();
 
     private class UpdateRunnable implements Runnable {
+
+        private UpdateRunnable() {
+            try {
+                sched = sf.getScheduler();
+                sched.start();
+            } catch (SchedulerException e) {
+                e.printStackTrace();
+            }
+        }
+
         public synchronized void scheduleUpdatingForUser(Integer userId) {
             Settings settings = settingsEngine.findByKey(SettingsConstants.UPDATE_INTERVAL, userId);
             Integer updateInterval = 0;
             if (settings != null) {
                 updateInterval = Integer.parseInt(settings.getValue());
-                try {
-                    JobDetail job = JobBuilder.newJob(UpdateJob.class)
-                            .withIdentity("user" + userId.toString(), "group1")
-                            .build();
-                    Trigger trigger = TriggerBuilder.newTrigger()
-                            .withIdentity("user" + userId.toString(), "group1")
-                            .startNow()
-                            .withSchedule(
-                                    SimpleScheduleBuilder.simpleSchedule()
-                                            .withIntervalInMinutes(updateInterval)
-                                            .repeatForever()
-                            )
-                            .build();
-                    sched.scheduleJob(job, trigger);
-                } catch (SchedulerException se) {
-                    se.printStackTrace();
-                    logger.error("Error while initializing quartz", se);
-                }
+                if (updateInterval > 0)
+                    try {
+                        JobDetail job = JobBuilder.newJob(UpdateJob.class)
+                                .withIdentity("user" + userId.toString(), "group1")
+                                .usingJobData("user", userId)
+                                .build();
+                        Trigger trigger = TriggerBuilder.newTrigger()
+                                .withIdentity("user" + userId.toString(), "group1")
+                                .startNow()
+                                .withSchedule(
+                                        SimpleScheduleBuilder.simpleSchedule()
+                                                .withIntervalInMinutes(updateInterval)
+                                                .repeatForever()
+                                )
+                                .build();
+                        sched.scheduleJob(job, trigger);
+                    } catch (SchedulerException se) {
+                        se.printStackTrace();
+                        logger.error("Error while initializing quartz", se);
+                    }
             } else {
                 logger.info("Update interval for user " + userId + " is not set");
             }
@@ -51,13 +63,12 @@ public class UpdateRssEngine {
 
         @Override
         public void run() {
-            logger.info("Starting timers manager...");
-            sf = new StdSchedulerFactory();
-            try {
-                sched = sf.getScheduler();
-                sched.start();
-            } catch (SchedulerException e) {
-                logger.error("Unable to start scheduler", e);
+            while (true) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

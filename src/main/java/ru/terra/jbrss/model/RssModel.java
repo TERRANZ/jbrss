@@ -43,7 +43,7 @@ public class RssModel {
     }
 
     public Integer updateFeed(Feeds feed) {
-        //log.info("updating feed " + feed.getFeedurl());
+        log.info("updating feed " + feed.getFeedurl());
         List<Feedposts> posts = downloader.loadFeeds(feed);
         Date d = feedpostsJpaController.getLastPostDate(feed.getId());
         List<Feedposts> newPosts;

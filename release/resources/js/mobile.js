@@ -255,3 +255,7 @@ function saveSettings(){
         }
     });
 }
+
+function settings(){
+    window.location.assign("/jbrss/ui/setting");
+}
