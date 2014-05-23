@@ -10,6 +10,7 @@ import ru.terra.jbrss.engine.SettingsEngine;
 import ru.terra.server.constants.ErrorConstants;
 import ru.terra.server.controller.AbstractResource;
 import ru.terra.server.dto.ListDTO;
+import ru.terra.server.dto.SimpleDataDTO;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -60,22 +61,13 @@ public class SettingsController extends AbstractResource {
 
     @GET
     @Path(URLConstants.DoJson.Settings.SET_SETTINGS)
-    public SettingDTO setSetting(@Context HttpContext hc, @QueryParam("key") String key, @QueryParam("val") String val) {
-        SettingDTO ret = new SettingDTO();
+    public SimpleDataDTO<Boolean> setSetting(@Context HttpContext hc, @QueryParam("key") String key, @QueryParam("val") String val) {
+        SimpleDataDTO<Boolean> ret = new SimpleDataDTO<>();
         if (!isAuthorized(hc)) {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
             ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
             return ret;
         }
-        Settings s = settingsEngine.findByKey(key, getCurrentUserId(hc));
-        if (s == null) {
-            ret.errorCode = 2;
-            ret.errorMessage = "Not found";
-            return ret;
-
-        }
-        s.setValue(val);
-        settingsEngine.updateBean(s);
-        return settingsEngine.entityToDto(s);
+        return new SimpleDataDTO<>(settingsEngine.setSetting(key, val, getCurrentUserId(hc)));
     }
 }

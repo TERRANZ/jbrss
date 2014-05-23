@@ -1,5 +1,6 @@
 package ru.terra.jbrss.engine;
 
+import ru.terra.jbrss.constants.SettingsConstants;
 import ru.terra.jbrss.db.controllers.SettingsJpaController;
 import ru.terra.jbrss.db.entity.Settings;
 import ru.terra.jbrss.dto.SettingDTO;
@@ -45,5 +46,25 @@ public class SettingsEngine extends AbstractEngine<Settings, SettingDTO> {
 
     public Settings findByKey(String key, Integer uid) {
         return ((SettingsJpaController) dbController).findByKey(key, uid);
+    }
+
+    public Boolean setSetting(String key, String val, Integer uid) {
+        Settings s = findByKey(key, uid);
+        if (s == null) {
+            s = new Settings();
+            s.setValue(val);
+            s.setUserId(uid);
+            s.setKey(key);
+        }
+        s.setValue(val);
+        updateBean(s);
+        switch (key) {
+            case SettingsConstants.UPDATE_INTERVAL: {
+                Integer updateInterval = Integer.parseInt(val);
+
+            }
+            break;
+        }
+        return true;
     }
 }

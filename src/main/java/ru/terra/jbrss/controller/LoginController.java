@@ -9,6 +9,7 @@ import ru.terra.jbrss.db.entity.User;
 import ru.terra.jbrss.engine.CaptchaEngine;
 import ru.terra.jbrss.engine.UsersEngine;
 import ru.terra.jbrss.engine.YandexCaptcha;
+import ru.terra.jbrss.rss.UpdateRssEngine;
 import ru.terra.server.controller.AbstractResource;
 import ru.terra.server.dto.LoginDTO;
 
@@ -43,6 +44,7 @@ public class LoginController extends AbstractResource {
                 ret.id = u.getId();
                 ret.session = sessionsHolder.registerUserSession(u);
                 ret.logged = true;
+                UpdateRssEngine.getInstance().scheduleUpdatingForUser(u.getId());
             } else {
                 ret.message = "user not found";
             }
