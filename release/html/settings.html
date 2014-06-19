@@ -30,10 +30,22 @@
             <input type="button" data-icon="check" data-iconpos="left" value="Сохранить" onclick="saveSettings();"
                    id="savebtn">
         </form>
+        <form id="feedsform">
+            <div data-role="feedscontainer">
+                <ul data-role="listview" data-divider-theme="b" data-inset="true" id="feedslist">
 
+                </ul>
+            </div>
+        </form>
     </div>
 </div>
-
+<div data-role="dialog" id="sure" data-title="Удалить фид?">
+    <div data-role="content">
+        <h3 class="sure-1">Удалить фид?</h3>
+        <a href="#" class="sure-do" data-role="button" data-theme="b" data-rel="back">Да</a>
+        <a href="#" data-role="button" data-theme="c" data-rel="back">Нет</a>
+    </div>
+</div>
 <script src="/jbrss/resources/js/mobile.js"></script>
 </body>
 </html>

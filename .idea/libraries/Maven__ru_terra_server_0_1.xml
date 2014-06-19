@@ -4,13 +4,13 @@
       <root url="jar://$MAVEN_REPOSITORY$/ru/terra/server/0.1/server-0.1.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/Dropbox/projects/terramarket/core/server-0.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../terramarket/core/server-0.1-javadoc.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/ru/terra/server/0.1/server-0.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/Dropbox/projects/terramarket/core/server-0.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../terramarket/core/server-0.1-sources.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/ru/terra/server/0.1/server-0.1-sources.jar!/" />
-      <root url="file://$USER_HOME$/Dropbox/projects/tcore/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../tcore/src/main/java" />
     </SOURCES>
   </library>
 </component>

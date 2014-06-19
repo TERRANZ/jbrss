@@ -39,6 +39,10 @@
               <resource>META-INF/persistence.xml</resource>
               <file>src/main/resources/META-INF/persistence.xml</file>
             </transformer>
+            <transformer>
+              <resource>log4j.xml</resource>
+              <file>src/main/resources/log4j.xml</file>
+            </transformer>
           </transformers>
         </configuration>
       </plugin>

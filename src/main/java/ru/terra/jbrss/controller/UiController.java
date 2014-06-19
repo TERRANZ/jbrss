@@ -33,7 +33,10 @@ public class UiController extends AbstractResource {
     @GET
     @Produces({"text/html"})
     public Response getLogin(@Context HttpContext hc) {
-        return returnHtmlFile("html/login.html");
+        if (isAuthorized(hc))
+            return getMain(hc);
+        else
+            return returnHtmlFile("html/login.html");
     }
 
     @Path(URLConstants.UI.REG)

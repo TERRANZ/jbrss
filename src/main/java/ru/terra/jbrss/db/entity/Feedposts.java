@@ -35,7 +35,7 @@ public class Feedposts implements Serializable {
     @Basic(optional = false)
     @Column(name = "postdate", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date postdate;
+    private Date postdate = new Date();
     @Basic(optional = false)
     @Column(name = "posttitle", nullable = false, length = 512)
     private String posttitle;
@@ -54,7 +54,7 @@ public class Feedposts implements Serializable {
     @Basic(optional = false)
     @Column(name = "update_time", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated;
+    private Date updated = new Date();
 
     public Feedposts() {
     }

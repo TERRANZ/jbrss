@@ -7,8 +7,9 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$USER_HOME$/Dropbox/projects/terramarket/core/pom.xml" />
-        <option value="$USER_HOME$/Dropbox/projects/jbrss/jabber/pom.xml" />
+        <option value="$PROJECT_DIR$/../terramarket/core/pom.xml" />
+        <option value="$PROJECT_DIR$/jabber/pom.xml" />
+        <option value="$PROJECT_DIR$/../tcore/pom.xml" />
         <option value="$USER_HOME$/Dropbox/projects/tcore/pom.xml" />
       </list>
     </option>

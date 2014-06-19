@@ -28,6 +28,10 @@ public class FeedpostsJpaController extends AbstractJpaController<Feedposts> imp
             em.getTransaction().begin();
             for (Feedposts feedposts : feedpostses) {
                 feedposts.setUpdated(new Date());
+                if (feedposts.getPostdate() == null)
+                    feedposts.setPostdate(new Date());
+                if (feedposts.getPosttext() == null)
+                    feedposts.setPosttext("");
                 em.persist(feedposts);
             }
             em.getTransaction().commit();

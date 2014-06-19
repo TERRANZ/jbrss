@@ -1,6 +1,18 @@
 var loaded = 0;
 var feedId = 0;
-$("#feeds").ready(load_feeds());
+//$("#load_marker").ready(load_main());
+
+$(document).on( "pageshow", load_main() )
+
+function load_main(){
+    var url = document.URL;
+    if (url.indexOf("feed") > 0) {
+        load_feed(url.substring(url.indexOf("#")+6));
+    }
+    load_feeds();
+}
+
+
 function load_feeds() {
 	$.ajax({
 		url : '/jbrss/rss/do.list.json',
@@ -11,21 +23,30 @@ function load_feeds() {
 			var htmlRet = "";
 			if (data.errorCode == 0) {
 				$.each(data.data, function(i, feed) {
-					htmlRet += '<li data-theme="c"><a href="#" onClick=load_feed(' + feed.id + '); data-transition="slide">' + feed.feedname
+					htmlRet += '<li data-theme="c"><a  id='+feed.id+' href="#" onClick=open_feed(' + feed.id + '); data-transition="slide">' + feed.feedname
 							+ '</a></li>';
 				});
 				$("#feeds").html(htmlRet);
+				var url = document.URL;
+                if (url.indexOf("feed") > 0) {
+                    load_feed(url.substring(url.indexOf("#")+6));
+                }
 			}
 		}
 	});
 }
 
+function open_feed(fid){
+    window.location.href = "/jbrss/ui/main#feed=" + fid;
+    load_feed(fid);
+}
+
 function load_feed(fid) {
-	$("#feeds_collapsable").trigger('collapse');
-	$("#messages_collapsable").trigger('expand');
 	loaded = 10;
 	feedId = fid;
 	load();
+	$("#feeds_collapsable").trigger('collapse');
+    $("#messages_collapsable").trigger('expand');
 }
 
 function create_main_post(title, text, date, link) {
@@ -140,9 +161,10 @@ var url = $("#url").val();
         			url : url
         		},
         		success : function(data) {
-        	            if (data.data)
+        	            if (data.data) {
         	                window.location.assign("/jbrss/ui/main");
-        	            else
+        	                load_feeds();
+        	            } else
         	                alert("Ошибка при добавлении: "+data.errorMessage);
         			}
         		});
@@ -258,4 +280,44 @@ function saveSettings(){
 
 function settings(){
     window.location.assign("/jbrss/ui/setting");
+}
+
+$("#feedscontainer").ready(loadFeedsToSettings());
+function loadFeedsToSettings(){
+	$.ajax({
+		url : '/jbrss/rss/do.list.json',
+		async : false,
+		type : 'get',
+		data : {},
+		success : function(data) {
+			var htmlRet = "";
+			if (data.errorCode == 0) {
+				$.each(data.data, function(i, feed) {
+					htmlRet += '<li data-theme="c"><a href="#" onClick=delete_feed(' + feed.id + '); data-transition="slide">' + feed.feedname
+							+ '</a></li>';
+				});
+				$("#feedslist").html(htmlRet);
+			}
+		}
+	});
+}
+
+function delete_feed(id){
+    $("#sure .sure-do").text("Да").on("click.sure", function() {
+        $.ajax({
+        		url : '/jbrss/rss/do.del.json',
+        		async : false,
+        		type : 'get',
+        		data : {id:id},
+        		success : function(data) {
+        			var htmlRet = "";
+        			if (data.errorCode == 0) {
+                        loadFeedsToSettings();
+                        load_feeds();
+        			}
+        		}
+        	});
+        $(this).off("click.sure");
+    });
+    $.mobile.changePage("#sure");
 }
