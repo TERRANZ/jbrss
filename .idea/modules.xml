@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Dropbox/projects/jbrss/android/android.iml" filepath="$USER_HOME$/Dropbox/projects/jbrss/android/android.iml" />
       <module fileurl="file://$PROJECT_DIR$/jbrss.iml" filepath="$PROJECT_DIR$/jbrss.iml" />
       <module fileurl="file://$USER_HOME$/Dropbox/projects/tcore/server.iml" filepath="$USER_HOME$/Dropbox/projects/tcore/server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../tcore/server.iml" filepath="$PROJECT_DIR$/../tcore/server.iml" />
     </modules>
   </component>
 </project>

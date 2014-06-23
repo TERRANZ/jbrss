@@ -49,11 +49,12 @@ function load_feed(fid) {
     $("#messages_collapsable").trigger('expand');
 }
 
-function create_main_post(title, text, date, link) {
+function create_main_post(title, text, date, link, id) {
 	var ret = "";
 	ret += '<div class="column1-unit">'+'<a href=' + link +'> <h1>' + title + '</h1></a>';
 	ret += '<h3>' + new Date(date) + '</h3>';
 	ret += '<p>' + text + '</p>';
+	ret += '<a data-transition="slide" href="#" onClick = "Android.share('+id+');"> Поделиться </a>';
 	ret += '</div> <hr class="clear-contentunit" />';
 	return ret;
 }
@@ -141,7 +142,7 @@ $.ajax({
 			var htmlRet = "";
 			if (data.errorCode == 0) {
 				$.each(data.data, function(i, post) {
-					htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink);
+					htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink, post.id);
 				});
 				$("#messages").html(htmlRet);
 			}

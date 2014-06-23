@@ -145,4 +145,8 @@ public class RssModel {
     public List<Feedposts> search(String posttext) {
         return feedpostsJpaController.findFeedPostsByPostText(posttext);
     }
+
+    public Feedposts getPost(Integer id) throws Exception {
+        return feedpostsJpaController.get(id);
+    }
 }

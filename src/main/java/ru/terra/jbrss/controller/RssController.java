@@ -229,4 +229,25 @@ public class RssController extends AbstractResource {
             return ret;
         }
     }
+
+    @GET
+    @Path(URLConstants.DoJson.Rss.RSS_DO_GET_POST)
+    public FeedPostDTO doGetPost(@Context HttpContext hc, @QueryParam("id") Integer id) {
+        FeedPostDTO ret = new FeedPostDTO();
+        User user = (User) getCurrentUser(hc);
+        if (user != null)
+            try {
+                return new FeedPostDTO(rssModel.getPost(id));
+            } catch (Exception e) {
+                ret.errorCode = ErrorConstants.ERR_INTERNAL_EXCEPTION;
+                ret.errorMessage = e.getMessage();
+                logger.error("Unable to get feed post", e);
+                return ret;
+            }
+        else {
+            ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
+            ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
+            return ret;
+        }
+    }
 }

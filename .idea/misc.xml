@@ -3,6 +3,9 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="android" url="file://$USER_HOME$/Dropbox/projects/jbrss/android" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -11,6 +14,7 @@
         <option value="$PROJECT_DIR$/jabber/pom.xml" />
         <option value="$PROJECT_DIR$/../tcore/pom.xml" />
         <option value="$USER_HOME$/Dropbox/projects/tcore/pom.xml" />
+        <option value="$USER_HOME$/Dropbox/projects/jbrss/android/pom.xml" />
       </list>
     </option>
   </component>

@@ -22,12 +22,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="android" />
         <module name="jabber" />
         <module name="jbrss" />
         <module name="server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="android" target="1.6" />
       <module name="jabber" target="1.7" />
       <module name="jbrss" target="1.7" />
       <module name="server" target="1.7" />
