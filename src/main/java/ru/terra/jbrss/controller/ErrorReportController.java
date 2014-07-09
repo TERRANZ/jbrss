@@ -15,6 +15,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import java.util.Properties;
 
@@ -32,12 +33,12 @@ public class ErrorReportController extends AbstractResource {
     private String mailPass = Config.getConfig().getValue("errorreport.mail.pass", null);
     private String mailTo = Config.getConfig().getValue("errorreport.mail.to", "jbrss@terranz.ath.cx");
     private String mailFrom = Config.getConfig().getValue("errorreport.mail.from", "jbrss@terranz.ath.cx");
-    private StringBuilder sb = new StringBuilder();
 
     @POST
-    @Path(URLConstants.DoJson.ErrorReports.DO_REPORT)
-    public SimpleDataDTO<Boolean> get(@Context HttpContext hc) {
+    @Path(URLConstants.DoJson.ErrorReports.DO_REPORT + "/{uid}")
+    public SimpleDataDTO<Boolean> get(@Context HttpContext hc, @PathParam("uid") final String uid) {
         logger.info("Error reported!");
+        final StringBuilder sb = new StringBuilder();
         if (mailServer != null && mailUser != null && mailPass != null) {
             for (String param : hc.getRequest().getFormParameters().keySet()) {
                 sb.append(param);
@@ -50,14 +51,14 @@ public class ErrorReportController extends AbstractResource {
                 @Override
                 public void run() {
                     logger.info("Starting error reporter thread");
-                    sendError(sb.toString());
+                    sendError(uid, sb.toString());
                 }
             }).start();
         }
         return new SimpleDataDTO<>(true);
     }
 
-    public void sendError(String error) {
+    public void sendError(String app, String error) {
         logger.info("sending error");
         try {
             Properties props = new Properties();
@@ -70,7 +71,7 @@ public class ErrorReportController extends AbstractResource {
             Transport transport = mailSession.getTransport();
 
             MimeMessage message = new MimeMessage(mailSession);
-            message.setSubject("Error report from jbrss android client");
+            message.setSubject("Error report from " + app + " android client");
             message.setContent(error, "text/plain");
 
             message.addRecipient(Message.RecipientType.TO,
