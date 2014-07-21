@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +28,14 @@ import java.util.Scanner;
 public class MainActivity extends Activity {
     private WebView webView;
     private String cookie;
+    private View actionBar;
+    private int baseHeight;
+    private int webViewOnTouchHeight;
+    private int barHeight;
+    private float heightChange;
+    private float startEventY;
+    private View layout;
+    private TextView tvUrl;
 
     public class ShareAction {
         Context mContext;
@@ -113,7 +124,9 @@ public class MainActivity extends Activity {
         setProgressBarIndeterminateVisibility(true);
         setProgressBarVisibility(true);
         setContentView(R.layout.a_main);
-
+        actionBar = findViewById(R.id.actionBar);
+        layout = findViewById(R.id.rl);
+        tvUrl = (TextView) findViewById(R.id.tvUrl);
         final Activity activity = this;
 
         webView = (WebView) findViewById(R.id.wvMain);
@@ -125,7 +138,7 @@ public class MainActivity extends Activity {
         webSettings.setDatabaseEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            public boolean shouldOverrideUrlLoading(WebView view, final String url) {
                 if (url.contains("terranz.ath.cx")) {
                     view.loadUrl(url);
                 } else {
@@ -139,9 +152,71 @@ public class MainActivity extends Activity {
             public void onPageFinished(WebView view, String url) {
                 activity.setProgressBarIndeterminateVisibility(false);
                 cookie = CookieManager.getInstance().getCookie(url);
+                tvUrl.setText(url);
             }
         });
         webView.addJavascriptInterface(new ShareAction(this), "Android");
+        webView.setOnTouchListener(listener);
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                barHeight = actionBar.getMeasuredHeight();
+                baseHeight = layout.getMeasuredHeight();
+                webView.getLayoutParams().height = webView.getMeasuredHeight() - barHeight;
+                webView.requestLayout();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    private boolean resizeView(float delta) {
+        heightChange = delta;
+        int newHeight = (int) (webViewOnTouchHeight - delta);
+        if (newHeight > baseHeight) { // scroll over top
+            if (webView.getLayoutParams().height < baseHeight) {
+                webView.getLayoutParams().height = baseHeight;
+                webView.requestLayout();
+                return true;
+            }
+        } else if (newHeight < baseHeight - barHeight) { // scroll below bar
+            if (webView.getLayoutParams().height > baseHeight - barHeight) {
+                webView.getLayoutParams().height = baseHeight - barHeight;
+                webView.requestLayout();
+                return true;
+            }
+        } else { // scroll between top and bar
+            webView.getLayoutParams().height = (int) (webViewOnTouchHeight - delta);
+            webView.requestLayout();
+            return true;
+        }
+        return false;
+    }
+
+    private View.OnTouchListener listener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_DOWN:
+                    startEventY = event.getY();
+                    heightChange = 0;
+                    webViewOnTouchHeight = webView.getLayoutParams().height;
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    float delta = (event.getY() + heightChange) - startEventY;
+                    boolean heigthChanged = resizeView(delta);
+                    if (heigthChanged) {
+                        actionBar.setTranslationY(baseHeight - webView.getLayoutParams().height - barHeight);
+                    }
+            }
+            return false;
+        }
+    };
+
+    public void refresh(View view) {
 
     }
 }

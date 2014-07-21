@@ -58,6 +58,8 @@ public class Downloader {
                     feedpost.setPosttext(content.getValue());
                 }
                 feedpost.setPostdate(entry.getPublishedDate());
+                if (feedpost.getPostdate() == null)
+                    feedpost.setPostdate(entry.getUpdatedDate());
                 feedpost.setFeedId(feeds.getId());
                 feedpost.setUpdated(new Date());
                 ret.add(feedpost);
