@@ -15,9 +15,11 @@ function load_main() {
 
 function load_feeds() {
     $.ajax({
-        url: '/jbrss/rss/do.list.json',
+        url: 'http://terranz.ath.cx/jbrss/rss/do.list.json',
         async: false,
         type: 'get',
+        dataType: "jsonp",
+        jsonp: "callback",
         data: {},
         success: function(data) {
             var htmlRet = "";
@@ -37,7 +39,7 @@ function load_feeds() {
 }
 
 function open_feed(fid) {
-    window.location.href = "/jbrss/ui/main#feed=" + fid;
+    window.location.href = "http://terranz.ath.cx/jbrss/ui/main#feed=" + fid;
     load_feed(fid);
 }
 
@@ -70,9 +72,11 @@ function userLogin() {
         alert('Не введен пароль');
     } else {
         $.ajax({
-            url: '/jbrss/login/do.login.json',
+            url: 'http://terranz.ath.cx/jbrss/login/do.login.json',
             async: false,
             type: 'get',
+            dataType: "jsonp",
+            jsonp: "callback",
             data: {
                 user: user,
                 pass: pass
@@ -81,7 +85,7 @@ function userLogin() {
                 $("#loginbtn").removeClass('ui-disabled');
                 if (data.logged == true) {
                     setCookie("JSESSIONID", data.session);
-                    window.location.assign("/jbrss/ui/main");
+                    window.location.assign("http://terranz.ath.cx/jbrss/ui/main");
                 } else {
                     if (parseInt(data.errorCode) == 1000) {
                         alert('Вы сделали слишком много попыток зайти на ресурс. Аккаунт временно заблокирован. Попробуйте еще раз через некоторое время.');
@@ -107,9 +111,11 @@ function update() {
     if (!$("#updatebtn").hasClass('ui-disabled'))
         $("#updatebtn").addClass('ui-disabled');
     $.ajax({
-        url: '/jbrss/rss/do.update.json',
+        url: 'http://terranz.ath.cx/jbrss/rss/do.update.json',
         async: true,
         type: 'get',
+        dataType: "jsonp",
+        jsonp: "callback",
         data: {},
         success: function(data) {
             loading = false;
@@ -129,9 +135,11 @@ function more() {
 
 function load() {
     $.ajax({
-        url: '/jbrss/rss/do.get.feed.json',
+        url: 'http://terranz.ath.cx/jbrss/rss/do.get.feed.json',
         async: false,
         type: 'get',
+        dataType: "jsonp",
+        jsonp: "callback",
         data: {
             id: feedId,
             count: loaded
@@ -153,15 +161,17 @@ function add() {
     var url = $("#url").val();
     if (learnRegExp(url)) {
         $.ajax({
-            url: '/jbrss/rss/do.add.json',
+            url: 'http://terranz.ath.cx/jbrss/rss/do.add.json',
             async: false,
             type: 'get',
+            dataType: "jsonp",
+            jsonp: "callback",
             data: {
                 url: url
             },
             success: function(data) {
                 if (data.data) {
-                    window.location.assign("/jbrss/ui/main");
+                    window.location.assign("http://terranz.ath.cx/jbrss/ui/main");
                     load_feeds();
                 } else
                     alert("Ошибка при добавлении: " + data.errorMessage);
@@ -184,9 +194,11 @@ function loadCaptcha() {
     if (!$("#loadcapthca").hasClass('ui-disabled'))
         $("#loadcapthca").addClass('ui-disabled');
     $.ajax({
-        url: '/jbrss/captcha/do.get.json',
+        url: 'http://terranz.ath.cx/jbrss/captcha/do.get.json',
         async: true,
         type: 'get',
+        dataType: "jsonp",
+        jsonp: "callback",
         data: {
         },
         success: function(data) {
@@ -211,9 +223,11 @@ function userReg() {
         alert('Не введен пароль');
     } else {
         $.ajax({
-            url: '/jbrss/login/do.register.json',
+            url: 'http://terranz.ath.cx/jbrss/login/do.register.json',
             async: true,
             type: 'get',
+            dataType: "jsonp",
+            jsonp: "callback",
             data: {
                 user: user,
                 pass: pass,
@@ -223,7 +237,7 @@ function userReg() {
             success: function(data) {
                 if (data.logged == true) {
                     setCookie("JSESSIONID", data.session);
-                    window.location.assign("/jbrss/ui/main");
+                    window.location.assign("http://terranz.ath.cx/jbrss/ui/main");
                 } else {
                     if (parseInt(data.errorCode) == 1000) {
                         alert('Вы сделали слишком много попыток зайти на ресурс. Аккаунт временно заблокирован. Попробуйте еще раз через некоторое время.');
@@ -243,9 +257,11 @@ function doSearch() {
     var val = $("#search_input").val();
     if (val.length > 0) {
         $.ajax({
-            url: '/jbrss/rss/do.search.json',
+            url: 'http://terranz.ath.cx/jbrss/rss/do.search.json',
             async: false,
             type: 'post',
+            dataType: "jsonp",
+            jsonp: "callback",
             data: {val: val},
             success: function(data) {
                 var htmlRet = "";
@@ -264,29 +280,33 @@ function doSearch() {
 
 function saveSettings() {
     $.ajax({
-        url: '/jbrss/settings/do.set.json',
+        url: 'http://terranz.ath.cx/jbrss/settings/do.set.json',
         async: true,
         type: 'get',
+        dataType: "jsonp",
+        jsonp: "callback",
         data: {
             key: $("#key").val(),
             val: $("#val").val(),
         },
         success: function(data) {
-            window.location.assign("/jbrss/ui/main");
+            window.location.assign("http://terranz.ath.cx/jbrss/ui/main");
         }
     });
 }
 
 function settings() {
-    window.location.assign("/jbrss/ui/setting");
+    window.location.assign("http://terranz.ath.cx/jbrss/ui/setting");
 }
 
 $("#feedscontainer").ready(loadFeedsToSettings());
 function loadFeedsToSettings() {
     $.ajax({
-        url: '/jbrss/rss/do.list.json',
+        url: 'http://terranz.ath.cx/jbrss/rss/do.list.json',
         async: false,
         type: 'get',
+        dataType: "jsonp",
+        jsonp: "callback",
         data: {},
         success: function(data) {
             var htmlRet = "";
@@ -304,9 +324,11 @@ function loadFeedsToSettings() {
 function delete_feed(id) {
     $("#sure .sure-do").text("Да").on("click.sure", function() {
         $.ajax({
-            url: '/jbrss/rss/do.del.json',
+            url: 'http://terranz.ath.cx/jbrss/rss/do.del.json',
             async: false,
             type: 'get',
+            dataType: "jsonp",
+            jsonp: "callback",
             data: {id: id},
             success: function(data) {
                 var htmlRet = "";

@@ -1,4 +1,4 @@
-package ru.terra.jbrss.controller;
+package ru.terra.jbrss.controller.ui;
 
 import com.sun.jersey.api.core.HttpContext;
 import org.apache.log4j.Logger;

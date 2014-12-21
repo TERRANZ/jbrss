@@ -1,6 +1,7 @@
 package ru.terra.jbrss.controller;
 
 import com.sun.jersey.api.core.HttpContext;
+import com.sun.jersey.api.json.JSONWithPadding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.terra.jbrss.constants.RssErrorConstants;
@@ -23,13 +24,15 @@ import java.util.Date;
 import java.util.List;
 
 @Path(URLConstants.DoJson.Rss.RSS)
+@Produces({"application/x-javascript", "application/json", "application/xml"})
 public class RssController extends AbstractResource {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private RssModel rssModel = new RssModel();
 
     @GET
     @Path(URLConstants.DoJson.Rss.RSS_DO_LIST)
-    public ListDTO<FeedDTO> getList(@Context HttpContext hc) {
+    public JSONWithPadding getList(@QueryParam("callback") String callback,
+                                   @Context HttpContext hc) {
         logger.info("Loading list of feeds");
         User user = (User) getCurrentUser(hc);
         ListDTO<FeedDTO> ret = new ListDTO<>();
@@ -42,17 +45,18 @@ public class RssController extends AbstractResource {
                     data.add(new FeedDTO(f));
                 ret.setData(data);
             }
-            return ret;
+            return new JSONWithPadding(ret, callback);
         } else {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
             ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
-            return ret;
+            return new JSONWithPadding(ret, callback);
         }
     }
 
     @GET
     @Path(URLConstants.DoJson.Rss.RSS_DO_ADD)
-    public SimpleDataDTO<Boolean> add(@Context HttpContext hc, @QueryParam("url") String url) {
+    public JSONWithPadding add(@QueryParam("callback") String callback,
+                               @Context HttpContext hc, @QueryParam("url") String url) {
         logger.info("Adding new feed");
         User user = (User) getCurrentUser(hc);
         SimpleDataDTO<Boolean> ret = new SimpleDataDTO<>(false);
@@ -63,19 +67,20 @@ public class RssController extends AbstractResource {
                 e.printStackTrace();
                 ret.errorMessage = e.getLocalizedMessage();
                 ret.errorCode = RssErrorConstants.ERR_UNABLE_TO_ADD_RSS;
-                return ret;
+                return new JSONWithPadding(ret, callback);
             }
-            return new SimpleDataDTO<>(true);
+            return new JSONWithPadding(new SimpleDataDTO<>(true), callback);
         } else {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
             ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
-            return ret;
+            return new JSONWithPadding(ret, callback);
         }
     }
 
     @GET
     @Path(URLConstants.DoJson.Rss.RSS_DO_GET_UNREAD)
-    public ListDTO<FeedPostDTO> getUnread(@Context HttpContext hc, @QueryParam("timestamp") long timestamp) {
+    public JSONWithPadding getUnread(@QueryParam("callback") String callback,
+                                     @Context HttpContext hc, @QueryParam("timestamp") long timestamp) {
         ListDTO<FeedPostDTO> ret = new ListDTO<>();
         logger.info("Getting unread feeds");
         User user = (User) getCurrentUser(hc);
@@ -95,17 +100,18 @@ public class RssController extends AbstractResource {
                 }
             }
             logger.info(ret.getSize().toString());
-            return ret;
+            return new JSONWithPadding(ret, callback);
         } else {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
             ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
-            return ret;
+            return new JSONWithPadding(ret, callback);
         }
     }
 
     @GET
     @Path(URLConstants.DoJson.Rss.RSS_DO_MARK_READ)
-    public SimpleDataDTO<Boolean> markRead(@Context HttpContext hc, @QueryParam("read") Boolean read) {
+    public JSONWithPadding markRead(@QueryParam("callback") String callback,
+                                    @Context HttpContext hc, @QueryParam("read") Boolean read) {
         Integer feed = null;
         if (getParameter(hc, "feed") != null)
             feed = Integer.parseInt(getParameter(hc, "feed"));
@@ -121,27 +127,28 @@ public class RssController extends AbstractResource {
         if (user != null) {
             if (feed != null) {
                 rssModel.setFeedRead(feed, read);
-                return ret;
+                return new JSONWithPadding(ret, callback);
             } else if (post != null) {
                 rssModel.setPostRead(post, read);
-                return ret;
+                return new JSONWithPadding(ret, callback);
             } else if (all) {
                 rssModel.setAllRead(user.getId());
-                return ret;
+                return new JSONWithPadding(ret, callback);
             } else {
                 ret.data = false;
-                return ret;
+                return new JSONWithPadding(ret, callback);
             }
         } else {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
             ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
-            return ret;
+            return new JSONWithPadding(ret, callback);
         }
     }
 
     @GET
     @Path(URLConstants.DoJson.Rss.RSS_DO_UPDATE)
-    public SimpleDataDTO<Integer> update(@Context HttpContext hc) {
+    public JSONWithPadding update(@QueryParam("callback") String callback,
+                                  @Context HttpContext hc) {
         logger.info("Updating feeds");
         User user = (User) getCurrentUser(hc);
         SimpleDataDTO<Integer> ret = new SimpleDataDTO<>(0);
@@ -158,33 +165,35 @@ public class RssController extends AbstractResource {
                     }
             }
             ret.data = updated;
-            return ret;
+            return new JSONWithPadding(ret, callback);
         } else {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
             ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
-            return ret;
+            return new JSONWithPadding(ret, callback);
         }
     }
 
     @GET
     @Path(URLConstants.DoJson.Rss.RSS_DO_DEL)
-    public SimpleDataDTO<Boolean> delete(@Context HttpContext hc, @QueryParam("id") Integer id) {
+    public JSONWithPadding delete(@QueryParam("callback") String callback,
+                                  @Context HttpContext hc, @QueryParam("id") Integer id) {
         logger.info("Delete feed");
         User user = (User) getCurrentUser(hc);
         SimpleDataDTO<Boolean> ret = new SimpleDataDTO<>(true);
         if (user != null) {
             rssModel.removeFeed(id);
-            return ret;
+            return new JSONWithPadding(ret, callback);
         } else {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
             ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
-            return ret;
+            return new JSONWithPadding(ret, callback);
         }
     }
 
     @GET
     @Path(URLConstants.DoJson.Rss.RSS_DO_GET_FEED)
-    public ListDTO<FeedPostDTO> getFeed(@Context HttpContext hc, @QueryParam("id") Integer id, @QueryParam("count") Integer count) {
+    public JSONWithPadding getFeed(@QueryParam("callback") String callback,
+                                   @Context HttpContext hc, @QueryParam("id") Integer id, @QueryParam("count") Integer count) {
         ListDTO<FeedPostDTO> ret = new ListDTO<>();
         logger.info("Getting feed");
         User user = (User) getCurrentUser(hc);
@@ -197,17 +206,18 @@ public class RssController extends AbstractResource {
                     dtos.add(new FeedPostDTO(fp));
                 ret.setData(dtos);
             }
-            return ret;
+            return new JSONWithPadding(ret, callback);
         } else {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
             ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
-            return ret;
+            return new JSONWithPadding(ret, callback);
         }
     }
 
     @POST
     @Path(URLConstants.DoJson.Rss.RSS_DO_SEARCH)
-    public ListDTO<FeedPostDTO> doSearch(@Context HttpContext hc, @FormParam("val") String val) {
+    public JSONWithPadding doSearch(@QueryParam("callback") String callback,
+                                    @Context HttpContext hc, @FormParam("val") String val) {
         ListDTO<FeedPostDTO> ret = new ListDTO<>();
         if (val == null)
             val = getParameter(hc, "val");
@@ -222,32 +232,33 @@ public class RssController extends AbstractResource {
                     dtos.add(new FeedPostDTO(fp));
                 ret.setData(dtos);
             }
-            return ret;
+            return new JSONWithPadding(ret, callback);
         } else {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
             ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
-            return ret;
+            return new JSONWithPadding(ret, callback);
         }
     }
 
     @GET
     @Path(URLConstants.DoJson.Rss.RSS_DO_GET_POST)
-    public FeedPostDTO doGetPost(@Context HttpContext hc, @QueryParam("id") Integer id) {
+    public JSONWithPadding doGetPost(@QueryParam("callback") String callback,
+                                     @Context HttpContext hc, @QueryParam("id") Integer id) {
         FeedPostDTO ret = new FeedPostDTO();
         User user = (User) getCurrentUser(hc);
         if (user != null)
             try {
-                return new FeedPostDTO(rssModel.getPost(id));
+                return new JSONWithPadding(new FeedPostDTO(rssModel.getPost(id)), callback);
             } catch (Exception e) {
                 ret.errorCode = ErrorConstants.ERR_INTERNAL_EXCEPTION;
                 ret.errorMessage = e.getMessage();
                 logger.error("Unable to get feed post", e);
-                return ret;
+                return new JSONWithPadding(ret, callback);
             }
         else {
             ret.errorCode = ErrorConstants.ERR_NOT_AUTHORIZED_ID;
             ret.errorMessage = ErrorConstants.ERR_NOT_AUTHORIZED_MSG;
-            return ret;
+            return new JSONWithPadding(ret, callback);
         }
     }
 }

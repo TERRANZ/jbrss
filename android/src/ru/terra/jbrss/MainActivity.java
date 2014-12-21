@@ -26,8 +26,9 @@ import java.util.Scanner;
 
 
 public class MainActivity extends Activity {
-    private WebView webView;
+
     private String cookie;
+    private WebView webView;
     private View actionBar;
     private int baseHeight;
     private int webViewOnTouchHeight;
@@ -127,9 +128,10 @@ public class MainActivity extends Activity {
         actionBar = findViewById(R.id.actionBar);
         layout = findViewById(R.id.rl);
         tvUrl = (TextView) findViewById(R.id.tvUrl);
+        webView = (WebView) findViewById(R.id.wvMain);
         final Activity activity = this;
 
-        webView = (WebView) findViewById(R.id.wvMain);
+
         webView.loadUrl("http://terranz.ath.cx/jbrss/ui/main");
         WebSettings webSettings = webView.getSettings();
         webSettings.setLoadsImagesAutomatically(true);

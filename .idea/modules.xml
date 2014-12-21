@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/android/android.iml" filepath="$PROJECT_DIR$/android/android.iml" />
       <module fileurl="file://$PROJECT_DIR$/jbrss.iml" filepath="$PROJECT_DIR$/jbrss.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../tcore/server.iml" filepath="$PROJECT_DIR$/../tcore/server.iml" />
+      <module fileurl="file://$USER_HOME$/Dropbox/projects/tcore/server.iml" filepath="$USER_HOME$/Dropbox/projects/tcore/server.iml" />
     </modules>
   </component>
 </project>

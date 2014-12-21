@@ -9,6 +9,8 @@ import ru.terra.jbrss.db.controllers.exceptions.NonexistentEntityException;
 import ru.terra.jbrss.db.entity.User;
 
 import javax.persistence.NoResultException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class UsersEngine {
@@ -68,5 +70,12 @@ public class UsersEngine {
             return false;
         }
         return true;
+    }
+
+    public List<Integer> getUsers() throws Exception {
+        List<Integer> ret = new ArrayList<>();
+        for (User u : ujpc.list(true, -1, -1))
+            ret.add(u.getId());
+        return ret;
     }
 }
