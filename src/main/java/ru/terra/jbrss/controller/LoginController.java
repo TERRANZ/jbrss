@@ -18,7 +18,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.NewCookie;
+import javax.ws.rs.core.Response;
 
 @Path(URLConstants.DoJson.Login.LOGIN)
 @Produces({"application/x-javascript", "application/json", "application/xml"})
@@ -53,6 +54,25 @@ public class LoginController extends AbstractResource {
         }
 
         return new JSONWithPadding(ret, callback);
+    }
+
+    @GET
+    @Path(URLConstants.DoJson.Login.LOGIN_DO_LOGIN)
+    public Response loginNormal(@Context HttpContext hc,
+                                @QueryParam(URLConstants.DoJson.Login.LOGIN_PARAM_USER) String user,
+                                @QueryParam(URLConstants.DoJson.Login.LOGIN_PARAM_PASS) String pass) {
+        logger.info("User requests login with user = " + user + " and pass = " + pass);
+        if (user != null && pass != null) {
+            User u = usersEngine.login(user, pass);
+            if (u != null) {
+                Response.ResponseBuilder builder = Response.ok();
+                builder.cookie(new NewCookie("JSESSIONID", sessionsHolder.registerUserSession(u)));
+                return builder.build();
+            } else {
+                return Response.status(Response.Status.FORBIDDEN).build();
+            }
+        } else
+            return Response.status(Response.Status.FORBIDDEN).build();
     }
 
     @GET

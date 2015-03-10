@@ -1,9 +1,11 @@
 package ru.terra.jbrss.controller;
 
 import com.sun.jersey.api.core.HttpContext;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.terra.jbrss.constants.URLConstants;
+import ru.terra.jbrss.util.Pair;
 import ru.terra.server.config.Config;
 import ru.terra.server.controller.AbstractResource;
 import ru.terra.server.dto.SimpleDataDTO;
@@ -17,6 +19,13 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -38,20 +47,34 @@ public class ErrorReportController extends AbstractResource {
     @Path(URLConstants.DoJson.ErrorReports.DO_REPORT + "/{uid}")
     public SimpleDataDTO<Boolean> get(@Context HttpContext hc, @PathParam("uid") final String uid) {
         logger.info("Error reported!");
-        final StringBuilder sb = new StringBuilder();
+//        final StringBuilder sb = new StringBuilder();
         if (mailServer != null && mailUser != null && mailPass != null) {
+            final List<Pair<String, String>> values = new ArrayList<>();
             for (String param : hc.getRequest().getFormParameters().keySet()) {
-                sb.append(param);
-                sb.append(" : ");
-                sb.append(hc.getRequest().getFormParameters().getFirst(param));
-                sb.append("\n");
+                values.add(new Pair<>(param, hc.getRequest().getFormParameters().getFirst(param)));
+//                sb.append(param);
+//                sb.append(" : ");
+//                sb.append(hc.getRequest().getFormParameters().getFirst(param));
+//                sb.append("\n");
+//                sb.append("================================================================");
             }
-            logger.info("Received error log: " + sb.toString());
+//            logger.info("Received error log: " + sb.toString());
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     logger.info("Starting error reporter thread");
-                    sendError(uid, sb.toString());
+                    try {
+                        String json = new ObjectMapper().writeValueAsString(values);
+                        sendError(uid, json);
+                        File crashFolder = new File("crashez");
+                        if (!crashFolder.exists())
+                            crashFolder.mkdirs();
+                        PrintWriter printWriter = new PrintWriter(new File("crashez/" + new Date().getTime() + ".json"), Charset.forName("UTF-8").name());
+                        printWriter.write(json);
+                        printWriter.close();
+                    } catch (IOException e) {
+                        logger.error("Unable to process json", e);
+                    }
                 }
             }).start();
         }
@@ -74,8 +97,8 @@ public class ErrorReportController extends AbstractResource {
             message.setSubject("Error report from " + app + " android client");
             message.setContent(error, "text/plain");
 
-            message.addRecipient(Message.RecipientType.TO,
-                    new InternetAddress(mailTo));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
+            message.addFrom(new InternetAddress[]{new InternetAddress(mailFrom)});
 
             transport.connect(mailServer, Integer.parseInt(mailPort), mailUser, mailPass);
 

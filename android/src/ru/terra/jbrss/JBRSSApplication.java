@@ -9,7 +9,7 @@ import org.acra.sender.HttpSender;
 @ReportsCrashes(formKey = "",
         formUri = "http://terranz.ath.cx/jbrss/errors/do.error.report/jbrss",
         httpMethod = HttpSender.Method.POST,
-        mode = ReportingInteractionMode.TOAST, resToastText = R.string.error_caught)
+        mode = ReportingInteractionMode.SILENT)
 public class JBRSSApplication extends Application {
     @Override
     public void onCreate() {

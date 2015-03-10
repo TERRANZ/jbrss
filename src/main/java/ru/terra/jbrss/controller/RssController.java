@@ -2,6 +2,10 @@ package ru.terra.jbrss.controller;
 
 import com.sun.jersey.api.core.HttpContext;
 import com.sun.jersey.api.json.JSONWithPadding;
+import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.multipart.FormDataParam;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.terra.jbrss.constants.RssErrorConstants;
@@ -19,7 +23,12 @@ import ru.terra.server.dto.SimpleDataDTO;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -200,7 +209,7 @@ public class RssController extends AbstractResource {
         if (user != null) {
             List<Feedposts> posts = new ArrayList<>();
             List<FeedPostDTO> dtos = new ArrayList<>();
-            posts.addAll(rssModel.getFeedPosts(id, 0, count));
+            posts.addAll(rssModel.getFeedPosts(id, 0, count, false));
             if (posts != null && posts.size() > 0) {
                 for (Feedposts fp : posts)
                     dtos.add(new FeedPostDTO(fp));
@@ -261,4 +270,54 @@ public class RssController extends AbstractResource {
             return new JSONWithPadding(ret, callback);
         }
     }
+
+    @GET
+    @Path(URLConstants.DoJson.Rss.RSS_EXPORT_FOR_USER)
+    public Response doExport(@Context HttpContext hc) {
+
+        User user = (User) getCurrentUser(hc);
+        if (user != null) {
+            try {
+                List<FeedPostDTO> dtos = new ArrayList<>();
+                for (Feeds feeds : rssModel.getFeeds(user.getId())) {
+                    for (Feedposts fp : rssModel.getFeedPosts(feeds.getId(), 0, 0, true)) {
+                        FeedPostDTO dto = new FeedPostDTO(fp);
+                        dto.posttext = Base64.getEncoder().encodeToString(dto.posttext.getBytes(Charset.defaultCharset()));
+                        dto.posttitle = Base64.getEncoder().encodeToString(dto.posttitle.getBytes(Charset.defaultCharset()));
+                        dtos.add(dto);
+                    }
+                }
+                Response response = Response
+                        .ok()
+                        .entity(new ObjectMapper().writeValueAsBytes(dtos))
+                        .build();
+                return response;
+            } catch (Exception e) {
+                logger.error("Unable to get feed post", e);
+            }
+        }
+        return Response.status(Response.Status.FORBIDDEN).build();
+    }
+
+    @POST
+    @Path(URLConstants.DoJson.Rss.RSS_IMPORT_FOR_USER)
+    public Response doImport(@Context HttpContext hc,
+                             @FormDataParam("file") InputStream uploadedInputStream,
+                             @FormDataParam("file")
+                             FormDataContentDisposition fileDetail) throws IOException {
+        List<FeedPostDTO> dtos = new ObjectMapper().readValue(uploadedInputStream, new TypeReference<List<FeedPostDTO>>() {
+        });
+        for (FeedPostDTO dto : dtos) {
+            Feedposts post = new Feedposts();
+            post.setPosttitle(new String(Base64.getDecoder().decode(dto.posttitle), Charset.defaultCharset()));
+            post.setPostlink(dto.postlink);
+            post.setPosttext(new String(Base64.getDecoder().decode(dto.posttext), Charset.defaultCharset()));
+            post.setPostdate(new Date(dto.postdate));
+            post.setFeedId(dto.feedId);
+            post.setUpdated(new Date());
+            rssModel.insertPost(post);
+        }
+        return Response.ok().build();
+    }
+
 }

@@ -26,7 +26,7 @@ public class ReadCommand extends AbstractPrivCommand {
                 perPage = Integer.parseInt(params[3]);
             } catch (Exception e) {
             }
-            List<Feedposts> posts = rssModel.getFeedPosts(targetFeed, page, perPage);
+            List<Feedposts> posts = rssModel.getFeedPosts(targetFeed, page, perPage,false);
             for (Feedposts fp : posts) {
                 sendMessage(fp.getPosttitle() + " : " + fp.getPosttext());
             }

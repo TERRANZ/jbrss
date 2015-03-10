@@ -7,9 +7,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.MotionEvent;
+import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -70,7 +69,9 @@ public class MainActivity extends Activity {
                         urlConn.setRequestProperty("Cookie", cookie);
                         urlConn.connect();
                         Scanner s = new Scanner(urlConn.getInputStream());
-                        JSONObject post = new JSONObject(s.useDelimiter("\\A").next());
+                        String json = s.useDelimiter("\\A").next();
+                        json = json.substring(json.indexOf("(") + 1, json.length() - 1);
+                        JSONObject post = new JSONObject(json);
                         title = post.getString("posttitle");
                         text = post.getString("posttext");
                         link = post.getString("postlink");
@@ -104,8 +105,6 @@ public class MainActivity extends Activity {
                     String shareMessage = title;
                     shareMessage += "\n";
                     shareMessage += link;
-                    shareMessage += "\n";
-                    shareMessage += text;
                     // add the message
                     shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
 
@@ -119,19 +118,11 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        setProgressBarIndeterminateVisibility(true);
-        setProgressBarVisibility(true);
         setContentView(R.layout.a_main);
         actionBar = findViewById(R.id.actionBar);
         layout = findViewById(R.id.rl);
         tvUrl = (TextView) findViewById(R.id.tvUrl);
         webView = (WebView) findViewById(R.id.wvMain);
-        final Activity activity = this;
-
-
         webView.loadUrl("http://terranz.ath.cx/jbrss/ui/main");
         WebSettings webSettings = webView.getSettings();
         webSettings.setLoadsImagesAutomatically(true);
@@ -141,6 +132,7 @@ public class MainActivity extends Activity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, final String url) {
+                Log.d("JBRSS", url);
                 if (url.contains("terranz.ath.cx")) {
                     view.loadUrl(url);
                 } else {
@@ -152,73 +144,11 @@ public class MainActivity extends Activity {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                activity.setProgressBarIndeterminateVisibility(false);
                 cookie = CookieManager.getInstance().getCookie(url);
                 tvUrl.setText(url);
             }
         });
         webView.addJavascriptInterface(new ShareAction(this), "Android");
-        webView.setOnTouchListener(listener);
-        webView.post(new Runnable() {
-            @Override
-            public void run() {
-                barHeight = actionBar.getMeasuredHeight();
-                baseHeight = layout.getMeasuredHeight();
-                webView.getLayoutParams().height = webView.getMeasuredHeight() - barHeight;
-                webView.requestLayout();
-            }
-        });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    private boolean resizeView(float delta) {
-        heightChange = delta;
-        int newHeight = (int) (webViewOnTouchHeight - delta);
-        if (newHeight > baseHeight) { // scroll over top
-            if (webView.getLayoutParams().height < baseHeight) {
-                webView.getLayoutParams().height = baseHeight;
-                webView.requestLayout();
-                return true;
-            }
-        } else if (newHeight < baseHeight - barHeight) { // scroll below bar
-            if (webView.getLayoutParams().height > baseHeight - barHeight) {
-                webView.getLayoutParams().height = baseHeight - barHeight;
-                webView.requestLayout();
-                return true;
-            }
-        } else { // scroll between top and bar
-            webView.getLayoutParams().height = (int) (webViewOnTouchHeight - delta);
-            webView.requestLayout();
-            return true;
-        }
-        return false;
-    }
-
-    private View.OnTouchListener listener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getAction() & MotionEvent.ACTION_MASK) {
-                case MotionEvent.ACTION_DOWN:
-                    startEventY = event.getY();
-                    heightChange = 0;
-                    webViewOnTouchHeight = webView.getLayoutParams().height;
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    float delta = (event.getY() + heightChange) - startEventY;
-                    boolean heigthChanged = resizeView(delta);
-                    if (heigthChanged) {
-                        actionBar.setTranslationY(baseHeight - webView.getLayoutParams().height - barHeight);
-                    }
-            }
-            return false;
-        }
-    };
-
-    public void refresh(View view) {
-
-    }
 }

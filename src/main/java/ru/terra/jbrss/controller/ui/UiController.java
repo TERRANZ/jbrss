@@ -1,7 +1,6 @@
 package ru.terra.jbrss.controller.ui;
 
 import com.sun.jersey.api.core.HttpContext;
-import org.apache.log4j.Logger;
 import ru.terra.jbrss.constants.URLConstants;
 import ru.terra.server.controller.AbstractResource;
 
@@ -17,52 +16,10 @@ import javax.ws.rs.core.Response;
  */
 @Path(URLConstants.UI.UI)
 public class UiController extends AbstractResource {
-    private Logger logger = Logger.getLogger(this.getClass());
-
     @Path(URLConstants.UI.MAIN)
     @GET
     @Produces({"text/html"})
     public Response getMain(@Context HttpContext hc) {
-        if (isAuthorized(hc))
-            return returnHtmlFile("html/main.html");
-        else
-            return getLogin(hc);
-    }
-
-    @Path(URLConstants.UI.LOGIN)
-    @GET
-    @Produces({"text/html"})
-    public Response getLogin(@Context HttpContext hc) {
-        if (isAuthorized(hc))
-            return getMain(hc);
-        else
-            return returnHtmlFile("html/login.html");
-    }
-
-    @Path(URLConstants.UI.REG)
-    @GET
-    @Produces({"text/html"})
-    public Response getReg(@Context HttpContext hc) {
-        return returnHtmlFile("html/reg.html");
-    }
-
-    @Path(URLConstants.UI.ADD)
-    @GET
-    @Produces({"text/html"})
-    public Response getAdd(@Context HttpContext hc) {
-        if (isAuthorized(hc))
-            return returnHtmlFile("html/add.html");
-        else
-            return getLogin(hc);
-    }
-
-    @Path(URLConstants.UI.SETTINGS)
-    @GET
-    @Produces({"text/html"})
-    public Response getSettings(@Context HttpContext hc) {
-        if (isAuthorized(hc))
-            return returnHtmlFile("html/settings.html");
-        else
-            return getLogin(hc);
+        return returnHtmlFile("html/main.html");
     }
 }

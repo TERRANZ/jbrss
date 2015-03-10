@@ -13,6 +13,9 @@
           <include>**/*.properties</include>
         </includes>
       </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
     </resources>
     <plugins>
       <plugin>
@@ -35,14 +38,6 @@
                 <Build-Number>1</Build-Number>
               </manifestEntries>
             </transformer>
-            <transformer>
-              <resource>META-INF/persistence.xml</resource>
-              <file>src/main/resources/META-INF/persistence.xml</file>
-            </transformer>
-            <transformer>
-              <resource>log4j.xml</resource>
-              <file>src/main/resources/log4j.xml</file>
-            </transformer>
           </transformers>
         </configuration>
       </plugin>
@@ -53,6 +48,35 @@
           <target>1.7</target>
           <debug>true</debug>
         </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>ru.terra.jbrss.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>copy</id>
+            <phase>install</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

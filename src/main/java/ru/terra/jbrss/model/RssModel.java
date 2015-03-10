@@ -70,14 +70,18 @@ public class RssModel {
         return newPosts.size();
     }
 
+    public void insertPost(Feedposts post) {
+        feedpostsJpaController.create(post);
+    }
+
     public List<Feedposts> getNewUserPosts(Integer uid, Feeds feed, Date d) {
         //log.info("updating feed : " + feed.toString());
         return feedpostsJpaController.findFeedpostsByFeedFromDate(feedsJpaController.findFeedByUserAndById(uid, feed.getId()).getId(), d);
 
     }
 
-    public List<Feedposts> getFeedPosts(Integer feedId, Integer page, Integer perpage) {
-        return feedpostsJpaController.findFeedpostsByFeed(feedId, page, perpage);
+    public List<Feedposts> getFeedPosts(Integer feedId, Integer page, Integer perpage, boolean all) {
+        return feedpostsJpaController.findFeedpostsByFeed(feedId, page, perpage, all);
     }
 
     public void setFeedRead(Integer feed, Boolean read) {

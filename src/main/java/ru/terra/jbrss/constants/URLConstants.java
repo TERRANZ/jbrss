@@ -13,6 +13,7 @@ public class URLConstants extends CoreUrlConstants {
         public class Login {
             public static final String LOGIN = "/login/";
             public static final String LOGIN_DO_LOGIN_JSON = "do.login.json";
+            public static final String LOGIN_DO_LOGIN = "do.login";
             public static final String LOGIN_DO_REGISTER_JSON = "do.register.json";
             public static final String LOGIN_PARAM_USER = "user";
             public static final String LOGIN_PARAM_PASS = "pass";
@@ -32,6 +33,8 @@ public class URLConstants extends CoreUrlConstants {
             public static final String RSS_DO_GET_POST = "do.get.post.json";
             public static final String RSS_DO_SEARCH = "do.search.json";
             public static final String RSS_PARAM_TIMESTAMP = "timestamp";
+            public static final String RSS_EXPORT_FOR_USER = "do.export.json";
+            public static final String RSS_IMPORT_FOR_USER = "do.import.json";
         }
 
         public class Captcha {

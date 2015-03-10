@@ -124,13 +124,15 @@ public class FeedpostsJpaController extends AbstractJpaController<Feedposts> imp
         }
     }
 
-    public List<Feedposts> findFeedpostsByFeed(Integer id, Integer page, Integer perpage) {
+    public List<Feedposts> findFeedpostsByFeed(Integer id, Integer page, Integer perpage, boolean all) {
         try {
             if (!em.isOpen())
                 em = getEntityManager();
             Query q = em.createNamedQuery("Feedposts.getPostsByFeedAndByDateSorted").setParameter("feedId", id);
-            q.setMaxResults(perpage);
-            q.setFirstResult(page * perpage);
+            if (!all) {
+                q.setMaxResults(perpage);
+                q.setFirstResult(page * perpage);
+            }
             return q.getResultList();
         } catch (NoResultException e) {
             return null;
