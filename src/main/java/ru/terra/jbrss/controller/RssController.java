@@ -23,6 +23,7 @@ import ru.terra.server.dto.SimpleDataDTO;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.InputStream;
@@ -301,6 +302,7 @@ public class RssController extends AbstractResource {
 
     @POST
     @Path(URLConstants.DoJson.Rss.RSS_IMPORT_FOR_USER)
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response doImport(@Context HttpContext hc,
                              @FormDataParam("file") InputStream uploadedInputStream,
                              @FormDataParam("file")
@@ -315,7 +317,11 @@ public class RssController extends AbstractResource {
             post.setPostdate(new Date(dto.postdate));
             post.setFeedId(dto.feedId);
             post.setUpdated(new Date());
-            rssModel.insertPost(post);
+            try {
+                rssModel.insertPost(post);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return Response.ok().build();
     }

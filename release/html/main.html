@@ -18,6 +18,7 @@
       $.mobile.initializePage();
     };
 
+
     </script>
     <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <!-- Uncomment the following to include cordova in your android project -->
@@ -37,7 +38,7 @@
 <!-- Page: login  -->
 <div id="login" data-role="page">
     <div role="main" class="ui-content">
-        <a class="ui-btn">Регистрация</a>
+        <a class="ui-btn" href="#reg">Регистрация</a>
 
         <div class="ui-field-contain">
             <label for="user">Логин</label>
@@ -49,7 +50,31 @@
         </div>
         <input id="cbSave" name="gk-12260hqI" type="checkbox">
         <label for="cbSave">Сохранить</label>
-        <a class="ui-btn" href="#" onclick="userLogin();">Login</a>
+        <a class="ui-btn" href="#" onclick="userLogin();">Вход</a>
+    </div>
+</div>
+<!-- Page: reg  -->
+<div id="reg" data-role="page">
+    <div role="main" class="ui-content">
+        <a class="ui-btn" href="#login">Назад</a>
+
+        <div class="ui-field-contain">
+            <label for="ruser">Логин</label>
+            <input type="text" name id="ruser">
+        </div>
+        <div class="ui-field-contain">
+            <label for="rpass">Пароль</label>
+            <input type="password" name id="rpass">
+        </div>
+        <img id="captcha_image"/>
+        <div data-role="fieldcontain">
+            <label for="captcha_val"> Капча </label>
+            <input name="captcha_val" id="captcha_val" placeholder="" value="">
+            <a data-role="button" data-icon="refresh" data-iconpos="left" onclick="loadCaptcha();" id="loadcapthca">
+                Обновить </a>
+        </div>
+        <label for="cbReg">Регистрация</label>
+        <a class="ui-btn" href="#" onclick="userReg();">Регистрация</a>
     </div>
 </div>
 <!-- Page: mainform  -->
@@ -106,7 +131,7 @@ function load_feeds() {
             var htmlRet = "";
             if (data.errorCode == 0) {
                 $.each(data.data, function(i, feed) {
-                    htmlRet += '<li><a  id=' + feed.id + ' href="#feedpage" onClick=load_feed(' + feed.id + '); data-transition="slide">' + feed.feedname + '</a></li>';
+                    htmlRet += '<li><a  id=' + feed.id + ' onClick=load_feed(' + feed.id + '); data-transition="slide">' + feed.feedname + '</a></li>';
                 });
                 $("#feeds").html(htmlRet);
                 var url = document.URL;
@@ -122,6 +147,7 @@ function load_feed(fid) {
     loaded = 10;
     feedId = fid;
     load();
+    $.mobile.changePage("#feedpage");
 }
 
 function create_main_post(title, text, date, link, id) {
@@ -161,7 +187,7 @@ function userLoginPredef(user, pass){
         alert('Не введен пароль');
     } else {
         $.ajax({
-            url: 'http://localhost:8080/jbrss/login/do.login.json',
+            url: 'http://terranz.ath.cx/jbrss/login/do.login.json',
             async: false,
             type: 'get',
             dataType: "jsonp",
@@ -174,7 +200,7 @@ function userLoginPredef(user, pass){
                 $("#loginbtn").removeClass('ui-disabled');
                 if (data.logged == true) {
                     setCookie("JSESSIONID", data.session);
-                    window.location.assign("http://localhost:8080/jbrss/ui/main#mainform");
+                    $.mobile.changePage("#mainform");
                     load_feeds();
                 } else {
                     if (parseInt(data.errorCode) == 1000) {
@@ -308,8 +334,8 @@ function loadCaptcha() {
 }
 
 function userReg() {
-    var user = $("#user").val();
-    var pass = $("#pass").val();
+    var user = $("#ruser").val();
+    var pass = $("#rpass").val();
     var capval = $("#captcha_val").val();
     if (user == null || user.length == 0) {
         alert('Не указан логин');
@@ -330,8 +356,7 @@ function userReg() {
             },
             success: function(data) {
                 if (data.logged == true) {
-                    setCookie("JSESSIONID", data.session);
-                    $.mobile.changePage("#mainform");
+                    userLoginPredef(user,pass);
                 } else {
                     if (parseInt(data.errorCode) == 1000) {
                         alert('Вы сделали слишком много попыток зайти на ресурс. Аккаунт временно заблокирован. Попробуйте еще раз через некоторое время.');
@@ -432,6 +457,7 @@ function delete_feed(id) {
     });
     $.mobile.changePage("#sure");
 }
+
 
 </script>
 </body>
