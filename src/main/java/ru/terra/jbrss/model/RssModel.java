@@ -54,7 +54,7 @@ public class RssModel {
                     if (fp.getPostdate() == null)
                         log.info("post date of post " + fp.getPosttitle() + " is null");
                     else if (fp.getPostdate().getTime() > d.getTime()) {
-                        log.info("setting feed id " + feed.getId());
+//                        log.info("setting feed id " + feed.getId());
                         fp.setFeedId(feed.getId());
                         fp.setUpdated(new Date());
                         newPosts.add(fp);

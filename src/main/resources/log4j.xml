@@ -17,9 +17,23 @@
         </layout>
     </appender>
 
-	<root>
-		<appender-ref ref="console" />
+    <logger name="ru">
+        <level value="trace"/>
         <appender-ref ref="file"/>
-	</root>
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="com">
+        <level value="trace"/>
+        <appender-ref ref="file"/>
+    </logger>
+    <!-- Application Loggers -->
+    <logger name="org">
+        <level value="info"/>
+        <appender-ref ref="file"/>
+    </logger>
+    <logger name="test">
+        <level value="info"/>
+        <appender-ref ref="file"/>
+    </logger>
 
 </log4j:configuration>

@@ -1,6 +1,7 @@
 package ru.terra.jbrss.controller;
 
 import com.sun.jersey.api.core.HttpContext;
+import com.sun.mail.util.MailSSLSocketFactory;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,8 +87,13 @@ public class ErrorReportController extends AbstractResource {
         try {
             Properties props = new Properties();
 
+            MailSSLSocketFactory socketFactory= new MailSSLSocketFactory();
+            socketFactory.setTrustAllHosts(true);
+            props.put("mail.imaps.ssl.socketFactory", socketFactory);
             props.put("mail.transport.protocol", "smtps");
             props.put("mail.smtps.auth", "true");
+            props.put("mail.smtps.ssl.checkserveridentity", "false");
+            props.put("mail.smtps.ssl.trust", "*");
 
             Session mailSession = Session.getDefaultInstance(props);
             mailSession.setDebug(true);
