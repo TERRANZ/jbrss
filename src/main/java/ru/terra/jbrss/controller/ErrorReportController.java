@@ -41,25 +41,19 @@ public class ErrorReportController extends AbstractResource {
     private String mailPort = Config.getConfig().getValue("errorreport.mail.server.port", "465");
     private String mailUser = Config.getConfig().getValue("errorreport.mail.user", null);
     private String mailPass = Config.getConfig().getValue("errorreport.mail.pass", null);
-    private String mailTo = Config.getConfig().getValue("errorreport.mail.to", "jbrss@terranz.ath.cx");
-    private String mailFrom = Config.getConfig().getValue("errorreport.mail.from", "jbrss@terranz.ath.cx");
+    private String mailTo = "terranz@terranz.mine.nu";
+    private String mailFrom = "terranz@terranz.mine.nu";
 
     @POST
     @Path(URLConstants.DoJson.ErrorReports.DO_REPORT + "/{uid}")
     public SimpleDataDTO<Boolean> get(@Context HttpContext hc, @PathParam("uid") final String uid) {
         logger.info("Error reported!");
-//        final StringBuilder sb = new StringBuilder();
         if (mailServer != null && mailUser != null && mailPass != null) {
             final List<Pair<String, String>> values = new ArrayList<>();
             for (String param : hc.getRequest().getFormParameters().keySet()) {
                 values.add(new Pair<>(param, hc.getRequest().getFormParameters().getFirst(param)));
-//                sb.append(param);
-//                sb.append(" : ");
-//                sb.append(hc.getRequest().getFormParameters().getFirst(param));
-//                sb.append("\n");
-//                sb.append("================================================================");
             }
-//            logger.info("Received error log: " + sb.toString());
+
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -87,7 +81,7 @@ public class ErrorReportController extends AbstractResource {
         try {
             Properties props = new Properties();
 
-            MailSSLSocketFactory socketFactory= new MailSSLSocketFactory();
+            MailSSLSocketFactory socketFactory = new MailSSLSocketFactory();
             socketFactory.setTrustAllHosts(true);
             props.put("mail.imaps.ssl.socketFactory", socketFactory);
             props.put("mail.transport.protocol", "smtps");
@@ -108,8 +102,7 @@ public class ErrorReportController extends AbstractResource {
 
             transport.connect(mailServer, Integer.parseInt(mailPort), mailUser, mailPass);
 
-            transport.sendMessage(message,
-                    message.getRecipients(Message.RecipientType.TO));
+            transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
             transport.close();
         } catch (Exception e) {
             logger.error("error while sending email", e);

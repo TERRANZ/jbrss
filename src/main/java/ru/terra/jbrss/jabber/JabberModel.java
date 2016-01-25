@@ -28,6 +28,7 @@ public class JabberModel {
 
     public String startRegContact(String contact) {
         Contact newContact = new Contact();
+        newContact.setId(0);
         newContact.setStatus(ContactStatus.CAPTCHA_SENT);
         newContact.setContact(contact);
         CaptchDTO dto = captchaEngine.getCaptcha();

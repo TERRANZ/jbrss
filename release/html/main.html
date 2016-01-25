@@ -8,15 +8,16 @@
           type="text/css"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
-    $(document).on("mobileinit", function () {
-      $.mobile.autoInitializePage = false;
-      $.mobile.hashListeningEnabled = false;
-    });
+        $(document).on("mobileinit", function () {
+            $.mobile.autoInitializePage = false;
+            $.mobile.hashListeningEnabled = false;
+        });
 
-    function mobileInitPage() {
-      $.mobile.hashListeningEnabled = true;
-      $.mobile.initializePage();
-    };
+        function mobileInitPage() {
+            $.mobile.hashListeningEnabled = true;
+            $.mobile.initializePage();
+        }
+        ;
 
 
     </script>
@@ -113,350 +114,349 @@
     </div>
 </div>
 <script>
-var loaded = 0;
-var feedId = 0;
+    var loaded = 0;
+    var feedId = 0;
 
-$("#mainform").ready(load_feeds());
-$("#login").on("pageinit", load_login());
+    $("#mainform").ready(load_feeds());
+    $("#login").on("pageinit", load_login());
 
-function load_feeds() {
-    $.ajax({
-        url: 'http://terranz.ath.cx/jbrss/rss/do.list.json',
-        async: false,
-        type: 'get',
-        dataType: "jsonp",
-        jsonp: "callback",
-        data: {},
-        success: function(data) {
-            var htmlRet = "";
-            if (data.errorCode == 0) {
-                $.each(data.data, function(i, feed) {
-                    htmlRet += '<li><a  id=' + feed.id + ' onClick=load_feed(' + feed.id + '); data-transition="slide">' + feed.feedname + '</a></li>';
-                });
-                $("#feeds").html(htmlRet);
-                var url = document.URL;
-                if (url.indexOf("feed") > 0) {
-                    load_feed(url.substring(url.indexOf("#") + 6));
-                }
-            }
-        }
-    });
-}
-
-function load_feed(fid) {
-    loaded = 10;
-    feedId = fid;
-    load();
-    $.mobile.changePage("#feedpage");
-}
-
-function create_main_post(title, text, date, link, id) {
-    var ret = "";
-    ret += '<div class="column1-unit"> <a href=# onClick = "window.open(\'' + link + '\');"> <h1>' + title + '</h1></a>';
-    ret += '<h3>' + new Date(date) + '</h3>';
-    ret += '<p>' + text + '</p>';
-    ret += '<a data-transition="slide" href="#" onClick = "Android.share(' + id + ');"> Поделиться </a>';
-    ret += '<ul class="social-buttons cf">';
-    ret += '<li><a href="https://plus.google.com/share?url='+link+'" class="socialite googleplus-one" data-size="tall" data-href="'+link+'" rel="nofollow" target="_blank"><span class="vhidden">Share on Google+</span></a></li>';
-    ret += '</ul>';
-    ret += '</div> <hr class="clear-contentunit" />';
-    return ret;
-}
-
-function load_login(){
-    if(getCookie("user") != undefined && getCookie("pass") != undefined)
-        userLoginPredef(getCookie("user"),getCookie("pass"));
-}
-function userLogin() {
-    if (!$("#loginbtn").hasClass('ui-disabled'))
-        $("#loginbtn").addClass('ui-disabled');
-    var user = $("#user").val();
-    var pass = $("#pass").val();
-    var save = $("#cbSave").is(':checked');
-    if (save){
-        setCookie("user",user);
-        setCookie("pass",pass);
-    }
-    userLoginPredef(user,pass);
-}
-
-function userLoginPredef(user, pass){
-  if (user == null || user.length == 0) {
-        alert('Не указан логин');
-    } else if (pass == null || pass.length == 0) {
-        alert('Не введен пароль');
-    } else {
+    function load_feeds() {
         $.ajax({
-            url: 'http://terranz.ath.cx/jbrss/login/do.login.json',
+            url: 'http://terranz.mine.nu/jbrss/rss/do.list.json',
             async: false,
             type: 'get',
             dataType: "jsonp",
             jsonp: "callback",
-            data: {
-                user: user,
-                pass: pass
-            },
-            success: function(data) {
-                $("#loginbtn").removeClass('ui-disabled');
-                if (data.logged == true) {
-                    setCookie("JSESSIONID", data.session);
-                    $.mobile.changePage("#mainform");
-                    load_feeds();
-                } else {
-                    if (parseInt(data.errorCode) == 1000) {
-                        alert('Вы сделали слишком много попыток зайти на ресурс. Аккаунт временно заблокирован. Попробуйте еще раз через некоторое время.');
-                    } else if (parseInt(data.errorCode) == 1001) {
-                        alert('Ваш аккаунт заблокирован, обратитесь в поддержку для получения полной информации.');
-                    } else {
-                        alert('Неверный логин или пароль');
-                        $('#j_password').val('');
+            data: {},
+            success: function (data) {
+                var htmlRet = "";
+                if (data.errorCode == 0) {
+                    $.each(data.data, function (i, feed) {
+                        htmlRet += '<li><a  id=' + feed.id + ' onClick=load_feed(' + feed.id + '); data-transition="slide">' + feed.feedname + '</a></li>';
+                    });
+                    $("#feeds").html(htmlRet);
+                    var url = document.URL;
+                    if (url.indexOf("feed") > 0) {
+                        load_feed(url.substring(url.indexOf("#") + 6));
                     }
                 }
             }
         });
     }
-}
 
-function setCookie(key, value) {
-    var expires = new Date();
-    expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-    document.cookie = key + '=' + value + ';path=/' + ';expires=' + expires.toUTCString();
-}
-
-function update() {
-    if (!$("#updatebtn").hasClass('ui-disabled'))
-        $("#updatebtn").addClass('ui-disabled');
-    $.ajax({
-        url: 'http://terranz.ath.cx/jbrss/rss/do.update.json',
-        async: true,
-        type: 'get',
-        dataType: "jsonp",
-        jsonp: "callback",
-        data: {},
-        success: function(data) {
-            loading = false;
-            $("#updatebtn").removeClass('ui-disabled');
-            if (data.errorCode == 0) {
-                alert("Обновление завершено, загружено " + data.data + " новых записей");
-            } else {
-                alert("Ошибка обновления: " + data.errorMessage);
-            }
-        }
-    });
-}
-
-function load() {
-    $.ajax({
-        url: 'http://terranz.ath.cx/jbrss/rss/do.get.feed.json',
-        async: false,
-        type: 'get',
-        dataType: "jsonp",
-        jsonp: "callback",
-        data: {
-            id: feedId,
-            count: loaded
-        },
-        success: function(data) {
-            var htmlRet = "";
-            if (data.errorCode == 0) {
-                $.each(data.data, function(i, post) {
-                    htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink, post.id);
-                });
-                $("#messages").html(htmlRet);
-            }
-        }
-    });
-    loaded += 10;
-}
-
-function add() {
-    var url = $("#url").val();
-    if (learnRegExp(url)) {
-        $.ajax({
-            url: 'http://terranz.ath.cx/jbrss/rss/do.add.json',
-            async: false,
-            type: 'get',
-            dataType: "jsonp",
-            jsonp: "callback",
-            data: {
-                url: url
-            },
-            success: function(data) {
-                if (data.data) {
-                    load_feeds();
-                } else
-                    alert("Ошибка при добавлении: " + data.errorMessage);
-            }
-        });
-    } else {
-        alert("Неверный URL");
+    function load_feed(fid) {
+        loaded = 10;
+        feedId = fid;
+        load();
+        $.mobile.changePage("#feedpage");
     }
-}
-  function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+
+    function create_main_post(title, text, date, link, id) {
+        var ret = "";
+        ret += '<div class="column1-unit"> <a href=# onClick = "window.open(\'' + link + '\');"> <h1>' + title + '</h1></a>';
+        ret += '<h3>' + new Date(date) + '</h3>';
+        ret += '<p>' + text + '</p>';
+        ret += '<a data-transition="slide" href="#" onClick = "Android.share(' + id + ');"> Поделиться </a>';
+        ret += '<ul class="social-buttons cf">';
+        ret += '<li><a href="https://plus.google.com/share?url=' + link + '" class="socialite googleplus-one" data-size="tall" data-href="' + link + '" rel="nofollow" target="_blank"><span class="vhidden">Share on Google+</span></a></li>';
+        ret += '</ul>';
+        ret += '</div> <hr class="clear-contentunit" />';
+        return ret;
     }
-    return "";
-}
-function learnRegExp(s) {
-    var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-    return regexp.test(s);
-}
 
-$("#user").ready(loadCaptcha());
-
-var captcha = "";
-function loadCaptcha() {
-    if (!$("#loadcapthca").hasClass('ui-disabled'))
-        $("#loadcapthca").addClass('ui-disabled');
-    $.ajax({
-        url: 'http://terranz.ath.cx/jbrss/captcha/do.get.json',
-        async: true,
-        type: 'get',
-        dataType: "jsonp",
-        jsonp: "callback",
-        data: {
-        },
-        success: function(data) {
-            $("#loadcapthca").removeClass('ui-disabled');
-            if (data.errorCode == 0) {
-                captcha = data.cid;
-                $("#captcha_image").attr("src", data.image);
-            } else {
-                alert("Не получилось загрузить капчу: " + data.errorMessage);
-            }
+    function load_login() {
+        if (getCookie("user") != undefined && getCookie("pass") != undefined)
+            userLoginPredef(getCookie("user"), getCookie("pass"));
+    }
+    function userLogin() {
+        if (!$("#loginbtn").hasClass('ui-disabled'))
+            $("#loginbtn").addClass('ui-disabled');
+        var user = $("#user").val();
+        var pass = $("#pass").val();
+        var save = $("#cbSave").is(':checked');
+        if (save) {
+            setCookie("user", user);
+            setCookie("pass", pass);
         }
-    });
-}
+        userLoginPredef(user, pass);
+    }
 
-function userReg() {
-    var user = $("#ruser").val();
-    var pass = $("#rpass").val();
-    var capval = $("#captcha_val").val();
-    if (user == null || user.length == 0) {
-        alert('Не указан логин');
-    } else if (pass == null || pass.length == 0) {
-        alert('Не введен пароль');
-    } else {
+    function userLoginPredef(user, pass) {
+        if (user == null || user.length == 0) {
+            alert('Не указан логин');
+        } else if (pass == null || pass.length == 0) {
+            alert('Не введен пароль');
+        } else {
+            $.ajax({
+                url: 'http://terranz.mine.nu/jbrss/login/do.login.json',
+                async: false,
+                type: 'get',
+                dataType: "jsonp",
+                jsonp: "callback",
+                data: {
+                    user: user,
+                    pass: pass
+                },
+                success: function (data) {
+                    $("#loginbtn").removeClass('ui-disabled');
+                    if (data.logged == true) {
+                        setCookie("JSESSIONID", data.session);
+                        $.mobile.changePage("#mainform");
+                        load_feeds();
+                    } else {
+                        if (parseInt(data.errorCode) == 1000) {
+                            alert('Вы сделали слишком много попыток зайти на ресурс. Аккаунт временно заблокирован. Попробуйте еще раз через некоторое время.');
+                        } else if (parseInt(data.errorCode) == 1001) {
+                            alert('Ваш аккаунт заблокирован, обратитесь в поддержку для получения полной информации.');
+                        } else {
+                            alert('Неверный логин или пароль');
+                            $('#j_password').val('');
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function setCookie(key, value) {
+        var expires = new Date();
+        expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+        document.cookie = key + '=' + value + ';path=/' + ';expires=' + expires.toUTCString();
+    }
+
+    function update() {
+        if (!$("#updatebtn").hasClass('ui-disabled'))
+            $("#updatebtn").addClass('ui-disabled');
         $.ajax({
-            url: 'http://terranz.ath.cx/jbrss/login/do.register.json',
+            url: 'http://terranz.mine.nu/jbrss/rss/do.update.json',
             async: true,
             type: 'get',
             dataType: "jsonp",
             jsonp: "callback",
-            data: {
-                user: user,
-                pass: pass,
-                captcha: captcha,
-                capval: capval
-            },
-            success: function(data) {
-                if (data.logged == true) {
-                    userLoginPredef(user,pass);
+            data: {},
+            success: function (data) {
+                loading = false;
+                $("#updatebtn").removeClass('ui-disabled');
+                if (data.errorCode == 0) {
+                    alert("Обновление завершено, загружено " + data.data + " новых записей");
                 } else {
-                    if (parseInt(data.errorCode) == 1000) {
-                        alert('Вы сделали слишком много попыток зайти на ресурс. Аккаунт временно заблокирован. Попробуйте еще раз через некоторое время.');
-                    } else if (parseInt(data.errorCode) == 1001) {
-                        alert('Ваш аккаунт заблокирован, обратитесь в поддержку для получения полной информации.');
-                    } else {
-                        alert(data.message);
-                        $('#j_password').val('');
-                    }
+                    alert("Ошибка обновления: " + data.errorMessage);
                 }
             }
         });
     }
-}
 
-function doSearch() {
-    var val = $("#search").val();
-    if (val.length > 0) {
+    function load() {
         $.ajax({
-            url: 'http://terranz.ath.cx/jbrss/rss/do.search.json',
+            url: 'http://terranz.mine.nu/jbrss/rss/do.get.feed.json',
             async: false,
-            type: 'post',
+            type: 'get',
             dataType: "jsonp",
             jsonp: "callback",
-            data: {val: val},
-            success: function(data) {
+            data: {
+                id: feedId,
+                count: loaded
+            },
+            success: function (data) {
                 var htmlRet = "";
-                $("#feeds_collapsable").trigger('collapse');
-                $("#messages_collapsable").trigger('expand');
                 if (data.errorCode == 0) {
-                    $.each(data.data, function(i, post) {
-                        htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink);
+                    $.each(data.data, function (i, post) {
+                        htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink, post.id);
                     });
                     $("#messages").html(htmlRet);
                 }
             }
         });
+        loaded += 10;
     }
-}
 
-function saveSettings() {
-    $.ajax({
-        url: 'http://terranz.ath.cx/jbrss/settings/do.set.json',
-        async: true,
-        type: 'get',
-        dataType: "jsonp",
-        jsonp: "callback",
-        data: {
-            key: $("#key").val(),
-            val: $("#val").val(),
-        },
-        success: function(data) {
-            window.location.assign("http://terranz.ath.cx/jbrss/ui/main");
+    function add() {
+        var url = $("#url").val();
+        if (learnRegExp(url)) {
+            $.ajax({
+                url: 'http://terranz.mine.nu/jbrss/rss/do.add.json',
+                async: false,
+                type: 'get',
+                dataType: "jsonp",
+                jsonp: "callback",
+                data: {
+                    url: url
+                },
+                success: function (data) {
+                    if (data.data) {
+                        load_feeds();
+                    } else
+                        alert("Ошибка при добавлении: " + data.errorMessage);
+                }
+            });
+        } else {
+            alert("Неверный URL");
         }
-    });
-}
-
-$("#feedscontainer").ready(loadFeedsToSettings());
-function loadFeedsToSettings() {
-    $.ajax({
-        url: 'http://terranz.ath.cx/jbrss/rss/do.list.json',
-        async: false,
-        type: 'get',
-        dataType: "jsonp",
-        jsonp: "callback",
-        data: {},
-        success: function(data) {
-            var htmlRet = "";
-            if (data.errorCode == 0) {
-                $.each(data.data, function(i, feed) {
-                    htmlRet += '<li data-theme="c"><a href="#" onClick=delete_feed(' + feed.id + '); data-transition="slide">' + feed.feedname
-                            + '</a></li>';
-                });
-                $("#feedslist").html(htmlRet);
-            }
+    }
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
         }
-    });
-}
+        return "";
+    }
+    function learnRegExp(s) {
+        var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        return regexp.test(s);
+    }
 
-function delete_feed(id) {
-    $("#sure .sure-do").text("Да").on("click.sure", function() {
+    $("#user").ready(loadCaptcha());
+
+    var captcha = "";
+    function loadCaptcha() {
+        if (!$("#loadcapthca").hasClass('ui-disabled'))
+            $("#loadcapthca").addClass('ui-disabled');
         $.ajax({
-            url: 'http://terranz.ath.cx/jbrss/rss/do.del.json',
+            url: 'http://terranz.mine.nu/jbrss/captcha/do.get.json',
+            async: true,
+            type: 'get',
+            dataType: "jsonp",
+            jsonp: "callback",
+            data: {},
+            success: function (data) {
+                $("#loadcapthca").removeClass('ui-disabled');
+                if (data.errorCode == 0) {
+                    captcha = data.cid;
+                    $("#captcha_image").attr("src", data.image);
+                } else {
+                    alert("Не получилось загрузить капчу: " + data.errorMessage);
+                }
+            }
+        });
+    }
+
+    function userReg() {
+        var user = $("#ruser").val();
+        var pass = $("#rpass").val();
+        var capval = $("#captcha_val").val();
+        if (user == null || user.length == 0) {
+            alert('Не указан логин');
+        } else if (pass == null || pass.length == 0) {
+            alert('Не введен пароль');
+        } else {
+            $.ajax({
+                url: 'http://terranz.mine.nu/jbrss/login/do.register.json',
+                async: true,
+                type: 'get',
+                dataType: "jsonp",
+                jsonp: "callback",
+                data: {
+                    user: user,
+                    pass: pass,
+                    captcha: captcha,
+                    capval: capval
+                },
+                success: function (data) {
+                    if (data.logged == true) {
+                        userLoginPredef(user, pass);
+                    } else {
+                        if (parseInt(data.errorCode) == 1000) {
+                            alert('Вы сделали слишком много попыток зайти на ресурс. Аккаунт временно заблокирован. Попробуйте еще раз через некоторое время.');
+                        } else if (parseInt(data.errorCode) == 1001) {
+                            alert('Ваш аккаунт заблокирован, обратитесь в поддержку для получения полной информации.');
+                        } else {
+                            alert(data.message);
+                            $('#j_password').val('');
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function doSearch() {
+        var val = $("#search").val();
+        if (val.length > 0) {
+            $.ajax({
+                url: 'http://terranz.mine.nu/jbrss/rss/do.search.json',
+                async: false,
+                type: 'post',
+                dataType: "jsonp",
+                jsonp: "callback",
+                data: {val: val},
+                success: function (data) {
+                    var htmlRet = "";
+                    $("#feeds_collapsable").trigger('collapse');
+                    $("#messages_collapsable").trigger('expand');
+                    if (data.errorCode == 0) {
+                        $.each(data.data, function (i, post) {
+                            htmlRet += create_main_post(post.posttitle, post.posttext, post.postdate, post.postlink);
+                        });
+                        $("#messages").html(htmlRet);
+                    }
+                }
+            });
+        }
+    }
+
+    function saveSettings() {
+        $.ajax({
+            url: 'http://terranz.mine.nu/jbrss/settings/do.set.json',
+            async: true,
+            type: 'get',
+            dataType: "jsonp",
+            jsonp: "callback",
+            data: {
+                key: $("#key").val(),
+                val: $("#val").val(),
+            },
+            success: function (data) {
+                window.location.assign("http://terranz.mine.nu/jbrss/ui/main");
+            }
+        });
+    }
+
+    $("#feedscontainer").ready(loadFeedsToSettings());
+    function loadFeedsToSettings() {
+        $.ajax({
+            url: 'http://terranz.mine.nu/jbrss/rss/do.list.json',
             async: false,
             type: 'get',
             dataType: "jsonp",
             jsonp: "callback",
-            data: {id: id},
-            success: function(data) {
+            data: {},
+            success: function (data) {
                 var htmlRet = "";
                 if (data.errorCode == 0) {
-                    loadFeedsToSettings();
-                    load_feeds();
+                    $.each(data.data, function (i, feed) {
+                        htmlRet += '<li data-theme="c"><a href="#" onClick=delete_feed(' + feed.id + '); data-transition="slide">' + feed.feedname
+                                + '</a></li>';
+                    });
+                    $("#feedslist").html(htmlRet);
                 }
             }
         });
-        $(this).off("click.sure");
-    });
-    $.mobile.changePage("#sure");
-}
+    }
+
+    function delete_feed(id) {
+        $("#sure .sure-do").text("Да").on("click.sure", function () {
+            $.ajax({
+                url: 'http://terranz.mine.nu/jbrss/rss/do.del.json',
+                async: false,
+                type: 'get',
+                dataType: "jsonp",
+                jsonp: "callback",
+                data: {id: id},
+                success: function (data) {
+                    var htmlRet = "";
+                    if (data.errorCode == 0) {
+                        loadFeedsToSettings();
+                        load_feeds();
+                    }
+                }
+            });
+            $(this).off("click.sure");
+        });
+        $.mobile.changePage("#sure");
+    }
 
 
 </script>

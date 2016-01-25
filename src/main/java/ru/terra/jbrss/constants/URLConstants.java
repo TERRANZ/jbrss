@@ -3,7 +3,7 @@ package ru.terra.jbrss.constants;
 import ru.terra.server.constants.CoreUrlConstants;
 
 public class URLConstants extends CoreUrlConstants {
-    public static final String SERVER_URL = "http://terranz.ath.cx/jbrss/";
+    public static final String SERVER_URL = "http://terranz.mine.nu/jbrss/";
 
 
     public class DoJson {

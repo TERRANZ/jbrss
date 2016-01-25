@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
                 protected Void doInBackground(Integer... id) {
 
                     try {
-                        URL url = new URL("http://terranz.ath.cx/jbrss/rss/do.get.post.json?id=" + id[0]);
+                        URL url = new URL("http://terranz.mine.nu/jbrss/rss/do.get.post.json?id=" + id[0]);
                         URLConnection urlConn = url.openConnection();
                         urlConn.setRequestProperty("Cookie", cookie);
                         urlConn.connect();
@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
         layout = findViewById(R.id.rl);
         tvUrl = (TextView) findViewById(R.id.tvUrl);
         webView = (WebView) findViewById(R.id.wvMain);
-        webView.loadUrl("http://terranz.ath.cx/jbrss/ui/main");
+        webView.loadUrl("http://terranz.mine.nu/jbrss/ui/main");
         WebSettings webSettings = webView.getSettings();
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setJavaScriptEnabled(true);
@@ -133,7 +133,7 @@ public class MainActivity extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, final String url) {
                 Log.d("JBRSS", url);
-                if (url.contains("terranz.ath.cx")) {
+                if (url.contains("terranz.mine.nu")) {
                     view.loadUrl(url);
                 } else {
                     Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));

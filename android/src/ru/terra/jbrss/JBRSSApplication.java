@@ -7,7 +7,7 @@ import org.acra.annotation.ReportsCrashes;
 import org.acra.sender.HttpSender;
 
 @ReportsCrashes(formKey = "",
-        formUri = "http://terranz.ath.cx/jbrss/errors/do.error.report/jbrss",
+        formUri = "http://terranz.mine.nu/jbrss/errors/do.error.report/jbrss",
         httpMethod = HttpSender.Method.POST,
         mode = ReportingInteractionMode.SILENT)
 public class JBRSSApplication extends Application {
