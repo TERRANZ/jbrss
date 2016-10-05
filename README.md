@@ -3,7 +3,7 @@ jbrss
 
 RSS reader with web and android clients
 
-You can cantact with this jabber rss bot by address jabberrssbot@terranz.ath.cx
+You can cantact with this jabber rss bot by address jabberrssbot@terranz.mine.nu
 
 Available commands:
 startreg - starting registration

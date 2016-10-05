@@ -96,6 +96,7 @@ public class ErrorReportController extends AbstractResource {
             MimeMessage message = new MimeMessage(mailSession);
             message.setSubject("Error report from " + app + " android client");
             message.setContent(error, "text/plain");
+            message.setSentDate(new Date());
 
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
             message.addFrom(new InternetAddress[]{new InternetAddress(mailFrom)});
