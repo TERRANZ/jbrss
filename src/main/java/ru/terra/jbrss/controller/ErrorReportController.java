@@ -53,19 +53,40 @@ public class ErrorReportController extends AbstractResource {
             for (String param : hc.getRequest().getFormParameters().keySet()) {
                 values.add(new Pair<>(param, hc.getRequest().getFormParameters().getFirst(param)));
             }
+            String app = hc.getRequest().getFormParameters().getFirst("PROJECT_NAME");
+            String versionCode = hc.getRequest().getFormParameters().getFirst("APP_VERSION_CODE");
+            String versionName = hc.getRequest().getFormParameters().getFirst("APP_VERSION_NAME");
+            String stackTrace = hc.getRequest().getFormParameters().getFirst("STACK_TRACE");
+            final StringBuilder report = new StringBuilder();
+            report.append("App: ");
+            report.append(app);
+            report.append("\n\n");
+            report.append("Version: ");
+            report.append(versionCode + " " + versionName);
+            report.append("\n\n");
+            report.append("StackTrace: ");
+            report.append(stackTrace);
+            report.append("\n\n");
+            String json = "";
+            try {
+                json = new ObjectMapper().writeValueAsString(values);
+            } catch (IOException e) {
+                logger.error("Unable to write value as string", e);
+            }
+            report.append(json);
 
+            final String finalJson = json;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     logger.info("Starting error reporter thread");
                     try {
-                        String json = new ObjectMapper().writeValueAsString(values);
-                        sendError(uid, json);
+                        sendError(uid, report.toString());
                         File crashFolder = new File("crashez");
                         if (!crashFolder.exists())
                             crashFolder.mkdirs();
                         PrintWriter printWriter = new PrintWriter(new File("crashez/" + new Date().getTime() + ".json"), Charset.forName("UTF-8").name());
-                        printWriter.write(json);
+                        printWriter.write(finalJson);
                         printWriter.close();
                     } catch (IOException e) {
                         logger.error("Unable to process json", e);
