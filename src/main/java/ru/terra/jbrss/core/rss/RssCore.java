@@ -41,7 +41,7 @@ public class RssCore {
     }
 
     public List<Feeds> getFeeds(Integer uid) {
-        return feedsRepository.findByUserId(uid);
+        return feedsRepository.findByUserid(uid);
     }
 
     public Integer updateFeed(Feeds feed) {

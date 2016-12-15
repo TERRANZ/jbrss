@@ -6,5 +6,5 @@ import ru.terra.jbrss.core.db.entity.Feeds;
 import java.util.List;
 
 public interface FeedsRepository extends CrudRepository<Feeds, Integer> {
-    List<Feeds> findByUserId(Integer usedId);
+    List<Feeds> findByUserid(Integer usedId);
 }
