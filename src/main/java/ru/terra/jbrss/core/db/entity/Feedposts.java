@@ -6,6 +6,11 @@ import java.util.Date;
 
 @Entity
 @Table(name = "feedposts")
+@NamedNativeQuery(name = "Feedposts.getPostsByFeedAndByDateSorted", query = "SELECT f.* FROM Feedposts f WHERE f.feed_id = ?1 ORDER BY f.postdate DESC LIMIT 1")
+@NamedQueries({
+        @NamedQuery(name = "Feedposts.getPostsByFeedAndByDateSortedUnread", query = "SELECT f FROM Feedposts f WHERE f.feedId = ?1 AND f.isRead = ?2 ORDER BY f.postdate DESC"),
+        @NamedQuery(name = "Feedposts.getPostsByFeedAndByDate", query = "SELECT f FROM Feedposts f WHERE f.feedId = ?1 AND f.postdate >= ?2 ORDER BY f.postdate DESC"),
+        @NamedQuery(name = "Feedposts.findByPostlink", query = "SELECT f FROM Feedposts f WHERE f.postlink = ?1")})
 public class Feedposts implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
