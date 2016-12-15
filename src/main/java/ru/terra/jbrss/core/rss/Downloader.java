@@ -20,9 +20,6 @@ import java.util.List;
 public class Downloader {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public Downloader() {
-    }
-
     public SyndFeed parseFeed(String url) throws IllegalArgumentException, FeedException, IOException {
         return new SyndFeedInput().build(new XmlReader(new URL(url)));
     }
