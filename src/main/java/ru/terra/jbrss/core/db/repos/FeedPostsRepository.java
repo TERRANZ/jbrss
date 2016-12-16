@@ -12,11 +12,9 @@ public interface FeedPostsRepository extends CrudRepository<Feedposts, Integer> 
 
     List<Feedposts> getPostsByFeedAndByDate(Integer feedId, Date d);
 
-    List<Feedposts> findByUserid(Integer userid);
-
     List<Feedposts> findFeedpostsByFeedLimited(Integer feedId, Integer offset, Integer limit);
 
-    List<Feedposts> findByFeedIdAndByIsRead(Integer feedId, Boolean isRead);
+    List<Feedposts> findByFeedIdAndIsRead(Integer feedId, Boolean isRead);
 
     List<Feedposts> findByFeedId(Integer feedId);
 

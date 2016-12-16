@@ -143,7 +143,7 @@ public class RssCore {
     }
 
     public void setFeedRead(Integer feed, Boolean read) {
-        feedPostsRepository.findByFeedIdAndByIsRead(feed, read).parallelStream().forEach(fp -> {
+        feedPostsRepository.findByFeedIdAndIsRead(feed, read).parallelStream().forEach(fp -> {
             fp.setRead(false);
             feedPostsRepository.save(fp);
         });
