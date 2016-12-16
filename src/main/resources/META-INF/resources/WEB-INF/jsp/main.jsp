@@ -16,7 +16,7 @@
         <ul data-role="listview" data-inset="true" data-divider-theme="b" id="feeds" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
             <c:forEach items="${data}" var="feed" varStatus="loopStatus">
                 <li>
-                    <a id='1' href='/list?id=<c:out value="${feed.id}"/>' data-transition='slide' class='ui-btn ui-btn-icon-right ui-icon-carat-r'><c:out value="${feed.feedname}"/></a>
+                    <a id='1' href='/feed?id=<c:out value="${feed.id}"/>' data-transition='slide' class='ui-btn ui-btn-icon-right ui-icon-carat-r'><c:out value="${feed.feedname}"/></a>
                 </li>
             </c:forEach>
         </ul>

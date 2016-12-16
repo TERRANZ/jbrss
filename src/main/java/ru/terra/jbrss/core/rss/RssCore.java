@@ -139,7 +139,7 @@ public class RssCore {
     }
 
     public List<Feedposts> getFeedPosts(Integer feedId, Integer page, Integer perpage) {
-        return feedPostsRepository.findFeedpostsByFeedLimited(feedId, page * perpage, perpage);
+        return feedPostsRepository.findFeedpostsByFeedLimited(feedId, perpage, page * perpage);
     }
 
     public void setFeedRead(Integer feed, Boolean read) {
