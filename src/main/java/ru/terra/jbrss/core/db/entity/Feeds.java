@@ -6,6 +6,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "feeds")
+@NamedQueries({@NamedQuery(name = "Feeds.findAll", query = "SELECT f FROM Feeds f"),
+        @NamedQuery(name = "Feeds.findByUseridAndByFeedId", query = "SELECT f FROM Feeds f WHERE f.userid = ?1 AND f.id = ?2"),
+        @NamedQuery(name = "Feeds.findByUseridAndByFeedURL", query = "SELECT f FROM Feeds f WHERE f.userid = ?1 AND f.feedurl = ?2")})
 public class Feeds implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

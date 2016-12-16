@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import ru.terra.jbrss.constants.SettingsConstants;
 import ru.terra.jbrss.core.db.entity.Feedposts;
 import ru.terra.jbrss.core.db.entity.Feeds;
+import ru.terra.jbrss.core.db.entity.JbrssUser;
 import ru.terra.jbrss.core.db.entity.Settings;
 import ru.terra.jbrss.core.db.repos.FeedPostsRepository;
 import ru.terra.jbrss.core.db.repos.FeedsRepository;
@@ -122,5 +123,74 @@ public class RssCore {
         } catch (SchedulerException e) {
             log.error("Unable to remove job", e);
         }
+    }
+
+
+    public Boolean addFeed(final JbrssUser user, final String url) throws IllegalAccessException {
+        if (feedsRepository.findByUseridAndByFeedURL(user.getId(), url) == null) {
+            new Thread(() -> feedsRepository.save(new Feeds(0, user.getId(), downloader.getFeedTitle(url), url, new Date()))).start();
+            return true;
+        }
+        return false;
+    }
+
+    public List<Feedposts> getNewUserPosts(Feeds feed, Date d) {
+        return feedPostsRepository.getPostsByFeedAndByDate(feed.getId(), d);
+    }
+
+    public List<Feedposts> getFeedPosts(Integer feedId, Integer page, Integer perpage) {
+        return feedPostsRepository.findFeedpostsByFeedLimited(feedId, page * perpage, perpage);
+    }
+
+    public void setFeedRead(Integer feed, Boolean read) {
+        feedPostsRepository.findByFeedIdAndByIsRead(feed, read).parallelStream().forEach(fp -> {
+            fp.setRead(false);
+            feedPostsRepository.save(fp);
+        });
+    }
+
+    public void setPostRead(Integer fp, Boolean read) {
+        Feedposts feedpost;
+        try {
+            feedpost = feedPostsRepository.findOne(fp);
+            if (feedpost != null) {
+                feedpost.setRead(read);
+                feedPostsRepository.save(feedpost);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setAllRead(Integer uid) {
+        for (Feeds f : feedsRepository.findByUserid(uid))
+            setPostRead(f.getId(), true);
+    }
+
+    public void removeFeed(Integer id) {
+        log.info("Removed posts in feed " + id);
+        feedPostsRepository.findByFeedId(id).parallelStream().forEach(fp -> feedPostsRepository.delete(fp));
+        try {
+            feedsRepository.delete(id);
+        } catch (Exception e) {
+            log.error("Unable to delete feed " + id, e);
+        }
+    }
+
+    public Feeds getFeed(Integer id) {
+        return feedsRepository.findOne(id);
+    }
+
+    public void setFeedUpdateDate(Feeds f, Date date) {
+        f.setUpdateTime(date);
+        feedsRepository.save(f);
+    }
+
+    public List<Feedposts> search(String posttext) {
+        return feedPostsRepository.findByPosttextLike(posttext);
+    }
+
+    public Feedposts getPost(Integer id) {
+        return feedPostsRepository.findOne(id);
     }
 }
