@@ -6,7 +6,7 @@ import ru.terra.jbrss.im.core.IMCommand;
 @IMCommand("login")
 public class LoginCommand extends AbstractCommand {
     private enum PARAMS {
-        LOGIN, PASS;
+        LOGIN, PASS
     }
 
     @Override

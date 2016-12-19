@@ -2,9 +2,12 @@ package ru.terra.jbrss.im.core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.terra.jbrss.core.db.entity.Feedposts;
 import ru.terra.jbrss.core.db.entity.Feeds;
+import ru.terra.jbrss.im.jabber.JabberIM;
+import ru.terra.jbrss.im.telegram.TelegramIM;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -15,6 +18,10 @@ import java.util.concurrent.Executors;
 public class IMManager {
     private ExecutorService threadPool = Executors.newFixedThreadPool(20);
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    private JabberIM jabberIM;
+    @Autowired
+    private TelegramIM telegramIM;
 
     @Inject
     public IMManager() {
