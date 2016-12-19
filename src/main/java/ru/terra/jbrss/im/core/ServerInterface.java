@@ -8,6 +8,7 @@ import ru.terra.jbrss.core.db.repos.ContactsRepository;
 import ru.terra.jbrss.core.db.repos.UsersRepository;
 import ru.terra.jbrss.core.rss.RssCore;
 import ru.terra.jbrss.web.dto.FeedDto;
+import ru.terra.jbrss.web.dto.FeedPostDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,5 +49,14 @@ public abstract class ServerInterface {
 
     public List<FeedDto> getFeeds(String contact) {
         return rssCore.getFeeds(contactsRepository.findByContactAndType(contact, getType().name()).getId()).parallelStream().map(FeedDto::new).collect(Collectors.toList());
+    }
+
+    public List<FeedPostDto> getFeedPosts(Integer targetFeed, Integer page, Integer perPage) {
+        return rssCore.getFeedPosts(targetFeed, page, perPage).parallelStream().map(FeedPostDto::new).collect(Collectors.toList());
+    }
+
+    public boolean addFeed(String contact, String url) throws IllegalAccessException {
+        Contact c = contactsRepository.findByContactAndType(contact, getType().name());
+        return rssCore.addFeed(usersRepository.findOne(c.getUserId()),url);
     }
 }
