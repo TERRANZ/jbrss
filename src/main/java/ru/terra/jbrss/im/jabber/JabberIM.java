@@ -8,12 +8,8 @@ import org.jivesoftware.smack.filter.MessageTypeFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import ru.terra.jbrss.im.core.AbstractCommand;
-import ru.terra.jbrss.im.core.CommandsFactory;
 import ru.terra.jbrss.im.core.IMType;
 import ru.terra.jbrss.im.core.ServerInterface;
 
@@ -30,8 +26,6 @@ public class JabberIM extends ServerInterface {
     @Value("${jabber.server}")
     protected String jabberPass;
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-    private CommandsFactory commandsFactory = new CommandsFactory();
     private static XMPPConnection connection;
 
     @Inject
@@ -71,20 +65,7 @@ public class JabberIM extends ServerInterface {
                 logger.info("Message from " + fromName + " : " + message.getBody());
 
                 String msg = message.getBody();
-                String[] params = msg.split(" ");
-                AbstractCommand cmd = commandsFactory.getCommand(params[0]);
-                if (cmd != null)
-                    try {
-                        cmd.setContact(fromName);
-                        cmd.setServerInterface(JabberIM.this);
-                        cmd.doCmd(fromName, params);
-                    } catch (Exception e) {
-                        logger.error("Error while executing command", e);
-                        sendMessage(fromName, "Exception while doing command, " + e.getMessage());
-                    }
-                if (!isContactExists(fromName))
-                    sendMessage(fromName, "Hello, you are not registered, type reg");
-
+                processText(fromName, msg);
             }
         }
     }

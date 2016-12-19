@@ -1,7 +1,5 @@
 package ru.terra.jbrss.im.telegram;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.ApiContextInitializer;
@@ -22,7 +20,6 @@ public class TelegramIM extends ServerInterface {
     @Value("${telegram.token}")
     protected String telegramToken;
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
     private TelegramImBotInterface botInterface;
 
     @Inject
@@ -59,7 +56,7 @@ public class TelegramIM extends ServerInterface {
         public void onUpdateReceived(Update update) {
             // We check if the update has a message and the message has text
             if (update.hasMessage() && update.getMessage().hasText()) {
-
+                processText(update.getMessage().getChatId().toString(), update.getMessage().getText());
             }
         }
 

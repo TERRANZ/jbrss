@@ -1,5 +1,7 @@
 package ru.terra.jbrss.im.core;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.terra.jbrss.core.db.entity.Contact;
@@ -21,6 +23,8 @@ public abstract class ServerInterface {
     protected UsersRepository usersRepository;
     @Autowired
     protected RssCore rssCore;
+    protected CommandsFactory commandsFactory = new CommandsFactory();
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public abstract void sendMessage(String contact, String message);
 
@@ -62,5 +66,21 @@ public abstract class ServerInterface {
 
     public void removeFeed(Integer feedId) {
         rssCore.removeFeed(feedId);
+    }
+
+    protected void processText(String fromName, String msg) {
+        String[] params = msg.split(" ");
+        AbstractCommand cmd = commandsFactory.getCommand(params[0]);
+        if (cmd != null)
+            try {
+                cmd.setContact(fromName);
+                cmd.setServerInterface(this);
+                cmd.doCmd(fromName, params);
+            } catch (Exception e) {
+                logger.error("Error while executing command", e);
+                sendMessage(fromName, "Exception while doing command, " + e.getMessage());
+            }
+        if (!isContactExists(fromName))
+            sendMessage(fromName, "Hello, you are not registered, type reg");
     }
 }
