@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 @Component
 public abstract class ServerInterface {
     @Autowired
-    private ContactsRepository contactsRepository;
+    protected ContactsRepository contactsRepository;
     @Autowired
-    private UsersRepository usersRepository;
+    protected UsersRepository usersRepository;
     @Autowired
-    private RssCore rssCore;
+    protected RssCore rssCore;
 
     public abstract void sendMessage(String contact, String message);
 
@@ -57,6 +57,10 @@ public abstract class ServerInterface {
 
     public boolean addFeed(String contact, String url) throws IllegalAccessException {
         Contact c = contactsRepository.findByContactAndType(contact, getType().name());
-        return rssCore.addFeed(usersRepository.findOne(c.getUserId()),url);
+        return rssCore.addFeed(usersRepository.findOne(c.getUserId()), url);
+    }
+
+    public void removeFeed(Integer feedId) {
+        rssCore.removeFeed(feedId);
     }
 }

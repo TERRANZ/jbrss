@@ -1,12 +1,23 @@
 package ru.terra.jbrss.im.telegram;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.terra.jbrss.im.core.AbstractIM;
-import ru.terra.jbrss.im.telegram.impl.TelegramInterfaceImpl;
+import ru.terra.jbrss.im.core.IMType;
+import ru.terra.jbrss.im.core.ServerInterface;
+
+import javax.inject.Inject;
 
 @Component
-public class TelegramIM extends AbstractIM {
-    @Autowired
-    private TelegramInterfaceImpl telegramInterface;
+public class TelegramIM extends ServerInterface {
+    @Inject
+    public TelegramIM() {
+    }
+
+    @Override
+    public void sendMessage(String contact, String message) {
+    }
+
+    @Override
+    protected IMType getType() {
+        return IMType.TELEGRAM;
+    }
 }
