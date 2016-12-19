@@ -8,13 +8,7 @@ public abstract class AbstractCommand {
 
     public String name() {
         if (this.getClass().getAnnotation(IMCommand.class) != null)
-            return this.getClass().getAnnotation(IMCommand.class).name();
-        return "";
-    }
-
-    public String type() {
-        if (this.getClass().getAnnotation(IMCommand.class) != null)
-            return this.getClass().getAnnotation(IMCommand.class).type();
+            return this.getClass().getAnnotation(IMCommand.class).value();
         return "";
     }
 

@@ -16,6 +16,7 @@ import ru.terra.jbrss.core.db.repos.FeedPostsRepository;
 import ru.terra.jbrss.core.db.repos.FeedsRepository;
 import ru.terra.jbrss.core.db.repos.SettingsRepository;
 import ru.terra.jbrss.core.db.repos.UsersRepository;
+import ru.terra.jbrss.im.core.IMManager;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,6 +37,8 @@ public class RssCore {
     private FeedsRepository feedsRepository;
     @Autowired
     private FeedPostsRepository feedPostsRepository;
+    @Autowired
+    private IMManager imManager;
 
     public void runUpdate() {
         usersRepository.findAll().forEach(u -> scheduleUpdatingForUser(u.getId()));
@@ -63,9 +66,10 @@ public class RssCore {
                     }
             }
         } else {
-            if (posts != null)
+            if (posts != null) {
                 newPosts = new ArrayList<>(posts);
-            else
+                imManager.onFeedUpdated(feed.getUserid(), feed, newPosts);
+            } else
                 newPosts = new ArrayList<>();
         }
         feedPostsRepository.save(newPosts);

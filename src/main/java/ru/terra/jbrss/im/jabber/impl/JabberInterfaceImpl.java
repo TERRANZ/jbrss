@@ -1,8 +1,10 @@
 package ru.terra.jbrss.im.jabber.impl;
 
+import org.springframework.stereotype.Component;
 import ru.terra.jbrss.im.core.ServerInterface;
 
-public class JabberInterfaceImpl implements ServerInterface{
+@Component
+public class JabberInterfaceImpl extends ServerInterface{
     @Override
     public void sendMessage(String contact, String message) {
 
