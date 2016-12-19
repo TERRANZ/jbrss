@@ -42,6 +42,8 @@ public class JabberIM extends ServerInterface {
 
     @Override
     public void sendMessage(String contact, String message) {
+        if (!connection.isConnected())
+            return;
         Message msg = new Message();
         msg.setTo(contact);
         msg.setBody(message);
