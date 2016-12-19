@@ -19,6 +19,8 @@ public class CommandsFactory {
     }
 
     public AbstractCommand getCommand(String name) {
+        if (name.startsWith("/"))
+            name = name.substring(1, name.length());
         AbstractCommand ret = commands.get(name);
         if (ret != null)
             return ret;
