@@ -11,8 +11,6 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import ru.terra.jbrss.im.core.IMType;
 import ru.terra.jbrss.im.core.ServerInterface;
 
-import javax.inject.Inject;
-
 @Component
 public class TelegramIM extends ServerInterface {
     @Value("${telegram.botname}")
@@ -22,8 +20,8 @@ public class TelegramIM extends ServerInterface {
 
     private TelegramImBotInterface botInterface;
 
-    @Inject
-    public TelegramIM() {
+    @Override
+    public void start() {
         ApiContextInitializer.init();
         TelegramBotsApi botsApi = new TelegramBotsApi();
         botInterface = new TelegramImBotInterface();
@@ -56,6 +54,7 @@ public class TelegramIM extends ServerInterface {
         public void onUpdateReceived(Update update) {
             // We check if the update has a message and the message has text
             if (update.hasMessage() && update.getMessage().hasText()) {
+                logger.info("Message from " + update.getMessage().getChatId().toString() + " : " + update.getMessage().getText());
                 processText(update.getMessage().getChatId().toString(), update.getMessage().getText());
             }
         }

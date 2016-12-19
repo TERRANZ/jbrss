@@ -13,7 +13,7 @@ public class Main extends SpringBootServletInitializer {
 
     public static void main(String[] args) throws Exception {
         ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
-        context.getBean(RssCore.class).runUpdate();
+        context.getBean(RssCore.class).start();
     }
 
     @Override

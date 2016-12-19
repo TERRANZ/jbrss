@@ -9,7 +9,6 @@ import ru.terra.jbrss.core.db.entity.Feeds;
 import ru.terra.jbrss.im.jabber.JabberIM;
 import ru.terra.jbrss.im.telegram.TelegramIM;
 
-import javax.inject.Inject;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,9 +22,9 @@ public class IMManager {
     @Autowired
     private TelegramIM telegramIM;
 
-    @Inject
-    public IMManager() {
-        logger.info("IMManager starting...");
+    public void start() {
+        jabberIM.start();
+        telegramIM.start();
     }
 
     public void onFeedUpdated(Integer usedId, Feeds feed, List<Feedposts> newPosts) {

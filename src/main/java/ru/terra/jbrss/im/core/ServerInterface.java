@@ -12,6 +12,9 @@ import ru.terra.jbrss.core.rss.RssCore;
 import ru.terra.jbrss.web.dto.FeedDto;
 import ru.terra.jbrss.web.dto.FeedPostDto;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +39,8 @@ public abstract class ServerInterface {
 
     public boolean isContactAttached(String contact, String login) {
         Contact c = contactsRepository.findByContactAndType(contact, getType().name());
+        if (c == null)
+            return false;
         Integer userId = usersRepository.findByLogin(login).getId();
         return c.getUserId().equals(userId);
     }
@@ -47,12 +52,20 @@ public abstract class ServerInterface {
 
     public void attachContactToUser(String contact, Integer userId) {
         Contact c = contactsRepository.findByContactAndType(contact, getType().name());
-        c.setUserId(userId);
+        if (c == null) {
+            c = new Contact();
+            c.setUserId(userId);
+            c.setCheckinterval(60L);
+            c.setContact(contact);
+            c.setLastlogin(new Date().getTime());
+            c.setStatus(0);
+            c.setType(getType().name());
+        }
         contactsRepository.save(c);
     }
 
     public List<FeedDto> getFeeds(String contact) {
-        return rssCore.getFeeds(contactsRepository.findByContactAndType(contact, getType().name()).getId()).parallelStream().map(FeedDto::new).collect(Collectors.toList());
+        return rssCore.getFeeds(contactsRepository.findByContactAndType(contact, getType().name()).getUserId()).parallelStream().map(FeedDto::new).collect(Collectors.toList());
     }
 
     public List<FeedPostDto> getFeedPosts(Integer targetFeed, Integer page, Integer perPage) {
@@ -69,8 +82,12 @@ public abstract class ServerInterface {
     }
 
     protected void processText(String fromName, String msg) {
-        String[] params = msg.split(" ");
-        AbstractCommand cmd = commandsFactory.getCommand(params[0]);
+        String[] parsedMessage = msg.split(" ");
+        AbstractCommand cmd = commandsFactory.getCommand(parsedMessage[0]);
+        List<String> params = new ArrayList<>(Arrays.asList(parsedMessage));
+        params.remove(0);
+        if (!isContactExists(fromName))
+            sendMessage(fromName, "Hello, you are not registered, type reg");
         if (cmd != null)
             try {
                 cmd.setContact(fromName);
@@ -80,7 +97,8 @@ public abstract class ServerInterface {
                 logger.error("Error while executing command", e);
                 sendMessage(fromName, "Exception while doing command, " + e.getMessage());
             }
-        if (!isContactExists(fromName))
-            sendMessage(fromName, "Hello, you are not registered, type reg");
+
     }
+
+    public abstract void start();
 }

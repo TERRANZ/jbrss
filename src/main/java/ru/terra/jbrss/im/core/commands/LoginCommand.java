@@ -3,6 +3,8 @@ package ru.terra.jbrss.im.core.commands;
 import ru.terra.jbrss.im.core.AbstractCommand;
 import ru.terra.jbrss.im.core.IMCommand;
 
+import java.util.List;
+
 @IMCommand("login")
 public class LoginCommand extends AbstractCommand {
     private enum PARAMS {
@@ -10,17 +12,17 @@ public class LoginCommand extends AbstractCommand {
     }
 
     @Override
-    public boolean doCmd(String contact, String[] params) {
+    public boolean doCmd(String contact, List<String> params) {
         if (serverInterface.isContactExists(contact)) {
             sendMessage("You already logged in");
             return false;
         }
-        if (params.length < 2) {
+        if (params.size() < 2) {
             sendMessage("Not enough params, valid params login password");
             return false;
         }
-        String login = params[PARAMS.LOGIN.ordinal()];
-        String pass = params[PARAMS.PASS.ordinal()];
+        String login = params.get(PARAMS.LOGIN.ordinal());
+        String pass = params.get(PARAMS.PASS.ordinal());
         Integer userId = serverInterface.login(login, pass);
         if (userId == null) {
             sendMessage("You have entered invalid login and password");

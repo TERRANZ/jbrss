@@ -40,7 +40,8 @@ public class RssCore {
     @Autowired
     private IMManager imManager;
 
-    public void runUpdate() {
+    public void start() {
+        imManager.start();
         usersRepository.findAll().forEach(u -> scheduleUpdatingForUser(u.getId()));
     }
 
@@ -51,7 +52,11 @@ public class RssCore {
     public Integer updateFeed(Feeds feed) {
         log.info("updating feed " + feed.getFeedurl());
         List<Feedposts> posts = downloader.loadFeeds(feed);
-        Date d = feedPostsRepository.getPostsByFeedAndByDateSorted(feed.getId()).get(0).getPostdate();
+        Date d = null;
+        List<Feedposts> lastFeedPosts = feedPostsRepository.getPostsByFeedAndByDateSorted(feed.getId());
+        if (!lastFeedPosts.isEmpty())
+            d = lastFeedPosts.get(0).getPostdate();
+
         List<Feedposts> newPosts;
         if (d != null && posts != null) {
             newPosts = new ArrayList<>();

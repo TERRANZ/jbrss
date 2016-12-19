@@ -3,16 +3,18 @@ package ru.terra.jbrss.im.core.commands;
 import ru.terra.jbrss.im.core.AbstractCommand;
 import ru.terra.jbrss.im.core.IMCommand;
 
+import java.util.List;
+
 @IMCommand("del")
 public class DelCommand extends AbstractCommand {
     @Override
-    public boolean doCmd(String contact, String[] params) {
+    public boolean doCmd(String contact, List<String> params) {
         if (!serverInterface.isContactExists(contact)) {
             sendMessage("Not authorized");
             return false;
         } else {
-            serverInterface.removeFeed(Integer.parseInt(params[1]));
-            sendMessage("Feed " + params[1] + " removed");
+            serverInterface.removeFeed(Integer.parseInt(params.get(0)));
+            sendMessage("Feed " + params.get(0) + " removed");
             return true;
         }
     }

@@ -1,10 +1,12 @@
 package ru.terra.jbrss.im.core;
 
+import java.util.List;
+
 public abstract class AbstractCommand {
     protected String contact;
     protected ServerInterface serverInterface;
 
-    public abstract boolean doCmd(String contact, String[] params);
+    public abstract boolean doCmd(String contact, List<String> params);
 
     public String name() {
         if (this.getClass().getAnnotation(IMCommand.class) != null)

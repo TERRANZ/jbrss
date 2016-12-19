@@ -74,4 +74,12 @@ public class Contact implements Serializable {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

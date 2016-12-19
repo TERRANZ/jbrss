@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 import ru.terra.jbrss.im.core.IMType;
 import ru.terra.jbrss.im.core.ServerInterface;
 
-import javax.inject.Inject;
-
 @Component
 public class JabberIM extends ServerInterface {
     @Value("${jabber.server}")
@@ -28,8 +26,8 @@ public class JabberIM extends ServerInterface {
 
     private static XMPPConnection connection;
 
-    @Inject
-    public JabberIM() {
+    @Override
+    public void start() {
         try {
             ConnectionConfiguration config = new ConnectionConfiguration(jabberServer, jabberPort);
             connection = new XMPPConnection(config);

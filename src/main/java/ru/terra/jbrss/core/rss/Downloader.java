@@ -55,7 +55,7 @@ public class Downloader {
             }
             return ret;
         } catch (IllegalArgumentException | IOException | FeedException e) {
-            logger.error("Unable to get load feed", e);
+            logger.error("Unable to get load feed " + feeds.getFeedurl());
         }
         return null;
     }
