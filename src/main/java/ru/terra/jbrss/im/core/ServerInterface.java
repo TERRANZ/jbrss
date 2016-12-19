@@ -101,4 +101,8 @@ public abstract class ServerInterface {
     }
 
     public abstract void start();
+
+    public void update(String contact) {
+        rssCore.updateSchedulingForUser(contactsRepository.findByContactAndType(contact, getType().name()).getUserId());
+    }
 }

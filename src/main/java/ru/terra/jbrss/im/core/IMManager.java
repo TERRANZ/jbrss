@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.terra.jbrss.core.db.entity.Feedposts;
 import ru.terra.jbrss.core.db.entity.Feeds;
+import ru.terra.jbrss.core.db.repos.ContactsRepository;
 import ru.terra.jbrss.im.jabber.JabberIM;
 import ru.terra.jbrss.im.telegram.TelegramIM;
 
@@ -21,6 +22,8 @@ public class IMManager {
     private JabberIM jabberIM;
     @Autowired
     private TelegramIM telegramIM;
+    @Autowired
+    private ContactsRepository contactsRepository;
 
     public void start() {
         jabberIM.start();
@@ -30,6 +33,16 @@ public class IMManager {
     public void onFeedUpdated(Integer usedId, Feeds feed, List<Feedposts> newPosts) {
         threadPool.submit(() -> {
             logger.info("Feed " + feed.getFeedname() + " of user " + usedId + " have " + newPosts.size() + " new posts");
+            contactsRepository.findByUserId(usedId).parallelStream().forEach(c -> {
+                ServerInterface im;
+                if (c.getType().equals(IMType.TELEGRAM.name()))
+                    im = telegramIM;
+                else
+                    im = jabberIM;
+
+                im.sendMessage(c.getContact(), "New message on feed " + feed.getFeedname());
+                newPosts.forEach(p -> im.sendMessage(c.getContact(), p.getPosttext()));
+            });
         });
     }
 }
