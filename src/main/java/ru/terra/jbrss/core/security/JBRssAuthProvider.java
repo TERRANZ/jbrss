@@ -11,7 +11,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.terra.jbrss.core.db.repos.UsersRepository;
 
 import java.util.Collections;
 
@@ -19,9 +18,6 @@ import java.util.Collections;
 public class JBRssAuthProvider implements AuthenticationProvider {
     @Autowired
     private UserDetailsService userDetailsService;
-    @Autowired
-    private UsersRepository usersRepository;
-
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
@@ -37,7 +33,7 @@ public class JBRssAuthProvider implements AuthenticationProvider {
             if (passwordCorrect)
                 return new UsernamePasswordAuthenticationToken(authUser, password, Collections.singletonList((GrantedAuthority) () -> "ADMIN"));
             else
-                throw new UsernameNotFoundException("JbrssUser " + user + " not found");
+                throw new UsernameNotFoundException("JbrssUser " + user + " password is not correct");
         } catch (Exception e) {
             throw new UsernameNotFoundException("JbrssUser " + user + " password hash failure", e);
         }

@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import ru.terra.jbrss.core.db.entity.Contact;
 
 public interface ContactsRepository extends CrudRepository<Contact, Integer> {
-    Contact findByContact(String contact);
+    Contact findByContactAndType(String contact, String type);
 }
