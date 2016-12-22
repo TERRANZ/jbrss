@@ -30,10 +30,10 @@ public class IMManager {
         telegramIM.start();
     }
 
-    public void onFeedUpdated(Integer usedId, Feeds feed, List<Feedposts> newPosts) {
+    public void notifyFeedUpdated(Integer usedId, Feeds feed, List<Feedposts> newPosts) {
         threadPool.submit(() -> {
             logger.info("Feed " + feed.getFeedname() + " of user " + usedId + " have " + newPosts.size() + " new posts");
-            contactsRepository.findByUserId(usedId).parallelStream().forEach(c -> {
+            contactsRepository.findByUserId(usedId).forEach(c -> {
                 ServerInterface im;
                 if (c.getType().equals(IMType.TELEGRAM.name()))
                     im = telegramIM;

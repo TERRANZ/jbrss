@@ -77,7 +77,7 @@ public class RssCore {
                 newPosts = new ArrayList<>();
         }
         if (newPosts.size() > 0)
-            imManager.onFeedUpdated(feed.getUserid(), feed, newPosts);
+            imManager.notifyFeedUpdated(feed.getUserid(), feed, newPosts);
         feedPostsRepository.save(newPosts);
         return newPosts.size();
     }
