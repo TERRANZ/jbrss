@@ -23,21 +23,24 @@ public class JabberIM extends ServerInterface {
     protected String jabberUser;
     @Value("${jabber.server}")
     protected String jabberPass;
+    @Value("$(jabber.enable")
+    protected boolean isEnabled;
 
     private static XMPPConnection connection;
 
     @Override
     public void start() {
-        try {
-            ConnectionConfiguration config = new ConnectionConfiguration(jabberServer, jabberPort);
-            connection = new XMPPConnection(config);
-            connection.connect();
-            connection.login(jabberUser, jabberPass);
-            PacketFilter filter = new MessageTypeFilter(Message.Type.chat);
-            connection.addPacketListener(new JabberPacketListener(), filter);
-        } catch (XMPPException ex) {
-            logger.error("Exception in jabber service", ex);
-        }
+        if (isEnabled)
+            try {
+                ConnectionConfiguration config = new ConnectionConfiguration(jabberServer, jabberPort);
+                connection = new XMPPConnection(config);
+                connection.connect();
+                connection.login(jabberUser, jabberPass);
+                PacketFilter filter = new MessageTypeFilter(Message.Type.chat);
+                connection.addPacketListener(new JabberPacketListener(), filter);
+            } catch (XMPPException ex) {
+                logger.error("Exception in jabber service", ex);
+            }
     }
 
     @Override
