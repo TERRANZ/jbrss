@@ -24,13 +24,13 @@ public class JabberIM extends ServerInterface {
     @Value("${jabber.server}")
     protected String jabberPass;
     @Value("$(jabber.enable")
-    protected boolean isEnabled;
+    protected String isEnabled;
 
     private static XMPPConnection connection;
 
     @Override
     public void start() {
-        if (isEnabled)
+        if (Boolean.parseBoolean(isEnabled))
             try {
                 ConnectionConfiguration config = new ConnectionConfiguration(jabberServer, jabberPort);
                 connection = new XMPPConnection(config);

@@ -18,13 +18,13 @@ public class TelegramIM extends ServerInterface {
     @Value("${telegram.token}")
     protected String telegramToken;
     @Value("$(telegram.enable")
-    protected boolean isEnabled;
+    protected String isEnabled;
 
     private TelegramImBotInterface botInterface;
 
     @Override
     public void start() {
-        if (isEnabled) {
+        if (Boolean.parseBoolean(isEnabled)) {
             ApiContextInitializer.init();
             TelegramBotsApi botsApi = new TelegramBotsApi();
             botInterface = new TelegramImBotInterface();
