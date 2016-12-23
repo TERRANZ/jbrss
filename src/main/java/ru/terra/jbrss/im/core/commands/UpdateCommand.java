@@ -5,7 +5,7 @@ import ru.terra.jbrss.im.core.IMCommand;
 
 import java.util.List;
 
-@IMCommand("update")
+@IMCommand(value = "update", help = "Update all feed command, no params, after updates you will receive new feed posts")
 public class UpdateCommand extends AbstractCommand {
     @Override
     public boolean doCmd(String contact, List<String> params) {

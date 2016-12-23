@@ -26,7 +26,6 @@ public abstract class ServerInterface {
     protected UsersRepository usersRepository;
     @Autowired
     protected RssCore rssCore;
-    protected CommandsFactory commandsFactory = new CommandsFactory();
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public abstract void sendMessage(String contact, String message);
@@ -83,7 +82,7 @@ public abstract class ServerInterface {
 
     protected void processText(String fromName, String msg) {
         String[] parsedMessage = msg.split(" ");
-        AbstractCommand cmd = commandsFactory.getCommand(parsedMessage[0]);
+        AbstractCommand cmd = CommandsFactory.getInstance().getCommand(parsedMessage[0]);
         List<String> params = new ArrayList<>(Arrays.asList(parsedMessage));
         params.remove(0);
         if (!isContactExists(fromName))
@@ -92,7 +91,9 @@ public abstract class ServerInterface {
             try {
                 cmd.setContact(fromName);
                 cmd.setServerInterface(this);
-                cmd.doCmd(fromName, params);
+                if (!cmd.doCmd(fromName, params)) {
+                    sendMessage(fromName, "Command failed");
+                }
             } catch (Exception e) {
                 logger.error("Error while executing command", e);
                 sendMessage(fromName, "Exception while doing command, " + e.getMessage());

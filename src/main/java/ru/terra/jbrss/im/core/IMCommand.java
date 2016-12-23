@@ -7,4 +7,6 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 public @interface IMCommand {
     String value();
+
+    String help() default "";
 }

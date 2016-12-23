@@ -10,11 +10,19 @@ import java.util.Map;
 
 public class CommandsFactory {
     private Map<String, AbstractCommand> commands = new HashMap<>();
+    private List<String> helps = new ArrayList<>();
+    private static CommandsFactory instance;
 
-    public CommandsFactory() {
+    public static CommandsFactory getInstance() {
+        return instance;
+    }
+
+    private CommandsFactory() {
         for (AbstractCommand command : new ClassSearcher<AbstractCommand>().load("ru.terra.jbrss.im.core.commands", IMCommand.class)) {
-            if (command != null)
+            if (command != null) {
                 commands.put(command.name(), command);
+                helps.add(command.getClass().getAnnotation(IMCommand.class).help());
+            }
         }
     }
 
@@ -29,5 +37,9 @@ public class CommandsFactory {
 
     public List<String> getCommandList() {
         return new ArrayList<>(commands.keySet());
+    }
+
+    public List<String> getHelps() {
+        return helps;
     }
 }

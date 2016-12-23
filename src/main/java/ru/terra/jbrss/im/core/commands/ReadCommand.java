@@ -5,7 +5,7 @@ import ru.terra.jbrss.im.core.IMCommand;
 
 import java.util.List;
 
-@IMCommand("read")
+@IMCommand(value = "read", help = "Read feed command, sytax: read feed_id page perpage. To get feed id send info command")
 public class ReadCommand extends AbstractCommand {
     @Override
     public boolean doCmd(String contact, List<String> params) {

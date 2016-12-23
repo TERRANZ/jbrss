@@ -5,11 +5,10 @@ import ru.terra.jbrss.im.core.IMCommand;
 
 import java.util.List;
 
-@IMCommand(value = "default", help = "Default command without params")
-public class DefaultCommand extends AbstractCommand {
+@IMCommand(value = "set", help = "Set settings command, syntax: set command value")
+public class SetCommand extends AbstractCommand {
     @Override
     public boolean doCmd(String contact, List<String> params) {
-        sendMessage("Hello, this is default command output, send help for more information");
         return true;
     }
 }

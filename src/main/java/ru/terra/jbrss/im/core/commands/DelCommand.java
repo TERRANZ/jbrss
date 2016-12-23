@@ -5,7 +5,7 @@ import ru.terra.jbrss.im.core.IMCommand;
 
 import java.util.List;
 
-@IMCommand("del")
+@IMCommand(value = "del", help = "Delete feed command, syntax: del id . To get ids send info command")
 public class DelCommand extends AbstractCommand {
     @Override
     public boolean doCmd(String contact, List<String> params) {

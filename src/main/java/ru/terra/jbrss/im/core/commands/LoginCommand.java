@@ -5,7 +5,7 @@ import ru.terra.jbrss.im.core.IMCommand;
 
 import java.util.List;
 
-@IMCommand("login")
+@IMCommand(value = "login", help = "Login command, adds you to previously created user, syntax: login user password")
 public class LoginCommand extends AbstractCommand {
     private enum PARAMS {
         LOGIN, PASS

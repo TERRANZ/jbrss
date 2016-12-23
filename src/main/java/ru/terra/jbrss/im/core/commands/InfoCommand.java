@@ -5,7 +5,7 @@ import ru.terra.jbrss.im.core.IMCommand;
 
 import java.util.List;
 
-@IMCommand("info")
+@IMCommand(value = "info", help = "Informational command, show list of feeds")
 public class InfoCommand extends AbstractCommand {
     @Override
     public boolean doCmd(String contact, List<String> params) {
