@@ -24,15 +24,13 @@ public class TelegramIM extends ServerInterface {
 
     @Override
     public void start() {
-        if (Boolean.parseBoolean(isEnabled)) {
-            ApiContextInitializer.init();
-            TelegramBotsApi botsApi = new TelegramBotsApi();
-            botInterface = new TelegramImBotInterface();
-            try {
-                botsApi.registerBot(botInterface);
-            } catch (TelegramApiException e) {
-                logger.error("Unable to start bot interface", e);
-            }
+        ApiContextInitializer.init();
+        TelegramBotsApi botsApi = new TelegramBotsApi();
+        botInterface = new TelegramImBotInterface();
+        try {
+            botsApi.registerBot(botInterface);
+        } catch (TelegramApiException e) {
+            logger.error("Unable to start bot interface", e);
         }
     }
 

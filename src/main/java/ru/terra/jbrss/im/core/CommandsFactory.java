@@ -11,7 +11,7 @@ import java.util.Map;
 public class CommandsFactory {
     private Map<String, AbstractCommand> commands = new HashMap<>();
     private List<String> helps = new ArrayList<>();
-    private static CommandsFactory instance;
+    private static CommandsFactory instance = new CommandsFactory();
 
     public static CommandsFactory getInstance() {
         return instance;

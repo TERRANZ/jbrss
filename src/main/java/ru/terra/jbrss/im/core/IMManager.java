@@ -40,8 +40,12 @@ public class IMManager {
                 else
                     im = jabberIM;
 
-                im.sendMessage(c.getContact(), "New message on feed " + feed.getFeedname());
-                newPosts.forEach(p -> im.sendMessage(c.getContact(), p.getPosttext()));
+                StringBuilder sb = new StringBuilder();
+                sb.append("New message on feed ");
+                sb.append(feed.getFeedname());
+                sb.append("\n");
+                newPosts.forEach(p -> sb.append(p.getPosttext()).append("\n"));
+                im.sendMessage(c.getContact(), sb.toString());
             });
         });
     }
