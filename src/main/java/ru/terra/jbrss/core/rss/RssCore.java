@@ -93,32 +93,42 @@ public class RssCore {
         }
 
         Settings settings = settingsRepository.findByKeyAndUserId(SettingsConstants.UPDATE_INTERVAL, userId);
-        Integer updateInterval;
+        ScheduleBuilder scheduleBuilder = null;
+        Settings updateType = settingsRepository.findByKeyAndUserId(SettingsConstants.UPDATE_TYPE, userId);
+        String updateInterval;
         if (settings != null) {
-            updateInterval = Integer.parseInt(settings.getValue());
-            if (updateInterval > 0)
-                try {
-                    JobDataMap jobDataMap = new JobDataMap();
-                    jobDataMap.put("user", userId);
-                    jobDataMap.put("re", this);
-                    JobDetail job = JobBuilder.newJob(UpdateJob.class)
-                            .withIdentity("user" + userId.toString(), "group1")
-                            .usingJobData(jobDataMap)
-                            .build();
-                    Trigger trigger = TriggerBuilder.newTrigger()
-                            .withIdentity("user" + userId.toString(), "group1")
-                            .startNow()
-                            .withSchedule(
-                                    SimpleScheduleBuilder.simpleSchedule()
-                                            .withIntervalInMinutes(updateInterval)
-                                            .repeatForever()
-                            )
-                            .build();
-                    sched.scheduleJob(job, trigger);
-                } catch (SchedulerException se) {
-                    se.printStackTrace();
-                    log.error("Error while initializing quartz", se);
+            updateInterval = settings.getValue();
+            if (updateType == null) {
+                scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
+                        .withIntervalInMinutes(Integer.parseInt(updateInterval))
+                        .repeatForever();
+            } else {
+                if (updateType.getValue().equals(SettingsConstants.UPDATE_TYPE_CRON)) {
+                    scheduleBuilder = CronScheduleBuilder.cronSchedule(updateInterval);
+                } else {
+                    scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
+                            .withIntervalInMinutes(Integer.parseInt(updateInterval))
+                            .repeatForever();
                 }
+            }
+            try {
+                JobDataMap jobDataMap = new JobDataMap();
+                jobDataMap.put("user", userId);
+                jobDataMap.put("re", this);
+                JobDetail job = JobBuilder.newJob(UpdateJob.class)
+                        .withIdentity("user" + userId.toString(), "group1")
+                        .usingJobData(jobDataMap)
+                        .build();
+                Trigger trigger = TriggerBuilder.newTrigger()
+                        .withIdentity("user" + userId.toString(), "group1")
+                        .startNow()
+                        .withSchedule(scheduleBuilder)
+                        .build();
+                sched.scheduleJob(job, trigger);
+            } catch (SchedulerException se) {
+                se.printStackTrace();
+                log.error("Error while initializing quartz", se);
+            }
         } else {
             log.info("Update interval for user " + userId + " is not set");
         }
@@ -202,5 +212,18 @@ public class RssCore {
 
     public Feedposts getPost(Integer id) {
         return feedPostsRepository.findOne(id);
+    }
+
+    public void updateSetting(String key, String val, Integer userId) {
+        Settings settings = settingsRepository.findByKeyAndUserId(key, userId);
+        if (settings != null)
+            settings.setValue(val);
+        else {
+            settings = new Settings();
+            settings.setKey(key);
+            settings.setValue(val);
+            settings.setUserId(userId);
+        }
+        settingsRepository.save(settings);
     }
 }
