@@ -44,7 +44,7 @@ public class IMManager {
                 sb.append("New message on feed ");
                 sb.append(feed.getFeedname());
                 sb.append("\n");
-                newPosts.forEach(p -> sb.append(p.getPosttext()).append("\n"));
+                newPosts.forEach(p -> sb.append(p.getPosttext()).append("\n").append("<===================================================>").append("\n"));
                 im.sendMessage(c.getContact(), sb.toString());
             });
         });
