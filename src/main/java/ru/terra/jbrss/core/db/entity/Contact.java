@@ -15,10 +15,10 @@ public class Contact implements Serializable {
     private String contact;
     private Integer userId;
     private Long lastlogin;
-    private Long checkinterval;
     private Integer status;
     @Column(length = 256, name = "contact_type")
     private String type;
+    private String correctAnswer;
 
     public Contact() {
     }
@@ -59,14 +59,6 @@ public class Contact implements Serializable {
         this.lastlogin = lastlogin;
     }
 
-    public Long getCheckinterval() {
-        return checkinterval;
-    }
-
-    public void setCheckinterval(Long checkinterval) {
-        this.checkinterval = checkinterval;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -81,5 +73,13 @@ public class Contact implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 }

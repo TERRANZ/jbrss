@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.terra.jbrss.constants.ContactStatus;
 import ru.terra.jbrss.core.db.entity.Contact;
 import ru.terra.jbrss.core.db.entity.JbrssUser;
 import ru.terra.jbrss.core.db.repos.ContactsRepository;
@@ -33,7 +34,8 @@ public abstract class ServerInterface {
     protected abstract IMType getType();
 
     public boolean isContactExists(String contact) {
-        return contactsRepository.findByContactAndType(contact, getType().name()) != null;
+        Contact c = contactsRepository.findByContactAndType(contact, getType().name());
+        return c != null && c.getStatus() == ContactStatus.READY.ordinal();
     }
 
     public boolean isContactAttached(String contact, String login) {
@@ -46,21 +48,32 @@ public abstract class ServerInterface {
 
     public Integer login(String login, String pass) {
         JbrssUser user = usersRepository.findByLoginAndPassword(login, pass);
-        return user != null ? user.getId() : null;
+        if (user != null) {
+            contactsRepository.findByUserId(user.getId()).forEach(c -> {
+                c.setLastlogin(new Date().getTime());
+                contactsRepository.save(c);
+            });
+            return user.getId();
+        } else
+            return null;
     }
 
-    public void attachContactToUser(String contact, Integer userId) {
+    public Contact attachContactToUser(String contact, Integer userId) {
         Contact c = contactsRepository.findByContactAndType(contact, getType().name());
-        if (c == null) {
-            c = new Contact();
-            c.setUserId(userId);
-            c.setCheckinterval(60L);
-            c.setContact(contact);
-            c.setLastlogin(new Date().getTime());
-            c.setStatus(0);
-            c.setType(getType().name());
-        }
+        if (c == null)
+            c = createContact(contact, userId);
         contactsRepository.save(c);
+        return c;
+    }
+
+    private Contact createContact(String contact, Integer userId) {
+        Contact c = new Contact();
+        c.setUserId(userId);
+        c.setContact(contact);
+        c.setLastlogin(new Date().getTime());
+        c.setStatus(ContactStatus.READY.ordinal());
+        c.setType(getType().name());
+        return c;
     }
 
     public List<FeedDto> getFeeds(String contact) {
@@ -109,5 +122,24 @@ public abstract class ServerInterface {
 
     public void updateSetting(String key, String val, String contact) {
         rssCore.updateSetting(key, val, contactsRepository.findByContactAndType(contact, getType().name()).getUserId());
+    }
+
+    public Contact getContact(String contact) {
+        return contactsRepository.findByContactAndType(contact, getType().name());
+    }
+
+    public void updateContact(Contact c) {
+        contactsRepository.save(c);
+    }
+
+    public void regContact(String contact, Integer answer, String login, String pass) {
+        JbrssUser user = new JbrssUser();
+        user.setLogin(login);
+        user.setPassword(pass);
+        usersRepository.save(user);
+        Contact c = attachContactToUser(contact, user.getId());
+        c.setCorrectAnswer(answer.toString());
+        c.setStatus(ContactStatus.SENT_QUESTION.ordinal());
+        contactsRepository.save(c);
     }
 }
