@@ -142,4 +142,9 @@ public abstract class ServerInterface {
         c.setStatus(ContactStatus.SENT_QUESTION.ordinal());
         contactsRepository.save(c);
     }
+
+    public void deleteContact(Contact c) {
+        c.setStatus(ContactStatus.NOT_READY.ordinal());
+        contactsRepository.save(c);
+    }
 }

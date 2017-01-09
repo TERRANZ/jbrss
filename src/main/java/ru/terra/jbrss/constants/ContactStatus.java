@@ -1,5 +1,5 @@
 package ru.terra.jbrss.constants;
 
 public enum ContactStatus {
-    CREATED, SENT_QUESTION, READY
+    NOT_READY, SENT_QUESTION, READY, UNREG
 }

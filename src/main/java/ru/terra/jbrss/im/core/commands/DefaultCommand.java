@@ -19,9 +19,15 @@ public class DefaultCommand extends AbstractCommand {
                         sendMessage("Answer is correct, your registration is complete, send help for instructions");
                         c.setStatus(ContactStatus.READY.ordinal());
                         serverInterface.updateContact(c);
+                    } else {
+                        sendMessage("Answer is not correct");
                     }
-                } else
-                    sendMessage("Answer is not correct");
+                } else if (c.getStatus() == ContactStatus.UNREG.ordinal()) {
+                    if (params.get(0).equalsIgnoreCase("yes")) {
+                        serverInterface.deleteContact(c);
+                    }
+                }
+
         } else
             sendMessage("Hello, this is default command output, send help for more information");
         return true;

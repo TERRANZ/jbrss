@@ -11,35 +11,40 @@ public class SetCommand extends AbstractCommand {
 
     @Override
     public boolean doCmd(String contact, List<String> params) {
-        if (params.size() >= 2) {
-            switch (params.get(0)) {
-                case "updatetime.minutes": {
-                    try {
-                        serverInterface.updateSetting(SettingsConstants.UPDATE_TYPE, SettingsConstants.UPDATE_TYPE_SIMPLE, contact);
-                        serverInterface.updateSetting(SettingsConstants.UPDATE_INTERVAL, params.get(1), contact);
-                        serverInterface.update(contact);
-                        sendMessage("New update time set to " + params.get(1));
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        if (!serverInterface.isContactExists(contact)) {
+            sendMessage("Not authorized");
+            return false;
+        } else {
+            if (params.size() >= 2) {
+                switch (params.get(0)) {
+                    case "updatetime.minutes": {
+                        try {
+                            serverInterface.updateSetting(SettingsConstants.UPDATE_TYPE, SettingsConstants.UPDATE_TYPE_SIMPLE, contact);
+                            serverInterface.updateSetting(SettingsConstants.UPDATE_INTERVAL, params.get(1), contact);
+                            serverInterface.update(contact);
+                            sendMessage("New update time set to " + params.get(1));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-                break;
-                case "updatetime.cron": {
-                    try {
-                        serverInterface.updateSetting(SettingsConstants.UPDATE_TYPE, SettingsConstants.UPDATE_TYPE_CRON, contact);
-                        String cronExpr = "";
-                        for (int i = 1; i < params.size(); i++)
-                            cronExpr += params.get(i) + " ";
-                        serverInterface.updateSetting(SettingsConstants.UPDATE_INTERVAL, cronExpr.trim(), contact);
-                        serverInterface.update(contact);
-                        sendMessage("New update time set to " + cronExpr);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    break;
+                    case "updatetime.cron": {
+                        try {
+                            serverInterface.updateSetting(SettingsConstants.UPDATE_TYPE, SettingsConstants.UPDATE_TYPE_CRON, contact);
+                            String cronExpr = "";
+                            for (int i = 1; i < params.size(); i++)
+                                cronExpr += params.get(i) + " ";
+                            serverInterface.updateSetting(SettingsConstants.UPDATE_INTERVAL, cronExpr.trim(), contact);
+                            serverInterface.update(contact);
+                            sendMessage("New update time set to " + cronExpr);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
+                    break;
                 }
-                break;
             }
+            return true;
         }
-        return true;
     }
 }
