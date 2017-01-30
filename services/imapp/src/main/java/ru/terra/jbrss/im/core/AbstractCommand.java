@@ -1,4 +1,4 @@
-package ru.terra.jbrss.core;
+package ru.terra.jbrss.im.core;
 
 import java.util.List;
 

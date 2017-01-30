@@ -8,15 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ru.terra.jbrss.constants.SettingsConstants;
-import ru.terra.jbrss.core.db.entity.Feedposts;
-import ru.terra.jbrss.core.db.entity.Feeds;
-import ru.terra.jbrss.core.db.entity.JbrssUser;
-import ru.terra.jbrss.core.db.entity.Settings;
-import ru.terra.jbrss.core.db.repos.FeedPostsRepository;
-import ru.terra.jbrss.core.db.repos.FeedsRepository;
-import ru.terra.jbrss.core.db.repos.SettingsRepository;
-import ru.terra.jbrss.core.db.repos.UsersRepository;
-import ru.terra.jbrss.im.core.IMManager;
+import ru.terra.jbrss.db.entity.Feedposts;
+import ru.terra.jbrss.db.entity.Feeds;
+import ru.terra.jbrss.db.entity.Settings;
+import ru.terra.jbrss.db.repos.FeedPostsRepository;
+import ru.terra.jbrss.db.repos.FeedsRepository;
+import ru.terra.jbrss.db.repos.SettingsRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,18 +28,15 @@ public class RssCore {
     private Downloader downloader = new Downloader();
     @Autowired
     private SettingsRepository settingsRepository;
-    @Autowired
-    private UsersRepository usersRepository;
+//    @Autowired
+//    private UsersRepository usersRepository;
     @Autowired
     private FeedsRepository feedsRepository;
     @Autowired
     private FeedPostsRepository feedPostsRepository;
-    @Autowired
-    private IMManager imManager;
 
     public void start() {
-        imManager.start();
-        usersRepository.findAll().forEach(u -> scheduleUpdatingForUser(u.getId()));
+//        usersRepository.findAll().forEach(u -> scheduleUpdatingForUser(u.getId()));
     }
 
     public List<Feeds> getFeeds(Integer uid) {
@@ -76,8 +70,8 @@ public class RssCore {
             } else
                 newPosts = new ArrayList<>();
         }
-        if (newPosts.size() > 0)
-            imManager.notifyFeedUpdated(feed.getUserid(), feed, newPosts);
+//        if (newPosts.size() > 0)
+//            imManager.notifyFeedUpdated(feed.getUserid(), feed, newPosts);
         feedPostsRepository.save(newPosts);
         return newPosts.size();
     }
@@ -146,9 +140,9 @@ public class RssCore {
     }
 
 
-    public Boolean addFeed(final JbrssUser user, final String url) throws IllegalAccessException {
-        if (feedsRepository.findByUseridAndByFeedURL(user.getId(), url) == null) {
-            new Thread(() -> feedsRepository.save(new Feeds(0, user.getId(), downloader.getFeedTitle(url), url, new Date()))).start();
+    public Boolean addFeed(final Integer userId, final String url) throws IllegalAccessException {
+        if (feedsRepository.findByUseridAndByFeedURL(userId, url) == null) {
+            new Thread(() -> feedsRepository.save(new Feeds(0, userId, downloader.getFeedTitle(url), url, new Date()))).start();
             return true;
         }
         return false;

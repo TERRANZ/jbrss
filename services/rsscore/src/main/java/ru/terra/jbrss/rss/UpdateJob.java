@@ -7,7 +7,7 @@ import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.terra.jbrss.core.db.entity.Feeds;
+import ru.terra.jbrss.db.entity.Feeds;
 
 import java.util.List;
 

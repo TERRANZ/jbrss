@@ -1,4 +1,4 @@
-package ru.terra.jbrss.core.commands;
+package ru.terra.jbrss.im.core.commands;
 
 import ru.terra.jbrss.im.core.AbstractCommand;
 import ru.terra.jbrss.im.core.CommandsFactory;

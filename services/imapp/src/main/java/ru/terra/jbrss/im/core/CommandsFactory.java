@@ -1,6 +1,6 @@
-package ru.terra.jbrss.core;
+package ru.terra.jbrss.im.core;
 
-import ru.terra.jbrss.core.ClassSearcher;
+import ru.terra.jbrss.ClassSearcher;
 import ru.terra.jbrss.im.core.commands.DefaultCommand;
 
 import java.util.ArrayList;

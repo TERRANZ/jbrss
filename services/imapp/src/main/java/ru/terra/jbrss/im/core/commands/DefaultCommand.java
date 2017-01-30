@@ -1,7 +1,7 @@
-package ru.terra.jbrss.core.commands;
+package ru.terra.jbrss.im.core.commands;
 
 import ru.terra.jbrss.constants.ContactStatus;
-import ru.terra.jbrss.core.db.entity.Contact;
+import ru.terra.jbrss.db.entity.Contact;
 import ru.terra.jbrss.im.core.AbstractCommand;
 import ru.terra.jbrss.im.core.IMCommand;
 

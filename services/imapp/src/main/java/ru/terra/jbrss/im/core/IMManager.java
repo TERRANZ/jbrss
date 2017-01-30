@@ -1,14 +1,12 @@
-package ru.terra.jbrss.core;
+package ru.terra.jbrss.im.core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.terra.jbrss.core.db.entity.Feedposts;
-import ru.terra.jbrss.core.db.entity.Feeds;
-import ru.terra.jbrss.core.db.repos.ContactsRepository;
-import ru.terra.jbrss.im.jabber.JabberIM;
-import ru.terra.jbrss.im.telegram.TelegramIM;
+import ru.terra.jbrss.db.repos.ContactsRepository;
+import ru.terra.jbrss.jabber.JabberIM;
+import ru.terra.jbrss.telegram.TelegramIM;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -30,9 +28,9 @@ public class IMManager {
         telegramIM.start();
     }
 
-    public void notifyFeedUpdated(Integer usedId, Feeds feed, List<Feedposts> newPosts) {
+    public void notifyFeedUpdated(Integer usedId, String feedName, List<String> newPostsTexts) {
         threadPool.submit(() -> {
-            logger.info("Feed " + feed.getFeedname() + " of user " + usedId + " have " + newPosts.size() + " new posts");
+            logger.info("Feed " + feedName + " of user " + usedId + " have " + newPostsTexts.size() + " new posts");
             contactsRepository.findByUserId(usedId).forEach(c -> {
                 ServerInterface im;
                 if (c.getType().equals(IMType.TELEGRAM.name()))
@@ -42,9 +40,9 @@ public class IMManager {
 
                 StringBuilder sb = new StringBuilder();
                 sb.append("New message on feed ");
-                sb.append(feed.getFeedname());
+                sb.append(feedName);
                 sb.append("\n");
-                newPosts.forEach(p -> sb.append(p.getPosttext()).append("\n").append("<===================================================>").append("\n"));
+                newPostsTexts.forEach(pt -> sb.append(pt).append("\n").append("<===================================================>").append("\n"));
                 im.sendMessage(c.getContact(), sb.toString());
             });
         });

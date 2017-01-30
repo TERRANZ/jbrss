@@ -1,7 +1,7 @@
-package ru.terra.jbrss.core.commands;
+package ru.terra.jbrss.im.core.commands;
 
-import ru.terra.jbrss.core.AbstractCommand;
-import ru.terra.jbrss.core.IMCommand;
+import ru.terra.jbrss.im.core.AbstractCommand;
+import ru.terra.jbrss.im.core.IMCommand;
 
 import java.util.List;
 
