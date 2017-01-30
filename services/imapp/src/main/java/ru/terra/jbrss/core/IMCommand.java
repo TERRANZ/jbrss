@@ -1,0 +1,12 @@
+package ru.terra.jbrss.core;
+
+import java.lang.annotation.*;
+
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE})
+public @interface IMCommand {
+    String value();
+
+    String help() default "";
+}

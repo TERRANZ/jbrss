@@ -1,7 +1,7 @@
 # Spring properties
 spring:
   application:
-     name: rsscore-service
+     name: im-service
 
 # Discovery Server Access
 eureka:
@@ -11,4 +11,4 @@ eureka:
 
 # HTTP Server
 server:
-  port: 2224   # HTTP (Tomcat) port
+  port: 2223   # HTTP (Tomcat) port
