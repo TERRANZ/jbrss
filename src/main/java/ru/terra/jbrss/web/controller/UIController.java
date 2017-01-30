@@ -34,7 +34,7 @@ public class UIController {
     }
 
     @RequestMapping(value = URLConstants.UI.FEED, method = RequestMethod.GET)
-    public String feed(@RequestParam(value = "id") Integer id, Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page) {
+    public String feed(@RequestParam(value = "id") Integer id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
         model.addAttribute("data", rssCore.getFeedPosts(id, page, 10).stream().map(FeedPostDto::new).collect(Collectors.toList()));
         model.addAttribute("page", page + 1);
         model.addAttribute("id", id);

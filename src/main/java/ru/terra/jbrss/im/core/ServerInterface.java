@@ -100,7 +100,8 @@ public abstract class ServerInterface {
         params.remove(0);
         if (!isContactExists(fromName))
             sendMessage(fromName, "Hello, you are not registered, type reg");
-        if (cmd != null)
+        else
+            if (cmd != null)
             try {
                 cmd.setContact(fromName);
                 cmd.setServerInterface(this);
