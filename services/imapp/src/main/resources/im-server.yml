@@ -12,3 +12,13 @@ eureka:
 # HTTP Server
 server:
   port: 2223   # HTTP (Tomcat) port
+
+
+jabber.server: a
+jabber.port: 5555
+jabber.user: a
+jabber.pass: a
+jabber.enable: a
+telegram.botname: a
+telegram.token: b
+telegram.enable: c

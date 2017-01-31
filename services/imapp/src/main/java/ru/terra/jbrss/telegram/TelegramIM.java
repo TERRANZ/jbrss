@@ -17,7 +17,7 @@ public class TelegramIM extends ServerInterface {
     protected String telegramBotName;
     @Value("${telegram.token}")
     protected String telegramToken;
-    @Value("$(telegram.enable")
+    @Value("$(telegram.enable}")
     protected String isEnabled;
 
     private TelegramImBotInterface botInterface;
