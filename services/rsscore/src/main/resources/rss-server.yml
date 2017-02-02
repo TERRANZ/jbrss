@@ -12,3 +12,4 @@ eureka:
 # HTTP Server
 server:
   port: 2224   # HTTP (Tomcat) port
+  contextPath: /rss

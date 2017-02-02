@@ -12,3 +12,21 @@ eureka:
 # HTTP Server
 server:
   port: 2225   # HTTP (Tomcat) port
+
+zuul:
+  routes:
+    user:
+      path: /rss/**
+      url: http://localhost:2224/rss
+
+spring:
+  oauth2:
+    sso:
+      home:
+        secure: false
+        path: /,/**/*.html
+    client:
+      accessTokenUri: http://localhost:9999/uaa/oauth/token
+      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
+      clientId: acme
+      clientSecret: acmesecret
