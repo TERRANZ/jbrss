@@ -1,13 +1,13 @@
 package ru.terra.jbrss.db.repos;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import ru.terra.jbrss.db.entity.Feedposts;
 
 import java.util.Date;
 import java.util.List;
 
-public interface FeedPostsRepository extends CrudRepository<Feedposts, Integer> {
+public interface FeedPostsRepository extends PagingAndSortingRepository<Feedposts, Integer> {
     @Query(value = "SELECT f.* FROM feedposts f WHERE f.feed_id = ?1 ORDER BY f.postdate DESC LIMIT 1", nativeQuery = true)
     List<Feedposts> getPostsByFeedAndByDateSorted(Integer feedId);
 

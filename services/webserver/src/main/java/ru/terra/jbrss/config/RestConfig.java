@@ -8,7 +8,7 @@ import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.client.token.DefaultAccessTokenRequest;
-import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails;
+import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 
 import java.util.ArrayList;
@@ -17,12 +17,16 @@ import java.util.List;
 @EnableOAuth2Client
 @Configuration
 public class RestConfig {
+    @Value("${oauth.resource:http://localhost:2224}")
+    private String baseUrl;
+    @Value("${oauth.authorize:http://localhost:2222/acc/oauth/authorize}")
+    private String authorizeUrl;
     @Value("${oauth.token:http://localhost:2222/acc/oauth/token}")
     private String tokenUrl;
 
     @Bean
     protected OAuth2ProtectedResourceDetails resource() {
-        ResourceOwnerPasswordResourceDetails resource = new ResourceOwnerPasswordResourceDetails();
+        ClientCredentialsResourceDetails resource = new ClientCredentialsResourceDetails();
         List<String> scopes = new ArrayList<>(2);
         scopes.add("write");
         scopes.add("read");
