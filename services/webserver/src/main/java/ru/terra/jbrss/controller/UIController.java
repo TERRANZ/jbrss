@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ru.terra.jbrss.constants.URLConstants;
 import ru.terra.jbrss.service.RssService;
 
@@ -40,7 +41,9 @@ public class UIController {
     }
 
     @RequestMapping("/test")
-    public String test() throws IOException {
+    public
+    @ResponseBody
+    String test() throws IOException {
         return new ObjectMapper().writeValueAsString(rssService.getFeeds());
     }
 }
