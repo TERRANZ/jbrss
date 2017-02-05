@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.terra.jbrss.db.entity.JbrssUser;
 import ru.terra.jbrss.db.repos.UsersRepository;
+import ru.terra.jbrss.dto.UserIdDto;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -20,15 +21,15 @@ public class UsersController {
     @RequestMapping(value = "/{client}/id", method = RequestMethod.GET)
     public
     @ResponseBody
-    Integer getId(@PathVariable(value = "client") String client) {
+    UserIdDto getId(@PathVariable(value = "client") String client) {
         OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
         if (authentication.isAuthenticated()) {
-            JbrssUser user = usersRepository.findByLogin(authentication.getName());
+            JbrssUser user = usersRepository.findByLogin(client);
             if (user != null)
-                return user.getId();
+                return new UserIdDto(user.getId());
             else
-                return -1;
+                return new UserIdDto(-1);
         } else
-            return -1;
+            return new UserIdDto(-1);
     }
 }
