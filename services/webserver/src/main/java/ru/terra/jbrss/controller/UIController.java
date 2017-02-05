@@ -2,6 +2,8 @@ package ru.terra.jbrss.controller;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,8 @@ public class UIController {
 
     @RequestMapping(URLConstants.UI.MAIN)
     public String main(Model model) {
+        OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
+        authentication.toString();
 //        AuthUser user = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        model.addAttribute("data", rssCore.getFeeds(user.getId()).parallelStream().map(FeedDto::new).collect(Collectors.toList()));
         return URLConstants.View.MAIN;
@@ -44,6 +48,6 @@ public class UIController {
     public
     @ResponseBody
     String test() throws IOException {
-        return new ObjectMapper().writeValueAsString(rssService.getFeeds());
+        return new ObjectMapper().writeValueAsString(rssService.getCurrentUserId());
     }
 }

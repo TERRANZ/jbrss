@@ -1,4 +1,4 @@
-package ru.terra.jbrss.db.srepos;
+package ru.terra.jbrss.db.repos;
 
 import org.springframework.data.repository.CrudRepository;
 import ru.terra.jbrss.db.entity.JbrssUser;

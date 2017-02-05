@@ -17,4 +17,8 @@ public class RssService {
         EmbeddedView ret = restTemplate.getForObject(URI.create("http://localhost:2224/rss/feedses"), EmbeddedView.class);
         return ret;
     }
+
+    public Integer getCurrentUserId() {
+        return restTemplate.getForObject(URI.create("http://localhost:2222/acc/user/id"), Integer.class);
+    }
 }

@@ -35,11 +35,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <!-- Setup Spring MVC & REST, use Embedded Tomcat -->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-rest</artifactId>
-        </dependency>
 
         <dependency>
             <!-- Spring Cloud starter -->
