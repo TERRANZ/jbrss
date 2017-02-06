@@ -14,6 +14,7 @@ import ru.terra.jbrss.db.entity.Settings;
 import ru.terra.jbrss.db.repos.FeedPostsRepository;
 import ru.terra.jbrss.db.repos.FeedsRepository;
 import ru.terra.jbrss.db.repos.SettingsRepository;
+import ru.terra.jbrss.service.UsersService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,15 +29,17 @@ public class RssCore {
     private Downloader downloader = new Downloader();
     @Autowired
     private SettingsRepository settingsRepository;
-//    @Autowired
+    //    @Autowired
 //    private UsersRepository usersRepository;
     @Autowired
     private FeedsRepository feedsRepository;
     @Autowired
     private FeedPostsRepository feedPostsRepository;
+    @Autowired
+    private UsersService usersService;
 
     public void start() {
-//        usersRepository.findAll().forEach(u -> scheduleUpdatingForUser(u.getId()));
+        usersService.getAllUserIds().forEach(this::scheduleUpdatingForUser);
     }
 
     public List<Feeds> getFeeds(Integer uid) {

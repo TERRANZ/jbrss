@@ -8,3 +8,15 @@ eureka:
 
 server:
   port: 1111   # HTTP (Tomcat) port
+
+zuul:
+  routes:
+    ui:
+      path: /**
+      url: http://localhost:4200
+    acc:
+      path: /acc/**
+      url: http://localhost:2222/acc
+    rss:
+      path: /rss/**
+      url: http://localhost:2224/rss
