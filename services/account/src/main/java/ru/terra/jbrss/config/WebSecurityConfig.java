@@ -21,16 +21,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and()
-                .authorizeRequests()
-                .antMatchers("/**").authenticated();
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .csrf().disable()
+//                .exceptionHandling()
+//                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
 //                .and()
-//                .httpBasic();
-    }
+//                .authorizeRequests()
+//                .antMatchers("/**").authenticated()
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/oauth/**").permitAll();
+////                .and()
+////                .httpBasic();
+//    }
 }
