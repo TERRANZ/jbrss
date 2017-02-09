@@ -27,7 +27,7 @@ public class RestConfig {
     @Bean
     protected OAuth2ProtectedResourceDetails resource() {
         ClientCredentialsResourceDetails resource = new ClientCredentialsResourceDetails();
-        List<String> scopes = new ArrayList<>(2);
+        List<String> scopes = new ArrayList<>();
         scopes.add("rest");
         resource.setAccessTokenUri(tokenUrl);
         resource.setClientId("restapp");

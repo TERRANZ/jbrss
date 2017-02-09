@@ -14,7 +14,7 @@ import ru.terra.jbrss.db.entity.Settings;
 import ru.terra.jbrss.db.repos.FeedPostsRepository;
 import ru.terra.jbrss.db.repos.FeedsRepository;
 import ru.terra.jbrss.db.repos.SettingsRepository;
-import ru.terra.jbrss.service.UsersService;
+import ru.terra.jbrss.shared.service.UsersService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,7 +25,7 @@ import java.util.List;
 public class RssCore {
     private StdSchedulerFactory sf = new StdSchedulerFactory();
     private Scheduler sched;
-    private Logger log = LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     private Downloader downloader = new Downloader();
 
     @Autowired
@@ -46,7 +46,7 @@ public class RssCore {
     }
 
     public Integer updateFeed(Feeds feed) {
-        log.info("updating feed " + feed.getFeedurl());
+        logger.info("updating feed " + feed.getFeedurl());
         List<Feedposts> posts = downloader.loadFeeds(feed);
         Date d = null;
         List<Feedposts> lastFeedPosts = feedPostsRepository.getPostsByFeedAndByDateSorted(feed.getId());
@@ -59,7 +59,7 @@ public class RssCore {
             for (Feedposts fp : posts) {
                 if (fp != null)
                     if (fp.getPostdate() == null)
-                        log.info("post date of post " + fp.getPosttitle() + " is null");
+                        logger.info("post date of post " + fp.getPosttitle() + " is null");
                     else if (fp.getPostdate().getTime() > d.getTime()) {
                         fp.setFeedId(feed.getId());
                         fp.setUpdated(new Date());
@@ -79,6 +79,7 @@ public class RssCore {
     }
 
     public synchronized void scheduleUpdatingForUser(Integer userId) {
+        logger.info("Scheduling updating for user " + userId);
         try {
             if (sched == null) {
                 sched = sf.getScheduler();
@@ -123,10 +124,10 @@ public class RssCore {
                 sched.scheduleJob(job, trigger);
             } catch (SchedulerException se) {
                 se.printStackTrace();
-                log.error("Error while initializing quartz", se);
+                logger.error("Error while initializing quartz", se);
             }
         } else {
-            log.info("Update interval for user " + userId + " is not set");
+            logger.info("Update interval for user " + userId + " is not set");
         }
     }
 
@@ -137,7 +138,7 @@ public class RssCore {
             sched.unscheduleJob(new TriggerKey("user" + uid.toString(), "group1"));
             scheduleUpdatingForUser(uid);
         } catch (SchedulerException e) {
-            log.error("Unable to remove job", e);
+            logger.error("Unable to remove job", e);
         }
     }
 
@@ -184,12 +185,12 @@ public class RssCore {
     }
 
     public void removeFeed(Integer id) {
-        log.info("Removed posts in feed " + id);
+        logger.info("Removed posts in feed " + id);
         feedPostsRepository.findByFeedId(id).parallelStream().forEach(fp -> feedPostsRepository.delete(fp));
         try {
             feedsRepository.delete(id);
         } catch (Exception e) {
-            log.error("Unable to delete feed " + id, e);
+            logger.error("Unable to delete feed " + id, e);
         }
     }
 

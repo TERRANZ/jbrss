@@ -52,6 +52,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zuul</artifactId>
         </dependency>
+        <dependency>
+            <groupId>ru.terra.jbrss</groupId>
+            <artifactId>shared</artifactId>
+            <version>1</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.terra.jbrss.db.entity.JbrssUser;
 import ru.terra.jbrss.db.repos.UsersRepository;
-import ru.terra.jbrss.dto.UserIdDto;
-import ru.terra.jbrss.dto.UserIdListDto;
+import ru.terra.jbrss.shared.dto.UserIdDto;
+import ru.terra.jbrss.shared.dto.UserIdListDto;
 
 import java.util.stream.Collectors;
 

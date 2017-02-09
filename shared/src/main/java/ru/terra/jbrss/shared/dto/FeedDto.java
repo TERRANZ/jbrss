@@ -1,6 +1,4 @@
-package ru.terra.jbrss.dto;
-
-import ru.terra.jbrss.db.entity.Feeds;
+package ru.terra.jbrss.shared.dto;
 
 public class FeedDto {
     public Integer id = 0;
@@ -9,13 +7,6 @@ public class FeedDto {
     public Long updateTime = 0L;
 
     public FeedDto() {
-    }
-
-    public FeedDto(Feeds feeds) {
-        this.id = feeds.getId();
-        this.feedname = feeds.getFeedname();
-        this.feedurl = feeds.getFeedurl();
-        this.updateTime = feeds.getUpdateTime().getTime();
     }
 
     public Integer getId() {

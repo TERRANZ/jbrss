@@ -1,27 +1,15 @@
-package ru.terra.jbrss.dto;
-
-import ru.terra.jbrss.db.entity.Feedposts;
+package ru.terra.jbrss.shared.dto;
 
 public class FeedPostDto {
     public Integer id;
     public Integer feedId;
-    public String postdate;
+    public Long postdate;
     public String posttitle;
     public String postlink;
     public String posttext;
     public boolean isRead;
 
     public FeedPostDto() {
-    }
-
-    public FeedPostDto(Feedposts feedposts) {
-        this.id = feedposts.getId();
-        this.feedId = feedposts.getFeedId();
-        this.postdate = feedposts.getPostdate().toString();
-        this.posttitle = feedposts.getPosttitle();
-        this.postlink = feedposts.getPostlink();
-        this.posttext = feedposts.getPosttext();
-        this.isRead = feedposts.isRead();
     }
 
     public Integer getId() {
@@ -40,11 +28,11 @@ public class FeedPostDto {
         this.feedId = feedId;
     }
 
-    public String getPostdate() {
+    public Long getPostdate() {
         return postdate;
     }
 
-    public void setPostdate(String postdate) {
+    public void setPostdate(Long postdate) {
         this.postdate = postdate;
     }
 

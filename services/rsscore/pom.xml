@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.terra.jbrss</groupId>
+    <groupId>ru.terra.s</groupId>
     <artifactId>rsscore</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -78,6 +78,11 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-jwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ru.terra.jbrss</groupId>
+            <artifactId>shared</artifactId>
+            <version>1</version>
         </dependency>
     </dependencies>
 

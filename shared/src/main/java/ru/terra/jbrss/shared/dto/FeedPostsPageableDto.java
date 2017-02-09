@@ -1,4 +1,4 @@
-package ru.terra.jbrss.dto;
+package ru.terra.jbrss.shared.dto;
 
 import java.util.List;
 

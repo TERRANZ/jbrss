@@ -99,6 +99,11 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-jwt</artifactId>
         </dependency>
+        <dependency>
+            <groupId>ru.terra.jbrss</groupId>
+            <artifactId>shared</artifactId>
+            <version>1</version>
+        </dependency>
     </dependencies>
 
     <build>
