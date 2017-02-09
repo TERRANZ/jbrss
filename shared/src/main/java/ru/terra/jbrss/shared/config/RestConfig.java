@@ -1,4 +1,4 @@
-package ru.terra.jbrss.config;
+package ru.terra.jbrss.shared.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import java.util.List;
 @EnableOAuth2Client
 @Configuration
 public class RestConfig {
-    @Value("${oauth.resource:http://localhost:2224}")
+    @Value("${oauth.resource:http://localhost:2222}")
     private String baseUrl;
     @Value("${oauth.authorize:http://localhost:2222/acc/oauth/authorize}")
     private String authorizeUrl;
