@@ -24,7 +24,7 @@ public class ReadCommand extends AbstractCommand {
                 perPage = Integer.parseInt(params.get(2));
             } catch (Exception e) {
             }
-            serverInterface.getFeedPosts(targetFeed, page, perPage).forEach(fp -> sendMessage(fp.getPosttitle() + " : " + fp.getPosttext()));
+            serverInterface.getFeedPosts(serverInterface.getUserId(contact), targetFeed, page, perPage).forEach(fp -> sendMessage(fp.getPosttitle() + " : " + fp.getPosttext()));
             return true;
         }
     }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.terra.jbrss.db.repos.FeedPostsRepository;
 import ru.terra.jbrss.db.repos.FeedsRepository;
 import ru.terra.jbrss.shared.dto.FeedDto;
+import ru.terra.jbrss.shared.dto.FeedListDto;
 import ru.terra.jbrss.shared.dto.FeedPostDto;
 import ru.terra.jbrss.shared.dto.FeedPostsPageableDto;
 
@@ -21,15 +22,17 @@ public class RssController {
     @RequestMapping(value = "/{uid}/feed", method = RequestMethod.GET)
     public
     @ResponseBody
-    FeedDto[] allFeeds(@PathVariable Integer uid) {
-        return feedsRepository.findByUserid(uid).stream().map(u -> {
+    FeedListDto allFeeds(@PathVariable Integer uid) {
+        FeedListDto feedListDto = new FeedListDto();
+        feedListDto.data = feedsRepository.findByUserid(uid).stream().map(u -> {
             FeedDto feedDto = new FeedDto();
             feedDto.setId(u.getId());
             feedDto.setFeedname(u.getFeedname());
             feedDto.setFeedurl(u.getFeedurl());
             feedDto.setUpdateTime(u.getUpdateTime().getTime());
             return feedDto;
-        }).toArray(FeedDto[]::new);
+        }).collect(Collectors.toList());
+        return feedListDto;
     }
 
     @RequestMapping(value = "/{uid}/feed/{fid}/list", method = RequestMethod.GET)

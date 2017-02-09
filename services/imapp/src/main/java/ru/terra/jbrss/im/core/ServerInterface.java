@@ -79,8 +79,8 @@ public abstract class ServerInterface {
         return rssService.getFeeds(contactsRepository.findByContactAndType(contact, getType().name()).getUserId());
     }
 
-    public List<FeedPostDto> getFeedPosts(Integer targetFeed, Integer page, Integer perPage) {
-        return rssService.getFeedPosts(targetFeed, page, perPage);
+    public List<FeedPostDto> getFeedPosts(Integer userId, Integer targetFeed, Integer page, Integer perPage) {
+        return rssService.getFeedPosts(userId, targetFeed, page, perPage);
     }
 
     public boolean addFeed(String contact, String url) throws IllegalAccessException {
@@ -88,8 +88,8 @@ public abstract class ServerInterface {
         return rssService.addFeed(c.getUserId(), url);
     }
 
-    public void removeFeed(Integer feedId) {
-        rssService.removeFeed(feedId);
+    public void removeFeed(Integer userId, Integer feedId) {
+        rssService.removeFeed(userId, feedId);
     }
 
     protected void processText(String fromName, String msg) {
@@ -142,5 +142,9 @@ public abstract class ServerInterface {
     public void deleteContact(Contact c) {
         c.setStatus(ContactStatus.NOT_READY.ordinal());
         contactsRepository.save(c);
+    }
+
+    public Integer getUserId(String contact) {
+        return contactsRepository.findByContactAndType(contact, getType().name()).getUserId();
     }
 }

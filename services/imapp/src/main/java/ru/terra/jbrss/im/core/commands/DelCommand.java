@@ -13,7 +13,7 @@ public class DelCommand extends AbstractCommand {
             sendMessage("Not authorized");
             return false;
         } else {
-            serverInterface.removeFeed(Integer.parseInt(params.get(0)));
+            serverInterface.removeFeed(serverInterface.getUserId(contact), Integer.parseInt(params.get(0)));
             sendMessage("Feed " + params.get(0) + " removed");
             return true;
         }
