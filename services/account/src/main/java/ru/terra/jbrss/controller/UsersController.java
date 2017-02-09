@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ru.terra.jbrss.db.entity.JbrssUser;
 import ru.terra.jbrss.db.repos.UsersRepository;
 import ru.terra.jbrss.dto.UserIdDto;
+import ru.terra.jbrss.dto.UserIdListDto;
+
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -31,5 +34,18 @@ public class UsersController {
                 return new UserIdDto(-1);
         } else
             return new UserIdDto(-1);
+    }
+
+    @RequestMapping(value = "/ids", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    UserIdListDto allIds() {
+        OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.isAuthenticated()) {
+            UserIdListDto ret = new UserIdListDto();
+            ret.data = usersRepository.findAll().stream().map(u -> new UserIdDto(u.getId())).collect(Collectors.toList());
+            return ret;
+        }
+        return new UserIdListDto();
     }
 }

@@ -27,10 +27,9 @@ public class RssCore {
     private Scheduler sched;
     private Logger log = LoggerFactory.getLogger(this.getClass());
     private Downloader downloader = new Downloader();
+
     @Autowired
     private SettingsRepository settingsRepository;
-    //    @Autowired
-//    private UsersRepository usersRepository;
     @Autowired
     private FeedsRepository feedsRepository;
     @Autowired
