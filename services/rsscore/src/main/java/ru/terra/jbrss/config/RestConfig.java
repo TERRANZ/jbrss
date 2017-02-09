@@ -28,8 +28,7 @@ public class RestConfig {
     protected OAuth2ProtectedResourceDetails resource() {
         ClientCredentialsResourceDetails resource = new ClientCredentialsResourceDetails();
         List<String> scopes = new ArrayList<>(2);
-        scopes.add("write");
-        scopes.add("read");
+        scopes.add("rest");
         resource.setAccessTokenUri(tokenUrl);
         resource.setClientId("restapp");
         resource.setClientSecret("restapp");

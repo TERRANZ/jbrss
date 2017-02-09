@@ -15,7 +15,7 @@ public class UsersService {
     OAuth2RestOperations restTemplate;
 
     public List<Integer> getAllUserIds() {
-        UserIdListDto dto = restTemplate.getForObject(URI.create("http://localhost:2222/acc/ids"), UserIdListDto.class);
+        UserIdListDto dto = restTemplate.getForObject(URI.create("http://localhost:2222/acc/user/ids"), UserIdListDto.class);
         return new ArrayList<>();
     }
 }
