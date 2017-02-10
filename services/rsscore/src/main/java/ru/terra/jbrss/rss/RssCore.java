@@ -127,19 +127,22 @@ public class RssCore {
                 logger.error("Error while initializing quartz", se);
             }
         } else {
-            logger.info("Update interval for user " + userId + " is not set");
+            logger.info("Update interval for user " + userId + " is not set, just update one time");
         }
+        updateAllFeedsForUser(userId);
     }
 
 
-    public void updateSchedulingForUser(Integer uid) {
+    public boolean updateSchedulingForUser(Integer uid) {
         try {
             sched.deleteJob(new JobKey("user" + uid.toString(), "group1"));
             sched.unscheduleJob(new TriggerKey("user" + uid.toString(), "group1"));
             scheduleUpdatingForUser(uid);
         } catch (SchedulerException e) {
             logger.error("Unable to remove job", e);
+            return false;
         }
+        return true;
     }
 
 
@@ -184,14 +187,16 @@ public class RssCore {
             setPostRead(f.getId(), true);
     }
 
-    public void removeFeed(Integer id) {
+    public boolean removeFeed(Integer id) {
         logger.info("Removed posts in feed " + id);
         feedPostsRepository.findByFeedId(id).parallelStream().forEach(fp -> feedPostsRepository.delete(fp));
         try {
             feedsRepository.delete(id);
         } catch (Exception e) {
             logger.error("Unable to delete feed " + id, e);
+            return false;
         }
+        return true;
     }
 
     public Feeds getFeed(Integer id) {
@@ -222,5 +227,18 @@ public class RssCore {
             settings.setUserId(userId);
         }
         settingsRepository.save(settings);
+    }
+
+    public void updateAllFeedsForUser(Integer uid) {
+        List<Feeds> feeds = getFeeds(uid);
+        if (feeds != null && feeds.size() > 0) {
+            for (Feeds f : feeds) {
+                try {
+                    updateFeed(f);
+                } catch (Exception e) {
+                    logger.error("Error while updating feed " + f.getFeedurl(), e);
+                }
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ public class RssService {
     }
 
     public List<FeedPostDto> getFeedPosts(Integer userId, Integer targetFeed, Integer page, Integer perPage) {
-        return restTemplate.getForObject(rssServiceUrl + "/{uid}/feed/{fid}/list?page={page}&limit={limit}", FeedPostsPageableDto.class, userId, targetFeed, page, perPage).getPosts();
+        return restTemplate.getForObject(rssServiceUrl + "{uid}/feed/{fid}/list?page={page}&limit={limit}", FeedPostsPageableDto.class, userId, targetFeed, page, perPage).getPosts();
     }
 
     public boolean addFeed(Integer userId, String url) {

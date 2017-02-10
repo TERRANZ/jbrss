@@ -1,14 +1,14 @@
 package ru.terra.jbrss.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.terra.jbrss.db.repos.FeedPostsRepository;
 import ru.terra.jbrss.db.repos.FeedsRepository;
-import ru.terra.jbrss.shared.dto.FeedDto;
-import ru.terra.jbrss.shared.dto.FeedListDto;
-import ru.terra.jbrss.shared.dto.FeedPostDto;
-import ru.terra.jbrss.shared.dto.FeedPostsPageableDto;
+import ru.terra.jbrss.rss.RssCore;
+import ru.terra.jbrss.shared.dto.*;
 
 import java.util.stream.Collectors;
 
@@ -18,6 +18,9 @@ public class RssController {
     private FeedsRepository feedsRepository;
     @Autowired
     private FeedPostsRepository feedPostsRepository;
+    @Autowired
+    private RssCore rssCore;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/{uid}/feed", method = RequestMethod.GET)
     public
@@ -55,5 +58,31 @@ public class RssController {
                 }).collect(Collectors.toList()),
                 feedPostsRepository.countByFeedId(fid)
         );
+    }
+
+    @RequestMapping(value = "/{uid}/feed/add", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    BooleanDto addFeed(@PathVariable Integer uid, @RequestParam(value = "url") String url) {
+        try {
+            return new BooleanDto(rssCore.addFeed(uid, url));
+        } catch (IllegalAccessException e) {
+            logger.error("Unable to add feed to user " + uid + " url: " + url, e);
+            return new BooleanDto(false);
+        }
+    }
+
+    @RequestMapping(value = "/{uid}/feed/{fid}/del", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    BooleanDto delFeed(@PathVariable Integer uid, @PathVariable Integer fid) {
+        return new BooleanDto(rssCore.removeFeed(fid));
+    }
+
+    @RequestMapping(value = "/{uid}/update", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    BooleanDto update(@PathVariable Integer uid) {
+        return new BooleanDto(rssCore.updateSchedulingForUser(uid));
     }
 }
