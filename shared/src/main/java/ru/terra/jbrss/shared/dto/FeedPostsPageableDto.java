@@ -6,6 +6,9 @@ public class FeedPostsPageableDto {
     private List<FeedPostDto> posts;
     private Integer all;
 
+    public FeedPostsPageableDto() {
+    }
+
     public List<FeedPostDto> getPosts() {
         return posts;
     }

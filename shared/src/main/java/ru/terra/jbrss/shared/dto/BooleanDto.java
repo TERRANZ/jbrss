@@ -3,6 +3,9 @@ package ru.terra.jbrss.shared.dto;
 public class BooleanDto {
     public Boolean status;
 
+    public BooleanDto() {
+    }
+
     public BooleanDto(Boolean status) {
         this.status = status;
     }

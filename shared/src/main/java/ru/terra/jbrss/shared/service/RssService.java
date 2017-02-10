@@ -6,7 +6,6 @@ import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.stereotype.Service;
 import ru.terra.jbrss.shared.dto.*;
 
-import java.net.URI;
 import java.util.List;
 
 @Service
@@ -18,7 +17,7 @@ public class RssService {
     String rssServiceUrl;
 
     public List<FeedDto> getFeeds(Integer userId) {
-        return restTemplate.getForObject(URI.create(rssServiceUrl + "{uid}/feed"), FeedListDto.class).data;
+        return restTemplate.getForObject(rssServiceUrl + "{uid}/feed", FeedListDto.class, userId.toString()).data;
     }
 
     public List<FeedPostDto> getFeedPosts(Integer userId, Integer targetFeed, Integer page, Integer perPage) {

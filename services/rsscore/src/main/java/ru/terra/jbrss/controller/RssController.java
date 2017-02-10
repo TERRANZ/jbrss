@@ -3,6 +3,8 @@ package ru.terra.jbrss.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.terra.jbrss.db.repos.FeedPostsRepository;
@@ -83,6 +85,7 @@ public class RssController {
     public
     @ResponseBody
     BooleanDto update(@PathVariable Integer uid) {
+        OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
         return new BooleanDto(rssCore.updateSchedulingForUser(uid));
     }
 }
