@@ -13,6 +13,7 @@ import ru.terra.jbrss.db.repos.UsersRepository;
 import ru.terra.jbrss.shared.dto.UserIdDto;
 import ru.terra.jbrss.shared.dto.UserIdListDto;
 
+import java.security.Principal;
 import java.util.stream.Collectors;
 
 @Controller
@@ -47,5 +48,10 @@ public class UsersController {
             return ret;
         }
         return new UserIdListDto();
+    }
+
+    @RequestMapping("/")
+    public Principal user(Principal user) {
+        return user;
     }
 }
