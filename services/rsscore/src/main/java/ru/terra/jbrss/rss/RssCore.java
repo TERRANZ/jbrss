@@ -147,7 +147,7 @@ public class RssCore {
 
 
     public Boolean addFeed(final Integer userId, final String url) throws IllegalAccessException {
-        if (feedsRepository.findByUseridAndByFeedURL(userId, url) == null) {
+        if (feedsRepository.findByUseridAndByFeedURL(userId, url).isEmpty()) {
             new Thread(() -> feedsRepository.save(new Feeds(0, userId, downloader.getFeedTitle(url), url, new Date()))).start();
             return true;
         }

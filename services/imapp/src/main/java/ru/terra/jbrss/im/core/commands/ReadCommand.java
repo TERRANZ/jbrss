@@ -2,6 +2,7 @@ package ru.terra.jbrss.im.core.commands;
 
 import ru.terra.jbrss.im.core.AbstractCommand;
 import ru.terra.jbrss.im.core.IMCommand;
+import ru.terra.jbrss.shared.dto.FeedPostDto;
 
 import java.util.List;
 
@@ -24,7 +25,11 @@ public class ReadCommand extends AbstractCommand {
                 perPage = Integer.parseInt(params.get(2));
             } catch (Exception e) {
             }
-            serverInterface.getFeedPosts(serverInterface.getUserId(contact), targetFeed, page, perPage).forEach(fp -> sendMessage(fp.getPosttitle() + " : " + fp.getPosttext()));
+            List<FeedPostDto> fps = serverInterface.getFeedPosts(serverInterface.getUserId(contact), targetFeed, page, perPage);
+            if (fps != null)
+                fps.forEach(fp -> sendMessage(fp.getPosttitle() + " : " + fp.getPosttext()));
+            else
+                sendMessage("Empty feed");
             return true;
         }
     }
