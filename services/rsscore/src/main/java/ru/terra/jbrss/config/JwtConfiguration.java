@@ -17,7 +17,7 @@ import java.io.IOException;
 public class JwtConfiguration {
     @Autowired
     JwtAccessTokenConverter jwtAccessTokenConverter;
-    
+
     @Bean
     @Qualifier("tokenStore")
     public TokenStore tokenStore() {

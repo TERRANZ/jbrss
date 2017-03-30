@@ -27,7 +27,7 @@ public class ReadCommand extends AbstractCommand {
             }
             List<FeedPostDto> fps = serverInterface.getFeedPosts(serverInterface.getUserId(contact), targetFeed, page, perPage);
             if (fps != null)
-                fps.forEach(fp -> sendMessage(fp.getPosttitle() + " : " + fp.getPosttext()));
+                fps.forEach(fp -> sendMessage(fp.getPosttitle() + " : " + fp.getPosttext() + "\n" + fp.getPostlink()));
             else
                 sendMessage("Empty feed");
             return true;

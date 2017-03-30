@@ -16,7 +16,7 @@ public class UsersService {
     @Autowired
     OAuth2RestOperations restTemplate;
 
-    @Value("${authserver:http://localhost:2222/acc/}")
+    @Value("${authserver:http://localhost:1111/acc/}")
     String authServiceUrl;
 
     public List<Integer> getAllUserIds() {

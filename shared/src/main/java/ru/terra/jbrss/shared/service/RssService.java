@@ -13,7 +13,7 @@ public class RssService {
     @Autowired
     OAuth2RestOperations restTemplate;
 
-    @Value("${rssservice:http://localhost:2224/rss/}")
+    @Value("${rssservice:http://localhost:1111/rss/}")
     String rssServiceUrl;
 
     public List<FeedDto> getFeeds(Integer userId) {
