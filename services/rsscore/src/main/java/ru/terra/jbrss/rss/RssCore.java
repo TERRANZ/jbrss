@@ -49,7 +49,7 @@ public class RssCore {
         logger.info("updating feed " + feed.getFeedurl());
         List<Feedposts> posts = downloader.loadFeeds(feed);
         Date d = null;
-        List<Feedposts> lastFeedPosts = feedPostsRepository.getPostsByFeedAndByDateSorted(feed.getId());
+        List<Feedposts> lastFeedPosts = feedPostsRepository.getLastPostInFeed(feed.getId());
         if (!lastFeedPosts.isEmpty())
             d = lastFeedPosts.get(0).getPostdate();
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface FeedPostsRepository extends CrudRepository<Feedposts, Integer> {
     @Query(value = "SELECT f.* FROM feedposts f WHERE f.feed_id = ?1 ORDER BY f.postdate DESC LIMIT 1", nativeQuery = true)
-    List<Feedposts> getPostsByFeedAndByDateSorted(Integer feedId);
+    List<Feedposts> getLastPostInFeed(Integer feedId);
 
     @Query("SELECT f FROM Feedposts f WHERE f.feedId = ?1 AND f.postdate >= ?2 ORDER BY f.postdate DESC")
     List<Feedposts> getPostsByFeedAndByDate(Integer feedId, Date d);

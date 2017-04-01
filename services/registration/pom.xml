@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-parent</artifactId>
-        <version>Brixton.RELEASE</version>  <!-- Name of release train -->
+        <version>Camden.SR6</version>  <!-- Name of release train -->
     </parent>
 
     <properties>
