@@ -4,10 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "contact", indexes = {
-        @Index(columnList = "contact", name = "c_contact_idx"),
-        @Index(columnList = "contact_type", name = "c_contact_type_idx")
-})
 public class Contact implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
