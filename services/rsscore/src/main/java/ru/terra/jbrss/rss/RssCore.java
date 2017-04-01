@@ -148,14 +148,14 @@ public class RssCore {
 
     public Boolean addFeed(final Integer userId, final String url) throws IllegalAccessException {
         if (feedsRepository.findByUseridAndByFeedURL(userId, url).isEmpty()) {
-            new Thread(() -> feedsRepository.save(new Feeds(0, userId, downloader.getFeedTitle(url), url, new Date()))).start();
+            feedsRepository.save(new Feeds(0, userId, downloader.getFeedTitle(url), url, new Date()));
             return true;
         }
         return false;
     }
 
     public List<Feedposts> getNewUserPosts(Feeds feed, Date d) {
-        return feedPostsRepository.getPostsByFeedAndByDate(feed.getId(), d);
+        return feedPostsRepository.getPostsByFeedAfterDate(feed.getId(), d);
     }
 
     public List<Feedposts> getFeedPosts(Integer feedId, Integer page, Integer perpage) {
