@@ -1,7 +1,7 @@
 # Configure this Discovery Server
 eureka:
   instance:
-    hostname: localhost
+    hostname: xn--80aafhfrpg0adapheyc1nya.xn--p1ai
   client:  # Not a client, don't register with yourself
     registerWithEureka: false
     fetchRegistry: false
@@ -11,9 +11,6 @@ server:
 
 zuul:
   routes:
-    ui:
-      path: /**
-      url: http://localhost:4200
     acc:
       path: /acc/**
       url: http://localhost:2222/acc

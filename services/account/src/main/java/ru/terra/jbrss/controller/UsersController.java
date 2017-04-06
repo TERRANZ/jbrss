@@ -48,12 +48,14 @@ public class UsersController {
     }
 
     @RequestMapping("/")
-    public Principal user(Principal user) {
+    public @ResponseBody
+    Principal user(Principal user) {
         return user;
     }
 
     @RequestMapping("/create")
-    public UserIdDto create(@RequestParam(value = "login") String login, @RequestParam(value = "pass") String pass) {
+    public @ResponseBody
+    UserIdDto create(@RequestParam(value = "login") String login, @RequestParam(value = "pass") String pass) {
         OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
         if (authentication.isAuthenticated()) {
             if (usersRepository.findByLogin(login) != null) {
@@ -70,7 +72,8 @@ public class UsersController {
     }
 
     @RequestMapping("/login")
-    public UserIdDto login(@RequestParam(value = "login") String login, @RequestParam(value = "pass") String pass) {
+    public @ResponseBody
+    UserIdDto login(@RequestParam(value = "login") String login, @RequestParam(value = "pass") String pass) {
         OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
         if (authentication.isAuthenticated()) {
             JbrssUser user = usersRepository.findByLoginAndPassword(login, pass);
