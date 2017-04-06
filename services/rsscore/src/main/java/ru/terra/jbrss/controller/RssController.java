@@ -3,6 +3,7 @@ package ru.terra.jbrss.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -54,7 +55,7 @@ public class RssController {
             return ResponseEntity.notFound().build();
         }
         if (feeds.getUserid() != uid) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         return ResponseEntity.ok(new FeedPostsPageableDto(
                 feedPostsRepository.findFeedpostsByFeedLimited(fid, offset, limit).stream().map(fp -> {
@@ -87,8 +88,15 @@ public class RssController {
     @RequestMapping(value = "/{uid}/feed/{fid}/del", method = RequestMethod.GET)
     public
     @ResponseBody
-    BooleanDto delFeed(@PathVariable Integer uid, @PathVariable Integer fid) {
-        return new BooleanDto(rssCore.removeFeed(fid));
+    ResponseEntity<BooleanDto> delFeed(@PathVariable Integer uid, @PathVariable Integer fid) {
+        Feeds feed = feedsRepository.findOne(fid);
+        if (feed == null) {
+            return ResponseEntity.notFound().build();
+        }
+        if (feed.getUserid() != uid) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        return ResponseEntity.ok(new BooleanDto(rssCore.removeFeed(fid)));
     }
 
     @RequestMapping(value = "/{uid}/update", method = RequestMethod.GET)

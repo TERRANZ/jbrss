@@ -65,7 +65,7 @@ public class RssControllerTest {
 
     @Test
     public void feedPosts() {
-        FeedPostsPageableDto res = rssController.feedPosts(f1.getId(), 0, 1);
+        FeedPostsPageableDto res = rssController.feedPosts(0, f1.getId(), 0, 1).getBody();
         Assert.assertEquals(1, res.getPosts().size());
         Assert.assertEquals(fp12.getId(), res.getPosts().get(0).getId());
     }
@@ -80,7 +80,7 @@ public class RssControllerTest {
 
     @Test
     public void delFeedTest() {
-        BooleanDto booleanDto = rssController.delFeed(0, f2.getId());
+        BooleanDto booleanDto = rssController.delFeed(0, f2.getId()).getBody();
         Assert.assertTrue(booleanDto.getStatus());
         FeedListDto feedListDto = rssController.allFeeds(0);
         Assert.assertEquals(1, feedListDto.data.size());
