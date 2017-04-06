@@ -1,5 +1,7 @@
 package ru.terra.jbrss.im.core.commands;
 
+import ru.terra.jbrss.constants.ContactStatus;
+import ru.terra.jbrss.db.entity.Contact;
 import ru.terra.jbrss.im.core.AbstractCommand;
 import ru.terra.jbrss.im.core.IMCommand;
 
@@ -32,32 +34,43 @@ public class RegCommand extends AbstractCommand {
             sendMessage("You already registered");
             return false;
         } else {
-            if (params.size() < 1)
+            if (params.size() < 1) {
                 sendMessage("Not enogh params");
-            else {
-                String question = "Please enter correct answer for mathematical expression: ";
-                MathExpr expNum = MathExpr.valueOf(ThreadLocalRandom.current().nextInt(0, 3));
-                Integer fp = ThreadLocalRandom.current().nextInt(0, 11);
-                question += fp.toString();
-                Integer sp = ThreadLocalRandom.current().nextInt(0, 11);
-                Integer answer = 0;
-                switch (expNum) {
-                    case PLUS:
-                        question += "+";
-                        answer = fp + sp;
-                        break;
-                    case MINUS:
-                        question += "-";
-                        answer = fp - sp;
-                        break;
-                    case ADD:
-                        question += "*";
-                        answer = fp * sp;
-                        break;
+            } else {
+                Contact c = serverInterface.getContact(contact);
+                if (c.getStatus() == ContactStatus.SENT_QUESTION.ordinal()) {
+                    if (c.getCorrectAnswer().equals(params.get(0))) {
+                        serverInterface.sendMessage(contact, "Answer is correct, registration complete");
+                        c.setStatus(ContactStatus.READY.ordinal());
+                        serverInterface.updateContact(c);
+                    } else {
+                        serverInterface.sendMessage(contact, "Answer is not correct");
+                    }
+                } else {
+                    String question = "Please enter correct answer for mathematical expression: ";
+                    MathExpr expNum = MathExpr.valueOf(ThreadLocalRandom.current().nextInt(0, 3));
+                    Integer fp = ThreadLocalRandom.current().nextInt(0, 11);
+                    question += fp.toString();
+                    Integer sp = ThreadLocalRandom.current().nextInt(0, 11);
+                    Integer answer = 0;
+                    switch (expNum) {
+                        case PLUS:
+                            question += "+";
+                            answer = fp + sp;
+                            break;
+                        case MINUS:
+                            question += "-";
+                            answer = fp - sp;
+                            break;
+                        case ADD:
+                            question += "*";
+                            answer = fp * sp;
+                            break;
+                    }
+                    question += sp.toString();
+                    serverInterface.sendMessage(contact, question);
+                    serverInterface.regContact(contact, answer, params.get(0), UUID.randomUUID().toString());
                 }
-                question += sp.toString();
-                serverInterface.sendMessage(contact, question);
-                serverInterface.regContact(contact, answer, params.get(0), UUID.randomUUID().toString());
             }
         }
         return false;

@@ -6,7 +6,7 @@ import ru.terra.jbrss.im.core.IMCommand;
 
 import java.util.List;
 
-@IMCommand(value = "help", help = "Information about commands")
+@IMCommand(value = "help", help = "Information about commands", needAuth = false)
 public class HelpCommand extends AbstractCommand {
     @Override
     public boolean doCmd(String contact, List<String> params) {
