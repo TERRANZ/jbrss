@@ -3,10 +3,12 @@ package ru.terra.jbrss.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ru.terra.jbrss.db.entity.Feeds;
 import ru.terra.jbrss.db.repos.FeedPostsRepository;
 import ru.terra.jbrss.db.repos.FeedsRepository;
 import ru.terra.jbrss.rss.RssCore;
@@ -43,10 +45,18 @@ public class RssController {
     @RequestMapping(value = "/{uid}/feed/{fid}/list", method = RequestMethod.GET)
     public
     @ResponseBody
-    FeedPostsPageableDto feedPosts(@PathVariable Integer fid,
-                                   @RequestParam(value = "page", defaultValue = "0", required = false) Integer offset,
-                                   @RequestParam(value = "limit", defaultValue = "10", required = false) Integer limit) {
-        return new FeedPostsPageableDto(
+    ResponseEntity<FeedPostsPageableDto> feedPosts(@PathVariable Integer uid,
+                                                   @PathVariable Integer fid,
+                                                   @RequestParam(value = "page", defaultValue = "0", required = false) Integer offset,
+                                                   @RequestParam(value = "limit", defaultValue = "10", required = false) Integer limit) {
+        Feeds feeds = feedsRepository.findOne(fid);
+        if (feeds == null) {
+            return ResponseEntity.notFound().build();
+        }
+        if (feeds.getUserid() != uid) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(new FeedPostsPageableDto(
                 feedPostsRepository.findFeedpostsByFeedLimited(fid, offset, limit).stream().map(fp -> {
                     FeedPostDto feedPostDto = new FeedPostDto();
                     feedPostDto.setId(fp.getId());
@@ -59,7 +69,7 @@ public class RssController {
                     return feedPostDto;
                 }).collect(Collectors.toList()),
                 feedPostsRepository.countByFeedId(fid)
-        );
+        ));
     }
 
     @RequestMapping(value = "/{uid}/feed/add", method = RequestMethod.GET)
