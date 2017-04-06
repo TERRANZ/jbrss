@@ -2,6 +2,7 @@ package ru.terra.jbrss.im.core.commands;
 
 import ru.terra.jbrss.im.core.AbstractCommand;
 import ru.terra.jbrss.im.core.IMCommand;
+import ru.terra.jbrss.shared.dto.FeedDto;
 
 import java.util.List;
 
@@ -11,7 +12,9 @@ public class InfoCommand extends AbstractCommand {
     public boolean doCmd(String contact, List<String> params) {
         if (serverInterface.isContactExists(contact)) {
             sendMessage("Your feeds");
-            serverInterface.getFeeds(contact).forEach(f -> sendMessage(f.getId() + " : " + f.getFeedname()));
+            List<FeedDto> list = serverInterface.getFeeds(contact);
+            if (list != null)
+                list.forEach(f -> sendMessage(f.getId() + " : " + f.getFeedname()));
         } else
             sendMessage("You are not authorized, type login to authorize or help to read other commands");
         return true;

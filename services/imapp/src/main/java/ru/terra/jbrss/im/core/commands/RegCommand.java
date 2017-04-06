@@ -43,8 +43,10 @@ public class RegCommand extends AbstractCommand {
                         serverInterface.sendMessage(contact, "Answer is correct, registration complete");
                         c.setStatus(ContactStatus.READY.ordinal());
                         serverInterface.updateContact(c);
+                        return true;
                     } else {
                         serverInterface.sendMessage(contact, "Answer is not correct");
+                        return false;
                     }
                 } else {
                     String question = "Please enter correct answer for mathematical expression: ";
@@ -73,6 +75,6 @@ public class RegCommand extends AbstractCommand {
                 }
             }
         }
-        return false;
+        return true;
     }
 }
