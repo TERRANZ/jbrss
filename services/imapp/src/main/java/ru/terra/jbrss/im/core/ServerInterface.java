@@ -95,22 +95,26 @@ public abstract class ServerInterface {
     protected void processText(String fromName, String msg) {
         String[] parsedMessage = msg.split(" ");
         AbstractCommand cmd = CommandsFactory.getInstance().getCommand(parsedMessage[0]);
-        List<String> params = new ArrayList<>(Arrays.asList(parsedMessage));
-        params.remove(0);
-        if (!isContactExists(fromName))
-            sendMessage(fromName, "Hello, you are not registered, type reg");
-        else if (cmd != null)
-            try {
+        if (cmd != null) {
+            cmd.setServerInterface(this);
+            List<String> params = new ArrayList<>(Arrays.asList(parsedMessage));
+            params.remove(0);
+            if (cmd.needAuth()) {
                 cmd.setContact(fromName);
-                cmd.setServerInterface(this);
-                if (!cmd.doCmd(fromName, params)) {
-                    sendMessage(fromName, "Command failed");
-                }
-            } catch (Exception e) {
-                logger.error("Error while executing command", e);
-                sendMessage(fromName, "Exception while doing command, " + e.getMessage());
             }
-
+            if (isContactExists(fromName) || !cmd.needAuth())
+                try {
+                    if (!cmd.doCmd(fromName, params)) {
+                        sendMessage(fromName, "Command failed");
+                    }
+                } catch (Exception e) {
+                    logger.error("Error while executing command", e);
+                    sendMessage(fromName, "Exception while doing command, " + e.getMessage());
+                }
+            else {
+                sendMessage(fromName, "Hello, you are not registered, type reg");
+            }
+        }
     }
 
     public abstract void start();

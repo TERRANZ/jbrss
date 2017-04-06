@@ -4,9 +4,10 @@ import ru.terra.jbrss.im.core.AbstractCommand;
 import ru.terra.jbrss.im.core.IMCommand;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
-@IMCommand(value = "reg", help = "Reg command, syntax: reg login password")
+@IMCommand(value = "reg", help = "Reg command, syntax: reg login password", needAuth = false)
 public class RegCommand extends AbstractCommand {
 
     private enum MathExpr {
@@ -31,7 +32,7 @@ public class RegCommand extends AbstractCommand {
             sendMessage("You already registered");
             return false;
         } else {
-            if (params.size() < 2)
+            if (params.size() < 1)
                 sendMessage("Not enogh params");
             else {
                 String question = "Please enter correct answer for mathematical expression: ";
@@ -56,7 +57,7 @@ public class RegCommand extends AbstractCommand {
                 }
                 question += sp.toString();
                 serverInterface.sendMessage(contact, question);
-                serverInterface.regContact(contact, answer, params.get(0), params.get(1));
+                serverInterface.regContact(contact, answer, params.get(0), UUID.randomUUID().toString());
             }
         }
         return false;

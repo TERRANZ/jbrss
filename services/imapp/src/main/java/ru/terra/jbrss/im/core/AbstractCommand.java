@@ -14,6 +14,12 @@ public abstract class AbstractCommand {
         return "";
     }
 
+    public boolean needAuth() {
+        if (this.getClass().getAnnotation(IMCommand.class) != null)
+            return this.getClass().getAnnotation(IMCommand.class).needAuth();
+        return true;
+    }
+
     public String getContact() {
         return contact;
     }
