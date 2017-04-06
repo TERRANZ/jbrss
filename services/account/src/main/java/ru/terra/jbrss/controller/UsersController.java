@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ru.terra.jbrss.db.entity.JbrssUser;
 import ru.terra.jbrss.db.repos.UsersRepository;
 import ru.terra.jbrss.shared.dto.UserIdDto;
@@ -53,5 +50,36 @@ public class UsersController {
     @RequestMapping("/")
     public Principal user(Principal user) {
         return user;
+    }
+
+    @RequestMapping("/create")
+    public UserIdDto create(@RequestParam(value = "login") String login, @RequestParam(value = "pass") String pass) {
+        OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.isAuthenticated()) {
+            if (usersRepository.findByLogin(login) != null) {
+                return new UserIdDto(-1);
+            } else {
+                JbrssUser newUser = new JbrssUser();
+                newUser.setLogin(login);
+                newUser.setPassword(pass);
+                newUser = usersRepository.save(newUser);
+                return new UserIdDto(newUser.getId());
+            }
+        } else
+            return new UserIdDto(-1);
+    }
+
+    @RequestMapping("/login")
+    public UserIdDto login(@RequestParam(value = "login") String login, @RequestParam(value = "pass") String pass) {
+        OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.isAuthenticated()) {
+            JbrssUser user = usersRepository.findByLoginAndPassword(login, pass);
+            if (user != null) {
+                return new UserIdDto(user.getId());
+            } else {
+                return new UserIdDto(-1);
+            }
+        } else
+            return new UserIdDto(-1);
     }
 }

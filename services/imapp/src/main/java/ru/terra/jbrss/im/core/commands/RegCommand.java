@@ -38,7 +38,7 @@ public class RegCommand extends AbstractCommand {
                 sendMessage("Not enogh params");
             } else {
                 Contact c = serverInterface.getContact(contact);
-                if (c.getStatus() == ContactStatus.SENT_QUESTION.ordinal()) {
+                if (c != null && c.getStatus() == ContactStatus.SENT_QUESTION.ordinal()) {
                     if (c.getCorrectAnswer().equals(params.get(0))) {
                         serverInterface.sendMessage(contact, "Answer is correct, registration complete");
                         c.setStatus(ContactStatus.READY.ordinal());

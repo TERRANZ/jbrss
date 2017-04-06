@@ -99,9 +99,9 @@ public abstract class ServerInterface {
             cmd.setServerInterface(this);
             List<String> params = new ArrayList<>(Arrays.asList(parsedMessage));
             params.remove(0);
-            if (cmd.needAuth()) {
-                cmd.setContact(fromName);
-            }
+//            if (cmd.needAuth()) {
+            cmd.setContact(fromName);
+//            }
             if (isContactExists(fromName) || !cmd.needAuth())
                 try {
                     if (!cmd.doCmd(fromName, params)) {
