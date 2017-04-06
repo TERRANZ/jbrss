@@ -1,5 +1,6 @@
 package ru.terra.jbrss.test.db.repos;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +39,11 @@ public class FeedPostsRepositoryTest {
         firstItemId = feedPostsRepository.save(fp1).getId();
         feedPostsRepository.save(fp2);
         lastItemId = feedPostsRepository.save(fp3).getId();
+    }
+
+    @After
+    public void cleanUp() {
+        feedPostsRepository.deleteAll();
     }
 
     @Test
