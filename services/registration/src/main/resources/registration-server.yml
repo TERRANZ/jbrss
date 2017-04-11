@@ -11,6 +11,9 @@ server:
 
 zuul:
   routes:
+    ui:
+      path: /**
+      url: http://localhost:4200
     acc:
       path: /acc/**
       url: http://localhost:2222/acc
