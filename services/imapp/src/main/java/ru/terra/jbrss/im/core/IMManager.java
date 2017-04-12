@@ -29,22 +29,22 @@ public class IMManager {
     }
 
     public void notifyFeedUpdated(String usedId, String feedName, List<String> newPostsTexts) {
-        threadPool.submit(() -> {
-            logger.info("Feed " + feedName + " of user " + usedId + " have " + newPostsTexts.size() + " new posts");
-            contactsRepository.findByUserId(usedId).forEach(c -> {
-                ServerInterface im;
-                if (c.getType().equals(IMType.TELEGRAM.name()))
-                    im = telegramIM;
-                else
-                    im = jabberIM;
-
-                StringBuilder sb = new StringBuilder();
-                sb.append("New message on feed ");
-                sb.append(feedName);
-                sb.append("\n");
-                newPostsTexts.forEach(pt -> sb.append(pt).append("\n").append("<===================================================>").append("\n"));
-                im.sendMessage(c.getContact(), sb.toString());
-            });
-        });
+//        threadPool.submit(() -> {
+//            logger.info("Feed " + feedName + " of user " + usedId + " have " + newPostsTexts.size() + " new posts");
+//            contactsRepository.findByUserId(usedId).forEach(c -> {
+//                ServerInterface im;
+//                if (c.getType().equals(IMType.TELEGRAM.name()))
+//                    im = telegramIM;
+//                else
+//                    im = jabberIM;
+//
+//                StringBuilder sb = new StringBuilder();
+//                sb.append("New message on feed ");
+//                sb.append(feedName);
+//                sb.append("\n");
+//                newPostsTexts.forEach(pt -> sb.append(pt).append("\n").append("<===================================================>").append("\n"));
+//                im.sendMessage(c.getContact(), sb.toString());
+//            });
+//        });
     }
 }

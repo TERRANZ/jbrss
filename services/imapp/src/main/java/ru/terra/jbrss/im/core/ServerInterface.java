@@ -41,14 +41,16 @@ public abstract class ServerInterface {
         Contact c = contactsRepository.findByContactAndType(contact, getType().name());
         if (c == null)
             return false;
-        return c.getUserId().equals(login);
+        return c.getUser().equals(login);
     }
 
     public String login(String login, String pass) {
         String uid = userService.login(login, pass);
         if (uid != null) {
-            contactsRepository.findByUserId(uid).forEach(c -> {
+            contactsRepository.findByUser(uid).forEach(c -> {
                 c.setLastlogin(new Date().getTime());
+                c.setUser(login);
+                c.setPass(pass);
                 contactsRepository.save(c);
             });
             return uid;
@@ -56,17 +58,8 @@ public abstract class ServerInterface {
             return null;
     }
 
-    public Contact attachContactToUser(String contact, String userId) {
-        Contact c = contactsRepository.findByContactAndType(contact, getType().name());
-        if (c == null)
-            c = createContact(contact, userId);
-        contactsRepository.save(c);
-        return c;
-    }
-
-    private Contact createContact(String contact, String userId) {
+    private Contact createContact(String contact) {
         Contact c = new Contact();
-        c.setUserId(userId);
         c.setContact(contact);
         c.setLastlogin(new Date().getTime());
         c.setStatus(ContactStatus.READY.ordinal());
@@ -75,20 +68,19 @@ public abstract class ServerInterface {
     }
 
     public List<FeedDto> getFeeds(String contact) {
-        return rssService.getFeeds(contactsRepository.findByContactAndType(contact, getType().name()).getUserId());
+        return rssService.getFeeds(doAuth(contact));
     }
 
-    public List<FeedPostDto> getFeedPosts(String userId, Integer targetFeed, Integer page, Integer perPage) {
-        return rssService.getFeedPosts(userId, targetFeed, page, perPage);
+    public List<FeedPostDto> getFeedPosts(String contact, Integer targetFeed, Integer page, Integer perPage) {
+        return rssService.getFeedPosts(doAuth(contact), targetFeed, page, perPage);
     }
 
     public boolean addFeed(String contact, String url) throws IllegalAccessException {
-        Contact c = contactsRepository.findByContactAndType(contact, getType().name());
-        return rssService.addFeed(c.getUserId(), url);
+        return rssService.addFeed(doAuth(contact), url);
     }
 
-    public void removeFeed(String userId, Integer feedId) {
-        rssService.removeFeed(userId, feedId);
+    public void removeFeed(String contact, Integer feedId) {
+        rssService.removeFeed(doAuth(contact), feedId);
     }
 
     protected void processText(String fromName, String msg) {
@@ -98,9 +90,7 @@ public abstract class ServerInterface {
             cmd.setServerInterface(this);
             List<String> params = new ArrayList<>(Arrays.asList(parsedMessage));
             params.remove(0);
-//            if (cmd.needAuth()) {
             cmd.setContact(fromName);
-//            }
             if (isContactExists(fromName) || !cmd.needAuth())
                 try {
                     if (!cmd.doCmd(fromName, params)) {
@@ -119,11 +109,11 @@ public abstract class ServerInterface {
     public abstract void start();
 
     public void update(String contact) {
-        rssService.updateSchedulingForUser(contactsRepository.findByContactAndType(contact, getType().name()).getUserId());
+        rssService.updateSchedulingForUser(contactsRepository.findByContactAndType(contact, getType().name()).getAuthToken());
     }
 
     public void updateSetting(String key, String val, String contact) {
-        rssService.updateSetting(key, val, contactsRepository.findByContactAndType(contact, getType().name()).getUserId());
+        rssService.updateSetting(key, val, contactsRepository.findByContactAndType(contact, getType().name()).getAuthToken());
     }
 
     public Contact getContact(String contact) {
@@ -135,8 +125,10 @@ public abstract class ServerInterface {
     }
 
     public void regContact(String contact, Integer answer, String login, String pass) {
-        String newUserId = userService.createUser(login, pass);
-        Contact c = attachContactToUser(contact, newUserId);
+        userService.createUser(login, pass);
+        Contact c = createContact(contact);
+        c.setUser(login);
+        c.setPass(pass);
         c.setCorrectAnswer(answer.toString());
         c.setStatus(ContactStatus.SENT_QUESTION.ordinal());
         contactsRepository.save(c);
@@ -148,6 +140,17 @@ public abstract class ServerInterface {
     }
 
     public String getUserId(String contact) {
-        return contactsRepository.findByContactAndType(contact, getType().name()).getUserId();
+        return contactsRepository.findByContactAndType(contact, getType().name()).getAuthToken();
+    }
+
+    private String doAuth(String contact) {
+        Contact c = contactsRepository.findByContactAndType(contact, getType().name());
+        String token = userService.authenticate(c.getUser(), c.getPass());
+        if (!token.isEmpty()) {
+            c.setAuthToken(token);
+            contactsRepository.save(c);
+            return token;
+        }
+        return "";
     }
 }

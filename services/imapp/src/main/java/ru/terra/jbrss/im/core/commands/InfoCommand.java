@@ -13,8 +13,11 @@ public class InfoCommand extends AbstractCommand {
         if (serverInterface.isContactExists(contact)) {
             sendMessage("Your feeds");
             List<FeedDto> list = serverInterface.getFeeds(contact);
-            if (list != null)
+            if (list != null) {
                 list.forEach(f -> sendMessage(f.getId() + " : " + f.getFeedname()));
+            } else {
+                sendMessage("No feed in your list, add some!");
+            }
         } else
             sendMessage("You are not authorized, type login to authorize or help to read other commands");
         return true;

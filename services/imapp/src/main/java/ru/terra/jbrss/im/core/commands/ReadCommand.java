@@ -25,7 +25,7 @@ public class ReadCommand extends AbstractCommand {
                 perPage = Integer.parseInt(params.get(2));
             } catch (Exception e) {
             }
-            List<FeedPostDto> fps = serverInterface.getFeedPosts(serverInterface.getUserId(contact), targetFeed, page, perPage);
+            List<FeedPostDto> fps = serverInterface.getFeedPosts(contact, targetFeed, page, perPage);
             if (fps != null)
                 fps.forEach(fp -> sendMessage(fp.getPosttitle() + " : " + fp.getPosttext() + "\n" + fp.getPostlink()));
             else

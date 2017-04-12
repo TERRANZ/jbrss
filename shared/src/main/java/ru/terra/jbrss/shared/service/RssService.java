@@ -22,29 +22,31 @@ public class RssService {
     @Value("${rssservice:http://localhost:1111/rss/}")
     String rssServiceUrl;
 
-    public List<FeedDto> getFeeds(String authToken) {
+    private HttpEntity<String> prepEntity(String authToken) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        //oAuthUser.getTokenType(), oAuthUser.getAccessToken()
         headers.add("Authorization", String.format(authToken));
         headers.add("Content-Type", "application/json");
-        RestTemplate restTemplate = new RestTemplate();
-        HttpEntity<String> request = new HttpEntity<>(headers);
-//        return oAuth2RestOperations.getForObject(rssServiceUrl + "feed", FeedListDto.class).data;
-        ResponseEntity<FeedListDto> result = restTemplate.exchange(rssServiceUrl + "feed", HttpMethod.GET, request, FeedListDto.class);
-        return result.getBody().data;
+        return new HttpEntity<>(headers);
+    }
 
+    public List<FeedDto> getFeeds(String authToken) {
+        ResponseEntity<FeedListDto> result = new RestTemplate().exchange(rssServiceUrl + "feed", HttpMethod.GET, prepEntity(authToken), FeedListDto.class);
+        return result.getBody().data;
     }
 
     public List<FeedPostDto> getFeedPosts(String authToken, Integer targetFeed, Integer page, Integer perPage) {
-        return oAuth2RestOperations.getForObject(rssServiceUrl + "feed/{fid}/list?page={page}&limit={limit}", FeedPostsPageableDto.class, targetFeed, page, perPage).getPosts();
+        ResponseEntity<FeedPostsPageableDto> result = new RestTemplate().exchange(rssServiceUrl + "feed/" + targetFeed + "/list?page=" + page + "&limit=" + perPage, HttpMethod.GET, prepEntity(authToken), FeedPostsPageableDto.class);
+        return result.getBody().getPosts();
     }
 
     public boolean addFeed(String authToken, String url) {
-        return oAuth2RestOperations.getForObject(rssServiceUrl + "feed/add?url={url}", BooleanDto.class, url).getStatus();
+        ResponseEntity<BooleanDto> result = new RestTemplate().exchange(rssServiceUrl + "feed/add?url=" + url, HttpMethod.GET, prepEntity(authToken), BooleanDto.class);
+        return result.getBody().getStatus();
     }
 
     public boolean removeFeed(String authToken, Integer feedId) {
-        return oAuth2RestOperations.getForObject(rssServiceUrl + "feed/{feedId}/del", BooleanDto.class, feedId).getStatus();
+        ResponseEntity<BooleanDto> result = new RestTemplate().exchange(rssServiceUrl + "feed/" + feedId + "/del", HttpMethod.GET, prepEntity(authToken), BooleanDto.class);
+        return result.getBody().getStatus();
     }
 
     public void updateSchedulingForUser(String authToken) {

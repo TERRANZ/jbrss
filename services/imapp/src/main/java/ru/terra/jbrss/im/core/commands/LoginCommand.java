@@ -32,7 +32,7 @@ public class LoginCommand extends AbstractCommand {
             sendMessage("You already logged in and your contact attached");
             return false;
         }
-        serverInterface.attachContactToUser(contact, userId);
+//        serverInterface.attachContactToUser(contact, userId);
         sendMessage("Your contact " + contact + " attached to user " + login);
         return true;
     }

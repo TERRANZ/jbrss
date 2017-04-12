@@ -13,12 +13,16 @@ public class Contact implements Serializable {
     private Integer id;
     @Column(length = 256)
     private String contact;
-    private String userId;
+    private String user;
+    private String pass;
     private Long lastlogin;
     private Integer status;
-    @Column(length = 256, name = "contact_type")
+    @Column(name = "contact_type")
+    @Lob
     private String type;
     private String correctAnswer;
+    @Lob
+    private String authToken;
 
     public Contact() {
     }
@@ -41,14 +45,6 @@ public class Contact implements Serializable {
 
     public void setContact(String contact) {
         this.contact = contact;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public Long getLastlogin() {
@@ -81,5 +77,29 @@ public class Contact implements Serializable {
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 }
