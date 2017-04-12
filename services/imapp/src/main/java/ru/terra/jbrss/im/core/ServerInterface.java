@@ -41,12 +41,11 @@ public abstract class ServerInterface {
         Contact c = contactsRepository.findByContactAndType(contact, getType().name());
         if (c == null)
             return false;
-        Integer userId = userService.getUserId(login);
-        return c.getUserId().equals(userId);
+        return c.getUserId().equals(login);
     }
 
-    public Integer login(String login, String pass) {
-        Integer uid = userService.login(login, pass);
+    public String login(String login, String pass) {
+        String uid = userService.login(login, pass);
         if (uid != null) {
             contactsRepository.findByUserId(uid).forEach(c -> {
                 c.setLastlogin(new Date().getTime());
@@ -57,7 +56,7 @@ public abstract class ServerInterface {
             return null;
     }
 
-    public Contact attachContactToUser(String contact, Integer userId) {
+    public Contact attachContactToUser(String contact, String userId) {
         Contact c = contactsRepository.findByContactAndType(contact, getType().name());
         if (c == null)
             c = createContact(contact, userId);
@@ -65,7 +64,7 @@ public abstract class ServerInterface {
         return c;
     }
 
-    private Contact createContact(String contact, Integer userId) {
+    private Contact createContact(String contact, String userId) {
         Contact c = new Contact();
         c.setUserId(userId);
         c.setContact(contact);
@@ -79,7 +78,7 @@ public abstract class ServerInterface {
         return rssService.getFeeds(contactsRepository.findByContactAndType(contact, getType().name()).getUserId());
     }
 
-    public List<FeedPostDto> getFeedPosts(Integer userId, Integer targetFeed, Integer page, Integer perPage) {
+    public List<FeedPostDto> getFeedPosts(String userId, Integer targetFeed, Integer page, Integer perPage) {
         return rssService.getFeedPosts(userId, targetFeed, page, perPage);
     }
 
@@ -88,7 +87,7 @@ public abstract class ServerInterface {
         return rssService.addFeed(c.getUserId(), url);
     }
 
-    public void removeFeed(Integer userId, Integer feedId) {
+    public void removeFeed(String userId, Integer feedId) {
         rssService.removeFeed(userId, feedId);
     }
 
@@ -136,7 +135,7 @@ public abstract class ServerInterface {
     }
 
     public void regContact(String contact, Integer answer, String login, String pass) {
-        Integer newUserId = userService.createUser(login, pass);
+        String newUserId = userService.createUser(login, pass);
         Contact c = attachContactToUser(contact, newUserId);
         c.setCorrectAnswer(answer.toString());
         c.setStatus(ContactStatus.SENT_QUESTION.ordinal());
@@ -148,7 +147,7 @@ public abstract class ServerInterface {
         contactsRepository.save(c);
     }
 
-    public Integer getUserId(String contact) {
+    public String getUserId(String contact) {
         return contactsRepository.findByContactAndType(contact, getType().name()).getUserId();
     }
 }

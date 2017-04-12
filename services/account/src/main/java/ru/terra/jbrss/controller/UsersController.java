@@ -29,9 +29,9 @@ public class UsersController {
             if (user != null)
                 return new UserIdDto(user.getId());
             else
-                return new UserIdDto(-1);
+                return new UserIdDto("");
         } else
-            return new UserIdDto(-1);
+            return new UserIdDto("");
     }
 
     @RequestMapping(value = "/ids", method = RequestMethod.GET)
@@ -59,7 +59,7 @@ public class UsersController {
         OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
         if (authentication.isAuthenticated()) {
             if (usersRepository.findByLogin(login) != null) {
-                return new UserIdDto(-1);
+                return new UserIdDto("");
             } else {
                 JbrssUser newUser = new JbrssUser();
                 newUser.setLogin(login);
@@ -68,7 +68,7 @@ public class UsersController {
                 return new UserIdDto(newUser.getId());
             }
         } else
-            return new UserIdDto(-1);
+            return new UserIdDto("");
     }
 
     @RequestMapping("/login")
@@ -80,9 +80,9 @@ public class UsersController {
             if (user != null) {
                 return new UserIdDto(user.getId());
             } else {
-                return new UserIdDto(-1);
+                return new UserIdDto("");
             }
         } else
-            return new UserIdDto(-1);
+            return new UserIdDto("");
     }
 }

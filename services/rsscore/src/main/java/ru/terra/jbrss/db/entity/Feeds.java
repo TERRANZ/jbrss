@@ -18,7 +18,7 @@ public class Feeds implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @Column(name = "userid", nullable = false)
-    private int userid;
+    private String userid;
     @Basic(optional = false)
     @Column(name = "feedname", nullable = false, length = 512)
     private String feedname;
@@ -37,9 +37,9 @@ public class Feeds implements Serializable {
         this.id = id;
     }
 
-    public Feeds(Integer id, int userid, String feedname, String feedurl, Date updateTime) {
+    public Feeds(Integer id, String userId, String feedname, String feedurl, Date updateTime) {
         this.id = id;
-        this.userid = userid;
+        this.userid = userId;
         this.feedname = feedname;
         this.feedurl = feedurl;
         this.updateTime = updateTime;
@@ -53,11 +53,11 @@ public class Feeds implements Serializable {
         this.id = id;
     }
 
-    public int getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(int userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 

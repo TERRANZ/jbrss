@@ -41,7 +41,7 @@ public class RssCore {
         usersService.getAllUserIds().forEach(this::scheduleUpdatingForUser);
     }
 
-    public List<Feeds> getFeeds(Integer uid) {
+    public List<Feeds> getFeeds(String uid) {
         return feedsRepository.findByUserid(uid);
     }
 
@@ -78,7 +78,7 @@ public class RssCore {
         return newPosts.size();
     }
 
-    public synchronized void scheduleUpdatingForUser(Integer userId) {
+    public synchronized void scheduleUpdatingForUser(String userId) {
         logger.info("Scheduling updating for user " + userId);
         try {
             if (sched == null) {
@@ -133,10 +133,10 @@ public class RssCore {
     }
 
 
-    public boolean updateSchedulingForUser(Integer uid) {
+    public boolean updateSchedulingForUser(String uid) {
         try {
-            sched.deleteJob(new JobKey("user" + uid.toString(), "group1"));
-            sched.unscheduleJob(new TriggerKey("user" + uid.toString(), "group1"));
+            sched.deleteJob(new JobKey("user" + uid, "group1"));
+            sched.unscheduleJob(new TriggerKey("user" + uid, "group1"));
             scheduleUpdatingForUser(uid);
         } catch (SchedulerException e) {
             logger.error("Unable to remove job", e);
@@ -146,7 +146,7 @@ public class RssCore {
     }
 
 
-    public Boolean addFeed(final Integer userId, final String url) throws IllegalAccessException {
+    public Boolean addFeed(final String userId, final String url) throws IllegalAccessException {
         if (feedsRepository.findByUseridAndByFeedURL(userId, url).isEmpty()) {
             feedsRepository.save(new Feeds(0, userId, downloader.getFeedTitle(url), url, new Date()));
             return true;
@@ -182,7 +182,7 @@ public class RssCore {
         }
     }
 
-    public void setAllRead(Integer uid) {
+    public void setAllRead(String uid) {
         for (Feeds f : feedsRepository.findByUserid(uid))
             setPostRead(f.getId(), true);
     }
@@ -216,7 +216,7 @@ public class RssCore {
         return feedPostsRepository.findOne(id);
     }
 
-    public void updateSetting(String key, String val, Integer userId) {
+    public void updateSetting(String key, String val, String userId) {
         Settings settings = settingsRepository.findByKeyAndUserId(key, userId);
         if (settings != null)
             settings.setValue(val);
@@ -229,7 +229,7 @@ public class RssCore {
         settingsRepository.save(settings);
     }
 
-    public void updateAllFeedsForUser(Integer uid) {
+    public void updateAllFeedsForUser(String uid) {
         List<Feeds> feeds = getFeeds(uid);
         if (feeds != null && feeds.size() > 0) {
             for (Feeds f : feeds) {

@@ -19,19 +19,19 @@ public class UsersService {
     @Value("${authserver:http://localhost:1111/acc/}")
     String authServiceUrl;
 
-    public List<Integer> getAllUserIds() {
+    public List<String> getAllUserIds() {
         return restTemplate.getForObject(URI.create(authServiceUrl + "user/ids"), UserIdListDto.class).data.stream().map(UserIdDto::getId).collect(Collectors.toList());
     }
 
-    public Integer getUserId(String name) {
+    public String getUserId(String name) {
         return restTemplate.getForObject(authServiceUrl + "user/{name}/id", UserIdDto.class, name).getId();
     }
 
-    public Integer createUser(String login, String pass) {
+    public String createUser(String login, String pass) {
         return restTemplate.getForObject(authServiceUrl + "user/create?login={login}&pass={pass}", UserIdDto.class, login, pass).getId();
     }
 
-    public Integer login(String login, String pass) {
+    public String login(String login, String pass) {
         return restTemplate.getForObject(authServiceUrl + "user/login?login={login}&pass={pass}", UserIdDto.class, login, pass).getId();
     }
 }

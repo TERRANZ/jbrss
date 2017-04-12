@@ -28,7 +28,7 @@ public class IMManager {
         telegramIM.start();
     }
 
-    public void notifyFeedUpdated(Integer usedId, String feedName, List<String> newPostsTexts) {
+    public void notifyFeedUpdated(String usedId, String feedName, List<String> newPostsTexts) {
         threadPool.submit(() -> {
             logger.info("Feed " + feedName + " of user " + usedId + " have " + newPostsTexts.size() + " new posts");
             contactsRepository.findByUserId(usedId).forEach(c -> {

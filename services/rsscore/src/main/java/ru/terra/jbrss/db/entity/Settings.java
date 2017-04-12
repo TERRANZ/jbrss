@@ -19,7 +19,7 @@ public class Settings implements Serializable {
     @Column(name = "svalue", nullable = false, length = 512)
     private String value;
     @Basic(optional = false)
-    private Integer userId;
+    private String userId;
 
     public Integer getId() {
         return id;
@@ -57,11 +57,11 @@ public class Settings implements Serializable {
         this.value = value;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

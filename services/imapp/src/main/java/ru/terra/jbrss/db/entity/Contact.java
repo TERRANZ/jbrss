@@ -13,7 +13,7 @@ public class Contact implements Serializable {
     private Integer id;
     @Column(length = 256)
     private String contact;
-    private Integer userId;
+    private String userId;
     private Long lastlogin;
     private Integer status;
     @Column(length = 256, name = "contact_type")
@@ -43,11 +43,11 @@ public class Contact implements Serializable {
         this.contact = contact;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

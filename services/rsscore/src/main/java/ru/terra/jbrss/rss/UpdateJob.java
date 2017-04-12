@@ -15,7 +15,7 @@ public class UpdateJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         logger.info("Starting update job for user " + jobExecutionContext.getMergedJobDataMap().getIntValue("user"));
-        Integer uid = jobExecutionContext.getMergedJobDataMap().getIntValue("user");
+        String uid = jobExecutionContext.getMergedJobDataMap().getString("user");
         RssCore rssCore = (RssCore) jobExecutionContext.getMergedJobDataMap().get("re");
         rssCore.updateAllFeedsForUser(uid);
     }

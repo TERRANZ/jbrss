@@ -7,9 +7,9 @@ import ru.terra.jbrss.db.entity.Feeds;
 import java.util.List;
 
 public interface FeedsRepository extends PagingAndSortingRepository<Feeds, Integer> {
-    List<Feeds> findByUserid(Integer usedId);
+    List<Feeds> findByUserid(String userId);
 
-    List<Feeds> findByUseridAndByFeedId(Integer usedid, Integer id);
+    List<Feeds> findByUseridAndByFeedId(String userId, Integer id);
 
-    List<Feeds> findByUseridAndByFeedURL(Integer usedid, String url);
+    List<Feeds> findByUseridAndByFeedURL(String userId, String url);
 }

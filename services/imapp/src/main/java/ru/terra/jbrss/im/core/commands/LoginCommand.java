@@ -23,7 +23,7 @@ public class LoginCommand extends AbstractCommand {
         }
         String login = params.get(PARAMS.LOGIN.ordinal());
         String pass = params.get(PARAMS.PASS.ordinal());
-        Integer userId = serverInterface.login(login, pass);
+        String userId = serverInterface.login(login, pass);
         if (userId == null) {
             sendMessage("You have entered invalid login and password");
             return false;
