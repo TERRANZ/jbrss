@@ -135,8 +135,11 @@ public class RssCore {
 
     public boolean updateSchedulingForUser(String uid) {
         try {
-            sched.deleteJob(new JobKey("user" + uid, "group1"));
-            sched.unscheduleJob(new TriggerKey("user" + uid, "group1"));
+            JobKey jk = new JobKey("user" + uid, "group1");
+            if (sched != null && sched.checkExists(jk)) {
+                sched.deleteJob(jk);
+                sched.unscheduleJob(new TriggerKey("user" + uid, "group1"));
+            }
             scheduleUpdatingForUser(uid);
         } catch (SchedulerException e) {
             logger.error("Unable to remove job", e);

@@ -108,12 +108,12 @@ public abstract class ServerInterface {
 
     public abstract void start();
 
-    public void update(String contact) {
-        rssService.updateSchedulingForUser(contactsRepository.findByContactAndType(contact, getType().name()).getAuthToken());
+    public boolean update(String contact) {
+        return rssService.updateSchedulingForUser(doAuth(contact));
     }
 
     public void updateSetting(String key, String val, String contact) {
-        rssService.updateSetting(key, val, contactsRepository.findByContactAndType(contact, getType().name()).getAuthToken());
+        rssService.updateSetting(key, val, doAuth(contact));
     }
 
     public Contact getContact(String contact) {

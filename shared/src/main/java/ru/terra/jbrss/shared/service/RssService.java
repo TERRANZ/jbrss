@@ -49,8 +49,9 @@ public class RssService {
         return result.getBody().getStatus();
     }
 
-    public void updateSchedulingForUser(String authToken) {
-        oAuth2RestOperations.getForObject(rssServiceUrl + "update", BooleanDto.class);
+    public boolean updateSchedulingForUser(String authToken) {
+        ResponseEntity<BooleanDto> result = new RestTemplate().exchange(rssServiceUrl + "update", HttpMethod.GET, prepEntity(authToken), BooleanDto.class);
+        return result.getBody().getStatus();
     }
 
     public void updateSetting(String key, String val, String authToken) {

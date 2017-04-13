@@ -3,8 +3,6 @@ spring:
   application:
      name: rsscore-service
 
-debug: true
-
 # Discovery Server Access
 eureka:
   client:
