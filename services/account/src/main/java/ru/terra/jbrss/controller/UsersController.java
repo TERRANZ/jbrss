@@ -5,11 +5,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ru.terra.jbrss.db.OAuthDataService;
 import ru.terra.jbrss.db.entity.JbrssUser;
 import ru.terra.jbrss.db.repos.UsersRepository;
 import ru.terra.jbrss.shared.dto.UserIdDto;
 import ru.terra.jbrss.shared.dto.UserIdListDto;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.stream.Collectors;
 
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 public class UsersController {
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    private OAuthDataService oAuthDataService;
 
     @RequestMapping(value = "/{client}/id", method = RequestMethod.GET)
     public
@@ -54,6 +58,7 @@ public class UsersController {
     }
 
     @RequestMapping("/create")
+    @Transactional
     public @ResponseBody
     UserIdDto create(@RequestParam(value = "login") String login, @RequestParam(value = "pass") String pass) {
         OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
@@ -65,6 +70,7 @@ public class UsersController {
                 newUser.setLogin(login);
                 newUser.setPassword(pass);
                 newUser = usersRepository.save(newUser);
+                oAuthDataService.addOAuthUser(login, pass);
                 return new UserIdDto(newUser.getId());
             }
         } else
