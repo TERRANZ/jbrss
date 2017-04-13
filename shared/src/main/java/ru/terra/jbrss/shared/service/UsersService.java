@@ -57,7 +57,10 @@ public class UsersService {
     }
 
     public String createUser(String login, String pass) {
-        return oAuth2RestOperations.getForObject(authServiceUrl + "user/create?login={login}&pass={pass}", UserIdDto.class, login, pass).getId();
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("login", login);
+        map.add("pass", pass);
+        return oAuth2RestOperations.postForObject(authServiceUrl + "user/create", map, UserIdDto.class, login, pass).getId();
     }
 
     public String login(String login, String pass) {

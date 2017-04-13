@@ -23,7 +23,7 @@ public class UsersController {
     @Autowired
     private OAuthDataService oAuthDataService;
 
-    @RequestMapping(value = "/{client}/id", method = RequestMethod.GET)
+    @RequestMapping(value = URLConstants.GET_ID)
     public
     @ResponseBody
     UserIdDto getId(@PathVariable(value = "client") String client) {
@@ -38,7 +38,7 @@ public class UsersController {
             return new UserIdDto("");
     }
 
-    @RequestMapping(value = "/ids", method = RequestMethod.GET)
+    @RequestMapping(value = URLConstants.ALL_IDS)
     public
     @ResponseBody
     UserIdListDto allIds() {
@@ -57,7 +57,7 @@ public class UsersController {
         return user;
     }
 
-    @RequestMapping("/create")
+    @RequestMapping(value = URLConstants.CREATE, method = RequestMethod.POST)
     @Transactional
     public @ResponseBody
     UserIdDto create(@RequestParam(value = "login") String login, @RequestParam(value = "pass") String pass) {
@@ -77,7 +77,7 @@ public class UsersController {
             return new UserIdDto("");
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(URLConstants.LOGIN)
     public @ResponseBody
     UserIdDto login(@RequestParam(value = "login") String login, @RequestParam(value = "pass") String pass) {
         OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
