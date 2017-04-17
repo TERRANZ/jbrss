@@ -113,11 +113,11 @@ public class RssCore {
                 jobDataMap.put("user", userId);
                 jobDataMap.put("re", this);
                 JobDetail job = JobBuilder.newJob(UpdateJob.class)
-                        .withIdentity("user" + userId.toString(), "group1")
+                        .withIdentity("user" + userId, "group1")
                         .usingJobData(jobDataMap)
                         .build();
                 Trigger trigger = TriggerBuilder.newTrigger()
-                        .withIdentity("user" + userId.toString(), "group1")
+                        .withIdentity("user" + userId, "group1")
                         .startNow()
                         .withSchedule(scheduleBuilder)
                         .build();
