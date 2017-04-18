@@ -1,8 +1,5 @@
 package ru.terra.jbrss.tenancy;
 
-/**
- * Created by Vadim_Korostelev on 4/17/2017.
- */
 public class TenantDataStoreConfiguration {
     private String username;
 

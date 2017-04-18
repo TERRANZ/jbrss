@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 @EntityScan("ru.terra.jbrss")
-@EnableJpaRepositories("ru.terra.jbrss")
+//@EnableJpaRepositories("ru.terra.jbrss")
 @PropertySource("classpath:db-config.properties")
 @EnableResourceServer
 @EnableEurekaClient

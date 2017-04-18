@@ -29,7 +29,7 @@ public class NonTenantConfiguration {
             @Qualifier("nonTenantDataSource") DataSource dataSource) {
         return builder
                 .dataSource(dataSource)
-                .packages("ru.terra.jbrss.db.entity.nontenant")
+//                .packages("ru.terra.jbrss.db.entity.nontenant")
                 .persistenceUnit("nontenant")
                 .build();
     }

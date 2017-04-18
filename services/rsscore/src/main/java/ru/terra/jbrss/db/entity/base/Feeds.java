@@ -4,8 +4,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@MappedSuperclass
-public abstract class BaseFeeds implements Serializable {
+@Entity
+@Table(name = "feeds")
+public class Feeds implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,14 +24,14 @@ public abstract class BaseFeeds implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
-    public BaseFeeds() {
+    public Feeds() {
     }
 
-    public BaseFeeds(Integer id) {
+    public Feeds(Integer id) {
         this.id = id;
     }
 
-    public BaseFeeds(Integer id, String feedname, String feedurl, Date updateTime) {
+    public Feeds(Integer id, String feedname, String feedurl, Date updateTime) {
         this.id = id;
         this.feedname = feedname;
         this.feedurl = feedurl;

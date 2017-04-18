@@ -23,25 +23,25 @@ import javax.sql.DataSource;
 public class TenantConfiguration {
     @Primary
     @Bean(name = "entityManagerFactory")
-    LocalContainerEntityManagerFactoryBean multiTenantEntityManagerFactory(
+    public LocalContainerEntityManagerFactoryBean multiTenantEntityManagerFactory(
             EntityManagerFactoryBuilder builder,
             @Qualifier("dataSource") DataSource multiTenantDataSource) {
         return builder
                 .dataSource(multiTenantDataSource)
-                .packages("ru.terra.jbrss.db.entity.tenant")
+//                .packages("ru.terra.jbrss.db.entity.tenant")
                 .persistenceUnit("multitenant")
                 .build();
     }
 
     @Primary
     @Bean(name = "dataSource")
-    DataSource multiTenantDataSource() {
+    public DataSource multiTenantDataSource() {
         return new TenantDataSource();
     }
 
     @Primary
     @Bean(name = "transactionManager")
-    PlatformTransactionManager multiTenantTransactionManager(
+    public PlatformTransactionManager multiTenantTransactionManager(
             @Qualifier("entityManagerFactory") EntityManagerFactory multiTenantEntityManagerFactory) {
         return new JpaTransactionManager(multiTenantEntityManagerFactory);
     }

@@ -10,7 +10,7 @@ import ru.terra.jbrss.config.RssApplicationConfiguration;
 import ru.terra.jbrss.rss.RssCore;
 
 @SpringBootApplication
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 @EnableDiscoveryClient
 @Import(RssApplicationConfiguration.class)
 public class RsscoreApplication {

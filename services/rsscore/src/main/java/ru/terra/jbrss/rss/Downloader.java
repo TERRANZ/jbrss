@@ -9,7 +9,7 @@ import com.sun.syndication.io.XmlReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.terra.jbrss.db.entity.Feedposts;
-import ru.terra.jbrss.db.entity.base.BaseFeeds;
+import ru.terra.jbrss.db.entity.base.Feeds;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,9 +33,9 @@ public class Downloader {
         return "unnamed";
     }
 
-    public List<Feedposts> loadFeeds(BaseFeeds baseFeeds) {
+    public List<Feedposts> loadFeeds(Feeds feeds) {
         try {
-            SyndFeed feed = parseFeed(baseFeeds.getFeedurl());
+            SyndFeed feed = parseFeed(feeds.getFeedurl());
             List<Feedposts> ret = new ArrayList<>();
             for (Object object : feed.getEntries()) {
                 SyndEntry entry = (SyndEntry) object;
@@ -49,13 +49,13 @@ public class Downloader {
                 feedpost.setPostdate(entry.getPublishedDate());
                 if (feedpost.getPostdate() == null)
                     feedpost.setPostdate(entry.getUpdatedDate());
-                feedpost.setFeedId(baseFeeds.getId());
+                feedpost.setFeedId(feeds.getId());
                 feedpost.setUpdated(new Date());
                 ret.add(feedpost);
             }
             return ret;
         } catch (IllegalArgumentException | IOException | FeedException e) {
-            logger.error("Unable to get load feed " + baseFeeds.getFeedurl());
+            logger.error("Unable to get load feed " + feeds.getFeedurl());
         }
         return null;
     }

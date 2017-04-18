@@ -1,23 +1,6 @@
 package ru.terra.jbrss.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import ru.terra.jbrss.db.entity.base.BaseFeeds;
-import ru.terra.jbrss.db.repos.FeedPostsRepository;
-import ru.terra.jbrss.db.repos.FeedsRepository;
-import ru.terra.jbrss.rss.RssCore;
-import ru.terra.jbrss.service.NonTenantFeedServiceImpl;
-import ru.terra.jbrss.service.TenantFeedServiceImpl;
-import ru.terra.jbrss.shared.dto.*;
-
-import java.util.stream.Collectors;
 
 @Controller
 public class NonTenantRssController {
@@ -73,7 +56,7 @@ public class NonTenantRssController {
 //        if (!authentication.isAuthenticated()) {
 //            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 //        } else {
-//            BaseFeeds baseFeeds = feedsRepository.findOne(fid);
+//            Feeds baseFeeds = feedsRepository.findOne(fid);
 //            if (baseFeeds == null) {
 //                return ResponseEntity.notFound().build();
 //            }
@@ -119,7 +102,7 @@ public class NonTenantRssController {
 //        if (!authentication.isAuthenticated()) {
 //            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 //        } else {
-//            BaseFeeds feed = feedsRepository.findOne(fid);
+//            Feeds feed = feedsRepository.findOne(fid);
 //            if (feed == null) {
 //                return ResponseEntity.notFound().build();
 //            }
