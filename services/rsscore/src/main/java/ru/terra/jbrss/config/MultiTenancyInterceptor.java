@@ -3,7 +3,7 @@ package ru.terra.jbrss.config;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import ru.terra.jbrss.tenant.TenantDataStoreAccessor;
+import ru.terra.jbrss.tenancy.TenantDataStoreAccessor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

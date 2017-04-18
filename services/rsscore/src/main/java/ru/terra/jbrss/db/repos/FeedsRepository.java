@@ -2,12 +2,12 @@ package ru.terra.jbrss.db.repos;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import ru.terra.jbrss.db.entity.Feeds;
+import org.springframework.data.repository.NoRepositoryBean;
+import ru.terra.jbrss.db.entity.base.BaseFeeds;
 
 import java.util.List;
 
-@Repository
-public interface FeedsRepository extends JpaRepository<Feeds, Integer> {
-    List<Feeds> findByFeedurl(String url);
+@NoRepositoryBean
+public interface FeedsRepository<T extends BaseFeeds> extends JpaRepository<T, Integer> {
+    List<T> findByFeedurl(String url);
 }

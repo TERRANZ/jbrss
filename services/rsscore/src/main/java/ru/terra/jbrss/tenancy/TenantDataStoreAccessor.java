@@ -1,4 +1,4 @@
-package ru.terra.jbrss.tenant;
+package ru.terra.jbrss.tenancy;
 
 public class TenantDataStoreAccessor {
     private static ThreadLocal configuration = new ThreadLocal();

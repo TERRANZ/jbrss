@@ -1,12 +1,11 @@
-package ru.terra.jbrss.db.entity;
+package ru.terra.jbrss.db.entity.base;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
-@Table(name = "feeds")
-public class Feeds implements Serializable {
+@MappedSuperclass
+public abstract class BaseFeeds implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +23,14 @@ public class Feeds implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
-    public Feeds() {
+    public BaseFeeds() {
     }
 
-    public Feeds(Integer id) {
+    public BaseFeeds(Integer id) {
         this.id = id;
     }
 
-    public Feeds(Integer id, String feedname, String feedurl, Date updateTime) {
+    public BaseFeeds(Integer id, String feedname, String feedurl, Date updateTime) {
         this.id = id;
         this.feedname = feedname;
         this.feedurl = feedurl;

@@ -1,4 +1,4 @@
-package ru.terra.jbrss.tenant;
+package ru.terra.jbrss.tenancy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -55,7 +55,7 @@ public class TenantDataSource extends AbstractRoutingDataSource {
         builder.driverClassName(driver);
         builder.username(user);
         builder.password(pass);
-        builder.url("jdbc:mysql://localhost:3307/jbrss3_" + tenantDataStoreConfiguration.getUsername());
+        builder.url("jdbc:mysql://localhost:3306/jbrss3_" + tenantDataStoreConfiguration.getUsername());
 
         tenantDataSource = builder.build();
         tenantDataSourceMap.put(tenantDataStoreConfiguration.getUsername(), tenantDataSource);

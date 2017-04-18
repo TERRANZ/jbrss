@@ -1,4 +1,4 @@
-package ru.terra.jbrss.tenant;
+package ru.terra.jbrss.tenancy;
 
 /**
  * Created by Vadim_Korostelev on 4/17/2017.

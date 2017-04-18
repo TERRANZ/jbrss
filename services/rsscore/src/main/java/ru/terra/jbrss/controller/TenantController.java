@@ -13,19 +13,17 @@ import ru.terra.jbrss.service.NonTenantFeedServiceImpl;
 import ru.terra.jbrss.service.TenantFeedServiceImpl;
 import ru.terra.jbrss.shared.dto.FeedDto;
 import ru.terra.jbrss.shared.dto.FeedListDto;
-import ru.terra.jbrss.tenant.TenantDataStoreAccessor;
 
 import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/test/{uid}")
-public class TestController {
+public class TenantController {
 
+    @Autowired
+    private NonTenantFeedServiceImpl nonTenantfeedService;
     @Autowired
     private TenantFeedServiceImpl tenantFeedService;
-
-    @Autowired
-    private NonTenantFeedServiceImpl nonTenantFeedService;
 
     //    @Transactional
     @RequestMapping(value = "/feed", method = RequestMethod.GET)
@@ -37,7 +35,7 @@ public class TestController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         } else {
             FeedListDto feedListDto = new FeedListDto();
-            feedListDto.data = tenantFeedService.getFeeds().stream().map(feed -> {
+            feedListDto.data = nonTenantfeedService.getFeeds().stream().map(feed -> {
                 FeedDto feedDto = new FeedDto();
                 feedDto.setId(feed.getId());
                 feedDto.setFeedname(feed.getFeedname());
@@ -45,7 +43,7 @@ public class TestController {
                 feedDto.setUpdateTime(feed.getUpdateTime().getTime());
                 return feedDto;
             }).collect(Collectors.toList());
-            feedListDto.data.addAll(nonTenantFeedService.getFeeds().stream().map(feed -> {
+            feedListDto.data.addAll(tenantFeedService.getFeeds().stream().map(feed -> {
                 FeedDto feedDto = new FeedDto();
                 feedDto.setId(feed.getId());
                 feedDto.setFeedname(feed.getFeedname());

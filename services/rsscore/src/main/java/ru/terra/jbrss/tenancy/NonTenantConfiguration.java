@@ -1,4 +1,4 @@
-package ru.terra.jbrss.tenant;
+package ru.terra.jbrss.tenancy;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -19,7 +19,8 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJpaRepositories(
         entityManagerFactoryRef = "nonTenantEntityManagerFactory",
-        transactionManagerRef = "nonTenantTransactionManager")
+        transactionManagerRef = "nonTenantTransactionManager",
+        basePackages = "ru.terra.jbrss.db.repos.nontenant")
 public class NonTenantConfiguration {
 
     @Bean(name = "nonTenantEntityManagerFactory")
@@ -28,6 +29,7 @@ public class NonTenantConfiguration {
             @Qualifier("nonTenantDataSource") DataSource dataSource) {
         return builder
                 .dataSource(dataSource)
+                .packages("ru.terra.jbrss.db.entity.nontenant")
                 .persistenceUnit("nontenant")
                 .build();
     }

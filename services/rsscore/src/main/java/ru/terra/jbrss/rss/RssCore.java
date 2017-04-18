@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ru.terra.jbrss.constants.SettingsConstants;
-import ru.terra.jbrss.db.entity.Feeds;
 import ru.terra.jbrss.db.entity.Feedposts;
 import ru.terra.jbrss.db.entity.Settings;
+import ru.terra.jbrss.db.entity.base.BaseFeeds;
+import ru.terra.jbrss.db.entity.nontenant.NonTenantFeeds;
+import ru.terra.jbrss.db.entity.tenant.TenantFeeds;
 import ru.terra.jbrss.db.repos.FeedPostsRepository;
 import ru.terra.jbrss.db.repos.SettingsRepository;
 import ru.terra.jbrss.service.FeedService;
@@ -37,23 +39,20 @@ public class RssCore {
     private UsersService usersService;
     @Autowired
     @Qualifier("nonTenantFeedsService")
-    private FeedService nonTenantfeedService;
+    private FeedService<NonTenantFeeds> nonTenantfeedService;
     @Autowired
     @Qualifier("tenantFeedsService")
-    private FeedService tenantFeedService;
+    private FeedService<TenantFeeds> tenantFeedService;
 
     public void start() {
 //        usersService.getAllUserIds().forEach(this::scheduleUpdatingForUser);
-        List<Feeds> feeds = nonTenantfeedService.getFeeds();
-        feeds.addAll(tenantFeedService.getFeeds());
-        logger.info(feeds.toString());
     }
 
-    public List<Feeds> getFeeds() {
+    public List<NonTenantFeeds> getFeeds() {
         return nonTenantfeedService.getFeeds();
     }
 
-    public Integer updateFeed(Feeds feed) {
+    public Integer updateFeed(BaseFeeds feed) {
         logger.info("updating feed " + feed.getFeedurl());
         List<Feedposts> posts = downloader.loadFeeds(feed);
         Date d = null;
@@ -159,13 +158,13 @@ public class RssCore {
 
     public Boolean addFeed(final String userId, final String url) throws IllegalAccessException {
 //        if (nonTenantFeedsRepository.findByUseridAndByFeedURL(userId, url).isEmpty()) {
-//            nonTenantFeedsRepository.save(new Feeds(0, downloader.getFeedTitle(url), url, new Date()));
+//            nonTenantFeedsRepository.save(new BaseFeeds(0, downloader.getFeedTitle(url), url, new Date()));
 //            return true;
 //        }
         return false;
     }
 
-    public List<Feedposts> getNewUserPosts(Feeds feed, Date d) {
+    public List<Feedposts> getNewUserPosts(BaseFeeds feed, Date d) {
         return feedPostsRepository.getPostsByFeedAfterDate(feed.getId(), d);
     }
 
@@ -194,7 +193,7 @@ public class RssCore {
     }
 
     public void setAllRead(String uid) {
-//        for (Feeds f : nonTenantFeedsRepository.findByUserid(uid))
+//        for (BaseFeeds f : nonTenantFeedsRepository.findByUserid(uid))
 //            setPostRead(f.getId(), true);
     }
 
@@ -232,9 +231,9 @@ public class RssCore {
     }
 
     public void updateAllFeedsForUser(String uid) {
-        List<Feeds> feeds = getFeeds();
+        List<NonTenantFeeds> feeds = getFeeds();
         if (feeds != null && feeds.size() > 0) {
-            for (Feeds f : feeds) {
+            for (BaseFeeds f : feeds) {
                 try {
                     updateFeed(f);
                 } catch (Exception e) {

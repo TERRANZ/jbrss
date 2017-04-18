@@ -1,4 +1,4 @@
-package ru.terra.jbrss.tenant;
+package ru.terra.jbrss.tenancy;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -18,7 +18,8 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactory",
-        transactionManagerRef = "transactionManager")
+        transactionManagerRef = "transactionManager",
+        basePackages = "ru.terra.jbrss.db.repos.tenant")
 public class TenantConfiguration {
     @Primary
     @Bean(name = "entityManagerFactory")
@@ -27,6 +28,7 @@ public class TenantConfiguration {
             @Qualifier("dataSource") DataSource multiTenantDataSource) {
         return builder
                 .dataSource(multiTenantDataSource)
+                .packages("ru.terra.jbrss.db.entity.tenant")
                 .persistenceUnit("multitenant")
                 .build();
     }
