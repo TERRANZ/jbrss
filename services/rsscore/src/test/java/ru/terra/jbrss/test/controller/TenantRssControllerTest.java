@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -19,6 +20,9 @@ import ru.terra.jbrss.db.repos.tenant.TenantFeedsRepository;
 import ru.terra.jbrss.tenancy.TenantDataStoreAccessor;
 import ru.terra.jbrss.test.OAuthHelper;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -48,10 +52,14 @@ public class TenantRssControllerTest {
     public static final String userId = "testuser";
     private MockMvc restMvc;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @Before
-    public void setupData() {
+    public void setupData() throws IOException {
         restMvc = MockMvcBuilders.webAppContextSetup(webapp).apply(springSecurity()).build();
         TenantDataStoreAccessor.setConfiguration(userId);
+        jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/mocked.sql").getFile()))));
         f1 = feedsRepository.save(new Feeds(0, "feed1", "url1", new Date()));
         f2 = feedsRepository.save(new Feeds(0, "feed2", "url2", new Date()));
         Calendar calendar = Calendar.getInstance();
