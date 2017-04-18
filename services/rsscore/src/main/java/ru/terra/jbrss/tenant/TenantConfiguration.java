@@ -18,7 +18,8 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactory",
-        transactionManagerRef = "transactionManager")
+        transactionManagerRef = "transactionManager",
+        basePackages = "ru.**.repos.tenant")
 public class TenantConfiguration {
     @Primary
     @Bean(name = "entityManagerFactory")
@@ -27,7 +28,7 @@ public class TenantConfiguration {
             @Qualifier("dataSource") DataSource multiTenantDataSource) {
         return builder
                 .dataSource(multiTenantDataSource)
-                .packages("ru.terra")
+                .packages("ru.terra.**.entity.tenant")
                 .persistenceUnit("multitenant")
                 .build();
     }

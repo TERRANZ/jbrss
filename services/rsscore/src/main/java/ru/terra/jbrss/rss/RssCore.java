@@ -5,15 +5,16 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ru.terra.jbrss.constants.SettingsConstants;
+import ru.terra.jbrss.db.entity.BaseFeeds;
 import ru.terra.jbrss.db.entity.Feedposts;
-import ru.terra.jbrss.db.entity.Feeds;
 import ru.terra.jbrss.db.entity.Settings;
 import ru.terra.jbrss.db.repos.FeedPostsRepository;
-import ru.terra.jbrss.db.repos.FeedsRepository;
 import ru.terra.jbrss.db.repos.SettingsRepository;
+import ru.terra.jbrss.service.FeedService;
 import ru.terra.jbrss.shared.service.UsersService;
 
 import java.util.ArrayList;
@@ -31,21 +32,28 @@ public class RssCore {
     @Autowired
     private SettingsRepository settingsRepository;
     @Autowired
-    private FeedsRepository feedsRepository;
-    @Autowired
     private FeedPostsRepository feedPostsRepository;
     @Autowired
     private UsersService usersService;
+    @Autowired
+    @Qualifier("nonTenantFeedsService")
+    private FeedService nonTenantfeedService;
+    @Autowired
+    @Qualifier("tenantFeedsService")
+    private FeedService tenantFeedService;
 
     public void start() {
-        usersService.getAllUserIds().forEach(this::scheduleUpdatingForUser);
+//        usersService.getAllUserIds().forEach(this::scheduleUpdatingForUser);
+        List<BaseFeeds> feeds = nonTenantfeedService.getFeeds();
+        feeds.addAll(tenantFeedService.getFeeds());
+        logger.info(feeds.toString());
     }
 
-    public List<Feeds> getFeeds(String uid) {
-        return feedsRepository.findByUserid(uid);
+    public List<BaseFeeds> getFeeds() {
+        return nonTenantfeedService.getFeeds();
     }
 
-    public Integer updateFeed(Feeds feed) {
+    public Integer updateFeed(BaseFeeds feed) {
         logger.info("updating feed " + feed.getFeedurl());
         List<Feedposts> posts = downloader.loadFeeds(feed);
         Date d = null;
@@ -150,14 +158,14 @@ public class RssCore {
 
 
     public Boolean addFeed(final String userId, final String url) throws IllegalAccessException {
-        if (feedsRepository.findByUseridAndByFeedURL(userId, url).isEmpty()) {
-            feedsRepository.save(new Feeds(0, userId, downloader.getFeedTitle(url), url, new Date()));
-            return true;
-        }
+//        if (nonTenantFeedsRepository.findByUseridAndByFeedURL(userId, url).isEmpty()) {
+//            nonTenantFeedsRepository.save(new BaseFeeds(0, downloader.getFeedTitle(url), url, new Date()));
+//            return true;
+//        }
         return false;
     }
 
-    public List<Feedposts> getNewUserPosts(Feeds feed, Date d) {
+    public List<Feedposts> getNewUserPosts(BaseFeeds feed, Date d) {
         return feedPostsRepository.getPostsByFeedAfterDate(feed.getId(), d);
     }
 
@@ -186,29 +194,20 @@ public class RssCore {
     }
 
     public void setAllRead(String uid) {
-        for (Feeds f : feedsRepository.findByUserid(uid))
-            setPostRead(f.getId(), true);
+//        for (BaseFeeds f : nonTenantFeedsRepository.findByUserid(uid))
+//            setPostRead(f.getId(), true);
     }
 
     public boolean removeFeed(Integer id) {
         logger.info("Removed posts in feed " + id);
         feedPostsRepository.findByFeedId(id).parallelStream().forEach(fp -> feedPostsRepository.delete(fp));
-        try {
-            feedsRepository.delete(id);
-        } catch (Exception e) {
-            logger.error("Unable to delete feed " + id, e);
-            return false;
-        }
+//        try {
+//            nonTenantFeedsRepository.delete(id);
+//        } catch (Exception e) {
+//            logger.error("Unable to delete feed " + id, e);
+//            return false;
+//        }
         return true;
-    }
-
-    public Feeds getFeed(Integer id) {
-        return feedsRepository.findOne(id);
-    }
-
-    public void setFeedUpdateDate(Feeds f, Date date) {
-        f.setUpdateTime(date);
-        feedsRepository.save(f);
     }
 
     public List<Feedposts> search(String posttext) {
@@ -233,9 +232,9 @@ public class RssCore {
     }
 
     public void updateAllFeedsForUser(String uid) {
-        List<Feeds> feeds = getFeeds(uid);
+        List<BaseFeeds> feeds = getFeeds();
         if (feeds != null && feeds.size() > 0) {
-            for (Feeds f : feeds) {
+            for (BaseFeeds f : feeds) {
                 try {
                     updateFeed(f);
                 } catch (Exception e) {

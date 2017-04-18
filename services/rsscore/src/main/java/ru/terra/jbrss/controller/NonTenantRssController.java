@@ -9,16 +9,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ru.terra.jbrss.db.entity.Feeds;
+import ru.terra.jbrss.db.entity.BaseFeeds;
 import ru.terra.jbrss.db.repos.FeedPostsRepository;
-import ru.terra.jbrss.db.repos.FeedsRepository;
+import ru.terra.jbrss.db.repos.tenant.FeedsRepository;
 import ru.terra.jbrss.rss.RssCore;
+import ru.terra.jbrss.service.nontenant.NonTenantFeedServiceImpl;
+import ru.terra.jbrss.service.tenant.TenantFeedServiceImpl;
 import ru.terra.jbrss.shared.dto.*;
 
 import java.util.stream.Collectors;
 
 @Controller
-public class RssController {
+public class NonTenantRssController {
     @Autowired
     private FeedsRepository feedsRepository;
     @Autowired
@@ -26,6 +28,11 @@ public class RssController {
     @Autowired
     private RssCore rssCore;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    private TenantFeedServiceImpl tenantFeedService;
+
+    @Autowired
+    private NonTenantFeedServiceImpl nonTenantFeedService;
 
     @RequestMapping(value = "/feed", method = RequestMethod.GET)
     public
@@ -36,14 +43,22 @@ public class RssController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         } else {
             FeedListDto feedListDto = new FeedListDto();
-            feedListDto.data = feedsRepository.findByUserid(authentication.getOAuth2Request().getClientId()).stream().map(u -> {
+            feedListDto.data = tenantFeedService.getFeeds().stream().map(feed -> {
                 FeedDto feedDto = new FeedDto();
-                feedDto.setId(u.getId());
-                feedDto.setFeedname(u.getFeedname());
-                feedDto.setFeedurl(u.getFeedurl());
-                feedDto.setUpdateTime(u.getUpdateTime().getTime());
+                feedDto.setId(feed.getId());
+                feedDto.setFeedname(feed.getFeedname());
+                feedDto.setFeedurl(feed.getFeedurl());
+                feedDto.setUpdateTime(feed.getUpdateTime().getTime());
                 return feedDto;
             }).collect(Collectors.toList());
+            feedListDto.data.addAll(nonTenantFeedService.getFeeds().stream().map(feed -> {
+                FeedDto feedDto = new FeedDto();
+                feedDto.setId(feed.getId());
+                feedDto.setFeedname(feed.getFeedname());
+                feedDto.setFeedurl(feed.getFeedurl());
+                feedDto.setUpdateTime(feed.getUpdateTime().getTime());
+                return feedDto;
+            }).collect(Collectors.toList()));
             return ResponseEntity.ok(feedListDto);
         }
     }
@@ -58,12 +73,9 @@ public class RssController {
         if (!authentication.isAuthenticated()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         } else {
-            Feeds feeds = feedsRepository.findOne(fid);
-            if (feeds == null) {
+            BaseFeeds baseFeeds = feedsRepository.findOne(fid);
+            if (baseFeeds == null) {
                 return ResponseEntity.notFound().build();
-            }
-            if (!feeds.getUserid().equals(authentication.getOAuth2Request().getClientId())) {
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
             }
             return ResponseEntity.ok(new FeedPostsPageableDto(
                     feedPostsRepository.findFeedpostsByFeedLimited(fid, offset, limit).stream().map(fp -> {
@@ -107,12 +119,9 @@ public class RssController {
         if (!authentication.isAuthenticated()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         } else {
-            Feeds feed = feedsRepository.findOne(fid);
+            BaseFeeds feed = feedsRepository.findOne(fid);
             if (feed == null) {
                 return ResponseEntity.notFound().build();
-            }
-            if (!feed.getUserid().equals(authentication.getOAuth2Request().getClientId())) {
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
             }
             return ResponseEntity.ok(new BooleanDto(rssCore.removeFeed(fid)));
         }

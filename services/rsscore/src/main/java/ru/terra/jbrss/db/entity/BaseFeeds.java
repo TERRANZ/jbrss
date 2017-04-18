@@ -4,21 +4,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
-@Table(name = "feeds")
-@NamedQueries({@NamedQuery(name = "Feeds.findAll", query = "SELECT f FROM Feeds f"),
-        @NamedQuery(name = "Feeds.findByUseridAndByFeedId", query = "SELECT f FROM Feeds f WHERE f.userid = ?1 AND f.id = ?2"),
-        @NamedQuery(name = "Feeds.findByUseridAndByFeedURL", query = "SELECT f FROM Feeds f WHERE f.userid = ?1 AND f.feedurl = ?2")})
-public class Feeds implements Serializable {
+@MappedSuperclass
+public class BaseFeeds implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "userid", nullable = false)
-    private String userid;
     @Basic(optional = false)
     @Column(name = "feedname", nullable = false, length = 512)
     private String feedname;
@@ -30,16 +23,15 @@ public class Feeds implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
-    public Feeds() {
+    public BaseFeeds() {
     }
 
-    public Feeds(Integer id) {
+    public BaseFeeds(Integer id) {
         this.id = id;
     }
 
-    public Feeds(Integer id, String userId, String feedname, String feedurl, Date updateTime) {
+    public BaseFeeds(Integer id, String feedname, String feedurl, Date updateTime) {
         this.id = id;
-        this.userid = userId;
         this.feedname = feedname;
         this.feedurl = feedurl;
         this.updateTime = updateTime;
@@ -51,14 +43,6 @@ public class Feeds implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
     }
 
     public String getFeedname() {

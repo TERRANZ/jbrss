@@ -1,6 +1,7 @@
 package ru.terra.jbrss;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -9,7 +10,7 @@ import ru.terra.jbrss.config.RssApplicationConfiguration;
 import ru.terra.jbrss.rss.RssCore;
 
 @SpringBootApplication
-//@EnableAutoConfiguration
+@EnableAutoConfiguration
 @EnableDiscoveryClient
 @Import(RssApplicationConfiguration.class)
 public class RsscoreApplication {

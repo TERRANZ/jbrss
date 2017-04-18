@@ -1,10 +1,7 @@
 package ru.terra.jbrss.tenant;
 
-import org.hibernate.cfg.Environment;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -17,31 +14,22 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 @EnableTransactionManagement
 @Configuration
 @EnableJpaRepositories(
         entityManagerFactoryRef = "nonTenantEntityManagerFactory",
-        transactionManagerRef = "nonTenantTransactionManager")
+        transactionManagerRef = "nonTenantTransactionManager",
+        basePackages = "ru.**.repos.nontenant")
 public class NonTenantConfiguration {
-    @Autowired
-    private JpaProperties jpaProperties;
 
     @Bean(name = "nonTenantEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
             EntityManagerFactoryBuilder builder,
             @Qualifier("nonTenantDataSource") DataSource dataSource) {
-        Map<String, Object> hibernateProps = new LinkedHashMap<>();
-        hibernateProps.putAll(jpaProperties.getHibernateProperties(dataSource));
-        hibernateProps.put(Environment.SHOW_SQL, "true");
-        hibernateProps.put(Environment.HBM2DDL_AUTO, "update");
-        hibernateProps.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
         return builder
                 .dataSource(dataSource)
-                .packages("ru.terra")
-                .properties(hibernateProps)
+                .packages("ru.terra.**.entity.nontenant")
                 .persistenceUnit("nontenant")
                 .build();
     }

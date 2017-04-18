@@ -1,24 +1,57 @@
 package ru.terra.jbrss.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ru.terra.jbrss.db.repos.FeedsRepository;
+import ru.terra.jbrss.service.nontenant.NonTenantFeedServiceImpl;
+import ru.terra.jbrss.service.tenant.TenantFeedServiceImpl;
+import ru.terra.jbrss.shared.dto.FeedDto;
+import ru.terra.jbrss.shared.dto.FeedListDto;
+
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/test/{uid}")
 public class TestController {
 
+    @Autowired
+    private TenantFeedServiceImpl tenantFeedService;
 
     @Autowired
-    private FeedsRepository feedsRepository;
+    private NonTenantFeedServiceImpl nonTenantFeedService;
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/feed", method = RequestMethod.GET)
     public
     @ResponseBody
-    ResponseEntity<Long> test() {
-        return ResponseEntity.ok(feedsRepository.count());
+    ResponseEntity<FeedListDto> allFeeds() {
+        OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
+        if (!authentication.isAuthenticated()) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        } else {
+            FeedListDto feedListDto = new FeedListDto();
+            feedListDto.data = tenantFeedService.getFeeds().stream().map(feed -> {
+                FeedDto feedDto = new FeedDto();
+                feedDto.setId(feed.getId());
+                feedDto.setFeedname(feed.getFeedname());
+                feedDto.setFeedurl(feed.getFeedurl());
+                feedDto.setUpdateTime(feed.getUpdateTime().getTime());
+                return feedDto;
+            }).collect(Collectors.toList());
+            feedListDto.data.addAll(nonTenantFeedService.getFeeds().stream().map(feed -> {
+                FeedDto feedDto = new FeedDto();
+                feedDto.setId(feed.getId());
+                feedDto.setFeedname(feed.getFeedname());
+                feedDto.setFeedurl(feed.getFeedurl());
+                feedDto.setUpdateTime(feed.getUpdateTime().getTime());
+                return feedDto;
+            }).collect(Collectors.toList()));
+            return ResponseEntity.ok(feedListDto);
+        }
     }
 }
