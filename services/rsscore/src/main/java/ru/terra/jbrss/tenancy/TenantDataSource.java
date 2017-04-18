@@ -19,6 +19,9 @@ public class TenantDataSource extends AbstractRoutingDataSource {
     @Value("${spring.datasource.driver-class-name:com.mysql.jdbc.Driver}")
     String driver;
 
+    @Value("${spring.datasource.url:jdbc:mysql://localhost:3306/jbrss3}")
+    String url;
+
     @Value("${spring.datasource.username:jbrss}")
     String user;
 
@@ -55,7 +58,7 @@ public class TenantDataSource extends AbstractRoutingDataSource {
         builder.driverClassName(driver);
         builder.username(user);
         builder.password(pass);
-        builder.url("jdbc:mysql://localhost:3306/jbrss3_" + tenantDataStoreConfiguration.getUsername());
+        builder.url(url + "_" + tenantDataStoreConfiguration.getUsername());
 
         tenantDataSource = builder.build();
         tenantDataSourceMap.put(tenantDataStoreConfiguration.getUsername(), tenantDataSource);
@@ -65,6 +68,6 @@ public class TenantDataSource extends AbstractRoutingDataSource {
 
     @Override
     public void afterPropertiesSet() {
-        
+
     }
 }

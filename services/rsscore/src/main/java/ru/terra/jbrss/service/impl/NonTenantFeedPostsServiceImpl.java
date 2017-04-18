@@ -52,4 +52,14 @@ public class NonTenantFeedPostsServiceImpl implements FeedPostsService {
     public Feedposts findOne(Integer id) {
         return repository.findOne(id);
     }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    @Override
+    public Feedposts save(Feedposts feedposts) {
+        return repository.save(feedposts);
+    }
 }

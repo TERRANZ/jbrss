@@ -2,7 +2,6 @@ package ru.terra.jbrss.service;
 
 import ru.terra.jbrss.db.entity.Feedposts;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface FeedPostsService {
@@ -22,4 +21,8 @@ public interface FeedPostsService {
     List<Feedposts> findByPosttextLike(String posttext);
 
     Feedposts findOne(Integer id);
+
+    void deleteAll();
+
+    Feedposts save(Feedposts feedposts);
 }

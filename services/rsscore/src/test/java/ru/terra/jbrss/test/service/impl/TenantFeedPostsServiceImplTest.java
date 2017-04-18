@@ -20,9 +20,9 @@ import java.util.List;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class NonTenantFeedPostsServiceImplTest {
+public class TenantFeedPostsServiceImplTest {
     @Autowired
-    @Qualifier("nonTenantFeedPostsService")
+    @Qualifier("tenantFeedPostsService")
     private FeedPostsService feedPostsService;
     private Feedposts fp1;
     private Feedposts fp12;
@@ -70,5 +70,4 @@ public class NonTenantFeedPostsServiceImplTest {
     public void findOne() throws Exception {
         Assert.assertEquals(feedPostsService.findOne(fp1.getId()).getId(), fp1.getId());
     }
-
 }
