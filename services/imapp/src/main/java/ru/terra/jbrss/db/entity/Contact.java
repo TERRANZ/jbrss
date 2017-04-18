@@ -23,6 +23,8 @@ public class Contact implements Serializable {
     private String correctAnswer;
     @Lob
     private String authToken;
+    @Lob
+    private String uid;
 
     public Contact() {
     }
@@ -101,5 +103,13 @@ public class Contact implements Serializable {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

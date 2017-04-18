@@ -51,6 +51,7 @@ public abstract class ServerInterface {
                 c.setLastlogin(new Date().getTime());
                 c.setUser(login);
                 c.setPass(pass);
+                c.setUid(uid);
                 contactsRepository.save(c);
             });
             return uid;
@@ -68,19 +69,19 @@ public abstract class ServerInterface {
     }
 
     public List<FeedDto> getFeeds(String contact) {
-        return rssService.getFeeds(doAuth(contact));
+        return rssService.getFeeds(doAuth(contact), uid(contact));
     }
 
     public List<FeedPostDto> getFeedPosts(String contact, Integer targetFeed, Integer page, Integer perPage) {
-        return rssService.getFeedPosts(doAuth(contact), targetFeed, page, perPage);
+        return rssService.getFeedPosts(doAuth(contact), targetFeed, page, perPage, uid(contact));
     }
 
     public boolean addFeed(String contact, String url) throws IllegalAccessException {
-        return rssService.addFeed(doAuth(contact), url);
+        return rssService.addFeed(doAuth(contact), url, uid(contact));
     }
 
     public void removeFeed(String contact, Integer feedId) {
-        rssService.removeFeed(doAuth(contact), feedId);
+        rssService.removeFeed(doAuth(contact), feedId, uid(contact));
     }
 
     protected void processText(String fromName, String msg) {
@@ -109,11 +110,11 @@ public abstract class ServerInterface {
     public abstract void start();
 
     public boolean update(String contact) {
-        return rssService.updateSchedulingForUser(doAuth(contact));
+        return rssService.updateSchedulingForUser(doAuth(contact), uid(contact));
     }
 
     public void updateSetting(String key, String val, String contact) {
-        rssService.updateSetting(key, val, doAuth(contact));
+        rssService.updateSetting(key, val, doAuth(contact), uid(contact));
     }
 
     public Contact getContact(String contact) {
@@ -125,12 +126,14 @@ public abstract class ServerInterface {
     }
 
     public void regContact(String contact, Integer answer, String login, String pass) {
-        userService.createUser(login, pass);
+        String uid = userService.createUser(login, pass);
+        rssService.createUser(uid);
         Contact c = createContact(contact);
         c.setUser(login);
         c.setPass(pass);
         c.setCorrectAnswer(answer.toString());
         c.setStatus(ContactStatus.SENT_QUESTION.ordinal());
+        c.setUid(uid);
         contactsRepository.save(c);
     }
 
@@ -152,5 +155,9 @@ public abstract class ServerInterface {
             return token;
         }
         return "";
+    }
+
+    private String uid(String contact) {
+        return contactsRepository.findByContact(contact).getUid();
     }
 }

@@ -8,5 +8,8 @@ import java.util.List;
 
 public interface ContactsRepository extends CrudRepository<Contact, Integer> {
     Contact findByContactAndType(String contact, String type);
+
     List<Contact> findByUser(String user);
+
+    Contact findByContact(String contact);
 }

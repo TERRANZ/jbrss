@@ -46,7 +46,11 @@ public class RssCore {
     private SettingsService settingsService;
 
     public void start() {
-        usersService.getAllUserIds().forEach(this::scheduleUpdatingForUser);
+        try {
+            usersService.getAllUserIds().forEach(this::scheduleUpdatingForUser);
+        } catch (Exception e) {
+            logger.error("Unable to schedule update", e);
+        }
     }
 
 

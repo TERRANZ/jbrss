@@ -13,7 +13,6 @@ import ru.terra.jbrss.service.FeedPostsService;
 import ru.terra.jbrss.service.FeedService;
 import ru.terra.jbrss.service.SettingsService;
 import ru.terra.jbrss.shared.dto.*;
-import ru.terra.jbrss.tenancy.TenantDataStoreAccessor;
 
 import java.util.Date;
 import java.util.List;
@@ -85,13 +84,13 @@ public abstract class AbstractRssController {
     @RequestMapping(value = "/feed/add", method = RequestMethod.GET)
     public
     @ResponseBody
-    ResponseEntity<BooleanDto> addFeed(@RequestParam(value = "url") String url) {
+    ResponseEntity<BooleanDto> addFeedEndPoint(@RequestParam(value = "url") String url) {
         OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
         if (!authentication.isAuthenticated()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         } else {
             try {
-                return ResponseEntity.ok(new BooleanDto(addFeed(authentication.getOAuth2Request().getClientId(), url)));
+                return ResponseEntity.ok(new BooleanDto(addFeed(url)));
             } catch (IllegalAccessException e) {
                 logger.error("Unable to add feed to user " + authentication.getOAuth2Request().getClientId() + " url: " + url, e);
                 return ResponseEntity.ok(new BooleanDto(false));
@@ -115,26 +114,15 @@ public abstract class AbstractRssController {
         }
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    ResponseEntity<BooleanDto> update() {
-        OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
-        if (!authentication.isAuthenticated()) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        } else {
-            return ResponseEntity.ok(new BooleanDto(getRssCore().updateSchedulingForUser(authentication.getOAuth2Request().getExtensions().get("uid").toString())));
-        }
-    }
 
-    public Boolean addFeed(final String userId, final String url) throws IllegalAccessException {
-        TenantDataStoreAccessor.removeConfiguration();
+    public Boolean addFeed(final String url) throws IllegalAccessException {
         if (getFeedService().findByFeedURL(url).isEmpty()) {
             getFeedService().save(new Feeds(0, getRssCore().getDownloader().getFeedTitle(url), url, new Date()));
             return true;
         }
         return false;
     }
+
 
     public boolean removeFeed(Integer id) {
         logger.info("Removed posts in feed " + id);
