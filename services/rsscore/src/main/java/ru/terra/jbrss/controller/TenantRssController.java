@@ -3,22 +3,25 @@ package ru.terra.jbrss.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ru.terra.jbrss.rss.RssCore;
 import ru.terra.jbrss.service.FeedPostsService;
 import ru.terra.jbrss.service.FeedService;
 import ru.terra.jbrss.service.SettingsService;
 
 @Controller
-public class NonTenantRssController extends AbstractRssController {
+@RequestMapping("/{uid}")
+public class TenantRssController extends AbstractRssController {
+
     @Autowired
     private RssCore rssCore;
 
     @Autowired
-    @Qualifier("nonTenantFeedsService")
+    @Qualifier("tenantFeedsService")
     private FeedService feedService;
 
     @Autowired
-    @Qualifier("nonTenantFeedPostsService")
+    @Qualifier("tenantFeedPostsService")
     private FeedPostsService feedPostsService;
 
     @Override
@@ -40,5 +43,4 @@ public class NonTenantRssController extends AbstractRssController {
     protected RssCore getRssCore() {
         return rssCore;
     }
-
 }

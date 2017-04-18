@@ -17,6 +17,6 @@ public class UpdateJob implements Job {
         logger.info("Starting update job for user " + jobExecutionContext.getMergedJobDataMap().getString("user"));
         String uid = jobExecutionContext.getMergedJobDataMap().getString("user");
         RssCore rssCore = (RssCore) jobExecutionContext.getMergedJobDataMap().get("re");
-//        rssCore.updateAllFeedsForUser(uid);
+        rssCore.updateAllFeedsForUser(uid);
     }
 }

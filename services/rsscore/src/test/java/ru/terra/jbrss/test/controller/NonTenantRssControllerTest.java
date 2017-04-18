@@ -12,10 +12,9 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import ru.terra.jbrss.controller.NonTenantRssController;
 import ru.terra.jbrss.db.entity.Feedposts;
-import ru.terra.jbrss.db.entity.base.Feeds;
-import ru.terra.jbrss.db.repos.FeedPostsRepository;
+import ru.terra.jbrss.db.entity.Feeds;
+import ru.terra.jbrss.db.repos.nontenant.NonTenantFeedPostsRepository;
 import ru.terra.jbrss.db.repos.nontenant.NonTenantFeedsRepository;
 import ru.terra.jbrss.test.OAuthHelper;
 
@@ -34,13 +33,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class NonTenantRssControllerTest {
-    @Autowired
-    private NonTenantRssController nonTenantRssController;
-    @Autowired
 
+    @Autowired
     private NonTenantFeedsRepository feedsRepository;
     @Autowired
-    private FeedPostsRepository feedPostsRepository;
+    private NonTenantFeedPostsRepository feedPostsRepository;
     @Autowired
     private OAuthHelper oAuthHelper;
     @Autowired

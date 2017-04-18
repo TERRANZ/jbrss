@@ -9,7 +9,7 @@ import com.sun.syndication.io.XmlReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.terra.jbrss.db.entity.Feedposts;
-import ru.terra.jbrss.db.entity.base.Feeds;
+import ru.terra.jbrss.db.entity.Feeds;
 
 import java.io.IOException;
 import java.net.URL;

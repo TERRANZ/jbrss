@@ -1,7 +1,10 @@
 package ru.terra.jbrss.tenancy;
 
+import org.hibernate.cfg.Environment;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +17,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 
 @EnableTransactionManagement
 @Configuration
@@ -22,14 +27,20 @@ import javax.sql.DataSource;
         transactionManagerRef = "nonTenantTransactionManager",
         basePackages = "ru.terra.jbrss.db.repos.nontenant")
 public class NonTenantConfiguration {
+    @Autowired
+    private JpaProperties jpaProperties;
 
     @Bean(name = "nonTenantEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
             EntityManagerFactoryBuilder builder,
             @Qualifier("nonTenantDataSource") DataSource dataSource) {
+        Map<String, Object> properties = new HashMap<>();
+        properties.putAll(jpaProperties.getHibernateProperties(dataSource));
+        properties.put(Environment.SHOW_SQL, "true");
+        properties.put(Environment.HBM2DDL_AUTO, "update");
         return builder
                 .dataSource(dataSource)
-//                .packages("ru.terra.jbrss.db.entity.nontenant")
+                .properties(properties)
                 .persistenceUnit("nontenant")
                 .build();
     }

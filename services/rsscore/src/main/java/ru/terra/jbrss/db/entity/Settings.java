@@ -18,8 +18,6 @@ public class Settings implements Serializable {
     @Basic(optional = false)
     @Column(name = "svalue", nullable = false, length = 512)
     private String value;
-    @Basic(optional = false)
-    private String userId;
 
     public Integer getId() {
         return id;
@@ -55,13 +53,5 @@ public class Settings implements Serializable {
 
     public void setValue(String value) {
         this.value = value;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 }

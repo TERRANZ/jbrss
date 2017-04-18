@@ -18,6 +18,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
+import ru.terra.jbrss.db.entity.JbrssUser;
+import ru.terra.jbrss.db.repos.UsersRepository;
 
 import javax.sql.DataSource;
 import java.util.Arrays;
@@ -29,6 +31,8 @@ import java.util.Map;
 public class AuthorizationConfigurerAdapter extends AuthorizationServerConfigurerAdapter {
     @Autowired
     DataSource dataSource;
+    @Autowired
+    UsersRepository usersRepository;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -39,7 +43,10 @@ public class AuthorizationConfigurerAdapter extends AuthorizationServerConfigure
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         TokenEnhancer userIdTokenEnhancer = (accessToken, authentication) -> {
             Map<String, Object> additionalInfo = new HashMap<>();
-            additionalInfo.put("uid", authentication.getOAuth2Request().getClientId());
+            JbrssUser user = usersRepository.findByLogin(authentication.getOAuth2Request().getClientId());
+            if (user != null) {
+                additionalInfo.put("uid", user.getId());
+            }
             ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
             return accessToken;
         };

@@ -1,4 +1,4 @@
-package ru.terra.jbrss.db.entity.base;
+package ru.terra.jbrss.db.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
