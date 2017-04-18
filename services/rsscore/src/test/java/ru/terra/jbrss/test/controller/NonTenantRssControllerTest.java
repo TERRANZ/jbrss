@@ -13,11 +13,10 @@ import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import ru.terra.jbrss.controller.NonTenantRssController;
-import ru.terra.jbrss.db.entity.BaseFeeds;
 import ru.terra.jbrss.db.entity.Feedposts;
-import ru.terra.jbrss.db.entity.tenant.TenantFeeds;
+import ru.terra.jbrss.db.entity.Feeds;
 import ru.terra.jbrss.db.repos.FeedPostsRepository;
-import ru.terra.jbrss.db.repos.tenant.FeedsRepository;
+import ru.terra.jbrss.db.repos.FeedsRepository;
 import ru.terra.jbrss.test.OAuthHelper;
 
 import java.util.Calendar;
@@ -46,8 +45,8 @@ public class NonTenantRssControllerTest {
     @Autowired
     private WebApplicationContext webapp;
 
-    private BaseFeeds f1;
-    private BaseFeeds f2;
+    private Feeds f1;
+    private Feeds f2;
     private Feedposts fp1;
     private Feedposts fp12;
     private Feedposts fp21;
@@ -57,8 +56,8 @@ public class NonTenantRssControllerTest {
     @Before
     public void setupData() {
         restMvc = MockMvcBuilders.webAppContextSetup(webapp).apply(springSecurity()).build();
-        f1 = feedsRepository.save(new TenantFeeds(0, "feed1", "url1", new Date()));
-        f2 = feedsRepository.save(new TenantFeeds(0, "feed2", "url2", new Date()));
+        f1 = feedsRepository.save(new Feeds(0, "feed1", "url1", new Date()));
+        f2 = feedsRepository.save(new Feeds(0, "feed2", "url2", new Date()));
         Calendar calendar = Calendar.getInstance();
         fp1 = feedPostsRepository.save(new Feedposts(1, f1.getId(), calendar.getTime(), "title1", "link1", "text1"));
         calendar.add(Calendar.HOUR, 1);

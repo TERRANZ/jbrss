@@ -9,10 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ru.terra.jbrss.service.nontenant.NonTenantFeedServiceImpl;
-import ru.terra.jbrss.service.tenant.TenantFeedServiceImpl;
+import ru.terra.jbrss.service.NonTenantFeedServiceImpl;
+import ru.terra.jbrss.service.TenantFeedServiceImpl;
 import ru.terra.jbrss.shared.dto.FeedDto;
 import ru.terra.jbrss.shared.dto.FeedListDto;
+import ru.terra.jbrss.tenant.TenantDataStoreAccessor;
 
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ public class TestController {
     @Autowired
     private NonTenantFeedServiceImpl nonTenantFeedService;
 
+    //    @Transactional
     @RequestMapping(value = "/feed", method = RequestMethod.GET)
     public
     @ResponseBody

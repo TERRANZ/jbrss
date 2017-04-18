@@ -19,8 +19,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJpaRepositories(
         entityManagerFactoryRef = "nonTenantEntityManagerFactory",
-        transactionManagerRef = "nonTenantTransactionManager",
-        basePackages = "ru.**.repos.nontenant")
+        transactionManagerRef = "nonTenantTransactionManager")
 public class NonTenantConfiguration {
 
     @Bean(name = "nonTenantEntityManagerFactory")
@@ -29,7 +28,6 @@ public class NonTenantConfiguration {
             @Qualifier("nonTenantDataSource") DataSource dataSource) {
         return builder
                 .dataSource(dataSource)
-                .packages("ru.terra.**.entity.nontenant")
                 .persistenceUnit("nontenant")
                 .build();
     }
