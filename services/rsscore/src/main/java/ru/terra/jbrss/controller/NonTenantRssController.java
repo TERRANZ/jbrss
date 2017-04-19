@@ -95,7 +95,7 @@ public class NonTenantRssController extends AbstractRssController {
     }
 
     public String getSql(String fn) {
-        try (InputStream resource = NonTenantRssController.class.getResourceAsStream("resource")) {
+        try (InputStream resource = NonTenantRssController.class.getResourceAsStream(fn)) {
             List<String> doc =
                     new BufferedReader(new InputStreamReader(resource,
                             StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
