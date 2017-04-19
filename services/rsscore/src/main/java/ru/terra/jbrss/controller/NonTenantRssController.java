@@ -70,9 +70,9 @@ public class NonTenantRssController extends AbstractRssController {
         } else {
             jdbcTemplate.execute("CREATE SCHEMA `jbrss3_" + uid + "` ;");
             jdbcTemplate.execute("USE `jbrss3_" + uid + "`;");
-            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/feeds.sql").toURI()))));
-            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/feedposts.sql").toURI()))));
-            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/settings.sql").toURI()))));
+            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/feeds.sql").getFile()))));
+            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/feedposts.sql").getFile()))));
+            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/settings.sql").getFile()))));
             return ResponseEntity.ok(new BooleanDto(true));
         }
     }
