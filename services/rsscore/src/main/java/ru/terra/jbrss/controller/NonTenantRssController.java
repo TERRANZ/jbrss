@@ -18,10 +18,14 @@ import ru.terra.jbrss.service.FeedService;
 import ru.terra.jbrss.service.SettingsService;
 import ru.terra.jbrss.shared.dto.BooleanDto;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class NonTenantRssController extends AbstractRssController {
@@ -70,9 +74,9 @@ public class NonTenantRssController extends AbstractRssController {
         } else {
             jdbcTemplate.execute("CREATE SCHEMA `jbrss3_" + uid + "` ;");
             jdbcTemplate.execute("USE `jbrss3_" + uid + "`;");
-            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/feeds.sql").getFile()))));
-            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/feedposts.sql").getFile()))));
-            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/settings.sql").getFile()))));
+            jdbcTemplate.execute(getSql("/feeds.sql"));
+            jdbcTemplate.execute(getSql("/feedposts.sql"));
+            jdbcTemplate.execute(getSql("/settings.sql"));
             return ResponseEntity.ok(new BooleanDto(true));
         }
     }
@@ -88,6 +92,18 @@ public class NonTenantRssController extends AbstractRssController {
             getRssCore().start();
             return ResponseEntity.ok(new BooleanDto(true));
         }
+    }
+
+    public String getSql(String fn) {
+        try (InputStream resource = NonTenantRssController.class.getResourceAsStream("resource")) {
+            List<String> doc =
+                    new BufferedReader(new InputStreamReader(resource,
+                            StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
+            return doc.stream().collect(Collectors.joining());
+        } catch (IOException e) {
+            logger.error("Unable to read file: " + fn, e);
+        }
+        return "";
     }
 
 }

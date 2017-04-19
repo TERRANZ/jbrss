@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class AbstractRssController {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     protected abstract FeedService getFeedService();
 
