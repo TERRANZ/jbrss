@@ -21,6 +21,8 @@ import ru.terra.jbrss.tenancy.TenantDataStoreAccessor;
 import ru.terra.jbrss.test.OAuthHelper;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Calendar;
@@ -56,10 +58,17 @@ public class TenantRssControllerTest {
     private JdbcTemplate jdbcTemplate;
 
     @Before
-    public void setupData() throws IOException {
+    public void setupData() throws IOException, URISyntaxException {
         restMvc = MockMvcBuilders.webAppContextSetup(webapp).apply(springSecurity()).build();
         TenantDataStoreAccessor.setConfiguration(userId);
-        jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/mocked.sql").getFile()))));
+        jdbcTemplate.execute(
+                new String(
+                        Files.readAllBytes(
+                                Paths.get(this.getClass().getResource("/mocked.sql").toURI())
+                        ),
+                        Charset.forName("UTF-8")
+                )
+        );
         f1 = feedsRepository.save(new Feeds(0, "feed1", "url1", new Date()));
         f2 = feedsRepository.save(new Feeds(0, "feed2", "url2", new Date()));
         Calendar calendar = Calendar.getInstance();

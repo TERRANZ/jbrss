@@ -19,6 +19,7 @@ import ru.terra.jbrss.service.SettingsService;
 import ru.terra.jbrss.shared.dto.BooleanDto;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -62,16 +63,16 @@ public class NonTenantRssController extends AbstractRssController {
     @RequestMapping(value = "/createuser", method = RequestMethod.GET)
     public
     @ResponseBody
-    ResponseEntity<BooleanDto> createUser(@RequestParam("uid") String uid) throws IOException {
+    ResponseEntity<BooleanDto> createUser(@RequestParam("uid") String uid) throws IOException, URISyntaxException {
         OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
         if (!authentication.isAuthenticated()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         } else {
             jdbcTemplate.execute("CREATE SCHEMA `jbrss3_" + uid + "` ;");
             jdbcTemplate.execute("USE `jbrss3_" + uid + "`;");
-            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/feeds.sql").getFile()))));
-            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/feedposts.sql").getFile()))));
-            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/settings.sql").getFile()))));
+            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/feeds.sql").toURI()))));
+            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/feedposts.sql").toURI()))));
+            jdbcTemplate.execute(new String(Files.readAllBytes(Paths.get(this.getClass().getResource("/settings.sql").toURI()))));
             return ResponseEntity.ok(new BooleanDto(true));
         }
     }
