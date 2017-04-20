@@ -13,7 +13,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import ru.terra.jbrss.shared.dto.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static ru.terra.jbrss.shared.constants.URLConstants.Rss.*;
 
@@ -62,7 +64,10 @@ public class RssRequestor {
     }
 
     public void updateSetting(String key, String val, String authToken, String uid) {
-
+        Map<String, String> params = new HashMap<>();
+        params.put("key", key);
+        params.put("val", val);
+        ResponseEntity result = new RestTemplate().exchange(url(uid) + SETTINGS, HttpMethod.POST, prepEntity(authToken), Void.class, params);
     }
 
     public void createUser(String uid) {
