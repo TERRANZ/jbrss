@@ -3,7 +3,9 @@ package ru.terra.jbrss.service;
 import ru.terra.jbrss.db.entity.Settings;
 
 public interface SettingsService {
-    Settings findByKey(String updateInterval);
+    Settings get(String key);
 
-    void save(Settings settings);
+    Settings save(Settings settings);
+
+    void delete(String key);
 }

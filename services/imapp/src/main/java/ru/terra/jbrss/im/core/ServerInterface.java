@@ -9,7 +9,7 @@ import ru.terra.jbrss.db.entity.Contact;
 import ru.terra.jbrss.db.repos.ContactsRepository;
 import ru.terra.jbrss.shared.dto.FeedDto;
 import ru.terra.jbrss.shared.dto.FeedPostDto;
-import ru.terra.jbrss.shared.service.RssService;
+import ru.terra.jbrss.shared.service.RssRequestor;
 import ru.terra.jbrss.shared.service.UsersService;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public abstract class ServerInterface {
     @Autowired
     protected UsersService userService;
     @Autowired
-    protected RssService rssService;
+    protected RssRequestor rssRequestor;
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -69,19 +69,19 @@ public abstract class ServerInterface {
     }
 
     public List<FeedDto> getFeeds(String contact) {
-        return rssService.getFeeds(doAuth(contact), uid(contact));
+        return rssRequestor.getFeeds(doAuth(contact), uid(contact));
     }
 
     public List<FeedPostDto> getFeedPosts(String contact, Integer targetFeed, Integer page, Integer perPage) {
-        return rssService.getFeedPosts(doAuth(contact), targetFeed, page, perPage, uid(contact));
+        return rssRequestor.getFeedPosts(doAuth(contact), targetFeed, page, perPage, uid(contact));
     }
 
     public boolean addFeed(String contact, String url) throws IllegalAccessException {
-        return rssService.addFeed(doAuth(contact), url, uid(contact));
+        return rssRequestor.addFeed(doAuth(contact), url, uid(contact));
     }
 
     public void removeFeed(String contact, Integer feedId) {
-        rssService.removeFeed(doAuth(contact), feedId, uid(contact));
+        rssRequestor.removeFeed(doAuth(contact), feedId, uid(contact));
     }
 
     protected void processText(String fromName, String msg) {
@@ -110,11 +110,11 @@ public abstract class ServerInterface {
     public abstract void start();
 
     public boolean update(String contact) {
-        return rssService.updateSchedulingForUser(doAuth(contact), uid(contact));
+        return rssRequestor.updateSchedulingForUser(doAuth(contact), uid(contact));
     }
 
     public void updateSetting(String key, String val, String contact) {
-        rssService.updateSetting(key, val, doAuth(contact), uid(contact));
+        rssRequestor.updateSetting(key, val, doAuth(contact), uid(contact));
     }
 
     public Contact getContact(String contact) {
@@ -127,7 +127,7 @@ public abstract class ServerInterface {
 
     public void regContact(String contact, Integer answer, String login, String pass) {
         String uid = userService.createUser(login, pass);
-        rssService.createUser(uid);
+        rssRequestor.createUser(uid);
         Contact c = createContact(contact);
         c.setUser(login);
         c.setPass(pass);

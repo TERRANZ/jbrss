@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.terra.jbrss.db.OAuthDataService;
 import ru.terra.jbrss.db.entity.JbrssUser;
 import ru.terra.jbrss.db.repos.UsersRepository;
+import ru.terra.jbrss.shared.constants.URLConstants;
 import ru.terra.jbrss.shared.dto.UserIdDto;
 import ru.terra.jbrss.shared.dto.UserIdListDto;
 
@@ -23,7 +24,7 @@ public class UsersController {
     @Autowired
     private OAuthDataService oAuthDataService;
 
-    @RequestMapping(value = URLConstants.GET_ID)
+    @RequestMapping(value = URLConstants.Account.GET_ID)
     public
     @ResponseBody
     UserIdDto getId(@PathVariable(value = "client") String client) {
@@ -38,7 +39,7 @@ public class UsersController {
             return new UserIdDto("");
     }
 
-    @RequestMapping(value = URLConstants.ALL_IDS)
+    @RequestMapping(value = URLConstants.Account.ALL_IDS)
     public
     @ResponseBody
     UserIdListDto allIds() {
@@ -57,7 +58,7 @@ public class UsersController {
         return user;
     }
 
-    @RequestMapping(value = URLConstants.CREATE, method = RequestMethod.POST)
+    @RequestMapping(value = URLConstants.Account.CREATE, method = RequestMethod.POST)
     @Transactional
     public @ResponseBody
     UserIdDto create(@RequestParam(value = "login") String login, @RequestParam(value = "pass") String pass) {
@@ -77,7 +78,7 @@ public class UsersController {
             return new UserIdDto("");
     }
 
-    @RequestMapping(URLConstants.LOGIN)
+    @RequestMapping(URLConstants.Account.LOGIN)
     public @ResponseBody
     UserIdDto login(@RequestParam(value = "login") String login, @RequestParam(value = "pass") String pass) {
         OAuth2Authentication authentication = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();

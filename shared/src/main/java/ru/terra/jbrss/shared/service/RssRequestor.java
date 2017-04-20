@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,10 @@ import ru.terra.jbrss.shared.dto.*;
 
 import java.util.List;
 
+import static ru.terra.jbrss.shared.constants.URLConstants.Rss.*;
+
 @Service
-public class RssService {
+public class RssRequestor {
     @Autowired
     OAuth2RestOperations oAuth2RestOperations;
 
@@ -30,31 +33,31 @@ public class RssService {
     }
 
     protected String url(String uid) {
-        return rssServiceUrl + uid + "/";
+        return rssServiceUrl + uid;
     }
 
     public List<FeedDto> getFeeds(String authToken, String uid) {
-        ResponseEntity<FeedListDto> result = new RestTemplate().exchange(url(uid) + "feed", HttpMethod.GET, prepEntity(authToken), FeedListDto.class);
+        ResponseEntity<FeedListDto> result = new RestTemplate().exchange(url(uid) + FEED, HttpMethod.GET, prepEntity(authToken), FeedListDto.class);
         return result.getBody().data;
     }
 
     public List<FeedPostDto> getFeedPosts(String authToken, Integer targetFeed, Integer page, Integer perPage, String uid) {
-        ResponseEntity<FeedPostsPageableDto> result = new RestTemplate().exchange(url(uid) + "feed/" + targetFeed + "/list?page=" + page + "&limit=" + perPage, HttpMethod.GET, prepEntity(authToken), FeedPostsPageableDto.class);
+        ResponseEntity<FeedPostsPageableDto> result = new RestTemplate().exchange(url(uid) + FEED + "/" + targetFeed + "/list?page=" + page + "&limit=" + perPage, HttpMethod.GET, prepEntity(authToken), FeedPostsPageableDto.class);
         return result.getBody().getPosts();
     }
 
     public boolean addFeed(String authToken, String url, String uid) {
-        ResponseEntity<BooleanDto> result = new RestTemplate().exchange(url(uid) + "feed/add?url=" + url, HttpMethod.GET, prepEntity(authToken), BooleanDto.class);
-        return result.getBody().getStatus();
+        ResponseEntity result = new RestTemplate().exchange(url(uid) + FEED + ADD + "?url=" + url, HttpMethod.PUT, prepEntity(authToken), BooleanDto.class);
+        return result.getStatusCode().equals(HttpStatus.OK);
     }
 
     public boolean removeFeed(String authToken, Integer feedId, String uid) {
-        ResponseEntity<BooleanDto> result = new RestTemplate().exchange(url(uid) + "feed/" + feedId + "/del", HttpMethod.GET, prepEntity(authToken), BooleanDto.class);
-        return result.getBody().getStatus();
+        ResponseEntity result = new RestTemplate().exchange(url(uid) + FEED + "/" + feedId + "/del", HttpMethod.DELETE, prepEntity(authToken), BooleanDto.class);
+        return result.getStatusCode().equals(HttpStatus.OK);
     }
 
     public boolean updateSchedulingForUser(String authToken, String uid) {
-        ResponseEntity<BooleanDto> result = new RestTemplate().exchange(url(uid) + "update", HttpMethod.GET, prepEntity(authToken), BooleanDto.class);
+        ResponseEntity<BooleanDto> result = new RestTemplate().exchange(url(uid) + UPDATE, HttpMethod.GET, prepEntity(authToken), BooleanDto.class);
         return result.getBody().getStatus();
     }
 

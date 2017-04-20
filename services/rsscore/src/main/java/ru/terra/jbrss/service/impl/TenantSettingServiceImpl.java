@@ -12,12 +12,17 @@ public class TenantSettingServiceImpl implements SettingsService {
     TenantSettingRepository repository;
 
     @Override
-    public Settings findByKey(String updateInterval) {
+    public Settings get(String updateInterval) {
         return repository.findByKey(updateInterval);
     }
 
     @Override
-    public void save(Settings settings) {
-        repository.save(settings);
+    public Settings save(Settings settings) {
+        return repository.save(settings);
+    }
+
+    @Override
+    public void delete(String key) {
+        repository.delete(get(key));
     }
 }

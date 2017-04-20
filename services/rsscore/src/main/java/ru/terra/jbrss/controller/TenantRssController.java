@@ -17,6 +17,8 @@ import ru.terra.jbrss.service.FeedService;
 import ru.terra.jbrss.service.SettingsService;
 import ru.terra.jbrss.shared.dto.BooleanDto;
 
+import static ru.terra.jbrss.shared.constants.URLConstants.Rss.UPDATE;
+
 @Controller
 @RequestMapping("/{uid}")
 public class TenantRssController extends AbstractRssController {
@@ -32,6 +34,10 @@ public class TenantRssController extends AbstractRssController {
     @Qualifier("tenantFeedPostsService")
     private FeedPostsService feedPostsService;
 
+    @Autowired
+    @Qualifier("tenantSettingService")
+    private SettingsService settingsService;
+
     @Override
     protected FeedService getFeedService() {
         return feedService;
@@ -44,7 +50,7 @@ public class TenantRssController extends AbstractRssController {
 
     @Override
     protected SettingsService getSettingsService() {
-        return null;
+        return settingsService;
     }
 
     @Override
@@ -52,7 +58,7 @@ public class TenantRssController extends AbstractRssController {
         return rssCore;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = UPDATE, method = RequestMethod.GET)
     public
     @ResponseBody
     ResponseEntity<BooleanDto> update(@PathVariable String uid) {

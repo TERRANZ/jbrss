@@ -45,7 +45,7 @@ public class RssCore {
     @Qualifier("tenantSettingService")
     private SettingsService settingsService;
 
-    public void start() {
+    public void updateAll() {
         try {
             usersService.getAllUserIds().forEach(this::scheduleUpdatingForUser);
         } catch (Exception e) {
@@ -99,9 +99,9 @@ public class RssCore {
             e.printStackTrace();
         }
 
-        Settings settings = settingsService.findByKey(SettingsConstants.UPDATE_INTERVAL);
+        Settings settings = settingsService.get(SettingsConstants.UPDATE_INTERVAL);
         ScheduleBuilder scheduleBuilder = null;
-        Settings updateType = settingsService.findByKey(SettingsConstants.UPDATE_TYPE);
+        Settings updateType = settingsService.get(SettingsConstants.UPDATE_TYPE);
         String updateInterval;
         if (settings != null) {
             updateInterval = settings.getValue();

@@ -23,9 +23,10 @@ import java.util.Date;
 import java.util.UUID;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static ru.terra.jbrss.shared.constants.URLConstants.Rss.FEED;
 
 /**
  * Created by terranz on 01.04.17.
@@ -74,7 +75,7 @@ public class NonTenantRssControllerTest {
     @Test
     public void allFeedsTest() throws Exception {
         RequestPostProcessor bearerToken = oAuthHelper.addBearerToken(userId, "ROLE_USER");
-        ResultActions resultActions = restMvc.perform(get("/feed").with(bearerToken)).andDo(print());
+        ResultActions resultActions = restMvc.perform(get(FEED).with(bearerToken)).andDo(print());
         resultActions.andExpect(status().isOk());
     }
 
@@ -82,7 +83,7 @@ public class NonTenantRssControllerTest {
     public void feedPosts() throws Exception {
         RequestPostProcessor bearerToken = oAuthHelper.addBearerToken(userId, "ROLE_USER");
         ResultActions resultActions = restMvc
-                .perform(get("/feed/" + f1.getId() + "/list")
+                .perform(get(FEED + "/" + f1.getId() + "/list")
                         .param("page", "0")
                         .param("limit", "1")
                         .with(bearerToken))
@@ -94,8 +95,8 @@ public class NonTenantRssControllerTest {
     public void addFeedTest() throws Exception {
         RequestPostProcessor bearerToken = oAuthHelper.addBearerToken(userId, "ROLE_USER");
         ResultActions resultActions = restMvc
-                .perform(get("/feed/add")
-                        .param("url", "http://url.ru/awd.rss")
+                .perform(put(FEED + "/add")
+                        .param("url", "https://auto.onliner.by/feed")
                         .with(bearerToken))
                 .andDo(print());
         resultActions.andExpect(status().isOk());
@@ -107,7 +108,7 @@ public class NonTenantRssControllerTest {
     public void delFeedTest() throws Exception {
         RequestPostProcessor bearerToken = oAuthHelper.addBearerToken(userId, "ROLE_USER");
         ResultActions resultActions = restMvc
-                .perform(get("/feed/" + f2.getId() + "/del")
+                .perform(delete(FEED + "/" + f2.getId() + "/del")
                         .with(bearerToken))
                 .andDo(print());
         resultActions.andExpect(status().isOk());

@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import ru.terra.jbrss.controller.URLConstants;
+import ru.terra.jbrss.shared.constants.URLConstants;
 import ru.terra.jbrss.controller.UsersController;
 import ru.terra.jbrss.db.entity.JbrssUser;
 import ru.terra.jbrss.db.repos.UsersRepository;
@@ -61,7 +61,7 @@ public class UsersControllerTest {
     @Test
     public void getIdTest() throws Exception {
         RequestPostProcessor bearerToken = oAuthHelper.addBearerToken(userId, "ROLE_USER");
-        ResultActions resultActions = restMvc.perform(get(URLConstants.GET_ID.replace("{client}", user1.getLogin())).with(bearerToken)).andDo(print());
+        ResultActions resultActions = restMvc.perform(get(URLConstants.Account.GET_ID.replace("{client}", user1.getLogin())).with(bearerToken)).andDo(print());
         resultActions.andExpect(status().isOk());
     }
 

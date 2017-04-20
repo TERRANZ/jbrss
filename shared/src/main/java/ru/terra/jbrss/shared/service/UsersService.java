@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import ru.terra.jbrss.shared.constants.URLConstants;
 import ru.terra.jbrss.shared.dto.UserIdDto;
 import ru.terra.jbrss.shared.dto.UserIdListDto;
 
@@ -47,7 +48,10 @@ public class UsersService {
     }
 
     public List<String> getAllUserIds() {
-        UserIdListDto ret = oAuth2RestOperations.getForObject(URI.create(authServiceUrl + "user/ids"), UserIdListDto.class);
+        UserIdListDto ret = oAuth2RestOperations.getForObject(
+                URI.create(authServiceUrl + URLConstants.Account.USER + URLConstants.Account.ALL_IDS),
+                UserIdListDto.class
+        );
         if (ret != null) {
             if (ret.data != null) {
                 return ret.data.stream().map(UserIdDto::getId).collect(Collectors.toList());
@@ -60,10 +64,21 @@ public class UsersService {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("login", login);
         map.add("pass", pass);
-        return oAuth2RestOperations.postForObject(authServiceUrl + "user/create", map, UserIdDto.class, login, pass).getId();
+        return oAuth2RestOperations.postForObject(
+                authServiceUrl + URLConstants.Account.USER + URLConstants.Account.CREATE,
+                map,
+                UserIdDto.class,
+                login,
+                pass
+        ).getId();
     }
 
     public String login(String login, String pass) {
-        return oAuth2RestOperations.getForObject(authServiceUrl + "user/login?login={login}&pass={pass}", UserIdDto.class, login, pass).getId();
+        return oAuth2RestOperations.getForObject(
+                authServiceUrl + URLConstants.Account.USER + URLConstants.Account.LOGIN + "?login={login}&pass={pass}",
+                UserIdDto.class,
+                login,
+                pass
+        ).getId();
     }
 }

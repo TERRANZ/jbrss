@@ -27,6 +27,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ru.terra.jbrss.shared.constants.URLConstants.Rss.UPDATE;
+
 @Controller
 public class NonTenantRssController extends AbstractRssController {
     @Autowired
@@ -40,6 +42,10 @@ public class NonTenantRssController extends AbstractRssController {
     @Qualifier("nonTenantFeedPostsService")
     private FeedPostsService feedPostsService;
 
+    @Autowired
+    @Qualifier("nonTenantSettingService")
+    private SettingsService settingsService;
+
     @Override
     protected FeedService getFeedService() {
         return feedService;
@@ -52,7 +58,7 @@ public class NonTenantRssController extends AbstractRssController {
 
     @Override
     protected SettingsService getSettingsService() {
-        return null;
+        return settingsService;
     }
 
     @Override
@@ -81,7 +87,7 @@ public class NonTenantRssController extends AbstractRssController {
         }
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = UPDATE, method = RequestMethod.GET)
     public
     @ResponseBody
     ResponseEntity<BooleanDto> update() {
@@ -89,7 +95,7 @@ public class NonTenantRssController extends AbstractRssController {
         if (!authentication.isAuthenticated()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         } else {
-            getRssCore().start();
+            getRssCore().updateAll();
             return ResponseEntity.ok(new BooleanDto(true));
         }
     }
