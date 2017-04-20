@@ -12,7 +12,6 @@ eureka:
 # HTTP Server
 server:
   port: 2224   # HTTP (Tomcat) port
-  contextPath: /rss
 
 oauth:
   resource: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111

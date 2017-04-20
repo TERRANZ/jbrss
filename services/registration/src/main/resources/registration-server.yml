@@ -16,7 +16,7 @@ zuul:
   routes:
     acc:
       path: /acc/**
-      service-id: accounts-service
+      url: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:2222
     rss:
       path: /rss/**
-      service-id: rsscore-service
+      url: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:2224
