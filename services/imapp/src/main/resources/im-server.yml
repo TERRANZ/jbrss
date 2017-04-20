@@ -27,6 +27,9 @@ telegram:
 
 
 oauth:
-  resource: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:2222
-  authorize: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:2222/acc/oauth/authorize
-  token: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:2222/acc/oauth/token
+  resource: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111
+  authorize: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/acc/oauth/authorize
+  token: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/acc/oauth/token
+
+authserver: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/acc/
+rssservice: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/rss/
