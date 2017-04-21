@@ -20,3 +20,6 @@ zuul:
     rss:
       path: /rss/**
       url: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:2224
+    ui:
+      path: /jbrss/**
+      url: http://localhost:4200/jbrss
