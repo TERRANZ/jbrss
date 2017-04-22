@@ -11,6 +11,7 @@
         <module>services/imapp</module>
         <module>services/account</module>
         <module>services/registration</module>
+        <module>services/proxy</module>
         <module>shared</module>
     </modules>
 </project>

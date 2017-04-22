@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.terra.jbrss</groupId>
-    <artifactId>registration</artifactId>
+    <artifactId>proxy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>registration</name>
-    <description>registration eureka server for jbrss</description>
+    <name>proxy</name>
+    <description>zuul proxy server for jbrss</description>
 
     <parent>
         <groupId>org.springframework.cloud</groupId>
@@ -21,7 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <start-class>ru.terra.jbrss.ServiceRegistrationServer</start-class>
+        <start-class>ru.terra.jbrss.ServiceProxy</start-class>
     </properties>
 
     <dependencies>
@@ -47,6 +47,10 @@
             <!-- Eureka for service registration -->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zuul</artifactId>
         </dependency>
     </dependencies>
 
@@ -77,7 +81,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>ru.terra.jbrss.ServiceRegistrationServer</mainClass>
+                            <mainClass>ru.terra.jbrss.ServiceProxy</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

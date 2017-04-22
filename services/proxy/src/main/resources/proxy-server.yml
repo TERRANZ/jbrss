@@ -1,0 +1,23 @@
+spring:
+  application:
+     name: proxy
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.0.101:18080/eureka/
+
+server:
+  port: 1111   # HTTP (Tomcat) port
+
+zuul:
+  routes:
+    acc:
+      path: /acc/**
+      serviceId: ACCOUNTS
+    rss:
+      path: /rss/**
+      service-id: RSSCORE
+    ui:
+      path: /jbrss/**
+      url: http://localhost:4200/jbrss
