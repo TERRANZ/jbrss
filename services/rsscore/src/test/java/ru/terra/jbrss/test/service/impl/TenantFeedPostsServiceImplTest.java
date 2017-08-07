@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import ru.terra.jbrss.db.entity.Feedposts;
 import ru.terra.jbrss.service.FeedPostsService;
 
+import java.net.URL;
 import java.util.Calendar;
 import java.util.List;
 
@@ -69,5 +72,17 @@ public class TenantFeedPostsServiceImplTest {
     @Test
     public void findOne() throws Exception {
         Assert.assertEquals(feedPostsService.findOne(fp1.getId()).getId(), fp1.getId());
+    }
+
+    @Test
+    public void testGetPath() throws Exception {
+        Logger logger = LoggerFactory.getLogger(this.getClass());
+        logger.info(TenantFeedPostsServiceImplTest.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+
+        logger.info(getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
+
+        URL path = ClassLoader.getSystemClassLoader().getResource(".");
+        if (path != null)
+            logger.info(path.getPath());
     }
 }
