@@ -1,13 +1,13 @@
 # Configure this Discovery Server
 eureka:
   instance:
-    hostname: xn--80aafhfrpg0adapheyc1nya.xn--p1ai
+    hostname: localhost
     preferIpAddress: true
   client:  # Not a client, don't register with yourself
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:18080/eureka/
+      defaultZone: http://localhost:18080/eureka/
 
 server:
   port: 18080   # HTTP (Tomcat) port
