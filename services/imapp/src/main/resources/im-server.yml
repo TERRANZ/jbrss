@@ -7,7 +7,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://85.113.55.84:18080/eureka/
+      defaultZone: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:18080/eureka/
 
 # HTTP Server
 server:
@@ -27,9 +27,9 @@ telegram:
 
 
 oauth:
-  resource: http://85.113.55.84:1111
-  authorize: http://85.113.55.84:1111/acc/oauth/authorize
-  token: http://85.113.55.84:1111/acc/oauth/token
+  resource: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111
+  authorize: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/acc/oauth/authorize
+  token: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/acc/oauth/token
 
-authserver: http://85.113.55.84:1111/acc/
-rssservice: http://85.113.55.84:1111/rss/
+authserver: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/acc/
+rssservice: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/rss/

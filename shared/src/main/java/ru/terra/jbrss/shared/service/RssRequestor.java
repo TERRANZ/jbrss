@@ -20,7 +20,7 @@ import java.util.Map;
 import static ru.terra.jbrss.shared.constants.URLConstants.Rss.*;
 
 @Service
-public class RssRequestor {
+public class RssRequestor implements IRssRequestor {
     @Autowired
     OAuth2RestOperations oAuth2RestOperations;
 
@@ -38,31 +38,37 @@ public class RssRequestor {
         return rssServiceUrl + uid;
     }
 
+    @Override
     public List<FeedDto> getFeeds(String authToken, String uid) {
         ResponseEntity<FeedListDto> result = new RestTemplate().exchange(url(uid) + FEED, HttpMethod.GET, prepEntity(authToken), FeedListDto.class);
         return result.getBody().data;
     }
 
+    @Override
     public List<FeedPostDto> getFeedPosts(String authToken, Integer targetFeed, Integer page, Integer perPage, String uid) {
         ResponseEntity<FeedPostsPageableDto> result = new RestTemplate().exchange(url(uid) + FEED + "/" + targetFeed + "/list?page=" + page + "&limit=" + perPage, HttpMethod.GET, prepEntity(authToken), FeedPostsPageableDto.class);
         return result.getBody().getPosts();
     }
 
+    @Override
     public boolean addFeed(String authToken, String url, String uid) {
         ResponseEntity result = new RestTemplate().exchange(url(uid) + FEED + ADD + "?url=" + url, HttpMethod.PUT, prepEntity(authToken), BooleanDto.class);
         return result.getStatusCode().equals(HttpStatus.OK);
     }
 
+    @Override
     public boolean removeFeed(String authToken, Integer feedId, String uid) {
         ResponseEntity result = new RestTemplate().exchange(url(uid) + FEED + "/" + feedId + "/del", HttpMethod.DELETE, prepEntity(authToken), BooleanDto.class);
         return result.getStatusCode().equals(HttpStatus.OK);
     }
 
+    @Override
     public boolean updateSchedulingForUser(String authToken, String uid) {
         ResponseEntity<BooleanDto> result = new RestTemplate().exchange(url(uid) + UPDATE, HttpMethod.GET, prepEntity(authToken), BooleanDto.class);
         return result.getBody().getStatus();
     }
 
+    @Override
     public void updateSetting(String key, String val, String authToken, String uid) {
         Map<String, String> params = new HashMap<>();
         params.put("key", key);
@@ -70,6 +76,7 @@ public class RssRequestor {
         ResponseEntity result = new RestTemplate().exchange(url(uid) + SETTINGS, HttpMethod.POST, prepEntity(authToken), Void.class, params);
     }
 
+    @Override
     public void createUser(String uid) {
         oAuth2RestOperations.getForEntity(rssServiceUrl + "/createuser?uid=" + uid, BooleanDto.class);
     }
