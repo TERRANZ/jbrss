@@ -17,20 +17,24 @@ public class TelegramIM extends ServerInterface {
     protected String telegramBotName;
     @Value("${telegram.token}")
     protected String telegramToken;
-    @Value("$(telegram.enable}")
+    @Value("${telegram.enable}")
     protected String isEnabled;
 
     private TelegramImBotInterface botInterface;
 
     @Override
     public void start() {
-        ApiContextInitializer.init();
-        TelegramBotsApi botsApi = new TelegramBotsApi();
-        botInterface = new TelegramImBotInterface();
-        try {
-            botsApi.registerBot(botInterface);
-        } catch (TelegramApiException e) {
-            logger.error("Unable to start bot interface", e);
+        if (Boolean.parseBoolean(isEnabled)) {
+            ApiContextInitializer.init();
+            TelegramBotsApi botsApi = new TelegramBotsApi();
+            botInterface = new TelegramImBotInterface();
+            try {
+                botsApi.registerBot(botInterface);
+            } catch (TelegramApiException e) {
+                logger.error("Unable to start bot interface", e);
+            }
+        }else {
+            logger.info("Not starting telegram bot");
         }
     }
 

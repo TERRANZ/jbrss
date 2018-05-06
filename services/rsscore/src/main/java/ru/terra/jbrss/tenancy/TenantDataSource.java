@@ -1,12 +1,11 @@
 package ru.terra.jbrss.tenancy;
 
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
-import javax.sql.DataSource;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -53,14 +52,14 @@ public class TenantDataSource extends AbstractRoutingDataSource {
             return tenantDataSourceMap.get(tenantDataStoreConfiguration.getUsername());
         }
 
-        DataSource tenantDataSource;
-        DataSourceBuilder builder = DataSourceBuilder.create();
-        builder.driverClassName(driver);
-        builder.username(user);
-        builder.password(pass);
-        builder.url(url + "_" + tenantDataStoreConfiguration.getUsername());
+        DataSource tenantDataSource = new DataSource();
+        tenantDataSource.setDriverClassName(driver);
+        tenantDataSource.setUsername(user);
+        tenantDataSource.setPassword(pass);
+        tenantDataSource.setUrl(url + "_" + tenantDataStoreConfiguration.getUsername());
+        tenantDataSource.setTestOnBorrow(true);
+        tenantDataSource.setTestWhileIdle(true);
 
-        tenantDataSource = builder.build();
         tenantDataSourceMap.put(tenantDataStoreConfiguration.getUsername(), tenantDataSource);
 
         return tenantDataSource;

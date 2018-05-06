@@ -1,7 +1,7 @@
-FROM marhan/rpi-java8
+FROM anapsix/alpine-java
 VOLUME /tmp
 ADD "target/proxy-0.0.1-SNAPSHOT.jar" "/app.jar"
-ENV JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n"
+ENV JAVA_OPTS="-Xmx256m"
 
 ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
 

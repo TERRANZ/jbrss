@@ -1,0 +1,62 @@
+version: '2.2'
+
+services:
+    registration:
+        image: jbrss/registration:latest
+        ports:
+          - 18080:18080
+#        mem_limit: 300000000
+        healthcheck:
+          test:  wget --quiet --tries=1 --spider http://localhost:18080/ || exit 1
+          interval: 5s
+          timeout: 10s
+          retries: 60
+    proxy:
+        image: jbrss/proxy:latest
+        ports:
+          - 1111:1111
+        depends_on:
+          registration:
+            condition: service_healthy
+#        mem_limit: 300000000
+        healthcheck:
+          test: wget --quiet --tries=1 --spider http://localhost:1111/env || exit 1
+          interval: 1s
+          timeout: 10s
+          retries: 60
+    accounts:
+        image: jbrss/account:latest
+        ports:
+          - 2222:2222
+        depends_on:
+          proxy:
+            condition: service_healthy
+        healthcheck:
+          test: wget --quiet --tries=1 --spider http://localhost:2222/ || exit 1
+          interval: 1s
+          timeout: 10s
+          retries: 60
+    rsscore:
+        image: jbrss/rsscore:latest
+        ports:
+          - 2224:2224
+        depends_on:
+          proxy:
+            condition: service_healthy
+        healthcheck:
+          test: wget --quiet --tries=1 --spider http://localhost:2224/ || exit 1
+          interval: 1s
+          timeout: 10s
+          retries: 60
+    imapp:
+        image: jbrss/imapp:latest
+        ports:
+          - 2223:2223
+        depends_on:
+          proxy:
+            condition: service_healthy
+        healthcheck:
+          test: wget --quiet --tries=1 --spider http://localhost:2223/ || exit 1
+          interval: 1s
+          timeout: 10s
+          retries: 60

@@ -23,7 +23,7 @@ public class JabberIM extends ServerInterface {
     protected String jabberUser;
     @Value("${jabber.pass}")
     protected String jabberPass;
-    @Value("$(jabber.enable}")
+    @Value("${jabber.enable}")
     protected String isEnabled;
 
     private static XMPPConnection connection;

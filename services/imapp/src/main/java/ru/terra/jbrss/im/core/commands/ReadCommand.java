@@ -6,7 +6,7 @@ import ru.terra.jbrss.shared.dto.FeedPostDto;
 
 import java.util.List;
 
-@IMCommand(value = "read", help = "Read feed command, sytax: read feed_id page perpage. To get feed id send info command")
+@IMCommand(value = "read", help = "Read feed command, syntax: read feed_id page perpage. To get feed id send info command")
 public class ReadCommand extends AbstractCommand {
     @Override
     public boolean doCmd(String contact, List<String> params) {
@@ -27,7 +27,7 @@ public class ReadCommand extends AbstractCommand {
             }
             List<FeedPostDto> fps = serverInterface.getFeedPosts(contact, targetFeed, page, perPage);
             if (fps != null)
-                fps.forEach(fp -> sendMessage(fp.getPosttitle() + " : " + fp.getPosttext() + "\n" + fp.getPostlink()));
+                fps.forEach(fp -> sendMessage(fp.getPosttitle() + "\n" + fp.getPosttext() + "\n" + fp.getPostlink()));
             else
                 sendMessage("Empty feed");
             return true;

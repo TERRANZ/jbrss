@@ -21,7 +21,8 @@ public class CommandsFactory {
         for (AbstractCommand command : new ClassSearcher<AbstractCommand>().load("ru.terra.jbrss.im.core.commands", IMCommand.class)) {
             if (command != null) {
                 commands.put(command.name(), command);
-                helps.add(command.getClass().getAnnotation(IMCommand.class).help());
+                final IMCommand annotation = command.getClass().getAnnotation(IMCommand.class);
+                helps.add(annotation.value() + " : " + annotation.help());
             }
         }
     }
