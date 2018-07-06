@@ -6,9 +6,10 @@
     <version>1</version>
 
     <parent>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-parent</artifactId>
-        <version>Camden.SR6</version>  <!-- Name of release train -->
+        <groupId>ru.terra.jbrss</groupId>
+        <artifactId>main</artifactId>
+        <relativePath>../../pom.xml</relativePath>
+        <version>1</version>
     </parent>
 
     <dependencies>
@@ -35,4 +36,18 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

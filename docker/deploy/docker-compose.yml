@@ -5,7 +5,7 @@ services:
         image: jbrss/registration:latest
         ports:
           - 18080:18080
-#        mem_limit: 300000000
+        mem_limit: 500000000
         healthcheck:
           test:  wget --quiet --tries=1 --spider http://localhost:18080/ || exit 1
           interval: 5s
@@ -18,7 +18,7 @@ services:
         depends_on:
           registration:
             condition: service_healthy
-#        mem_limit: 300000000
+        mem_limit: 500000000
         healthcheck:
           test: wget --quiet --tries=1 --spider http://localhost:1111/env || exit 1
           interval: 1s
@@ -31,9 +31,10 @@ services:
         depends_on:
           proxy:
             condition: service_healthy
+        mem_limit: 500000000
         healthcheck:
-          test: wget --quiet --tries=1 --spider http://localhost:2222/ || exit 1
-          interval: 1s
+          test: wget -S --spider http://proxy:1111/accounts 2>&1 | grep 401 || exit 1
+          interval: 5s
           timeout: 10s
           retries: 60
     rsscore:
@@ -41,22 +42,24 @@ services:
         ports:
           - 2224:2224
         depends_on:
-          proxy:
+          accounts:
             condition: service_healthy
+        mem_limit: 800000000
         healthcheck:
-          test: wget --quiet --tries=1 --spider http://localhost:2224/ || exit 1
-          interval: 1s
+          test: wget -S --spider http://proxy:1111/rss 2>&1 | grep 401 || exit 1
+          interval: 5s
           timeout: 10s
           retries: 60
     imapp:
         image: jbrss/imapp:latest
         ports:
-          - 2223:2223
+          - 2233:2233
         depends_on:
-          proxy:
+          rsscore:
             condition: service_healthy
+        mem_limit: 500000000
         healthcheck:
-          test: wget --quiet --tries=1 --spider http://localhost:2223/ || exit 1
-          interval: 1s
+          test: wget -S --spider http://proxy:2233/rss 2>&1 | grep 401 || exit 1
+          interval: 5s
           timeout: 10s
           retries: 60

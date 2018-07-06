@@ -7,29 +7,29 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:18080/eureka/
+      defaultZone: http://registration:18080/eureka/
 
 # HTTP Server
 server:
-  port: 2223   # HTTP (Tomcat) port
+  port: 2233   # HTTP (Tomcat) port
 
 
 jabber:
   server: terranz.mine.nu
   port: 5222
   user: jbrss
-  pass: A6p5X9yZM6UyqqsH
+  pass: awd
   enable: true
 telegram:
   botname: jbrssbot
-  token: 281134759:AAGBO5w7GYjOjGU3q0Y9EL0qA_p0sQGSoBA
-  enable: false
+  token: awd:a
+  enable: true
 
 
 oauth:
-  resource: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111
-  authorize: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/acc/oauth/authorize
-  token: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/acc/oauth/token
+  resource: http://proxy:1111
+  authorize: http://proxy:1111/acc/oauth/authorize
+  token: http://proxy:1111/acc/oauth/token
 
-authserver: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/acc/
-rssservice: http://xn--80aafhfrpg0adapheyc1nya.xn--p1ai:1111/rss/
+authserver: http://proxy:1111/acc/
+rssservice: http://proxy:1111/rss/
