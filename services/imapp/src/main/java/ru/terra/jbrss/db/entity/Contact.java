@@ -1,9 +1,23 @@
 package ru.terra.jbrss.db.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 import java.io.Serializable;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Contact implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -25,91 +39,4 @@ public class Contact implements Serializable {
     private String authToken;
     @Lob
     private String uid;
-
-    public Contact() {
-    }
-
-    public Contact(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
-    public Long getLastlogin() {
-        return lastlogin;
-    }
-
-    public void setLastlogin(Long lastlogin) {
-        this.lastlogin = lastlogin;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
-    }
-
-    public String getAuthToken() {
-        return authToken;
-    }
-
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
 }

@@ -72,11 +72,11 @@ public class TenantRssControllerTest {
         f1 = feedsRepository.save(new Feeds(0, "feed1", "url1", new Date()));
         f2 = feedsRepository.save(new Feeds(0, "feed2", "url2", new Date()));
         Calendar calendar = Calendar.getInstance();
-        fp1 = feedPostsRepository.save(new Feedposts(1, f1.getId(), calendar.getTime(), "title1", "link1", "text1"));
+        fp1 = feedPostsRepository.save(Feedposts.builder().feedId(f1.getId()).postdate(calendar.getTime()).postlink("l1").posttext("t1").posttitle("t1").build());
         calendar.add(Calendar.HOUR, 1);
-        fp12 = feedPostsRepository.save(new Feedposts(2, f1.getId(), calendar.getTime(), "title2", "link2", "text2"));
+        fp12 = feedPostsRepository.save(Feedposts.builder().feedId(f1.getId()).postdate(calendar.getTime()).postlink("l1").posttext("t1").posttitle("t1").build());
         calendar.add(Calendar.HOUR, 1);
-        fp21 = feedPostsRepository.save(new Feedposts(3, f2.getId(), calendar.getTime(), "title3", "link3", "awdawd"));
+        fp21 = feedPostsRepository.save(Feedposts.builder().feedId(f2.getId()).postdate(calendar.getTime()).postlink("l1").posttext("t1").posttitle("t1").build());
     }
 
     @After

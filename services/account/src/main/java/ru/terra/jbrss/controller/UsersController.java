@@ -67,10 +67,7 @@ public class UsersController {
             if (usersRepository.findByLogin(login) != null) {
                 return new UserIdDto("");
             } else {
-                JbrssUser newUser = new JbrssUser();
-                newUser.setLogin(login);
-                newUser.setPassword(pass);
-                newUser = usersRepository.save(newUser);
+                JbrssUser newUser = usersRepository.save(JbrssUser.builder().login(login).password(pass).build());
                 oAuthDataService.addOAuthUser(login, pass);
                 return new UserIdDto(newUser.getId());
             }

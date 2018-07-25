@@ -40,7 +40,7 @@ public class NonTenantRssSettingsTest {
     @Before
     public void setupData() {
         restMvc = MockMvcBuilders.webAppContextSetup(webapp).apply(springSecurity()).build();
-        s1 = repository.save(new Settings("key1", "value1"));
+        s1 = repository.save(Settings.builder().key("key1").value("value1").build());
     }
 
     @After

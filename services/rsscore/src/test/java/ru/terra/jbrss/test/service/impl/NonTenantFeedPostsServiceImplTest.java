@@ -31,11 +31,11 @@ public class NonTenantFeedPostsServiceImplTest {
     @Before
     public void setupData() {
         Calendar calendar = Calendar.getInstance();
-        fp1 = feedPostsService.save(new Feedposts(1, 1, calendar.getTime(), "title1", "link1", "text1"));
+        fp1 = feedPostsService.save(Feedposts.builder().feedId(1).postdate(calendar.getTime()).postlink("l1").posttext("t1").posttitle("t1").build());
         calendar.add(Calendar.HOUR, 1);
-        fp12 = feedPostsService.save(new Feedposts(2, 1, calendar.getTime(), "title2", "link2", "text2"));
+        fp12 = feedPostsService.save(Feedposts.builder().feedId(1).postdate(calendar.getTime()).postlink("l1").posttext("t1").posttitle("t1").build());
         calendar.add(Calendar.HOUR, 1);
-        fp21 = feedPostsService.save(new Feedposts(3, 2, calendar.getTime(), "title3", "link3", "awdawd"));
+        fp21 = feedPostsService.save(Feedposts.builder().feedId(2).postdate(calendar.getTime()).postlink("l1").posttext("t1").posttitle("t1").build());
     }
 
     @After

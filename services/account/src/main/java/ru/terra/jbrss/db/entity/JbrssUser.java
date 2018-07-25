@@ -1,12 +1,26 @@
 package ru.terra.jbrss.db.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
+@AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@Builder
 public class JbrssUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -23,36 +37,4 @@ public class JbrssUser implements Serializable {
     @Basic(optional = false)
     @Column(name = "password", nullable = false, length = 128)
     private String password;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

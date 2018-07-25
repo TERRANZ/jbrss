@@ -13,6 +13,7 @@
         <module>services/account</module>
         <module>services/registration</module>
         <module>services/proxy</module>
+        <module>services/dms</module>
         <module>shared</module>
     </modules>
 

@@ -1,5 +1,7 @@
 package ru.terra.jbrss.test.service.impl;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.terra.jbrss.db.entity.Feedposts;
 import ru.terra.jbrss.service.FeedPostsService;
-
 import java.net.URL;
 import java.util.Calendar;
 import java.util.List;
@@ -34,11 +35,11 @@ public class TenantFeedPostsServiceImplTest {
     @Before
     public void setupData() {
         Calendar calendar = Calendar.getInstance();
-        fp1 = feedPostsService.save(new Feedposts(1, 1, calendar.getTime(), "title1", "link1", "text1"));
+        fp1 = feedPostsService.save(Feedposts.builder().feedId(1).postdate(calendar.getTime()).postlink("l1").posttext("t1").posttitle("t1").build());
         calendar.add(Calendar.HOUR, 1);
-        fp12 = feedPostsService.save(new Feedposts(2, 1, calendar.getTime(), "title2", "link2", "text2"));
+        fp12 = feedPostsService.save(Feedposts.builder().feedId(1).postdate(calendar.getTime()).postlink("l2").posttext("t2").posttitle("t2").build());
         calendar.add(Calendar.HOUR, 1);
-        fp21 = feedPostsService.save(new Feedposts(3, 2, calendar.getTime(), "title3", "link3", "awdawd"));
+        fp21 = feedPostsService.save(Feedposts.builder().feedId(2).postdate(calendar.getTime()).postlink("l3").posttext("t3").posttitle("t3").build());
     }
 
     @After
@@ -49,18 +50,18 @@ public class TenantFeedPostsServiceImplTest {
     @Test
     public void findFeedpostsByFeedLimited() throws Exception {
         List<Feedposts> list = feedPostsService.findFeedpostsByFeedLimited(1, 0, 1);
-        Assert.assertEquals(1, list.size());
+        assertEquals(1, list.size());
     }
 
     @Test
     public void countByFeedId() throws Exception {
-        Assert.assertTrue(feedPostsService.countByFeedId(1) == 2);
-        Assert.assertTrue(feedPostsService.countByFeedId(2) == 1);
+        assertEquals(2, (int) feedPostsService.countByFeedId(1));
+        assertEquals(1, (int) feedPostsService.countByFeedId(2));
     }
 
     @Test
     public void getLastPostInFeed() throws Exception {
-        Assert.assertEquals(feedPostsService.getLastPostInFeed(1).get(0).getId(), fp12.getId());
+        assertEquals(feedPostsService.getLastPostInFeed(1).get(0).getId(), fp12.getId());
     }
 
     @Test
@@ -71,7 +72,7 @@ public class TenantFeedPostsServiceImplTest {
 
     @Test
     public void findOne() throws Exception {
-        Assert.assertEquals(feedPostsService.findOne(fp1.getId()).getId(), fp1.getId());
+        assertEquals(feedPostsService.findOne(fp1.getId()).getId(), fp1.getId());
     }
 
     @Test

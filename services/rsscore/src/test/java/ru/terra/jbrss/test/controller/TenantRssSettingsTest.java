@@ -1,6 +1,15 @@
 package ru.terra.jbrss.test.controller;
 
 
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static ru.terra.jbrss.shared.constants.URLConstants.Rss.SETTINGS;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,18 +27,11 @@ import ru.terra.jbrss.db.entity.Settings;
 import ru.terra.jbrss.db.repos.tenant.TenantSettingRepository;
 import ru.terra.jbrss.tenancy.TenantDataStoreAccessor;
 import ru.terra.jbrss.test.OAuthHelper;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ru.terra.jbrss.shared.constants.URLConstants.Rss.SETTINGS;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -59,7 +61,7 @@ public class TenantRssSettingsTest {
                         Charset.forName("UTF-8")
                 )
         );
-        s1 = repository.save(new Settings("key1", "value1"));
+        s1 = repository.save(Settings.builder().key("key1").value("val1").build());
     }
 
     @After

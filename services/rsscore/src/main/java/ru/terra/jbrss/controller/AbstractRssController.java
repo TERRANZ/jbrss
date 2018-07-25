@@ -147,7 +147,7 @@ public abstract class AbstractRssController {
         if (settings != null) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         } else {
-            getSettingsService().save(new Settings(key, value));
+            getSettingsService().save(Settings.builder().key(key).value(value).build());
             return ResponseEntity.ok().build();
         }
     }

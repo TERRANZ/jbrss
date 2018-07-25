@@ -1,6 +1,22 @@
 package ru.terra.jbrss.db.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.Lob;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +26,11 @@ import java.util.Date;
         @Index(columnList = "postdate", name = "fp_postdate_idx")
 })
 @NamedQuery(name = "Feedposts.getPostsByFeedAndByDateSortedUnread", query = "SELECT f FROM Feedposts f WHERE f.feedId = ?0 AND f.isRead = ?1 ORDER BY f.postdate DESC")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class Feedposts implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,6 +47,7 @@ public class Feedposts implements Serializable {
     @Basic(optional = false)
     @Column(name = "postdate", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @Builder.Default
     private Date postdate = new Date();
 
     @Basic(optional = false)
@@ -48,86 +70,6 @@ public class Feedposts implements Serializable {
     @Basic(optional = false)
     @Column(name = "update_time", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @Builder.Default
     private Date updated = new Date();
-
-    public Feedposts() {
-    }
-
-    public Feedposts(Integer id) {
-        this.id = id;
-    }
-
-    public Feedposts(Integer id, int feedId, Date postdate, String posttitle,
-                     String postlink, String posttext) {
-        this.id = id;
-        this.feedId = feedId;
-        this.postdate = postdate;
-        this.posttitle = posttitle;
-        this.postlink = postlink;
-        this.posttext = posttext;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public int getFeedId() {
-        return feedId;
-    }
-
-    public void setFeedId(int feedId) {
-        this.feedId = feedId;
-    }
-
-    public Date getPostdate() {
-        return postdate;
-    }
-
-    public void setPostdate(Date postdate) {
-        this.postdate = postdate;
-    }
-
-    public String getPosttitle() {
-        return posttitle;
-    }
-
-    public void setPosttitle(String posttitle) {
-        this.posttitle = posttitle;
-    }
-
-    public String getPostlink() {
-        return postlink;
-    }
-
-    public void setPostlink(String postlink) {
-        this.postlink = postlink;
-    }
-
-    public String getPosttext() {
-        return posttext;
-    }
-
-    public void setPosttext(String posttext) {
-        this.posttext = posttext;
-    }
-
-    public boolean isRead() {
-        return isRead;
-    }
-
-    public void setRead(boolean isRead) {
-        this.isRead = isRead;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
 }

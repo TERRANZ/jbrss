@@ -1,10 +1,26 @@
 package ru.terra.jbrss.db.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "settings")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class Settings implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -18,40 +34,4 @@ public class Settings implements Serializable {
     @Basic(optional = false)
     @Column(name = "svalue", nullable = false, length = 512)
     private String value;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Settings() {
-    }
-
-    public Settings(String key) {
-        this.key = key;
-    }
-
-    public Settings(String key, String value) {
-        this.key = key;
-        this.value = value;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
 }

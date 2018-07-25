@@ -1,0 +1,22 @@
+# Spring properties
+spring:
+  application:
+     name: dms-service
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://registration:18080/eureka/
+
+# HTTP Server
+server:
+  port: 2244   # HTTP (Tomcat) port
+
+oauth:
+  resource: http://proxy:1111
+  authorize: http://proxy:1111/acc/oauth/authorize
+  token: http://proxy:1111/acc/oauth/token
+
+authserver: http://proxy:1111/acc/
+rssservice: http://proxy:1111/rss/

@@ -1,11 +1,28 @@
 package ru.terra.jbrss.db.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "feeds")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Feeds implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -22,51 +39,6 @@ public class Feeds implements Serializable {
     @Basic(optional = false)
     @Column(name = "update_time", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @Builder.Default
     private Date updateTime;
-
-    public Feeds() {
-    }
-
-    public Feeds(Integer id) {
-        this.id = id;
-    }
-
-    public Feeds(Integer id, String feedname, String feedurl, Date updateTime) {
-        this.id = id;
-        this.feedname = feedname;
-        this.feedurl = feedurl;
-        this.updateTime = updateTime;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getFeedname() {
-        return feedname;
-    }
-
-    public void setFeedname(String feedname) {
-        this.feedname = feedname;
-    }
-
-    public String getFeedurl() {
-        return feedurl;
-    }
-
-    public void setFeedurl(String feedurl) {
-        this.feedurl = feedurl;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }

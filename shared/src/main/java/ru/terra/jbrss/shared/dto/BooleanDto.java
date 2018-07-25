@@ -1,20 +1,12 @@
 package ru.terra.jbrss.shared.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BooleanDto {
     public Boolean status;
-
-    public BooleanDto() {
-    }
-
-    public BooleanDto(Boolean status) {
-        this.status = status;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
 }
