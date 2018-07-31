@@ -1,6 +1,7 @@
 package ru.terra.dms.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
 public class DmsObject {
     @Id
     @Basic(optional = false)

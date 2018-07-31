@@ -10,14 +10,13 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.util.FileCopyUtils;
-
 import java.io.IOException;
 
 @Configuration
 public class JwtConfiguration {
     @Autowired
     JwtAccessTokenConverter jwtAccessTokenConverter;
-    
+
     @Bean
     @Qualifier("tokenStore")
     public TokenStore tokenStore() {
