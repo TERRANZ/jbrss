@@ -65,4 +65,16 @@ public class DmsObjectSerivce {
     public void save(final DmsObjectDto dto, final String currentUser) {
         repository.save(mapEntity(dto, currentUser));
     }
+
+    public void delete(final DmsObject dmsObject) {
+        repository.delete(dmsObject);
+    }
+
+    public void update(final DmsObject dmsObject, final DmsObjectDto dto) {
+
+    }
+
+    public List<DmsObject> findByParam(final String param, final String val) {
+        return null;
+    }
 }
