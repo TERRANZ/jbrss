@@ -45,6 +45,7 @@ dependencies {
     implementation("commons-io:commons-io:2.19.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.19.0")
     implementation("org.apache.commons:commons-configuration2:2.12.0")
+    implementation("commons-beanutils:commons-beanutils:1.11.0")
     annotationProcessor("org.projectlombok:lombok:1.18.38")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

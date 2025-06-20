@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FeedEntry {
-    private String id, title, author;
+    private String id, title, author, link;
     private Date published, updated;
     private List<FeedMedia> media;
 }

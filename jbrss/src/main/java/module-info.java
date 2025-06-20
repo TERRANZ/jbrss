@@ -11,6 +11,7 @@ module me.vkorostelev.jbrss {
     requires org.apache.commons.io;
     requires com.fasterxml.jackson.databind;
     requires org.apache.commons.configuration2;
+    requires org.apache.commons.beanutils;
 
     opens me.vkorostelev.jbrss to javafx.fxml;
     opens me.vkorostelev.jbrss.view to javafx.fxml;

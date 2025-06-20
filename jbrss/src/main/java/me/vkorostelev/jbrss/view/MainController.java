@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.web.WebView;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import me.vkorostelev.jbrss.RssConfiguration;
 import me.vkorostelev.jbrss.rss.RssMain;
 import me.vkorostelev.jbrss.rss.RssStorage;
 import me.vkorostelev.jbrss.rss.entity.FeedEntry;
@@ -83,12 +84,16 @@ public class MainController extends AbstractUIView {
         });
 
         tblRss.setOnMouseClicked(e -> {
-            if (e.getClickCount() > 2) {
+            if (e.getClickCount() >= 2) {
                 val selectedRow = tblRss.getSelectionModel().getSelectedItem();
                 wvContent.getEngine().loadContent("");
-                wvContent.getEngine().loadContent("");
+                wvContent.getEngine().load(selectedRow.getLink());
             }
         });
+        val proxyUrl = new RssConfiguration().getConfig().getString("proxy.url");
+        val proxyPort = new RssConfiguration().getConfig().getInt("proxy.port");
+        System.setProperty("https.proxyHost", proxyUrl);
+        System.setProperty("https.proxyPort", String.valueOf(proxyPort));
     }
 
     private void buildTreeRoot() {

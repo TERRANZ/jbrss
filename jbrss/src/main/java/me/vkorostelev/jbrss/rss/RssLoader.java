@@ -34,6 +34,7 @@ public class RssLoader {
                     .title(e.getTitle())
                     .author(e.getAuthor())
                     .id(e.getUri())
+                    .link(e.getLink())
                     .published(e.getPublishedDate())
                     .updated(e.getUpdatedDate())
                     .build();
