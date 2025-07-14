@@ -187,6 +187,7 @@ public class MainController extends AbstractUIView {
                     val newFeed = rssMain.loadFeed(selected.getValue().getFeed().getUrl());
                     log.info("Updating feed {}", selected.getValue().getFeed().getId());
                     storage.merge(newFeed, selected.getValue());
+                    storage.save();
                 });
             }
         });
