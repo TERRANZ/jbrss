@@ -13,6 +13,11 @@ dependencies {
     implementation("com.rometools:rome:2.1.0")
     implementation("com.rometools:rome-utils:2.1.0")
     implementation("com.google.code.gson:gson:2.10.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 java {
