@@ -1,9 +1,8 @@
 package me.vkorostelev.rssfeed.sync;
 
 import com.rometools.rome.io.SyndFeedInput;
-import com.rometools.rome.io.XmlReader;
-import com.rometools.rome.feed.SyndFeed;
-import com.rometools.rome.feed.entry.SyndEntry;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.feed.synd.SyndEntry;
 import me.vkorostelev.rssfeed.model.Feed;
 import me.vkorostelev.rssfeed.model.FeedItem;
 
@@ -27,7 +26,7 @@ public class FeedSyncService {
         if (response.statusCode() != 200) return;
 
         SyndFeedInput input = new SyndFeedInput();
-        SyndFeed syndFeed = input.build(new XmlReader(new StringReader(response.body())));
+        SyndFeed syndFeed = input.build(new StringReader(response.body()));
 
         feed.setTitle(syndFeed.getTitle());
         feed.clearItems();

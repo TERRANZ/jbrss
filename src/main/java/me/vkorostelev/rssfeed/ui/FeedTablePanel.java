@@ -8,7 +8,7 @@ import javax.swing.table.TableRowSorter;
 import java.util.List;
 
 public class FeedTablePanel extends JPanel {
-    private JTable table;
+    JTable table;
     private DefaultTableModel tableModel;
     private TableRowSorter<DefaultTableModel> sorter;
     private List<Feed> currentFeeds;

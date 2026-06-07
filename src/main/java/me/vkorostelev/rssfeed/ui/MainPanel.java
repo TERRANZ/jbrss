@@ -5,6 +5,7 @@ import me.vkorostelev.rssfeed.model.Feed;
 import me.vkorostelev.rssfeed.model.FeedItem;
 
 import javax.swing.*;
+import java.awt.BorderLayout;
 import java.util.List;
 
 public class MainPanel extends JPanel {

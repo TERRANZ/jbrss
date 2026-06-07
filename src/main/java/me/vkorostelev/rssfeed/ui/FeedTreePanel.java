@@ -8,7 +8,7 @@ import javax.swing.tree.DefaultTreeModel;
 import java.util.List;
 
 public class FeedTreePanel extends JPanel {
-    private JTree tree;
+    JTree tree;
     private DefaultTreeModel treeModel;
 
     public FeedTreePanel() {
