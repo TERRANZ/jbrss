@@ -70,6 +70,7 @@ public class Main {
         JPopupMenu popup = new JPopupMenu();
         JMenuItem addFolderItem = new JMenuItem("Add Folder");
         JMenuItem addFeedItem = new JMenuItem("Add Feed");
+        JMenuItem updateItem = new JMenuItem("Update/Rename");
         JMenuItem deleteItem = new JMenuItem("Delete");
         JMenuItem refreshItem = new JMenuItem("Refresh");
 
@@ -105,10 +106,28 @@ public class Main {
             }
         });
 
+        updateItem.addActionListener(e -> {
+            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+            if (selectedNode != null && selectedNode.getUserObject() instanceof Folder) {
+                String newName = JOptionPane.showInputDialog("Enter new folder name:");
+                if (newName != null && !newName.isEmpty()) {
+                    Folder folder = (Folder) selectedNode.getUserObject();
+                    folder.setName(newName);
+                    treeModel.nodeChanged(selectedNode);
+                }
+            } else if (selectedNode != null && selectedNode.getUserObject() instanceof RSSFeed) {
+                String newTitle = JOptionPane.showInputDialog("Enter new feed title:");
+                if (newTitle != null && !newTitle.isEmpty()) {
+                    RSSFeed feed = (RSSFeed) selectedNode.getUserObject();
+                    feed.setTitle(newTitle);
+                    treeModel.nodeChanged(selectedNode);
+                }
+            }
+        });
+
         deleteItem.addActionListener(e -> {
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
             if (selectedNode != null && selectedNode != rootNode) {
-                int index = tree.getSelectionModel().getIndex();
                 treeModel.removeNodeFromParent(selectedNode);
             }
         });
@@ -131,6 +150,7 @@ public class Main {
         popup.add(addFolderItem);
         popup.add(addFeedItem);
         popup.addSeparator();
+        popup.add(updateItem);
         popup.add(deleteItem);
         popup.add(refreshItem);
 
@@ -168,4 +188,3 @@ public class Main {
         }
     }
 }
-
