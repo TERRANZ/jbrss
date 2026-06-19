@@ -3,6 +3,7 @@ package com.jbrss;
 import com.jbrss.model.*;
 import javax.swing.*;
 import javax.swing.tree.*;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -11,6 +12,7 @@ public class Main {
     private DefaultMutableTreeNode rootNode;
     private JTree tree;
     private JTable table;
+    private DefaultTableModel tableModel;
     private JTextArea textArea;
     private DataManager dataManager = new DataManager();
 
@@ -36,8 +38,8 @@ public class Main {
         
         // Top part: Table
         String[] columns = {"Title", "Link"};
-        Object[][] data = {};
-        table = new JTable(new DefaultTableModel(data, columns));
+        tableModel = new DefaultTableModel(columns, 0);
+        table = new JTable(tableModel);
         JScrollPane tableScroll = new JScrollPane(table);
         tableScroll.setPreferredSize(new Dimension(650, 350));
 
@@ -56,6 +58,7 @@ public class Main {
         frame.add(rightPanel, BorderLayout.CENTER);
 
         setupContextMenu();
+        setupListeners();
 
         frame.setVisible(true);
     }
@@ -75,5 +78,35 @@ public class Main {
 
         tree.setComponentPopupMenu(popup);
     }
-}
 
+    private void setupListeners() {
+        // Tree selection listener
+        tree.addTreeSelectionListener(e -> {
+            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+            if (selectedNode != null && selectedNode.getUserObject() instanceof RSSFeed) {
+                RSSFeed feed = (RSSFeed) selectedNode.getUserObject();
+                updateTable(feed);
+            } else if (selectedNode != null && selectedNode.getUserObject() instanceof Folder) {
+                // Clear table when a folder is selected but no specific feed
+                tableModel.setRowCount(0);
+            }
+        });
+
+        // Table selection listener
+        table.getModel().addTableModelListener(e -> {
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow != -1) {
+                String title = (String) tableModel.getValueAt(selectedRow, 0);
+                String link = (String) tableModel.getValueAt(selectedRow, 1);
+                textArea.setText("Title: " + title + "\nLink: " + link);
+            }
+        });
+    }
+
+    private void updateTable(RSSFeed feed) {
+        tableModel.setRowCount(0);
+        for (FeedItem item : feed.getItems()) {
+            tableModel.addRow(new Object[]{item.getTitle(), item.getLink()});
+        }
+    }
+}
