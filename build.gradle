@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'java-library'
 }
 
 group = 'com.jbrss'
@@ -19,9 +20,10 @@ dependencies {
     
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
+    
     // RSS parsing
-    implementation 'com.rometools:rome:2.1.0'
+    api 'com.rometools:rome:2.1.0'
+    implementation 'com.rometools:rome-utils:2.1.0'
 }
 
 test {
@@ -29,9 +31,6 @@ test {
 }
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
 }
 
 application {
